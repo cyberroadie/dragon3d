@@ -30,4 +30,11 @@ package net.transformatorhuis.cgi.conversion;
 
 public class RibFactory {
 
+    public Rib getRibElement(String thRibLine) {
+    
+        return new Rib(thRibLine);
+        
+    }
+    
+    
 }
