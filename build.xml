@@ -73,4 +73,22 @@
         <delete dir="${Distribution}" />
     </target>
 
+    <target name="javadoc">
+        <javadoc destdir="/var/www/localhost/htdocs/docs/Dragon3D" 
+        	     access="public" 
+        	     use="true" 
+        	     notree="false" 
+        	     nonavbar="false" 
+        	     noindex="false" 
+        	     splitindex="true" 
+        	     author="true" 
+        	     version="true" 
+        	     nodeprecatedlist="false" 
+        	     nodeprecated="false" 
+        	     packagenames="net.transformatorhuis.cgi.elements.graphicsstate.transformations,net.transformatorhuis.cgi.elements.primitives,net.transformatorhuis.cgi.elements.graphicsstate.attributes,net.transformatorhuis.cgi.elements,net.transformatorhuis.cgi.utils,net.transformatorhuis.cgi.types,net.transformatorhuis.cgi.elements.motion,net.transformatorhuis.cgi.elements.external,net.transformatorhuis.cgi.conversion,net.transformatorhuis.cgi.elements.graphicsstate.options,net.transformatorhuis.cgi.elements.graphicsstate" 
+        	     sourcepath="${Source}" 
+        	     classpath="build:lib/log4j-1.2.8.jar:/usr/lib/eclipse-3/plugins/org.junit_3.8.1/junit.jar" 
+        	     doctitle="Dragon3D"/>
+    </target>
+	
 </project>
