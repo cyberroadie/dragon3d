@@ -31,14 +31,23 @@ package net.transformatorhuis.cgi.conversion;
 import org.apache.log4j.Logger;
 import org.apache.log4j.BasicConfigurator;
 
-import net.transformatorhuis.cgi.elements.*;
-import net.transformatorhuis.cgi.types.*;
+import net.transformatorhuis.cgi.utils.Config;
+//import net.transformatorhuis.cgi.types.*;
 
 import java.lang.reflect.*;
+import java.util.Hashtable;
 
 public class RibFactory {
 
 	static Logger logger = Logger.getLogger(RibFactory.class);
+	
+	private Hashtable classes;
+	
+	public RibFactory(Config config) {
+	    
+	    classes = config.getClasses();
+	
+	}
 
     public Rib getRibElement(String ribLine) {
     
@@ -66,7 +75,7 @@ public class RibFactory {
         }
              
         try {   
-            ribElementDefinition = Class.forName("net.transformatorhuis.cgi.elements.Ri" + element, true, this.getClass().getClassLoader());
+            ribElementDefinition = Class.forName((String) classes.get(element), true, this.getClass().getClassLoader());
             
             //Constructor con = ribElementDefinition.getConstructor(intArgsClass);
             //rib = (Rib) con.newInstance(intArgs);
@@ -83,7 +92,9 @@ public class RibFactory {
             System.out.println(e);
         } catch (NoSuchMethodException e) {
             System.out.println(e);
-        } 
+        } catch (Exception ex) {
+            System.out.println("Kut");
+        }
         
         return rib; 
         
