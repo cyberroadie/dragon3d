@@ -27,22 +27,30 @@
    +----------------------------------------------------------------------+
 */ 
 
-/**
- * 
- */
 package net.transformatorhuis.cgi.conversion;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator;
 
-import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.Vector;
+
+/**
+ * @author Olivier VAn Acker
+ *
+ * TODO To change the template for this generated type comment go to
+ * Window - Preferences - Java - Code Style - Code Templates
+ */
 public abstract class Rib {
 
 	static Logger logger = Logger.getLogger(Rib.class);
 
+	// This pattern is not perfect. 
+	private Pattern p = Pattern.compile("\"[\\w\\s.]*\"|\\[[\\p{Graph}\\p{Blank}]*\\]|[\\d\\p{Punct}]*'");
+	
     private String param = null;
     
     public Rib() {
@@ -58,6 +66,7 @@ public abstract class Rib {
      * Return name of element based on class name 
      * without starting with 'Ri' and ending with 'Begin'
      * and in lower case.
+     * @return name of the element in lowercase
      */
     protected String getElementName() {
     
@@ -73,8 +82,10 @@ public abstract class Rib {
     
     /**
      * Creates xml node.
-     * Most straight forwrd implementation, 
-     * this class is usually overwriiten by sub class
+     * Most straight forward implementation, 
+     * this class is usually overwritten by sub class
+     * @param ribDoc - DOM xml document to add the xml to
+     * @return xml piece for this element
      */
     public Node createXML(RibDocument ribDoc) {
     
@@ -95,8 +106,31 @@ public abstract class Rib {
         return false;
     }
     
-    public String[] getParams() {
-        return param.trim().split(" ");
+    /**
+     * Split up parameters and put them in a Vector
+     * @param parameters - line with all parameters
+     * @return vector with all parameters seperate
+     */
+    public Vector splitParameters(String parameters) {
+    	Vector parameterList = new Vector();
+    	Matcher m = p.matcher(parameters);
+    	
+    	while(m.find()) {
+    		if(m.start() != m.end()) {
+    			String match = m.group();
+    			logger.debug("Parameter: " + match);
+    			// Remove quotes
+    			if(match.startsWith("\"") && match.endsWith("\"")) {
+    				match = match.substring(1, match.length() - 1);
+    			} 
+    			parameterList.add(match);
+    		}
+    	}
+    	
+        return parameterList;
     }
     
+    public void setParameters(Vector parameterList, int start) {
+    	
+    }
 }
