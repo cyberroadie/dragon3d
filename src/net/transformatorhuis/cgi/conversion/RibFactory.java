@@ -92,8 +92,8 @@ public class RibFactory {
             System.out.println(cnfe);
         } catch (NoSuchMethodException nsme) {
             System.out.println(nsme);
-        } catch (Exception nsme) {
-            System.out.println(nsme);
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
         
         return rib; 
