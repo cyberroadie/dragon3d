@@ -29,6 +29,7 @@
 package net.transformatorhuis.cgi.utils;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.Level;
 import org.apache.log4j.BasicConfigurator;
 
 import java.io.File;
@@ -91,6 +92,10 @@ public class ConfigGenerator {
 
     public static void main(String[] argv) {
 
+        BasicConfigurator.configure();
+        
+        logger.setLevel(Level.DEBUG);
+        
         // is there anything to do?
         if (argv.length < 2) {
             printUsage();
@@ -116,13 +121,15 @@ public class ConfigGenerator {
      * if directory is encountered it calls itself
      */
     private void createDirContent(File[] dir, String key) {
-         
+        
+        logger.debug("Length: " + dir.length);
+        
         for(int i = 0; i < dir.length; i++) {
             if(dir[i].isDirectory()) {
-                //System.out.println(dir[i].getPath());
+                logger.debug(dir[i].getPath());
                 createDirContent(dir[i].listFiles(), dir[i].getPath());
             } else {
-                //System.out.println(dir[i].getName());
+                logger.debug(dir[i].getName());
                 add(key, dir[i].getName());
             }
         }
@@ -131,7 +138,7 @@ public class ConfigGenerator {
     
     /**
      * Adds key to dirContent hashtable and the key
-     * is linked to a vector (which can store multiple keys).
+     * is linked to a vector (which thus can store multiple keys).
      */
     private void add(String key, String value) {
     
