@@ -30,17 +30,24 @@ package net.transformatorhuis.cgi.conversion;
 
 public class Rib {
 
-    protected String element;
-    protected String paramLine;
+    private String element;
+    private String param;
     
-    public Rib(String line) {
-        int paramIndex = line.indexOf(' ');
-        element =  line.substring(0, paramIndex - 1); // -1 without the space
-        paramLine = line.substring(paramIndex + 1);
+    public Rib(String element) {
+        new Rib(element, null);
     }
     
-    public void output() {
-        System.out.println(element + ": " + paramLine);
+    public Rib(String element, String param) {
+        this.element = element;
+        this.param = param;
+    }
+    
+    public String output() {
+        if(param == null) {
+            return ("Ri" + element);
+        } else {
+            return ("Ri" + element + " -> " + param);
+        }
     }
 
     //public abstract String setAttributes();
