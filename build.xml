@@ -34,7 +34,12 @@
    
     <target name="dist" depends="compile" description="Creates distribution" >
         <mkdir dir="${Distribution}/lib" />
-        <jar destfile="${Distribution}/lib/ribxml.jar" basedir="${Build}/classes" />
+        <jar destfile="${Distribution}/lib/ribxml.jar" basedir="${Build}/classes" >
+            <manifest>
+                <attribute name="Built-By" value="Olivier Van Acker" />
+                <attribute name="Main-Class" value="net.transformatorhuis.cgi.conversion.Rib2Xml" />
+            </manifest>
+        </jar>
     </target>
     
     <target name="clean" description="Deletes all compiled and distribution files">
