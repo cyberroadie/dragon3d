@@ -26,15 +26,19 @@
    | Author: Olivier Van Acker <cyberroadie@yahoo.co.uk>                  |
    +----------------------------------------------------------------------+
 */ 
+
+/**
+ * 
+ */
 package net.transformatorhuis.cgi.conversion;
 
-public class Rib {
+public abstract class Rib {
 
     private String element;
     private String param;
     
     public Rib(String element) {
-        new Rib(element, null);
+        this(element, null);
     }
     
     public Rib(String element, String param) {
@@ -44,9 +48,9 @@ public class Rib {
     
     public String output() {
         if(param == null) {
-            return ("Ri" + element);
+            return ("<" + element.toLowerCase() + " />");
         } else {
-            return ("Ri" + element + " -> " + param);
+            return ("<" + element.toLowerCase() + ">" + param + "</" + element.toLowerCase() + ">");
         }
     }
 

@@ -28,14 +28,7 @@
 */
 package net.transformatorhuis.cgi.conversion;
 
-import net.transformatorhuis.cgi.external.*;
-import net.transformatorhuis.cgi.graphicsstate.*;
-import net.transformatorhuis.cgi.graphicsstate.attributes.*;
-import net.transformatorhuis.cgi.graphicsstate.options.*;
-import net.transformatorhuis.cgi.graphicsstate.options.RiDisplay;
-import net.transformatorhuis.cgi.graphicsstate.transformations.*;
-import net.transformatorhuis.cgi.motion.*;
-import net.transformatorhuis.cgi.primitives.*;
+import net.transformatorhuis.cgi.elements.*;
 import net.transformatorhuis.cgi.types.*;
 
 import java.lang.reflect.*;
@@ -55,20 +48,20 @@ public class RibFactory {
         int c = ribLine.indexOf(' ');
         if(c != -1) {
             // With params
-            param = ribLine.substring(c, ribLine.length() - 1); // Get rid of the EOL ('\r')
+            param = ribLine.substring(c, ribLine.length()); // Get rid of the EOL ('\r')
             element = ribLine.substring(0, c);
             intArgsClass = new Class[] {String.class, String.class}; 
             intArgs = new Object[] {element, param};
 
         } else {
             // No params
-            element = ribLine.substring(0, ribLine.length() - 1); // Get rid of the EOL ('\r')
+            element = ribLine; //.substring(0, ribLine.length()); // Get rid of the EOL ('\r')
             intArgsClass = new Class[] {String.class}; 
             intArgs = new Object[] {element};
         }
              
         try {   
-            ribElementDefinition = Class.forName("Ri" + element, true, this.getClass().getClassLoader());
+            ribElementDefinition = Class.forName("net.transformatorhuis.cgi.elements.Ri" + element, true, this.getClass().getClassLoader());
             
             //Constructor con = ribElementDefinition.getConstructor(intArgsClass);
             //rib = (Rib) con.newInstance(intArgs);

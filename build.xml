@@ -5,6 +5,7 @@
     </description>
     
     <property name="Source" location="src" />
+    <property name="Library" location="lib" />
     <property name="Build" location="build" />
     <property name="Distribution" location="dist" />
     
@@ -15,26 +16,34 @@
     </target>
     
     <target name="compile" depends="init" description="Compile sources">
-        <mkdir dir="${Build}/classes" />
-        <javac srcdir="${Source}" destdir="${Build}/classes" debug="false">
+        <mkdir dir="${Build}" />
+        <javac srcdir="${Source}" destdir="${Build}" debug="false">
             <classpath>
                 <pathelement path="${classpath}" />
                 <pathelement path="${Source}/net/transformatorhuis/cgi/conversion" />
-                <pathelement path="${Source}/net/transformatorhuis/cgi/external" />
-                <pathelement path="${Source}/net/transformatorhuis/cgi/motion" />
-                <pathelement path="${Source}/net/transformatorhuis/cgi/primitives" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/elements" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/elements/external" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/elements/graphicsstate" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/elements/graphicsstate/attributes" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/elements/graphicsstate/options" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/elements/graphicsste/transformations" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/elements/motion" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/elements/primitives" />
                 <pathelement path="${Source}/net/transformatorhuis/cgi/types" />
-                <pathelement path="${Source}/net/transformatorhuis/cgi/graphicsstate" />
-                <pathelement path="${Source}/net/transformatorhuis/cgi/graphicsstate/attributes" />
-                <pathelement path="${Source}/net/transformatorhuis/cgi/graphicsstate/options" />
-                <pathelement path="${Source}/net/transformatorhuis/cgi/graphicsstate/transformations" />
             </classpath>
         </javac>
     </target>
+    
+    <target name="config" depends="compile" description="Creates configuration file">
+        <mkdir dir="${Build}/conf" />
+        <exec dir="${Build}" executable="java">
+            <arg line="net.transformatorhuis.cgi.utils.ConfigGenerator conf/RibElements.xml net/transformatorhuis/cgi/elements" />
+        </exec>
+    </target>
    
-    <target name="dist" depends="compile" description="Creates distribution" >
+    <target name="dist" depends="config" description="Creates distribution" >
         <mkdir dir="${Distribution}/lib" />
-        <jar destfile="${Distribution}/lib/ribxml.jar" basedir="${Build}/classes" >
+        <jar destfile="${Distribution}/lib/ribxml.jar" basedir="${Build}" >
             <manifest>
                 <attribute name="Built-By" value="Olivier Van Acker" />
                 <attribute name="Main-Class" value="net.transformatorhuis.cgi.conversion.Rib2Xml" />
@@ -45,6 +54,6 @@
     <target name="clean" description="Deletes all compiled and distribution files">
         <delete dir="${Build}" />
         <delete dir="${Distribution}" />
-    </target> 
-    
+    </target>
+
 </project>
