@@ -80,20 +80,20 @@ public class RibFactory {
             //Constructor con = ribElementDefinition.getConstructor(intArgsClass);
             //rib = (Rib) con.newInstance(intArgs);
             rib = (Rib) ribElementDefinition.getConstructor(intArgsClass).newInstance(intArgs);
-        } catch (InstantiationException e) {
-            System.out.println(e);
-        } catch (IllegalAccessException e) {
-            System.out.println(e);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e);
-        } catch (InvocationTargetException e) {
-            System.out.println(e);
-        } catch (ClassNotFoundException e) {
-            System.out.println(e);
-        } catch (NoSuchMethodException e) {
-            System.out.println(e);
-        } catch (Exception ex) {
-            System.out.println("Kut");
+        } catch (InstantiationException ie) {
+            System.out.println(ie);
+        } catch (IllegalAccessException iae) {
+            System.out.println(iae);
+        } catch (IllegalArgumentException iae) {
+            System.out.println(iae);
+        } catch (InvocationTargetException ite) {
+            System.out.println(ite);
+        } catch (ClassNotFoundException cnfe) {
+            System.out.println(cnfe);
+        } catch (NoSuchMethodException nsme) {
+            System.out.println(nsme);
+        } catch (Exception nsme) {
+            System.out.println(nsme);
         }
         
         return rib; 
