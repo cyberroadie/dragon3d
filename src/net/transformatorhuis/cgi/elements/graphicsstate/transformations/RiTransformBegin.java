@@ -45,4 +45,7 @@ public class RiTransformBegin extends Rib {
         super(element, param);
     }
 
+    public boolean hasChildElements() {
+        return true;
+    }
 }

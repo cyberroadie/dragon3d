@@ -44,5 +44,9 @@ public class RiAttributeBegin extends Rib {
     public RiAttributeBegin(String element, String param) {
         super(element, param);
     }
+    
+    public boolean hasChildElements() {
+        return true;
+    }
 
 }
