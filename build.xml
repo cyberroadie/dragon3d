@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <project name="RendermanXML" default="dist" basedir=".">
     <description>
         Renderman Interface to XML conversion tool
