@@ -33,6 +33,11 @@ import org.apache.log4j.BasicConfigurator;
 
 import net.transformatorhuis.cgi.conversion.Rib;
 
+/**
+ * @author Pixar, Olivier Van Acker
+ *
+ * 
+ */
 public class RiShadingRate extends Rib {
 
 	static Logger logger = Logger.getLogger(RiShadingRate.class);
