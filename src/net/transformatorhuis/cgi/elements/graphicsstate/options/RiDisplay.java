@@ -1,8 +1,8 @@
 /* 
    +----------------------------------------------------------------------+
-   | RendermanXML                                                         |
+   | Dragon3D                                                             |
    +----------------------------------------------------------------------+
-   | Copyright (c) 2004 Cyberroadie                                       |
+   | Copyright (c) 2004-2005 Cyberroadie                                  |
    +----------------------------------------------------------------------+
    | This source file is subject to version 2 of the GNU General Public   |
    | License, that is bundled with this package in the file LICENSE.      |
@@ -23,58 +23,137 @@
    | MA  02111-1307  USA                                                  |
    |                                                                      |
    +----------------------------------------------------------------------+
-   | Author: Olivier Van Acker <cyberroadie@yahoo.co.uk>                  |
+   | Author: Olivier Van Acker <cyberroadie@gmail.com>                    |
    +----------------------------------------------------------------------+
 */
 package net.transformatorhuis.cgi.elements.graphicsstate.options;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator;
 
 import org.w3c.dom.Element;
 
-/**
- * Parse a "Display" element from a rib file
- * Example:
- * Display "swordMesh.tif" "file" "rgba"
- *
- * Output with parameters:
- * <display name="swordMesh.tif" type="file" mode="rgba" >
- *	<param name"[name]">
- *		[value]
- * 	</param>
- * </display>
- *
- * Output without parameters:
- * <display name="swordMesh.tif" type="file" mode="rgba" />
- */
-
 import net.transformatorhuis.cgi.conversion.Rib;
-
 import net.transformatorhuis.cgi.conversion.RibDocument;
+
+import java.util.Vector;
 
 import org.w3c.dom.Node;
 
+/**
+ *
+ */
 public class RiDisplay extends Rib {
 
 	static Logger logger = Logger.getLogger(RiDisplay.class);
 	 
+	private String name;
+	private String type;
+	private String mode;
 
-    public RiDisplay() {
-        super();
-    }
-
-    public RiDisplay(String param) {
-        super(param);
+	private Vector parameterList;
+	
+    public RiDisplay(String parameters) {
+    	super(parameters);
+    	parameterList = splitParameters(parameters);
+    	
+        setName((String) parameterList.get(0));
+        setType((String) parameterList.get(1));
+        setMode((String) parameterList.get(2));
+        if(parameterList.size() > 3) {
+        	setParameters(parameterList, 3);
+        } else {
+        	setParameters(null, 0);
+        }
     }
     
+    /**
+     * Sets the name of picture file or framebuffer depending on type
+     * @param name  picture file or framebuffer name
+     */
+    public void setName(String name) {
+    	this.name = name;
+    }
+    
+    /**
+     * Sets the display format, output device or output driver.
+     * @param type display type
+     */
+    public void setType(String type) {
+    	this.type = type;
+    }
+    
+    /**
+     * Sets the mode which indicates what data are to be output in this display stream
+     * @param mode data mode
+     */
+    public void setMode(String mode) {
+    	this.mode = mode;
+    }
+    
+    /**
+     * Returns the name of the picture file or framebuffer
+     * @return the name
+     */
+    public String getName() {
+    	return name;
+    }
+    
+    /**
+     * Returns the display format, output device or output driver.
+     * @return the type
+     */
+    public String getType() {
+    	return type;
+    }
+    
+    /**
+     * Returns the mode which indicates what data are to be output in this display stream
+     * @return the data mode
+     */
+    public String getMode() {
+    	return mode;
+    }
+    
+    /**
+     * Creates the XML fragment for RiDisplay rib element.
+     * <p>
+     * DTD fragment
+     * <pre>
+     * &lt;!ELEMENT DISPLAY - O EMPTY -- RiDisplay --&gt;
+     * &lt;!ATTLIST DISPLAY 
+     *   name    CDATA   #REQUIRED -- name of the picture file or framebuffer --
+     *   type    CDATA   #REQUIRED -- the display format, output device or output driver --
+     *   mode    CDATA   #REQUIRED -- the mode which indicates what data are to be output in this display stream --
+     * &gt;
+     * </pre>
+     * <p>
+	 * <h1>Example</h1>
+	 * Input:
+	 * <pre>
+	 * Display "swordMesh.tif" "file" "rgba"
+	 * </pre>
+	 * <p>
+	 * Output with parameters:
+	 * <pre>
+	 * &lt;display name="swordMesh.tif" type="file" mode="rgba" &gt;
+	 *	&lt;param name="[name]" value="[value]" /&gt;
+	 * &lt;/display&gt;
+	 * </pre>
+	 * <p>
+	 * Output without parameters:
+	 * <pre>
+	 * &lt;display name="swordMesh.tif" type="file" mode="rgba" /&gt;
+	 * </pre>
+	 * 
+     * @param ribDoc - DOM XML document to request an element from
+     * @return Display xml node
+     */
     public Node createXML(RibDocument ribDoc) {
     
-        String[] params = getParams();
         Element ribRoot = ribDoc.requestElement(getElementName());
-        ribRoot.setAttribute("name", params[0].substring(1, params[0].length() - 1));
-        ribRoot.setAttribute("type", params[1].substring(1, params[1].length() - 1));
-        ribRoot.setAttribute("mode", params[2].substring(1, params[2].length() - 1));
+        ribRoot.setAttribute("name", getName());
+        ribRoot.setAttribute("type", getType());
+        ribRoot.setAttribute("mode", getMode());
         
         return (Node) ribRoot;
         
