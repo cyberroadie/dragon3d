@@ -8,6 +8,10 @@
     <property name="Library" location="lib" />
     <property name="Build" location="build" />
     <property name="Distribution" location="dist" />
+    <property name="Configuration" location="conf" />
+    
+    <property name="RibConfigFile" value="RibElements.xml" />
+    <property name="Log4jConfigFile" value="log4j.xml" />
     
     <target name="init">
         <tstamp />
@@ -43,14 +47,17 @@
     
     <target name="config" depends="compile" description="Creates configuration file">
         <echo message="Creating configuration file" />
-        <mkdir dir="${Build}/conf" />
+        <mkdir dir="${Configuration}" />
+        <!-- TODO Make java ant task work -->
         <exec dir="${Build}" executable="java">
-            <arg line="net.transformatorhuis.cgi.utils.ConfigGenerator conf/RibElements.xml net/transformatorhuis/cgi/elements" />
+            <arg line="net.transformatorhuis.cgi.utils.ConfigGenerator ${Configuration}/${RibConfigFile} net/transformatorhuis/cgi/elements" />
         </exec>
     </target>
    
     <target name="dist" depends="config" description="Creates distribution" >
+        <mkdir dir="${Build}/conf" />
         <mkdir dir="${Distribution}/lib" />
+        <copy file="${Configuration}/${RibConfigFile}" todir="${Build}/conf" />
         <jar destfile="${Distribution}/lib/ribxml.jar" basedir="${Build}" >
             <manifest>
                 <attribute name="Built-By" value="Olivier Van Acker" />
