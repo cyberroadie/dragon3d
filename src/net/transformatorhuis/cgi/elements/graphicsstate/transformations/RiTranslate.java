@@ -37,12 +37,12 @@ public class RiTranslate extends Rib {
 
 	static Logger logger = Logger.getLogger(RiTranslate.class);
 
-    public RiTranslate(String element) {
-        super(element);
+    public RiTranslate() {
+        super();
     }
 
-    public RiTranslate(String element, String param) {
-        super(element, param);
+    public RiTranslate(String param) {
+        super(param);
     }
 
 }

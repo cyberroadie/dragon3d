@@ -37,12 +37,12 @@ public class RiMakeCubeFaceEnvironment extends Rib {
 
 	static Logger logger = Logger.getLogger(RiMakeCubeFaceEnvironment.class);
 
-    public RiMakeCubeFaceEnvironment(String element) {
-        super(element);
+    public RiMakeCubeFaceEnvironment() {
+        super();
     }
     
-    public RiMakeCubeFaceEnvironment(String element, String param) {
-        super(element, param);
+    public RiMakeCubeFaceEnvironment(String param) {
+        super(param);
     }
     
 }

@@ -37,12 +37,12 @@ public class RiDisk extends Rib {
 
 	static Logger logger = Logger.getLogger(RiDisk.class);
 
-    public RiDisk(String element) {
-        super(element);
+    public RiDisk() {
+        super();
     }
 
-    public RiDisk(String element, String param) {
-        super(element, param);
+    public RiDisk(String param) {
+        super(param);
     }
 
 }

@@ -54,7 +54,7 @@ public class RibFactory {
 	}
 
 
-    public void addRibElement(String ribLine) {
+    public void processRibElement(String ribLine) {
     
         String element = null;
         String param;
@@ -69,21 +69,26 @@ public class RibFactory {
             // With params
             param = ribLine.substring(c, ribLine.length()); // Get rid of the EOL ('\r')
             element = ribLine.substring(0, c);
-            intArgsClass = new Class[] {String.class, String.class}; 
-            intArgs = new Object[] {element, param};
+            intArgsClass = new Class[] {String.class}; 
+            intArgs = new Object[] {param};
 
         } else {
             // No params
             element = ribLine; //.substring(0, ribLine.length()); // Get rid of the EOL ('\r')
-            intArgsClass = new Class[] {String.class}; 
-            intArgs = new Object[] {element};
+            intArgsClass = new Class[] {}; 
+            intArgs = null;
         }
              
         try {   
             ribElementDefinition = Class.forName((String) classes.get(element), true, this.getClass().getClassLoader());
             
-            // Add xml via specific rib class
-            ribElementDefinition.getConstructor(intArgsClass).newInstance(intArgs);
+            // Instantiate the new rib element
+            rib = (Rib) ribElementDefinition.getConstructor(intArgsClass).newInstance(intArgs);
+            
+            // Give the rib element to RibDocument which knows what to do with it
+            RibDocument ribDoc = RibDocument.newInstance();
+            logger.debug("Do Job");
+            ribDoc.doJob(rib);
            
         } catch (InstantiationException ie) {
             System.out.println(ie);

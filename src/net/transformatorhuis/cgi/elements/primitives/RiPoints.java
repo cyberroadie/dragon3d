@@ -37,12 +37,12 @@ public class RiPoints extends Rib {
 
 	static Logger logger = Logger.getLogger(RiPoints.class);
 
-    public RiPoints(String element) {
-        super(element);
+    public RiPoints() {
+        super();
     }
 
-    public RiPoints(String element, String param) {
-        super(element, param);
+    public RiPoints(String param) {
+        super(param);
     }
 
 }

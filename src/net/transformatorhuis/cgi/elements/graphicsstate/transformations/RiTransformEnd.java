@@ -37,12 +37,12 @@ public class RiTransformEnd extends Rib {
 
 	static Logger logger = Logger.getLogger(RiTransformEnd.class);
 
-    public RiTransformEnd(String element) {
-        super(element);
+    public RiTransformEnd() {
+        super();
     }
 
-    public RiTransformEnd(String element, String param) {
-        super(element, param);
+    public RiTransformEnd(String param) {
+        super(param);
     }
 
     public boolean isEndElement() {

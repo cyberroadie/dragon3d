@@ -37,11 +37,11 @@ public class RiMakeShadow extends Rib {
 
 	static Logger logger = Logger.getLogger(RiMakeShadow.class);
 
-    public RiMakeShadow(String element) {
-        super(element);
+    public RiMakeShadow() {
+        super();
     }
     
-    public RiMakeShadow(String element, String param) {
-	    super(element, param);
+    public RiMakeShadow(String param) {
+	    super(param);
 	}
 }

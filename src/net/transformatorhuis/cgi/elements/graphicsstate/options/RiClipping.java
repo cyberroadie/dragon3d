@@ -37,12 +37,12 @@ public class RiClipping extends Rib {
 
 	static Logger logger = Logger.getLogger(RiClipping.class);
 
-    public RiClipping(String element) {
-        super(element);
+    public RiClipping() {
+        super();
     }
 
-    public RiClipping(String element, String param) {
-        super(element, param);
+    public RiClipping(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiAtmosphere extends Rib {
 
 	static Logger logger = Logger.getLogger(RiAtmosphere.class);
 
-    public RiAtmosphere(String element) {
-        super(element);
+    public RiAtmosphere() {
+        super();
     }
 
-    public RiAtmosphere(String element, String param) {
-        super(element, param);
+    public RiAtmosphere(String param) {
+        super(param);
     }
 
 }

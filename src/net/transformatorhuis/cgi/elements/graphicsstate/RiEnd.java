@@ -37,12 +37,12 @@ public class RiEnd extends Rib {
 
 	static Logger logger = Logger.getLogger(RiEnd.class);
 
-    public RiEnd(String element) {
-        super(element);
+    public RiEnd() {
+        super();
     }
 
-    public RiEnd(String element, String param) {
-        super(element, param);
+    public RiEnd(String param) {
+        super(param);
     }
 
 }

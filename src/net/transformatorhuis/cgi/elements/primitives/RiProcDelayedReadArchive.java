@@ -37,12 +37,12 @@ public class RiProcDelayedReadArchive extends Rib {
 
 	static Logger logger = Logger.getLogger(RiProcDelayedReadArchive.class);
 
-    public RiProcDelayedReadArchive(String element) {
-        super(element);
+    public RiProcDelayedReadArchive() {
+        super();
     }
 
-    public RiProcDelayedReadArchive(String element, String param) {
-        super(element, param);
+    public RiProcDelayedReadArchive(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiGeometricApproximation extends Rib {
 
 	static Logger logger = Logger.getLogger(RiGeometricApproximation.class);
 
-    public RiGeometricApproximation(String element) {
-        super(element);
+    public RiGeometricApproximation() {
+        super();
     }
 
-    public RiGeometricApproximation(String element, String param) {
-        super(element, param);
+    public RiGeometricApproximation(String param) {
+        super(param);
     }
 
 }

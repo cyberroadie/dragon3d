@@ -37,12 +37,12 @@ public class RiConcatTransform extends Rib {
 
 	static Logger logger = Logger.getLogger(RiConcatTransform.class);
 
-    public RiConcatTransform(String element) {
-        super(element);
+    public RiConcatTransform() {
+        super();
     }
 
-    public RiConcatTransform(String element, String param) {
-        super(element, param);
+    public RiConcatTransform(String param) {
+        super(param);
     }
 
 }

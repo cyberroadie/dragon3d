@@ -37,12 +37,16 @@ public class RiMotionBegin extends Rib {
 
 	static Logger logger = Logger.getLogger(RiMotionBegin.class);
 
-    public RiMotionBegin(String element) {
-        super(element);
+    public RiMotionBegin() {
+        super();
     }
 
-    public RiMotionBegin(String element, String param) {
-        super(element, param);
+    public RiMotionBegin(String param) {
+        super(param);
+    }
+    
+    public boolean hasChildElements() {
+        return true;
     }
 
 }

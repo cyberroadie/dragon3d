@@ -37,12 +37,12 @@ public class RiBound extends Rib {
 
 	static Logger logger = Logger.getLogger(RiBound.class);
 
-    public RiBound(String element) {
-        super(element);
+    public RiBound() {
+        super();
     }
 
-    public RiBound(String element, String param) {
-        super(element, param);
+    public RiBound(String param) {
+        super(param);
     }
 
 }

@@ -37,13 +37,13 @@ public class RiBlobby extends Rib {
 
 	static Logger logger = Logger.getLogger(RiBlobby.class);
 
-    public RiBlobby(String element) {
-        super(element);
+    public RiBlobby() {
+        super();
     }
 
 
-    public RiBlobby(String element, String param) {
-        super(element, param);
+    public RiBlobby(String param) {
+        super(param);
     }
 
 }

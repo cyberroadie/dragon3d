@@ -37,12 +37,12 @@ public class RiPixelFilter extends Rib {
 
 	static Logger logger = Logger.getLogger(RiPixelFilter.class);
 
-    public RiPixelFilter(String element) {
-        super(element);
+    public RiPixelFilter() {
+        super();
     }
 
-    public RiPixelFilter(String element, String param) {
-        super(element, param);
+    public RiPixelFilter(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiTransformBegin extends Rib {
 
 	static Logger logger = Logger.getLogger(RiTransformBegin.class);
 
-    public RiTransformBegin(String element) {
-        super(element);
+    public RiTransformBegin() {
+        super();
     }
 
-    public RiTransformBegin(String element, String param) {
-        super(element, param);
+    public RiTransformBegin(String param) {
+        super(param);
     }
 
     public boolean hasChildElements() {

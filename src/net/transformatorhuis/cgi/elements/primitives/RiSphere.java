@@ -37,12 +37,12 @@ public class RiSphere extends Rib {
 
 	static Logger logger = Logger.getLogger(RiSphere.class);
 
-    public RiSphere(String element) {
-        super(element);
+    public RiSphere() {
+        super();
     }
 
-    public RiSphere(String element, String param) {
-        super(element, param);
+    public RiSphere(String param) {
+        super(param);
     }
 
 }

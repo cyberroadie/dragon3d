@@ -37,12 +37,12 @@ public class RiSkew extends Rib {
 
 	static Logger logger = Logger.getLogger(RiSkew.class);
 
-    public RiSkew(String element) {
-        super(element);
+    public RiSkew() {
+        super();
     }
 
-    public RiSkew(String element, String param) {
-        super(element, param);
+    public RiSkew(String param) {
+        super(param);
     }
 
 }

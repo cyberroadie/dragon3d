@@ -37,12 +37,12 @@ public class RiWorldEnd extends Rib {
 
 	static Logger logger = Logger.getLogger(RiWorldEnd.class);
 
-    public RiWorldEnd(String element) {
-        super(element);
+    public RiWorldEnd() {
+        super();
     }
     
-    public RiWorldEnd(String element, String param) {
-        super(element, param);
+    public RiWorldEnd(String param) {
+        super(param);
     }
 
 }

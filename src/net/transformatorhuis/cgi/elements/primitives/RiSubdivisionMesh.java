@@ -37,12 +37,12 @@ public class RiSubdivisionMesh extends Rib {
 
 	static Logger logger = Logger.getLogger(RiSubdivisionMesh.class);
 
-    public RiSubdivisionMesh(String element) {
-        super(element);
+    public RiSubdivisionMesh() {
+        super();
     }
 
-    public RiSubdivisionMesh(String element, String param) {
-        super(element, param);
+    public RiSubdivisionMesh(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiOrientation extends Rib {
 
 	static Logger logger = Logger.getLogger(RiOrientation.class);
 
-    public RiOrientation(String element) {
-        super(element);
+    public RiOrientation() {
+        super();
     }
 
-    public RiOrientation(String element, String param) {
-        super(element, param);
+    public RiOrientation(String param) {
+        super(param);
     }
 
 }

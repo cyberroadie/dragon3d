@@ -37,12 +37,12 @@ public class RiCoordinateSystem extends Rib {
 
 	static Logger logger = Logger.getLogger(RiCoordinateSystem.class);
 
-    public RiCoordinateSystem(String element) {
-        super(element);
+    public RiCoordinateSystem() {
+        super();
     }
 
-    public RiCoordinateSystem(String element, String param) {
-        super(element, param);
+    public RiCoordinateSystem(String param) {
+        super(param);
     }
 
 }

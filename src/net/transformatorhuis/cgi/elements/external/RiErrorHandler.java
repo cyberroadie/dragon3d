@@ -37,11 +37,11 @@ public class RiErrorHandler extends Rib {
 
 	static Logger logger = Logger.getLogger(RiErrorHandler.class);
 
-    public RiErrorHandler(String element) {
-        super(element);
+    public RiErrorHandler() {
+        super();
     }
     
-    public RiErrorHandler(String element, String param) {
-        super(element, param);
+    public RiErrorHandler(String param) {
+        super(param);
     }
 }

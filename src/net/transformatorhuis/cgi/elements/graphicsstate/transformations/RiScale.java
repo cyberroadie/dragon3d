@@ -37,12 +37,12 @@ public class RiScale extends Rib {
 
 	static Logger logger = Logger.getLogger(RiScale.class);
 
-    public RiScale(String element) {
-        super(element);
+    public RiScale() {
+        super();
     }
 
-    public RiScale(String element, String param) {
-        super(element, param);
+    public RiScale(String param) {
+        super(param);
     }
 
 }

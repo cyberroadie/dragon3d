@@ -37,12 +37,12 @@ public class RiExterior extends Rib {
 
 	static Logger logger = Logger.getLogger(RiExterior.class);
 
-    public RiExterior(String element) {
-        super(element);
+    public RiExterior() {
+        super();
     }
 
-    public RiExterior(String element, String param) {
-        super(element, param);
+    public RiExterior(String param) {
+        super(param);
     }
 
 }

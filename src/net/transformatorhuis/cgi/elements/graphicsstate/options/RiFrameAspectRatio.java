@@ -37,12 +37,12 @@ public class RiFrameAspectRatio extends Rib {
 
 	static Logger logger = Logger.getLogger(RiFrameAspectRatio.class);
 
-    public RiFrameAspectRatio(String element) {
-        super(element);
+    public RiFrameAspectRatio() {
+        super();
     }
 
-    public RiFrameAspectRatio(String element, String param) {
-        super(element, param);
+    public RiFrameAspectRatio(String param) {
+        super(param);
     }
 
 }

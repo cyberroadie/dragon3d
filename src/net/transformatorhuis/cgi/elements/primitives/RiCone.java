@@ -37,12 +37,12 @@ public class RiCone extends Rib {
 
 	static Logger logger = Logger.getLogger(RiCone.class);
 
-    public RiCone(String element) {
-        super(element);
+    public RiCone() {
+        super();
     }
 
-    public RiCone(String element, String param) {
-        super(element, param);
+    public RiCone(String param) {
+        super(param);
     }
 
 }

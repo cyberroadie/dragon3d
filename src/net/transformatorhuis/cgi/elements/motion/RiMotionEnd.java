@@ -37,12 +37,12 @@ public class RiMotionEnd extends Rib {
 
 	static Logger logger = Logger.getLogger(RiMotionEnd.class);
 
-    public RiMotionEnd(String element) {
-        super(element);
+    public RiMotionEnd() {
+        super();
     }
 
-    public RiMotionEnd(String element, String param) {
-        super(element, param);
+    public RiMotionEnd(String param) {
+        super(param);
     }
 
 }

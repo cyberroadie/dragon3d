@@ -31,6 +31,8 @@ package net.transformatorhuis.cgi.elements.graphicsstate.options;
 import org.apache.log4j.Logger;
 import org.apache.log4j.BasicConfigurator;
 
+import org.w3c.dom.Element;
+
 /**
  * Parse a "Display" element from a rib file
  * Example:
@@ -49,16 +51,33 @@ import org.apache.log4j.BasicConfigurator;
 
 import net.transformatorhuis.cgi.conversion.Rib;
 
+import net.transformatorhuis.cgi.conversion.RibDocument;
+
+import org.w3c.dom.Node;
+
 public class RiDisplay extends Rib {
 
 	static Logger logger = Logger.getLogger(RiDisplay.class);
+	 
 
-    public RiDisplay(String element) {
-        super(element);
+    public RiDisplay() {
+        super();
     }
 
-    public RiDisplay(String element, String param) {
-        super(element, param);
+    public RiDisplay(String param) {
+        super(param);
     }
+    
+    public Node createXML(RibDocument ribDoc) {
+    
+        String[] params = getParams();
+        Element ribRoot = ribDoc.requestElement(getElementName());
+        ribRoot.setAttribute("name", params[0].substring(1, params[0].length() - 1));
+        ribRoot.setAttribute("type", params[1].substring(1, params[1].length() - 1));
+        ribRoot.setAttribute("mode", params[2].substring(1, params[2].length() - 1));
+        
+        return (Node) ribRoot;
+        
+    } 
 
 }

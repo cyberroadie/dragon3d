@@ -37,12 +37,12 @@ public class RiGeneralPolygon extends Rib {
 
 	static Logger logger = Logger.getLogger(RiGeneralPolygon.class);
 
-    public RiGeneralPolygon(String element) {
-        super(element);
+    public RiGeneralPolygon() {
+        super();
     }
 
-    public RiGeneralPolygon(String element, String param) {
-        super(element, param);
+    public RiGeneralPolygon(String param) {
+        super(param);
     }
 
 }

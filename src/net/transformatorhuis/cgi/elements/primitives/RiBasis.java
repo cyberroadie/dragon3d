@@ -37,13 +37,13 @@ public class RiBasis extends Rib {
 
 	static Logger logger = Logger.getLogger(RiBasis.class);
 
-    public RiBasis(String element) {
-        super(element);
+    public RiBasis() {
+        super();
     }
 
 
-    public RiBasis(String element, String param) {
-        super(element, param);
+    public RiBasis(String param) {
+        super(param);
     }
 
 }

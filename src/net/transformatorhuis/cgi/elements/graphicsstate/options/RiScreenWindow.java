@@ -37,12 +37,12 @@ public class RiScreenWindow extends Rib {
 
 	static Logger logger = Logger.getLogger(RiScreenWindow.class);
 
-    public RiScreenWindow(String element) {
-        super(element);
+    public RiScreenWindow() {
+        super();
     }
 
-    public RiScreenWindow(String element, String param) {
-        super(element, param);
+    public RiScreenWindow(String param) {
+        super(param);
     }
 
 }

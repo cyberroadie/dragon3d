@@ -37,12 +37,12 @@ public class RiAttributeEnd extends Rib {
 
 	static Logger logger = Logger.getLogger(RiAttributeEnd.class);
 
-    public RiAttributeEnd(String element) {
-        super(element);
+    public RiAttributeEnd() {
+        super();
     }
 
-    public RiAttributeEnd(String element, String param) {
-        super(element, param);
+    public RiAttributeEnd(String param) {
+        super(param);
     }
     
     public boolean isEndElement() {

@@ -37,12 +37,12 @@ public class RiCoordSysTransform extends Rib {
 
 	static Logger logger = Logger.getLogger(RiCoordSysTransform.class);
 
-    public RiCoordSysTransform(String element) {
-        super(element);
+    public RiCoordSysTransform() {
+        super();
     }
 
-    public RiCoordSysTransform(String element, String param) {
-        super(element, param);
+    public RiCoordSysTransform(String param) {
+        super(param);
     }
 
 }

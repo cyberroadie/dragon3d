@@ -37,12 +37,12 @@ public class RiSides extends Rib {
 
 	static Logger logger = Logger.getLogger(RiSides.class);
 
-    public RiSides(String element) {
-        super(element);
+    public RiSides() {
+        super();
     }
 
-    public RiSides(String element, String param) {
-        super(element, param);
+    public RiSides(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiPixelVariance extends Rib {
 
 	static Logger logger = Logger.getLogger(RiPixelVariance.class);
 
-    public RiPixelVariance(String element) {
-        super(element);
+    public RiPixelVariance() {
+        super();
     }
 
-    public RiPixelVariance(String element, String param) {
-        super(element, param);
+    public RiPixelVariance(String param) {
+        super(param);
     }
 
 }

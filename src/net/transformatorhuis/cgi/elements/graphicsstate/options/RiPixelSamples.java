@@ -37,12 +37,12 @@ public class RiPixelSamples extends Rib {
 
 	static Logger logger = Logger.getLogger(RiPixelSamples.class);
 
-    public RiPixelSamples(String element) {
-        super(element);
+    public RiPixelSamples() {
+        super();
     }
 
-    public RiPixelSamples(String element, String param) {
-        super(element, param);
+    public RiPixelSamples(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiPolygon extends Rib {
 
 	static Logger logger = Logger.getLogger(RiPolygon.class);
 
-    public RiPolygon(String element) {
-        super(element);
+    public RiPolygon() {
+        super();
     }
 
-    public RiPolygon(String element, String param) {
-        super(element, param);
+    public RiPolygon(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiPatch extends Rib {
 
 	static Logger logger = Logger.getLogger(RiPatch.class);
 
-    public RiPatch(String element) {
-        super(element);
+    public RiPatch() {
+        super();
     }
 
-    public RiPatch(String element, String param) {
-        super(element, param);
+    public RiPatch(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiCylinder extends Rib {
 
 	static Logger logger = Logger.getLogger(RiCylinder.class);
 
-    public RiCylinder(String element) {
-        super(element);
+    public RiCylinder() {
+        super();
     }
 
-    public RiCylinder(String element, String param) {
-        super(element, param);
+    public RiCylinder(String param) {
+        super(param);
     }
 
 }

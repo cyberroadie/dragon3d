@@ -37,12 +37,12 @@ public class RiProjection extends Rib {
 
 	static Logger logger = Logger.getLogger(RiProjection.class);
 
-    public RiProjection(String element) {
-        super(element);
+    public RiProjection() {
+        super();
     }
 
-    public RiProjection(String element, String param) {
-        super(element, param);
+    public RiProjection(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiMakeLatLongEnvironment extends Rib {
 
 	static Logger logger = Logger.getLogger(RiMakeLatLongEnvironment.class);
 
-    public RiMakeLatLongEnvironment(String element) {
-        super(element);
+    public RiMakeLatLongEnvironment() {
+        super();
     }
     
-    public RiMakeLatLongEnvironment(String element, String param) {
-        super(element, param);
+    public RiMakeLatLongEnvironment(String param) {
+        super(param);
     }
     
 }

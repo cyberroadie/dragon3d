@@ -37,12 +37,12 @@ public class RiShutter extends Rib {
 
 	static Logger logger = Logger.getLogger(RiShutter.class);
 
-    public RiShutter(String element) {
-        super(element);
+    public RiShutter() {
+        super();
     }
 
-    public RiShutter(String element, String param) {
-        super(element, param);
+    public RiShutter(String param) {
+        super(param);
     }
 
 }

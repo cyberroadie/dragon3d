@@ -37,12 +37,12 @@ public class RiDisplacement extends Rib {
 
 	static Logger logger = Logger.getLogger(RiDisplacement.class);
 
-    public RiDisplacement(String element) {
-        super(element);
+    public RiDisplacement() {
+        super();
     }
 
-    public RiDisplacement(String element, String param) {
-        super(element, param);
+    public RiDisplacement(String param) {
+        super(param);
     }
 
 }

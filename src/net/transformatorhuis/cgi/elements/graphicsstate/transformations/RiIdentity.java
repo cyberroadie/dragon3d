@@ -37,12 +37,12 @@ public class RiIdentity extends Rib {
 
 	static Logger logger = Logger.getLogger(RiIdentity.class);
 
-    public RiIdentity(String element) {
-        super(element);
+    public RiIdentity() {
+        super();
     }
 
-    public RiIdentity(String element, String param) {
-        super(element, param);
+    public RiIdentity(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiHider extends Rib {
 
 	static Logger logger = Logger.getLogger(RiHider.class);
 
-    public RiHider(String element) {
-        super(element);
+    public RiHider() {
+        super();
     }
 
-    public RiHider(String element, String param) {
-        super(element, param);
+    public RiHider(String param) {
+        super(param);
     }
 
 }

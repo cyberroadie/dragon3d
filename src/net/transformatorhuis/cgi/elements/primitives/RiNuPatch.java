@@ -37,12 +37,12 @@ public class RiNuPatch extends Rib {
 
 	static Logger logger = Logger.getLogger(RiNuPatch.class);
 
-    public RiNuPatch(String element) {
-        super(element);
+    public RiNuPatch() {
+        super();
     }
 
-    public RiNuPatch(String element, String param) {
-        super(element, param);
+    public RiNuPatch(String param) {
+        super(param);
     }
 
 }

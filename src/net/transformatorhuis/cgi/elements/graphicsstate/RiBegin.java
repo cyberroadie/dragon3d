@@ -37,13 +37,16 @@ public class RiBegin extends Rib {
 
 	static Logger logger = Logger.getLogger(RiBegin.class);
 
-    public RiBegin(String element) {
-        super(element);
+    public RiBegin() {
+        super();
     }
 
 
-    public RiBegin(String element, String param) {
-        super(element, param);
+    public RiBegin(String param) {
+        super(param);
     }
 
+    public boolean hasChildElements() {
+        return true;
+    }
 }

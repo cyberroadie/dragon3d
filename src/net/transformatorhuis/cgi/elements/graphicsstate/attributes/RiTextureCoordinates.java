@@ -37,12 +37,12 @@ public class RiTextureCoordinates extends Rib {
 
 	static Logger logger = Logger.getLogger(RiTextureCoordinates.class);
 
-    public RiTextureCoordinates(String element) {
-        super(element);
+    public RiTextureCoordinates() {
+        super();
     }
 
-    public RiTextureCoordinates(String element, String param) {
-        super(element, param);
+    public RiTextureCoordinates(String param) {
+        super(param);
     }
 
 }

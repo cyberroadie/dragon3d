@@ -37,12 +37,12 @@ public class RiShadingInterpolation extends Rib {
 
 	static Logger logger = Logger.getLogger(RiShadingInterpolation.class);
 
-    public RiShadingInterpolation(String element) {
-        super(element);
+    public RiShadingInterpolation() {
+        super();
     }
 
-    public RiShadingInterpolation(String element, String param) {
-        super(element, param);
+    public RiShadingInterpolation(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiShadingRate extends Rib {
 
 	static Logger logger = Logger.getLogger(RiShadingRate.class);
 
-    public RiShadingRate(String element) {
-        super(element);
+    public RiShadingRate() {
+        super();
     }
 
-    public RiShadingRate(String element, String param) {
-        super(element, param);
+    public RiShadingRate(String param) {
+        super(param);
     }
 
 }

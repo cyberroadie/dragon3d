@@ -37,12 +37,12 @@ public class RiSurface extends Rib {
 
 	static Logger logger = Logger.getLogger(RiSurface.class);
 
-    public RiSurface(String element) {
-        super(element);
+    public RiSurface() {
+        super();
     }
 
-    public RiSurface(String element, String param) {
-        super(element, param);
+    public RiSurface(String param) {
+        super(param);
     }
 
 }

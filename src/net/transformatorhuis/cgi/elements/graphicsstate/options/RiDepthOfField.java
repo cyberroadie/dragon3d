@@ -37,12 +37,12 @@ public class RiDepthOfField extends Rib {
 
 	static Logger logger = Logger.getLogger(RiDepthOfField.class);
 
-    public RiDepthOfField(String element) {
-        super(element);
+    public RiDepthOfField() {
+        super();
     }
 
-    public RiDepthOfField(String element, String param) {
-        super(element, param);
+    public RiDepthOfField(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiSolidBegin extends Rib {
 
 	static Logger logger = Logger.getLogger(RiSolidBegin.class);
 
-    public RiSolidBegin(String element) {
-        super(element);
+    public RiSolidBegin() {
+        super();
     }
 
-    public RiSolidBegin(String element, String param) {
-        super(element, param);
+    public RiSolidBegin(String param) {
+        super(param);
     }
 
 }

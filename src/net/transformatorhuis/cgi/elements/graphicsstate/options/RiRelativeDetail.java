@@ -37,12 +37,12 @@ public class RiRelativeDetail extends Rib {
 
 	static Logger logger = Logger.getLogger(RiRelativeDetail.class);
 
-    public RiRelativeDetail(String element) {
-        super(element);
+    public RiRelativeDetail() {
+        super();
     }
 
-    public RiRelativeDetail(String element, String param) {
-        super(element, param);
+    public RiRelativeDetail(String param) {
+        super(param);
     }
 
 }

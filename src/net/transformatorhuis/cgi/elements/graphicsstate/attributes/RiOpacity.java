@@ -37,12 +37,12 @@ public class RiOpacity extends Rib {
 
 	static Logger logger = Logger.getLogger(RiOpacity.class);
 
-    public RiOpacity(String element) {
-        super(element);
+    public RiOpacity() {
+        super();
     }
 
-    public RiOpacity(String element, String param) {
-        super(element, param);
+    public RiOpacity(String param) {
+        super(param);
     }
 
 }

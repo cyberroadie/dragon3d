@@ -37,12 +37,12 @@ public class RiMatte extends Rib {
 
 	static Logger logger = Logger.getLogger(RiMatte.class);
 
-    public RiMatte(String element) {
-        super(element);
+    public RiMatte() {
+        super();
     }
 
-    public RiMatte(String element, String param) {
-        super(element, param);
+    public RiMatte(String param) {
+        super(param);
     }
 
 }

@@ -37,11 +37,11 @@ public class RiProcedural extends Rib {
 
 	static Logger logger = Logger.getLogger(RiProcedural.class);
 
-    public RiProcedural(String element) {
-        super(element);
+    public RiProcedural() {
+        super();
     }
-    public RiProcedural(String element, String param) {
-        super(element, param);
+    public RiProcedural(String param) {
+        super(param);
     }
 
 }

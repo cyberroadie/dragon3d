@@ -30,7 +30,8 @@ package net.transformatorhuis.cgi.utils;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.Level;
-import org.apache.log4j.BasicConfigurator;
+//import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.xml.DOMConfigurator;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -92,9 +93,11 @@ public class ConfigGenerator {
 
     public static void main(String[] argv) {
 
-        BasicConfigurator.configure();
+        //BasicConfigurator.configure();
         
-        logger.setLevel(Level.DEBUG);
+        //logger.setLevel(Level.DEBUG);
+        
+        DOMConfigurator.configure("./conf/log4j.xml");
         
         // is there anything to do?
         if (argv.length < 2) {
@@ -174,7 +177,7 @@ public class ConfigGenerator {
         for(Enumeration keys = dirContent.keys(); keys.hasMoreElements();) {
         
             String key = (String) keys.nextElement();
-            
+
             // Add package to document
             Element ribPackage = configDoc.createElement("package");
             ribPackage.setAttribute("name", key.replace('/','.'));

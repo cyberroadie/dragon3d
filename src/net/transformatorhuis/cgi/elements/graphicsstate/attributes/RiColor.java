@@ -37,12 +37,12 @@ public class RiColor extends Rib {
 
 	static Logger logger = Logger.getLogger(RiColor.class);
 
-    public RiColor(String element) {
-        super(element);
+    public RiColor() {
+        super();
     }
 
-    public RiColor(String element, String param) {
-        super(element, param);
+    public RiColor(String param) {
+        super(param);
     }
 
 }

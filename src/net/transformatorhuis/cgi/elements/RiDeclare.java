@@ -37,12 +37,12 @@ class RiDeclare extends Rib {
 
 	static Logger logger = Logger.getLogger(RiDeclare.class);
 
-    public RiDeclare(String element) {
-        super(element);
+    public RiDeclare() {
+        super();
     }
 
-    public RiDeclare(String element, String param) {
-        super(element, param);
+    public RiDeclare(String param) {
+        super(param);
     }
     
 }

@@ -37,12 +37,12 @@ public class RiIlluminate extends Rib {
 
 	static Logger logger = Logger.getLogger(RiIlluminate.class);
 
-    public RiIlluminate(String element) {
-        super(element);
+    public RiIlluminate() {
+        super();
     }
 
-    public RiIlluminate(String element, String param) {
-        super(element, param);
+    public RiIlluminate(String param) {
+        super(param);
     }
 
 }

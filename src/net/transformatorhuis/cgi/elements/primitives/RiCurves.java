@@ -37,12 +37,12 @@ public class RiCurves extends Rib {
 
 	static Logger logger = Logger.getLogger(RiCurves.class);
 
-    public RiCurves(String element) {
-        super(element);
+    public RiCurves() {
+        super();
     }
 
-    public RiCurves(String element, String param) {
-        super(element, param);
+    public RiCurves(String param) {
+        super(param);
     }
 
 }

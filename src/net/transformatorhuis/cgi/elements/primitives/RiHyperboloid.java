@@ -37,12 +37,12 @@ public class RiHyperboloid extends Rib {
 
 	static Logger logger = Logger.getLogger(RiHyperboloid.class);
 
-    public RiHyperboloid(String element) {
-        super(element);
+    public RiHyperboloid() {
+        super();
     }
 
-    public RiHyperboloid(String element, String param) {
-        super(element, param);
+    public RiHyperboloid(String param) {
+        super(param);
     }
 
 }

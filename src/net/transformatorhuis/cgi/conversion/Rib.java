@@ -35,28 +35,56 @@ package net.transformatorhuis.cgi.conversion;
 import org.apache.log4j.Logger;
 import org.apache.log4j.BasicConfigurator;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+
 public abstract class Rib {
 
 	static Logger logger = Logger.getLogger(Rib.class);
 
-    private String element;
-    private String param;
+    private String param = null;
     
-    public Rib(String element) {
-        this(element, null);
+    public Rib() {
+        this(null);
     }
     
-    public Rib(String element, String param) {
-        this.element = element;
+    public Rib(String param) {
         this.param = param;
+        
     }
     
-    public String output() {
-        if(param == null) {
-            return ((isEndElement() ? "</" : "<") + element.toLowerCase() + (hasChildElements() ? ">" : (isEndElement() ? ">" : " />")));
-        } else {
-            return ("<" + element.toLowerCase() + ">" + param + "</" + element.toLowerCase() + ">");
+    /**
+     * Return name of element based on class name 
+     * without starting with 'Ri' and ending with 'Begin'
+     * and in lower case.
+     */
+    protected String getElementName() {
+    
+        String className = this.getClass().getName();
+        String elementName = className.substring(className.lastIndexOf(".Ri") + 3, className.length());
+        if(hasChildElements()) {
+            elementName = elementName.substring(0, elementName.indexOf("Begin"));
         }
+        logger.debug("Element name: " + elementName);
+        return elementName.toLowerCase();
+    
+    }
+    
+    /**
+     * Creates xml node.
+     * Most straight forwrd implementation, 
+     * this class is usually overwriiten by sub class
+     */
+    public Node createXML(RibDocument ribDoc) {
+    
+        Element ribRoot = ribDoc.requestElement(getElementName());
+        if(param != null) {
+            ribRoot.appendChild(ribDoc.requestTextNode(param));
+        }
+        
+        return ribRoot;
+            
     }
 
     public boolean hasChildElements() {
@@ -67,7 +95,8 @@ public abstract class Rib {
         return false;
     }
     
-    //public abstract String setAttributes();
-    //public abstract String setBody();
+    public String[] getParams() {
+        return param.trim().split(" ");
+    }
     
 }

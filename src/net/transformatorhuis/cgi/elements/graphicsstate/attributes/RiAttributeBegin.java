@@ -37,12 +37,12 @@ public class RiAttributeBegin extends Rib {
 
 	static Logger logger = Logger.getLogger(RiAttributeBegin.class);
 
-    public RiAttributeBegin(String element) {
-        super(element);
+    public RiAttributeBegin() {
+        super();
     }
 
-    public RiAttributeBegin(String element, String param) {
-        super(element, param);
+    public RiAttributeBegin(String param) {
+        super(param);
     }
     
     public boolean hasChildElements() {

@@ -37,12 +37,12 @@ public class RiContext extends Rib {
 
 	static Logger logger = Logger.getLogger(RiContext.class);
 
-    public RiContext(String element) {
-        super(element);
+    public RiContext() {
+        super();
     }
 
-    public RiContext(String element, String param) {
-        super(element, param);
+    public RiContext( String param) {
+        super(param);
     }
 
 }

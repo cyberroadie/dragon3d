@@ -37,12 +37,12 @@ public class RiObjectEnd extends Rib {
 
 	static Logger logger = Logger.getLogger(RiObjectEnd.class);
 
-    public RiObjectEnd(String element) {
-        super(element);
+    public RiObjectEnd() {
+        super();
     }
 
-    public RiObjectEnd(String element, String param) {
-        super(element, param);
+    public RiObjectEnd(String param) {
+        super(param);
     }
 
 }

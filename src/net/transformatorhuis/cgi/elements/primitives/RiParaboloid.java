@@ -37,12 +37,12 @@ public class RiParaboloid extends Rib {
 
 	static Logger logger = Logger.getLogger(RiParaboloid.class);
 
-    public RiParaboloid(String element) {
-        super(element);
+    public RiParaboloid() {
+        super();
     }
 
-    public RiParaboloid(String element, String param) {
-        super(element, param);
+    public RiParaboloid(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiQuantize extends Rib {
 
 	static Logger logger = Logger.getLogger(RiQuantize.class);
 
-    public RiQuantize(String element) {
-        super(element);
+    public RiQuantize() {
+        super();
     }
 
-    public RiQuantize(String element, String param) {
-        super(element, param);
+    public RiQuantize(String param) {
+        super(param);
     }
 
 }

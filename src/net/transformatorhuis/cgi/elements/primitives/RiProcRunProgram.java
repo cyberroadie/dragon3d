@@ -37,12 +37,12 @@ public class RiProcRunProgram extends Rib {
 
 	static Logger logger = Logger.getLogger(RiProcRunProgram.class);
 
-    public RiProcRunProgram(String element) {
-        super(element);
+    public RiProcRunProgram() {
+        super();
     }
 
-    public RiProcRunProgram(String element, String param) {
-        super(element, param);
+    public RiProcRunProgram(String param) {
+        super(param);
     }
 
 }

@@ -37,13 +37,13 @@ public class RiAttribute extends Rib {
 
 	static Logger logger = Logger.getLogger(RiAttribute.class);
 
-    public RiAttribute(String element) {
-        super(element);
+    public RiAttribute() {
+        super();
     }
 
 
-    public RiAttribute(String element, String param) {
-        super(element, param);
+    public RiAttribute(String param) {
+        super(param);
     }
 
 }

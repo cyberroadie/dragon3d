@@ -37,12 +37,12 @@ public class RiRotate extends Rib {
 
 	static Logger logger = Logger.getLogger(RiRotate.class);
 
-    public RiRotate(String element) {
-        super(element);
+    public RiRotate() {
+        super();
     }
 
-    public RiRotate(String element, String param) {
-        super(element, param);
+    public RiRotate(String param) {
+        super(param);
     }
 
 }

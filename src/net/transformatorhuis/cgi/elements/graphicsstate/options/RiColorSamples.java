@@ -37,12 +37,12 @@ public class RiColorSamples extends Rib {
 
 	static Logger logger = Logger.getLogger(RiColorSamples.class);
 
-    public RiColorSamples(String element) {
-        super(element);
+    public RiColorSamples() {
+        super();
     }
 
-    public RiColorSamples(String element, String param) {
-        super(element, param);
+    public RiColorSamples(String param) {
+        super(param);
     }
 
 }

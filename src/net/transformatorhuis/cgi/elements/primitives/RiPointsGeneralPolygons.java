@@ -37,12 +37,12 @@ public class RiPointsGeneralPolygons extends Rib {
 
 	static Logger logger = Logger.getLogger(RiPointsGeneralPolygons.class);
 
-    public RiPointsGeneralPolygons(String element) {
-        super(element);
+    public RiPointsGeneralPolygons() {
+        super();
     }
 
-    public RiPointsGeneralPolygons(String element, String param) {
-        super(element, param);
+    public RiPointsGeneralPolygons(String param) {
+        super(param);
     }
 
 }

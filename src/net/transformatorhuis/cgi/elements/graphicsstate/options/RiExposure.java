@@ -37,12 +37,12 @@ public class RiExposure extends Rib {
 
 	static Logger logger = Logger.getLogger(RiExposure.class);
 
-    public RiExposure(String element) {
-        super(element);
+    public RiExposure() {
+        super();
     }
 
-    public RiExposure(String element, String param) {
-        super(element, param);
+    public RiExposure(String param) {
+        super(param);
     }
 
 }

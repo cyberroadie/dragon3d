@@ -37,12 +37,12 @@ public class RiCropWindow extends Rib {
 
 	static Logger logger = Logger.getLogger(RiCropWindow.class);
 
-    public RiCropWindow(String element) {
-        super(element);
+    public RiCropWindow() {
+        super();
     }
 
-    public RiCropWindow(String element, String param) {
-        super(element, param);
+    public RiCropWindow(String param) {
+        super(param);
     }
 
 }

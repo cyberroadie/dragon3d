@@ -37,12 +37,12 @@ public class RiPatchMesh extends Rib {
 
 	static Logger logger = Logger.getLogger(RiPatchMesh.class);
 
-    public RiPatchMesh(String element) {
-        super(element);
+    public RiPatchMesh() {
+        super();
     }
 
-    public RiPatchMesh(String element, String param) {
-        super(element, param);
+    public RiPatchMesh(String param) {
+        super(param);
     }
 
 }

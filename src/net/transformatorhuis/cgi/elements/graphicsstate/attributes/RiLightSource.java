@@ -37,12 +37,12 @@ public class RiLightSource extends Rib {
 
 	static Logger logger = Logger.getLogger(RiLightSource.class);
 
-    public RiLightSource(String element) {
-        super(element);
+    public RiLightSource() {
+        super();
     }
 
-    public RiLightSource(String element, String param) {
-        super(element, param);
+    public RiLightSource(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiImager extends Rib {
 
 	static Logger logger = Logger.getLogger(RiImager.class);
 
-    public RiImager(String element) {
-        super(element);
+    public RiImager() {
+        super();
     }
 
-    public RiImager(String element, String param) {
-        super(element, param);
+    public RiImager(String param) {
+        super(param);
     }
 
 }

@@ -37,11 +37,11 @@ public class RiAreaLightSource extends Rib {
 
 	static Logger logger = Logger.getLogger(RiAreaLightSource.class);
 
-    public RiAreaLightSource(String element) {
-        super(element);
+    public RiAreaLightSource() {
+        super();
     }
-    public RiAreaLightSource(String element, String param) {
-        super(element, param);
+    public RiAreaLightSource(String param) {
+        super(param);
     }
 
 }

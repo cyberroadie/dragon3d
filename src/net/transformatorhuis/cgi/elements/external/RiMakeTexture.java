@@ -37,11 +37,11 @@ public class RiMakeTexture extends Rib {
 
 	static Logger logger = Logger.getLogger(RiMakeTexture.class);
     
-    public RiMakeTexture(String element) {
-        super(element);
+    public RiMakeTexture() {
+        super();
     }
     	
-	public RiMakeTexture(String element, String param) {
-	    super(element, param);
+	public RiMakeTexture(String param) {
+	    super(param);
 	}
 }

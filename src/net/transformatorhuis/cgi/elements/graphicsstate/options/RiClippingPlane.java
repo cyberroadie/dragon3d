@@ -37,12 +37,12 @@ public class RiClippingPlane extends Rib {
 
 	static Logger logger = Logger.getLogger(RiClippingPlane.class);
 
-    public RiClippingPlane(String element) {
-        super(element);
+    public RiClippingPlane() {
+        super();
     }
 
-    public RiClippingPlane(String element, String param) {
-        super(element, param);
+    public RiClippingPlane(String param) {
+        super(param);
     }
 
 }

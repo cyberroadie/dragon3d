@@ -37,12 +37,12 @@ public class RiProcDynamicLoad extends Rib {
 
 	static Logger logger = Logger.getLogger(RiProcDynamicLoad.class);
 
-    public RiProcDynamicLoad(String element) {
-        super(element);
+    public RiProcDynamicLoad() {
+        super();
     }
 
-    public RiProcDynamicLoad(String element, String param) {
-        super(element, param);
+    public RiProcDynamicLoad(String param) {
+        super(param);
     }
 
 }

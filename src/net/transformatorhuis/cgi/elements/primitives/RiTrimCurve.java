@@ -37,12 +37,12 @@ public class RiTrimCurve extends Rib {
 
 	static Logger logger = Logger.getLogger(RiTrimCurve.class);
 
-    public RiTrimCurve(String element) {
-        super(element);
+    public RiTrimCurve() {
+        super();
     }
 
-    public RiTrimCurve(String element, String param) {
-        super(element, param);
+    public RiTrimCurve(String param) {
+        super(param);
     }
 
 }

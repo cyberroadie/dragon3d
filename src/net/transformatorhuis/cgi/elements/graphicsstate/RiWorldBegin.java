@@ -37,12 +37,15 @@ public class RiWorldBegin extends Rib {
 
 	static Logger logger = Logger.getLogger(RiWorldBegin.class);
 
-    public RiWorldBegin(String element) {
-        super(element);
+    public RiWorldBegin() {
+        super();
     }
 
-    public RiWorldBegin(String element, String param) {
-        super(element, param);
+    public RiWorldBegin(String param) {
+        super(param);
     }
 
+    public boolean hasChildElements() {
+        return true;
+    }
 }

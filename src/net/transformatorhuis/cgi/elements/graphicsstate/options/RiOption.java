@@ -37,12 +37,12 @@ public class RiOption extends Rib {
 
 	static Logger logger = Logger.getLogger(RiOption.class);
 
-    public RiOption(String element) {
-        super(element);
+    public RiOption() {
+        super();
     }
 
-    public RiOption(String element, String param) {
-        super(element, param);
+    public RiOption(String param) {
+        super(param);
     }
 
 }

@@ -37,12 +37,12 @@ public class RiFormat extends Rib {
 
 	static Logger logger = Logger.getLogger(RiFormat.class);
 
-    public RiFormat(String element) {
-        super(element);
+    public RiFormat() {
+        super();
     }
 
-    public RiFormat(String element, String param) {
-        super(element, param);
+    public RiFormat(String param) {
+        super(param);
     }
 
 }

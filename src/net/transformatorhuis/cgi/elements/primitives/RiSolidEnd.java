@@ -37,12 +37,12 @@ public class RiSolidEnd extends Rib {
 
 	static Logger logger = Logger.getLogger(RiSolidEnd.class);
 
-    public RiSolidEnd(String element) {
-        super(element);
+    public RiSolidEnd() {
+        super();
     }
 
-    public RiSolidEnd(String element, String param) {
-        super(element, param);
+    public RiSolidEnd(String param) {
+        super(param);
     }
 
 }

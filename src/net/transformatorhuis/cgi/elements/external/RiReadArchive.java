@@ -37,11 +37,11 @@ public class RiReadArchive extends Rib {
 
 	static Logger logger = Logger.getLogger(RiReadArchive.class);
 
-    public RiReadArchive(String element) {
-        super(element);
+    public RiReadArchive() {
+        super();
     }
 	
-	public RiReadArchive(String element, String param) {
-	    super(element, param);
+	public RiReadArchive(String param) {
+	    super(param);
 	}
 }

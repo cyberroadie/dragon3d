@@ -37,12 +37,12 @@ public class RiTorus extends Rib {
 
 	static Logger logger = Logger.getLogger(RiTorus.class);
 
-    public RiTorus(String element) {
-        super(element);
+    public RiTorus() {
+        super();
     }
 
-    public RiTorus(String element, String param) {
-        super(element, param);
+    public RiTorus(String param) {
+        super(param);
     }
 
 }

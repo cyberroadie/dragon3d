@@ -37,12 +37,12 @@ public class RiPerspective extends Rib {
 
 	static Logger logger = Logger.getLogger(RiPerspective.class);
 
-    public RiPerspective(String element) {
-        super(element);
+    public RiPerspective() {
+        super();
     }
 
-    public RiPerspective(String element, String param) {
-        super(element, param);
+    public RiPerspective(String param) {
+        super(param);
     }
 
 }

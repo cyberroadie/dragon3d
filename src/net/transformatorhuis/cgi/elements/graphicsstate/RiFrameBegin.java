@@ -37,12 +37,15 @@ public class RiFrameBegin extends Rib {
 
 	static Logger logger = Logger.getLogger(RiFrameBegin.class);
 
-    public RiFrameBegin(String element) {
-        super(element);
+    public RiFrameBegin() {
+        super();
     }
 
-    public RiFrameBegin(String element, String param) {
-        super(element, param);
+    public RiFrameBegin(String param) {
+        super(param);
     }
 
+    public boolean hasChildElements() {
+        return true;
+    }
 }

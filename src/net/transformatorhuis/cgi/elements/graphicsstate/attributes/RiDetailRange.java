@@ -37,12 +37,12 @@ public class RiDetailRange extends Rib {
 
 	static Logger logger = Logger.getLogger(RiDetailRange.class);
 
-    public RiDetailRange(String element) {
-        super(element);
+    public RiDetailRange() {
+        super();
     }
 
-    public RiDetailRange(String element, String param) {
-        super(element, param);
+    public RiDetailRange(String param) {
+        super(param);
     }
 
 }
