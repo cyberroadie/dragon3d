@@ -8,19 +8,18 @@
 	</appender>
 	<category name="net.transformatorhuis.cgi.utils">
 	    <priority value="info" />
-	    <appender-ref ref="STDOUT" />
 	</category>
 	<category name="net.transformatorhuis.cgi.conversion.RibDocument">
 	    <priority value="info" />
-	    <appender-ref ref="STDOUT" />
 	</category>
 	<category name="net.transformatorhuis.cgi.conversion.RibFactory">
 	    <priority value="info" />
-	    <appender-ref ref="STDOUT" />
 	</category>
 	<category name="net.transformatorhuis.cgi.conversion.Rib">
-	    <priority value="debug" />
-	    <appender-ref ref="STDOUT" />
+	    <priority value="info" />
+	</category>
+	<category name="net.transformatorhuis.cgi.conversion.Rib2Xml">
+	    <priority value="info" />
 	</category>
 	<root>
 		<priority value="info" />
