@@ -35,7 +35,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import net.transformatorhuis.cgi.utils.Config;
-//import net.transformatorhuis.cgi.types.*;
 
 import java.lang.reflect.*;
 import java.util.Hashtable;
@@ -56,6 +55,7 @@ public class RibFactory {
 
     public void processRibElement(String ribLine) {
     
+    	logger.debug("Factory input: " + ribLine);
         String element = null;
         String param;
         Class ribElement;
@@ -87,7 +87,6 @@ public class RibFactory {
             
             // Give the rib element to RibDocument which knows what to do with it
             RibDocument ribDoc = RibDocument.newInstance();
-            logger.debug("Do Job");
             ribDoc.doJob(rib);
            
         } catch (InstantiationException ie) {
