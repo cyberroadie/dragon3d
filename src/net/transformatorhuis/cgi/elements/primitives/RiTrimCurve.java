@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.primitives;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiTrimCurve extends Rib {
+
+	static Logger logger = Logger.getLogger(RiTrimCurve.class);
 
     public RiTrimCurve(String element) {
         super(element);

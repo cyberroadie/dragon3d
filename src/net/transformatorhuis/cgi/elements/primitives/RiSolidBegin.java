@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.primitives;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiSolidBegin extends Rib {
+
+	static Logger logger = Logger.getLogger(RiSolidBegin.class);
 
     public RiSolidBegin(String element) {
         super(element);

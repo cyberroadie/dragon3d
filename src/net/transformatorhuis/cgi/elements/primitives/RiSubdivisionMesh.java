@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.primitives;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiSubdivisionMesh extends Rib {
+
+	static Logger logger = Logger.getLogger(RiSubdivisionMesh.class);
 
     public RiSubdivisionMesh(String element) {
         super(element);

@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.graphicsstate.attributes;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiDetailRange extends Rib {
+
+	static Logger logger = Logger.getLogger(RiDetailRange.class);
 
     public RiDetailRange(String element) {
         super(element);

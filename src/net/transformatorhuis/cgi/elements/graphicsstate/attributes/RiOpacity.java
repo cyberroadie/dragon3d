@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.graphicsstate.attributes;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiOpacity extends Rib {
+
+	static Logger logger = Logger.getLogger(RiOpacity.class);
 
     public RiOpacity(String element) {
         super(element);

@@ -28,6 +28,11 @@
 */
 package net.transformatorhuis.cgi.types;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 class RiDeclare {
+
+	static Logger logger = Logger.getLogger(RiDeclare.class);
 
 }

@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.graphicsstate.options;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiFormat extends Rib {
+
+	static Logger logger = Logger.getLogger(RiFormat.class);
 
     public RiFormat(String element) {
         super(element);

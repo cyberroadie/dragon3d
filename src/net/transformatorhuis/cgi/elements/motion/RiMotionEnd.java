@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.motion;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiMotionEnd extends Rib {
+
+	static Logger logger = Logger.getLogger(RiMotionEnd.class);
 
     public RiMotionEnd(String element) {
         super(element);

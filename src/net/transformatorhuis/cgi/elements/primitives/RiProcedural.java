@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.primitives;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiProcedural extends Rib {
+
+	static Logger logger = Logger.getLogger(RiProcedural.class);
 
     public RiProcedural(String element) {
         super(element);

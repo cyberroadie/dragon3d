@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.graphicsstate.options;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiShutter extends Rib {
+
+	static Logger logger = Logger.getLogger(RiShutter.class);
 
     public RiShutter(String element) {
         super(element);

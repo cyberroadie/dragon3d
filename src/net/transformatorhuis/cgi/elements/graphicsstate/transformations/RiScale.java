@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.graphicsstate.transformations;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiScale extends Rib {
+
+	static Logger logger = Logger.getLogger(RiScale.class);
 
     public RiScale(String element) {
         super(element);

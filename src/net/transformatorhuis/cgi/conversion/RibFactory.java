@@ -28,12 +28,17 @@
 */
 package net.transformatorhuis.cgi.conversion;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.elements.*;
 import net.transformatorhuis.cgi.types.*;
 
 import java.lang.reflect.*;
 
 public class RibFactory {
+
+	static Logger logger = Logger.getLogger(RibFactory.class);
 
     public Rib getRibElement(String ribLine) {
     

@@ -28,6 +28,11 @@
 */
 package net.transformatorhuis.cgi.types;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 public class RtColor {
+
+	static Logger logger = Logger.getLogger(RtColor.class);
 
 }

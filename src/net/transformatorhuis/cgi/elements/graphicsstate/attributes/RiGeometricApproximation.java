@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.graphicsstate.attributes;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiGeometricApproximation extends Rib {
+
+	static Logger logger = Logger.getLogger(RiGeometricApproximation.class);
 
     public RiGeometricApproximation(String element) {
         super(element);

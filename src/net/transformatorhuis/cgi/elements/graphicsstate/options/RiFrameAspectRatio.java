@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.graphicsstate.options;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiFrameAspectRatio extends Rib {
+
+	static Logger logger = Logger.getLogger(RiFrameAspectRatio.class);
 
     public RiFrameAspectRatio(String element) {
         super(element);

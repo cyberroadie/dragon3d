@@ -28,6 +28,9 @@
 */
 package net.transformatorhuis.cgi.elements.graphicsstate.options;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 /**
  * Parse a "Display" element from a rib file
  * Example:
@@ -47,6 +50,8 @@ package net.transformatorhuis.cgi.elements.graphicsstate.options;
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiDisplay extends Rib {
+
+	static Logger logger = Logger.getLogger(RiDisplay.class);
 
     public RiDisplay(String element) {
         super(element);

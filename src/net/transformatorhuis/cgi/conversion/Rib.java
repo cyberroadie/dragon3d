@@ -32,7 +32,12 @@
  */
 package net.transformatorhuis.cgi.conversion;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 public abstract class Rib {
+
+	static Logger logger = Logger.getLogger(Rib.class);
 
     private String element;
     private String param;

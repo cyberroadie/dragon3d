@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.graphicsstate.options;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiPixelFilter extends Rib {
+
+	static Logger logger = Logger.getLogger(RiPixelFilter.class);
 
     public RiPixelFilter(String element) {
         super(element);

@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.primitives;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiSphere extends Rib {
+
+	static Logger logger = Logger.getLogger(RiSphere.class);
 
     public RiSphere(String element) {
         super(element);

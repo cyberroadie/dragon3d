@@ -28,6 +28,9 @@
 */
 package net.transformatorhuis.cgi.utils;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
@@ -56,10 +59,19 @@ import javax.xml.transform.stream.StreamResult;
  * elements in a specified directory (recursivly).
  * This tool is specificly meant for usage by the ant tool
  * to create a config file after compiling which can then be 
- * stored in the jar file.
- * If class files are added or removed the config file stays correct.
+ * stored in the jar file and used by various programs like
+ * the RibFactory to lookup package/class names or Rib2Xml 
+ * to have a list of (rib element) keywords. 
+ * So if class files are added or removed the config file 
+ * stays correct.
+ *
+ * TODO:
+ * - Get extra info out of class files via refactoring
+ * - Split up in Creator an Writer ?
  */
 public class ConfigGenerator {
+
+	static Logger logger = Logger.getLogger(ConfigGenerator.class);
 
     private File configOutput;
     private Document configDoc;
@@ -138,21 +150,44 @@ public class ConfigGenerator {
     
     /**
      * Loops through all values and store them in xml document
+     * XML Structure:
+     * <package name="....">
+     *      <ribelement name="...." classname="...." />
+     *      <ribelement name="...." classname="...." />
+     *      ....
+     * </package>
+     * TODO:
+     * - Validate with DTD?
      */
     private void createConfigDoc(File configFile) {
     
         Element root = configDoc.createElement("ribelements");
         
+        // Loop through list of packages
         for(Enumeration keys = dirContent.keys(); keys.hasMoreElements();) {
         
             String key = (String) keys.nextElement();
+            
+            // Add package to document
             Element ribPackage = configDoc.createElement("package");
-            ribPackage.setAttribute("name", key);
+            ribPackage.setAttribute("name", key.replace('/','.'));
+            
+            // Get the rib elements from current package
             Vector valueVec = (Vector) dirContent.get(key);
+            
+            // Loop through list of rib elements 
+            // and put them into current package
             for(Enumeration values = valueVec.elements(); values.hasMoreElements();) {
                 String value = (String) values.nextElement();
                 Element ribFile = configDoc.createElement("ribelement");
-                ribFile.setAttribute("name", value);
+                
+                // No Ri prefix and no .class extension
+                ribFile.setAttribute("name", value.substring(2, value.lastIndexOf(".class")));
+                
+                // No .class extension
+                ribFile.setAttribute("classname", value.substring(0, value.lastIndexOf(".class")));
+                
+                // Add rib element to corresponding package
                 ribPackage.appendChild(ribFile);
             }
             
@@ -168,7 +203,7 @@ public class ConfigGenerator {
             DOMSource source = new DOMSource(configDoc);
             FileOutputStream fileOut = new FileOutputStream(configFile);
             StreamResult result = new StreamResult(fileOut);
-            transformer.setOutputProperty("indent", "yes"); 
+            transformer.setOutputProperty("indent", "yes");
             transformer.transform(source, result);
             fileOut.close();
             

@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.graphicsstate.transformations;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiIdentity extends Rib {
+
+	static Logger logger = Logger.getLogger(RiIdentity.class);
 
     public RiIdentity(String element) {
         super(element);

@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.external;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiMakeShadow extends Rib {
+
+	static Logger logger = Logger.getLogger(RiMakeShadow.class);
 
     public RiMakeShadow(String element) {
         super(element);

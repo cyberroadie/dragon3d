@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.primitives;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiPoints extends Rib {
+
+	static Logger logger = Logger.getLogger(RiPoints.class);
 
     public RiPoints(String element) {
         super(element);

@@ -17,7 +17,7 @@
     
     <target name="compile" depends="init" description="Compile sources">
         <mkdir dir="${Build}" />
-        <javac srcdir="${Source}" destdir="${Build}" debug="false">
+        <javac srcdir="${Source}" destdir="${Build}" debug="off" deprecation="on">
             <classpath>
                 <pathelement path="${classpath}" />
                 <pathelement path="${Source}/net/transformatorhuis/cgi/conversion" />
@@ -35,6 +35,7 @@
     </target>
     
     <target name="config" depends="compile" description="Creates configuration file">
+        <echo message="Creating configuration file" />
         <mkdir dir="${Build}/conf" />
         <exec dir="${Build}" executable="java">
             <arg line="net.transformatorhuis.cgi.utils.ConfigGenerator conf/RibElements.xml net/transformatorhuis/cgi/elements" />
@@ -43,6 +44,11 @@
    
     <target name="dist" depends="config" description="Creates distribution" >
         <mkdir dir="${Distribution}/lib" />
+        
+        <!-- For now log4j is included in the ribxml.jar           -->
+        <!-- Future releases will keep jar files seperate,         -->
+        <!-- on how to include this for different OS distributions -->
+        <unjar src="${Library}/log4j-1.2.8.jar" dest="${Build}" />
         <jar destfile="${Distribution}/lib/ribxml.jar" basedir="${Build}" >
             <manifest>
                 <attribute name="Built-By" value="Olivier Van Acker" />

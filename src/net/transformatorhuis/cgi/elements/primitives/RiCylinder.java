@@ -28,9 +28,14 @@
 */
 package net.transformatorhuis.cgi.elements.primitives;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import net.transformatorhuis.cgi.conversion.Rib;
 
 public class RiCylinder extends Rib {
+
+	static Logger logger = Logger.getLogger(RiCylinder.class);
 
     public RiCylinder(String element) {
         super(element);
