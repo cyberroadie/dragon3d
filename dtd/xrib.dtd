@@ -1,0 +1,19 @@
+<!--
+	This is the Renderman DTD
+	
+	-->
+	
+<!ELEMENT DISPLAY - - (PARAM)* -- RiDisplay -->
+<!ATTLIST DISPLAY 
+  name    CDATA   #REQUIRED -- name of the picture file or framebuffer --
+  type    CDATA   #REQUIRED -- the display format, output device or output driver --
+  mode    CDATA   #REQUIRED -- the mode which indicates what data are to be output in this display stream --
+  >
+  
+<!ELEMENT PARAM - O EMPTY              -- named property value -->
+<!ATTLIST PARAM
+  name        CDATA          #REQUIRED -- property name --
+  value       CDATA          #IMPLIED  -- property value --
+  >
+  
+  
