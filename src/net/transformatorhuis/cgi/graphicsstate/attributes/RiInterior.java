@@ -1,0 +1,1 @@
+package net.transformatorhuis.cgi.conversion.rib;class RiInterior {}
