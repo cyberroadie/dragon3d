@@ -30,7 +30,7 @@ package net.transformatorhuis.cgi.external;
 
 import net.transformatorhuis.cgi.conversion.Rib;
 
-class RiMakeShadow extends Rib {
+public class RiMakeShadow extends Rib {
 
     public RiMakeShadow(String element) {
         super(element);

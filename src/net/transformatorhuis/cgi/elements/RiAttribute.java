@@ -26,11 +26,11 @@
    | Author: Olivier Van Acker <cyberroadie@yahoo.co.uk>                  |
    +----------------------------------------------------------------------+
 */
-package net.transformatorhuis.cgi.graphicsstate;
+package net.transformatorhuis.cgi.elements;
 
 import net.transformatorhuis.cgi.conversion.Rib;
 
-class RiAttribute extends Rib {
+public class RiAttribute extends Rib {
 
     public RiAttribute(String element) {
         super(element);

@@ -26,11 +26,11 @@
    | Author: Olivier Van Acker <cyberroadie@yahoo.co.uk>                  |
    +----------------------------------------------------------------------+
 */
-package net.transformatorhuis.cgi.primitives;
+package net.transformatorhuis.cgi.elements;
 
 import net.transformatorhuis.cgi.conversion.Rib;
 
-class RiCylinder extends Rib {
+public class RiCylinder extends Rib {
 
     public RiCylinder(String element) {
         super(element);

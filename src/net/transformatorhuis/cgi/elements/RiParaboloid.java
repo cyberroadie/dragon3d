@@ -26,11 +26,11 @@
    | Author: Olivier Van Acker <cyberroadie@yahoo.co.uk>                  |
    +----------------------------------------------------------------------+
 */
-package net.transformatorhuis.cgi.primitives;
+package net.transformatorhuis.cgi.elements;
 
 import net.transformatorhuis.cgi.conversion.Rib;
 
-class RiParaboloid extends Rib {
+public class RiParaboloid extends Rib {
 
     public RiParaboloid(String element) {
         super(element);

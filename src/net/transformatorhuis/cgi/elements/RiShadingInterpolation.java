@@ -26,11 +26,11 @@
    | Author: Olivier Van Acker <cyberroadie@yahoo.co.uk>                  |
    +----------------------------------------------------------------------+
 */
-package net.transformatorhuis.cgi.graphicsstate.attributes;
+package net.transformatorhuis.cgi.elements;
 
 import net.transformatorhuis.cgi.conversion.Rib;
 
-class RiShadingInterpolation extends Rib {
+public class RiShadingInterpolation extends Rib {
 
     public RiShadingInterpolation(String element) {
         super(element);

@@ -26,11 +26,11 @@
    | Author: Olivier Van Acker <cyberroadie@yahoo.co.uk>                  |
    +----------------------------------------------------------------------+
 */
-package net.transformatorhuis.cgi.graphicsstate.attributes;
+package net.transformatorhuis.cgi.elements;
 
 import net.transformatorhuis.cgi.conversion.Rib;
 
-class RiGeometricApproximation extends Rib {
+public class RiGeometricApproximation extends Rib {
 
     public RiGeometricApproximation(String element) {
         super(element);

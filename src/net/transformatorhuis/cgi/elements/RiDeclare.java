@@ -26,18 +26,8 @@
    | Author: Olivier Van Acker <cyberroadie@yahoo.co.uk>                  |
    +----------------------------------------------------------------------+
 */
-package net.transformatorhuis.cgi.elements;
+package net.transformatorhuis.cgi.types;
 
-import net.transformatorhuis.cgi.conversion.Rib;
-
-public class RiTrimCurve extends Rib {
-
-    public RiTrimCurve(String element) {
-        super(element);
-    }
-
-    public RiTrimCurve(String element, String param) {
-        super(element, param);
-    }
+class RiDeclare {
 
 }

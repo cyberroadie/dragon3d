@@ -26,11 +26,11 @@
    | Author: Olivier Van Acker <cyberroadie@yahoo.co.uk>                  |
    +----------------------------------------------------------------------+
 */
-package net.transformatorhuis.cgi.external;
+package net.transformatorhuis.cgi.elements;
 
 import net.transformatorhuis.cgi.conversion.Rib;
 
-class RiMakeCubeFaceEnvironment extends Rib {
+public class RiMakeCubeFaceEnvironment extends Rib {
 
     public RiMakeCubeFaceEnvironment(String element) {
         super(element);

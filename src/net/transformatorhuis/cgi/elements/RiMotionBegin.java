@@ -26,14 +26,18 @@
    | Author: Olivier Van Acker <cyberroadie@yahoo.co.uk>                  |
    +----------------------------------------------------------------------+
 */
-package net.transformatorhuis.cgi.motion;
+package net.transformatorhuis.cgi.elements;
 
 import net.transformatorhuis.cgi.conversion.Rib;
 
-class RiMotionBegin  extends Rib {
+public class RiMotionBegin extends Rib {
 
-    public RiMotionBegin(String line) {
-        super(line);
+    public RiMotionBegin(String element) {
+        super(element);
+    }
+
+    public RiMotionBegin(String element, String param) {
+        super(element, param);
     }
 
 }

@@ -26,7 +26,7 @@
    | Author: Olivier Van Acker <cyberroadie@yahoo.co.uk>                  |
    +----------------------------------------------------------------------+
 */
-package net.transformatorhuis.cgi.graphicsstate.options;
+package net.transformatorhuis.cgi.elements;
 
 /**
  * Parse a "Display" element from a rib file
