@@ -53,12 +53,20 @@ public abstract class Rib {
     
     public String output() {
         if(param == null) {
-            return ("<" + element.toLowerCase() + " />");
+            return ((isEndElement() ? "</" : "<") + element.toLowerCase() + (hasChildElements() ? ">" : (isEndElement() ? ">" : " />")));
         } else {
             return ("<" + element.toLowerCase() + ">" + param + "</" + element.toLowerCase() + ">");
         }
     }
 
+    public boolean hasChildElements() {
+        return false;
+    }
+    
+    public boolean isEndElement() {
+        return false;
+    }
+    
     //public abstract String setAttributes();
     //public abstract String setBody();
     
