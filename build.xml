@@ -11,7 +11,7 @@
     <property name="Configuration" location="conf" />
     
     <property name="RibConfigFile" value="RibElements.xml" />
-    <property name="Log4jConfigFile" value="log4j.xml" />
+    <property name="LogConfigFile" value="log4j.xml" />
     
     <target name="init">
         <tstamp />
@@ -27,7 +27,7 @@
         <!-- on how to include this for different OS distributions   -->
         <!-- unjar here because it's needed for correct compile      -->
         <unjar src="${Library}/log4j-1.2.8.jar" dest="${Build}" />
-        <javac srcdir="${Source}" destdir="${Build}" debug="off" deprecation="on">
+        <javac srcdir="${Source}" destdir="${Build}" debug="on" deprecation="on">
             <classpath>
                 <pathelement path="${classpath}" />
                 <pathelement path="${Source}/net/transformatorhuis/cgi/conversion" />
@@ -58,6 +58,7 @@
         <mkdir dir="${Build}/conf" />
         <mkdir dir="${Distribution}/lib" />
         <copy file="${Configuration}/${RibConfigFile}" todir="${Build}/conf" />
+        <copy file="${Configuration}/${LogConfigFile}" todir="${Build}/conf" />
         <jar destfile="${Distribution}/lib/ribxml.jar" basedir="${Build}" >
             <manifest>
                 <attribute name="Built-By" value="Olivier Van Acker" />
