@@ -1,3 +1,5 @@
+package net.transformatorhuis.cgi.conversion;
+
 //
 //  Rib.java
 //  RendermanXML
@@ -18,8 +20,8 @@ public abstract class Rib {
         return "<" + riName + setAttributes() + ">" + setBody() + "</" + riName + ">";
     }
 
-    private String setAttributes() {
-
-    }
+    public abstract String setAttributes();
+    
+    public abstract String setBody();
     
 }
