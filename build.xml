@@ -1,0 +1,44 @@
+<project name="RendermanXML" default="dist" basedir=".">
+    <description>
+        Renderman Interface to XML conversion tool
+    </description>
+    
+    <property name="Source" location="src" />
+    <property name="Build" location="build" />
+    <property name="Distribution" location="dist" />
+    
+    <target name="init">
+        <tstamp />
+        <mkdir dir="${Build}" />
+        <mkdir dir="${Distribution}" />
+    </target>
+    
+    <target name="compile" depends="init" description="Compile sources">
+        <mkdir dir="${Build}/classes" />
+        <javac srcdir="${Source}" destdir="${Build}/classes" debug="false">
+            <classpath>
+                <pathelement path="${classpath}" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/conversion" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/external" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/motion" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/primitives" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/types" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/graphicsstate" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/graphicsstate/attributes" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/graphicsstate/options" />
+                <pathelement path="${Source}/net/transformatorhuis/cgi/graphicsstate/transformations" />
+            </classpath>
+        </javac>
+    </target>
+   
+    <target name="dist" depends="compile" description="Creates distribution" >
+        <mkdir dir="${Distribution}/lib" />
+        <jar destfile="${Distribution}/lib/ribxml.jar" basedir="${Build}/classes" />
+    </target>
+    
+    <target name="clean" description="Deletes all compiled and distribution files">
+        <delete dir="${Build}" />
+        <delete dir="${Distribution}" />
+    </target> 
+    
+</project>
