@@ -31,8 +31,18 @@ package net.transformatorhuis.cgi.elements;
 import org.apache.log4j.Logger;
 import org.apache.log4j.BasicConfigurator;
 
-class RiDeclare {
+import net.transformatorhuis.cgi.conversion.Rib;
+
+class RiDeclare extends Rib {
 
 	static Logger logger = Logger.getLogger(RiDeclare.class);
 
+    public RiDeclare(String element) {
+        super(element);
+    }
+
+    public RiDeclare(String element, String param) {
+        super(element, param);
+    }
+    
 }
