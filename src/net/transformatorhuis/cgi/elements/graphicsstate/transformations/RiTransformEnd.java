@@ -45,4 +45,7 @@ public class RiTransformEnd extends Rib {
         super(element, param);
     }
 
+    public boolean isEndElement() {
+        return true;
+    }
 }

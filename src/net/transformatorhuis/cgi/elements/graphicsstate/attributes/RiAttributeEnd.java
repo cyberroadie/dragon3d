@@ -44,5 +44,9 @@ public class RiAttributeEnd extends Rib {
     public RiAttributeEnd(String element, String param) {
         super(element, param);
     }
+    
+    public boolean isEndElement() {
+        return true;
+    }
 
 }
