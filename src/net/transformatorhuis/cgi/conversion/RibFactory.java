@@ -30,6 +30,9 @@ package net.transformatorhuis.cgi.conversion;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.BasicConfigurator;
+	
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import net.transformatorhuis.cgi.utils.Config;
 //import net.transformatorhuis.cgi.types.*;
@@ -40,16 +43,18 @@ import java.util.Hashtable;
 public class RibFactory {
 
 	static Logger logger = Logger.getLogger(RibFactory.class);
-	
+
 	private Hashtable classes;
 	
+	/* All names of rib classes are in config */
 	public RibFactory(Config config) {
 	    
 	    classes = config.getClasses();
 	
 	}
 
-    public Rib getRibElement(String ribLine) {
+
+    public void addRibElement(String ribLine) {
     
         String element = null;
         String param;
@@ -77,9 +82,9 @@ public class RibFactory {
         try {   
             ribElementDefinition = Class.forName((String) classes.get(element), true, this.getClass().getClassLoader());
             
-            //Constructor con = ribElementDefinition.getConstructor(intArgsClass);
-            //rib = (Rib) con.newInstance(intArgs);
-            rib = (Rib) ribElementDefinition.getConstructor(intArgsClass).newInstance(intArgs);
+            // Add xml via specific rib class
+            ribElementDefinition.getConstructor(intArgsClass).newInstance(intArgs);
+           
         } catch (InstantiationException ie) {
             System.out.println(ie);
         } catch (IllegalAccessException iae) {
@@ -95,8 +100,6 @@ public class RibFactory {
         } catch (Exception ex) {
             System.out.println(ex);
         }
-        
-        return rib; 
         
     }
     
