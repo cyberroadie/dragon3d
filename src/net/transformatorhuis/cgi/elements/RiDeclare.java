@@ -26,7 +26,7 @@
    | Author: Olivier Van Acker <cyberroadie@yahoo.co.uk>                  |
    +----------------------------------------------------------------------+
 */
-package net.transformatorhuis.cgi.types;
+package net.transformatorhuis.cgi.elements;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.BasicConfigurator;
