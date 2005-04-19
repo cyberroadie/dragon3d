@@ -34,6 +34,13 @@ package net.transformatorhuis.dtd;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class Unit {
+abstract public class Unit {
 
+	private String comment;
+	
+	public String getCommentList() {
+		
+		return comment;
+	}
+	
 }

@@ -28,6 +28,8 @@
 */
 package net.transformatorhuis.dtd;
 
+import java.util.Vector;
+
 /**
  * @author mgs
  *
@@ -35,5 +37,16 @@ package net.transformatorhuis.dtd;
  * Window - Preferences - Java - Code Style - Code Templates
  */
 public class AttList extends Unit {
+	
+	private Vector attributes;
+	
+	public AttList(String unit) {
+		
+	}
+	
+	public Vector getAttributeList() {
+		
+		return attributes;
+	}
 
 }

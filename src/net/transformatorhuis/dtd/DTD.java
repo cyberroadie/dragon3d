@@ -28,6 +28,15 @@
 */
 package net.transformatorhuis.dtd;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.nio.channels.FileChannel;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+
+import org.apache.log4j.Logger;
+
 /**
  * @author mgs
  *
@@ -35,6 +44,25 @@ package net.transformatorhuis.dtd;
  * Window - Preferences - Java - Code Style - Code Templates
  */
 public class DTD {
+	
+	static Logger logger = Logger.getLogger(DTD.class);
+	
+	private CharBuffer cbuf;
+	
+	public DTD(File file) {
+		try {
+			FileInputStream fis = new FileInputStream(file);
+			FileChannel fc = fis.getChannel();
+			ByteBuffer bbuf = fc.map(FileChannel.MapMode.READ_ONLY, 0, (int)fc.size());
+			this.cbuf = Charset.forName("8859_1").newDecoder().decode(bbuf);
+			
+		} catch (Exception e) {
+			logger.error(e.toString());
+		}
+		
+		
+		
+	}
 
 
 }
