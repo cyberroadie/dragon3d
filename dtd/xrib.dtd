@@ -1,19 +1,815 @@
 <!--
-	This is the Renderman DTD
+	This is The Renderman(R) Interface DTD written by Olivier Van Acker
 	
-	-->
+	The RenderMan(R) Interface Procedures and Protocol are:
+	Copyright 1988, 1989, 2000, Pixar
+	All Rights Reserved
 	
+	RenderMan(R) is a registered trademark of Pixar
+	
+-->
+
+<!ENTITY % Class "(constant|uniform|varying|vertex)">
+<!ENTITY % Type "(float|integer|string|color|point|vector|normal|matrix|hpoint)">
+<!ENTITY % PerType "periodic|nonperiodic">
+
+<!ENTITY % RI_NULL     "CDATA">
+<!ENTITY % RI_INFINITY "CDATA">
+<!ENTITY % RI_EPSILON  "CDATA">
+<!ENTITY % RI_TRUE     "CDATA">
+<!ENTITY % RI_FALSE    "CDATA">
+
+<!ENTITY % RT_BOOLEAN  "(true|false)">
+
+<!-- TODO: Define: ARRAY -->
+<!-- TODO: Define: RTPOINT -->
+<!-- TODO: Define: RTBOUND -->
+
+<!ELEMENT FLOAT EMPTY >
+<!ATTLIST FLOAT
+  name    CDATA    #IMPLIED
+  value   FLOAT    #REQUIRED
+  >
+
+<!ELEMENT DECLARE EMPTY -- RiDeclare -->
+<!ATTLIST DECLARE
+  name       CDATA   #REQUIRED -- name of a variable --
+  class      %Class  #IMPLIED  -- class of type, defaults to unifom --
+  type       %Type   #IMPLIED  -- type of variabale --
+  dimension  NUMBER  #IMPLIED  -- length of array, default 1 --
+  >
+ 
+<!ELEMENT RIB (%GraphicState,%GeometricPrimitives,%ExternalResources)* -- RiBegin/RiEnd -->
+  
+<!ELEMENT PARAM EMPTY              -- named property value -->
+<!ATTLIST PARAM
+  name        CDATA          #REQUIRED -- property name --
+  value       CDATA          #IMPLIED  -- property value --
+  >
+ 
+<!ENTITY % rib "DECLARE|DISPLAY|PARAM|%GraphicState;|%GeometricPrimitives;|MOTION|%Error;" -- All elements except RIB -->
+<!ENTITY % world "%GeometricPrimitives; | %Attributes; | %Transformations; | MOTION | %ExternalResources; | %Error;" -- Elements except options an RIB -->
+
+<!--=========================Graphic State======================================-->
+<!-- Note: RiContext and RiGetContext have no RIB binding therefore they have no 
+     xml definition -->
+<!ENTITY % GraphicsState "FRAME|WORLD|%Options;|%Attributes;|
+                          %Transformations;|ATTRIBUTE">
+
+<!ENTITY % Options  "%Camera; %Displays; |HIDER|COLORSAMPLES|RELATIVEDETAIL">
+
+<!-- RiFrameBegin/RiFrameEnd - chap 4 p16 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: Not be used if single image is produced -->
+<!ELEMENT FRAME (%GraphicsState;, WORLD)* -- RiFrameBegin/RiFrameEnd -->
+<!ATTLIST FRAME 
+  frame   NUMBER #REQUIRED -- the number of this frame -->
+
+<!-- RiWorldBegin/RiWorldEnd - chap 4 p17 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT WORLD (%world;)* -- RiWorldBegin/RiWorldEnd -->
+
+
+<!--=========================Graphic State - Camera=============================-->
+<!ENTITY % Camera "FORMAT|FRAMEASPECTRATIO|SCREENWINDOW|CROPWINDOW|PROJECTION|
+                   CLIPPING|CLIPPINGPLANE|DEPTHOFFIELD|SHUTTER">
+                   
+<!-- RiFormat - chap 4.1.1 p23 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT FORMAT - 0 EMPTY -- RiFormat -->
+<!ATTLIST FORMAT
+  xresolution       NUMBER  #REQUIRED -- horizontal resolution --
+  yresolution       NUMBER  #REQUIRED -- vertical resolution --
+  pixelaspectratio  FLOAT   #REQUIRED -- physical width to the height of a pixel --
+  >
+  
+<!-- RiFrameAspectRation - chap 4.1.1 p23 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: can also be written as 4/3 -->
+<!ELEMENT FRAMEASPECTRATIO - 0 EMPTY -- RiFrameAspectRatio -->
+<!ATTLIST FRAMEASPECTRATIO
+  frameaspectratio  FLOAT  #REQUIRED -- ratio of the width to the height of image --
+  >
+
+<!-- RiScreenWindow - chap 4.1.1 p24 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT SCREENWINDOW - 0 EMPTY -- RiScreenWindow -->
+<!ATTLIST SCREENWINDOW 
+  left              FLOAT   #REQUIRED 
+  right             FLOAT   #REQUIRED
+  bottom            FLOAT   #REQUIRED
+  top               FLOAT   #REQUIRED
+  >
+  
+<!-- RiCropWindow - chap 4.1.1 p24 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note all attribute values are between 0 - 1 -->
+<!ELEMENT CROPWINDOW - 0 EMPTY -- RiCropWindow -->
+<!ATTLIST CROPWINDOW 
+  xmin              FLOAT   #REQUIRED
+  xmax              FLOAT   #REQUIRED
+  ymin              FLOAT   #REQUIRED
+  ymax              FLOAT   #REQUIRED
+  >
+  
+<!-- RiProjection - chap 4.1.1 p25 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY % ProjectionType "perspective|orthographic|%RI_NULL;" -- required types -->
+<!ELEMENT PROJECTION - - (PARAM)* -- RiProjection -->
+<!ATTLIST PROJECTION
+  name              (%ProjectionType; | CDATA)   #REQUIRED -- projection type -->
+  
+<!-- RiClipping - chap 4.1.1 p26 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT CLIPPING - 0 EMPTY -- RiClipping -->
+<!ATTLIST CLIPPING
+  near              FLOAT   #REQUIRED
+  far               FLOAT   #REQUIRED
+  >
+  
+<!-- RiClippingPlane - chap 4.1.1 p26 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT CLIPPINGPLANE - 0 EMPTY -- RiClippingPlane -->
+<!ATTLIST CLIPPINGPLANE
+  x                 FLOAT  -- x point on surface --
+  y                 FLOAT  -- y point on surface --
+  z                 FLOAT  -- z point on surface --
+  nx                FLOAT  -- x plane normal --
+  ny                FLOAT  -- y plane normal --
+  nz                FLOAT  -- z plane normal --
+  >
+  
+<!-- RiDepthOfField - chap 4.1.1 p27 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT DEPTHOFFIELD - 0 EMPTY -- RiDepthOfField -->
+<!ATTLIST DEPTHOFFIELD
+ fstop             FLOAT  -- determines lens diameter --
+ focallength       FLOAT  -- focal length of camera --
+ focaldistance     FLOAT  -- distance at which objects will be in focus --
+ >
+ 
+<!-- RiShutter - chap 4.1.1 p27 The Renderman(c) Interface Specification Version 3.2 -->
+<! Note: min should be less than max -->
+<!ELEMENT SHUTTER - 0 EMPTY -- RiShutter -->
+<!ATTLIST SHUTTER
+  min              FLOAT
+  max              FLOAT
+  >
+
+<!--=====================Graphic State - Displays==============================-->
+<!ENTITY % Displays "PIXELVARIANCE|PIXELSAMPLES|PIXELFILTER|EXPOSURE|
+                     IMAGER|QUANTIZE|DISPLAY">
+<!-- RiPixelVariance - chap 4.1.2 p30 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT PIXELVARIANCE - 0 EMPTY -- RiPixelVariance -->
+<!ATTLIST PIXELVARIANCE 
+  variation   FLOAT   #REQUIRED -- upper bound of acceptable variance --
+  >
+
+<!-- RiPixelSamples - chap 4.1.2 p30 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: Sampling rates less than 1 are clamped to 1 -->
+<!ELEMENT PIXELSAMPLES - 0 EMPTY -- RiPixelSamples -->
+<!ATTLIST PIXELSAMPLES
+  xsamples        FLOAT -- horizontal sampling rate --
+  ysamples        FLOAT -- vertical sampling rate --
+  >
+  
+<!-- RiPixelFilter - chap 4.1.2 p30 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY % Filter "box|triangle|catmullrom|guassian|sinc" -- available standard filter functions -->
+<!ELEMENT PIXELFILTER - 0 EMPTY -- RiPixelFilter -->
+<!ATTLIST PIXELFILTER
+  filterfunc      (%Filter; | CDATA) #REQUIRED -- type of filter --
+  xwidth          FLOAT              #REQUIRED -- x width of filter in pixels --
+  ywidth          FLOAT              #REQUIRED -- y width of filter in pixels --
+  >
+  
+<!-- RiExposure - chap 4.1.2 p32 The Renderman(c) Interface Specification Version 3.2 --> 
+<!ELEMENT EXPOSURE - 0 EMPTY -- RiExposure -->
+<!ATTLIST EXPOSURE 
+  gain            FLOAT  #REQUIRED 
+  gamma           FLOAT  #REQUIRED
+  >
+  
+<!-- RiImager - chap 4.1.2 p32 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT IMAGER - - (PARAM)* -- RiImager -->
+<!ATTLIST IMAGER 
+  name            (CDATA | %RI_NULL;) -- name of an image shader --
+  >
+  
+<!-- RiQuantize - chap 4.1.2 p33 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: Quantization is also referred to as anti aliassing -->
+<!ELEMENT QUANTIZE - 0 EMPTY -- RiQuantize -->
+<!ATTLIST QUANTIZE 
+  type            %QuantizeType; #REQUIRED -- quantization type --
+  one             NUMBER         #REQUIRED -- mapping from floating to fixed points definition --
+  min             NUMBER         #REQUIRED -- minimum quantized value --
+  max             NUMBER         #REQUIRED -- maximum quantized value --
+  ditheramplitude FLOAT          #REQUIRED 
+  >
+
+<!-- RiDisplay - chap 4.1.2 p33 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT DISPLAY - - (PARAM)* -- RiDisplay -->
 <!ATTLIST DISPLAY 
   name    CDATA   #REQUIRED -- name of the picture file or framebuffer --
   type    CDATA   #REQUIRED -- the display format, output device or output driver --
   mode    CDATA   #REQUIRED -- the mode which indicates what data are to be output in this display stream --
   >
-  
-<!ELEMENT PARAM - O EMPTY              -- named property value -->
-<!ATTLIST PARAM
-  name        CDATA          #REQUIRED -- property name --
-  value       CDATA          #IMPLIED  -- property value --
+
+<!--=====================Graphic State - Additional Option======================-->
+<!-- RiHider - chap 4.1.3 p34 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT HIDER - - (PARAM)* -- RiHider -->
+<!ATTLIST HIDER 
+  type    (hidden|null|CDATA)   #REQUIRED 
   >
   
+<!-- RiColorSamples - chap 4.1.3 p35 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT COLORSAMPLES - - (NRGB|RGBN) -- RiColorSamples -->
+<!ATTLIST COLORSAMPLES
+  n       NUMBER   #REQUIRED -- defaults to 3 --
+  >
+
+<!ELEMENT NRGB - 0 EMPTY -- n by 3 transformation matrix -->
+<!ATTLIST NRGB
+  n0      FLOAT    #REQUIRED
+  n1      FLOAT    #REQUIRED
+  n2      FLOAT    #REQUIRED
+  >
+
+<!ATTLIST RGBN
+  n0      FLOAT    #REQUIRED
+  n1      FLOAT    #REQUIRED
+  n2      FLOAT    #REQUIRED
+  >
+
+<!-- RiRelativeDetail - chap 4.1.3 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT RELATIVEDETAIL - 0 EMPTY -- RiRelativeDetail -->
+<!ATTLIST RELATIVEDETAIL
+  relativedetail    FLOAT  #REQUIRED
+  >
   
+<!--=====================Graphic State - Implementaion Specific Options=========-->
+<!-- RiOption - chap 4.1.4 p36 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: Option is excluded from %Graphicstate/%Options because it can be outside RIB element -->   
+<!-- Note: See table 4.5 Renderman(c) Specification for required option implementations -->               
+<!ELEMENT OPTION - - (PARAM)* -- RiOption --> 
+<!ATTLIST OPTION 
+  name    CDATA #REQUIRED -- name of the option -->
+
+<!--=====================Graphic State - Attributes=============================-->
+<!ENTITY % Attributes "ATTRIBUTE|COLOR|OPACITY|TEXTURECOORDINATES|LIGHTSOURCE|
+                       AREALIGHTSOURCE|ILLUMINATE|SURFACE|DISPLACEMENT|ATMOSPHERE|
+                       INTERIOR|EXTERIOR|SHADINGRATE|SHADINGINTERPOLATION|
+                       MATTE|BOUND|DETAIL|DETAILRANGE|GEOMETRICAPPROXIMATION|
+                       ORIENTATION|REVERSEORIENTATION|SIDES">
+
+<!-- RiAttributeBegin/RiAttributeEnd - chap 4.2 p38 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT ATTRIBUTE - - (%Attributes) -- RiAttributeBegin/RiAttributeEnd -->
+
+<!-- RiColor - chap 4.2.1 p38 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT COLOR - 0 EMPTY -- RiColor -->
+<!ATTLIST COLOR
+  r       FLOAT   #REQUIRED
+  g       FLOAT   #REQUIRED
+  b       FLOAT   #REQUIRED
+  >
+  
+<!-- RiOpacity - chap 4.2.1 p40 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT OPACITY - 0 EMPTY -- RiOpacity -->
+<!ATTLIST OPACITY 
+  r       FLOAT   #REQUIRED
+  g       FLOAT   #REQUIRED
+  b       FLOAT   #REQUIRED
+  >
+  
+<!-- RiTextureCoordinates - chap 4.2.2 p41 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT TEXTURECOORDINATES - 0 EMPTY -- RiTextureCoordinates -->
+<!ATTLIST TEXTURECOORDINATES
+  s1      FLOAT   #REQUIRED
+  t1      FLOAT   #REQUIRED
+  s2      FLOAT   #REQUIRED
+  t2      FLOAT   #REQUIRED
+  s3      FLOAT   #REQUIRED
+  t3      FLOAT   #REQUIRED
+  s4      FLOAT   #REQUIRED
+  t4      FLOAT   #REQUIRED
+  >
+  
+<!-- RiLightSource - chap 4.2.3 p42 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY % LightSourceShader "ambient|distant|point|spot">
+<!ELEMENT LIGHTSOURCE - - (PARAM)* -- RiLightSource -->
+<!ATTLIST LIGHTSOURCE
+  shadername   (%LightSourceShader;|CDATA) -- name of a light source shader --
+  >
+  
+<!-- RiAreaLightSource - chap 4.2.3 p43 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT AREALIGHTSOURCE - 0 EMPTY -- RiAreaLightSource -->
+<!ATTLIST AREALIGHTSOURCE
+  shadername   (%LightSourceShader;|CDATA) -- name of a light source shader --
+  >
+  
+<!-- RiIlluminate - chap 4.2.3 p43 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: light (handle) is in "current light source list" --> 
+<!ELEMENT ILLUMINATE - 0 EMPTY -- RiIlluminate -->
+<!ATTLIST ILLUMNIATE 
+  light   CDATA         #REQUIRED  -- light handle --
+  state   %RT_BOOLEAN;  #REQUIRED
+  >
+  
+<!-- RiSurface - chap 4.2.4 p44 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT SURFACE - - (PARAM)* -- RiSurface -->
+<!ATTLIST SURFACE
+  shadername  CDATA   #REQUIRED -- name of a surface shader --
+  >
+  
+<!-- RiDisplacement - chap 4.2.5 p46 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT DISPLACEMENT - - (PARAM)* -- RiDisplacement -->
+<!ATTLIST DISPLACEMENT
+  shaderename  CDATA   #REQUIRED -- name of a displacement shader --
+  >
+  
+<!-- RiAtmosphere - chap 4.2.6 p47 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT ATMOSPHERE - - (PARAM)* -- RiAtmosphere -->
+<!ATTLIST ATMOSPHERE
+  shadername  CDATA   #REQUIRED -- name of an atmosphere shader --
+  >
+  
+<!-- RiInterior - chap 4.2.6 p47 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY % VolumeShader "depthcue|fog">
+<!ELEMENT INTERIOR - - (PARAM)* -- RiInterior -->
+<!ATTLIST INTERIOR
+  shadername  (%VolumeShaders; | CDATA | %RI_NULL;)   #REQUIRED -- name of an atmosphere or volume shader --
+  >
+  
+<!-- RiExterior - chap 4.2.6 p48 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT EXTERIOR - - (PARAM)* -- RiInterior -->
+<!ATTLIST EXTERIOR
+  shadername  (%VolumeShaders; | CDATA | %RI_NULL;)   #REQUIRED -- name of an atmosphere or volume shader --
+  >
+
+<!-- RiShadingRate - chap 4.2.7 p48 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: size = 1 is Phong shading, size = RI_INFNITY is once per primitive -->
+<!ELEMENT SHADINGRATE - 0 EMPTY -- RiShadingRate -->
+<!ATTLIST SHADINGRATE 
+  size   (FLOAT|%RI_INFINITY)   #REQUIRED -- shading rate --
+  >
+  
+<!-- RiShadingInterpolation - chap 4.2.8 p49 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY % SIType "constant|smooth" -- constant: faceted shading, smooth: Gourad Shading -->
+<!ELEMENT SHADINGINTERPOLATION - 0 EMPTY -- RiShadinInterpolation -->
+<!ATTLIST SHADINGINTERPOLATION 
+  type  %SIType;   #REQUIRED 
+  >
+  
+<!-- RiMatte - chap 4.2.9 p49 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT MATTE - 0 EMPTY -- RiMatte -->
+<!ATTLIST MATTE
+  state  %RT_BOOLEAN;  #REQUIRED
+  >
+  
+<!-- RiBound - chap 4.2.10 p51 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT BOUND - - (RTBOUND) -- RiBound -->
+
+<!-- RiDetail - chap 4.2.11 p52 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT DETAIL - - (RTBOUND) -- RiDetail -->
+
+<!-- RiDetailRange - chap 4.2.11 p52 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: minvisible <= lowertransition <= uppertransition <= maxvisible -->
+<!ELEMENT DETAILRANGE - 0 EMPTY -- RiDetailRange -->
+<!ATTLIST DETAILRANGE 
+  minvisible         FLOAT   #REQUIRED
+  lowertransition    FLOAT   #REQUIRED
+  uppertransition    FLOAT   #REQUIRED
+  maxvisible         FLOAT   #REQUIRED
+  >
+<!-- RiGeomatricApproximation - chap 4.2.12 p53 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY % GAType "flatness">
+<!ELEMENT GEOMETRICAPPROXIMATION - 0 EMPTY -- RiGeomatricApproximation -->
+<!ATTLIST GEOMETRICAPPROXIMATION
+  type      (%GAType;|CDATA)   #REQUIRED 
+  value     FLOAT              #REQUIRED
+  >
+
+<!-- RiOrientation - chap 4.2.13 p54 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY % OType "outside|inside|lh|rh">
+<!ELEMENT ORIENTATION - 0 EMPTY -- RiOrientation -->
+<!ATTLIST ORIENTATION 
+  orientation   (%OType;)   #REQUIRED
+  >
+
+<!-- RiReverseOrientation - chap 4.2.13 p54 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT REVERSEORIENTATION - 0 EMPTY -- RiReverseOrientation -->
+
+<!-- RiSides - chap 4.2.13 p55 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT SIDES - 0 EMPTY -- RiSides -->
+<!ATTLIST SIDES
+  sides    NUMBER   #REQUIRED 
+  >
+  
+<!--=====================Graphic State - Transformations========================-->
+<!ENTITY % Transformations "IDENTITY|TRANSFORM|CONCATTRANSFORM|PERSPECTIVE|
+                            TRANSLATE|ROTATE|SCALE|SKEW|COORDINATESYSTEM|
+                            COORDSYSTRANSFORM|TRANSFORMPOINTS|TRANSFORM">
+
+<!-- RiIdentity - chap 4.3 p55 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT IDENTITY - 0 EMPTY -- RiIdentity -->
+
+<!-- RiTransform - chap 4.3 p56 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT TRANSFORM - - (RTMATRIX) -- RiTransform -->
+
+<!-- RiConcatTransform - chap 4.3 p55 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT CONCATTRANSFORM - - (RTMATRIX) -- RiConcatTransform -->
+
+<!-- RiPerspective - chap 4.3 p56 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT PERSPECTIVE - 0 EMPTY -- RiPerspective -->
+<!ATTLIST PERSPECTIVE
+  fov     FLOAT   #REQUIRED 
+  >
+  
+<!-- RiTranslate - chap 4.3 p57 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT TRANSLATE - 0 EMPTY -- RiTranslate -->
+<!ATTLIST TRANSLATE
+  dx   FLOAT   #REQUIRED
+  dy   FLOAT   #REQUIRED
+  dz   FLOAT   #REQUIRED
+  >
+  
+<!-- RiRotate - chap 4.3 p57 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT ROTATE - 0 EMPTY -- RiRotate -->
+<!ATTLIST ROTATE
+  angle   FLOAT   #REQUIRED
+  dx      FLOAT   #REQUIRED
+  dy      FLOAT   #REQUIRED
+  dz      FLOAT   #REQUIRED
+  >
+  
+<!-- RiScale - chap 4.3 p58 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT SCALE - 0 EMPTY -- RiScale -->
+<!ATTLIST SCALE
+  sx    FLOAT    #REQUIRED
+  sy    FLOAT    #REQUIRED
+  sz    FLOAT    #REQUIRED
+  >
+  
+<!-- RiSkew - chap 4.3 p58 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT SKEW - 0 EMPTY -- RiSkew -->
+<!ATTLIST SKEW
+  angle FLOAT    #REQUIRED
+  dx1   FLOAT    #REQUIRED
+  dy1   FLOAT    #REQUIRED
+  dz1   FLOAT    #REQUIRED
+  dx2   FLOAT    #REQUIRED
+  dy2   FLOAT    #REQUIRED
+  dz2   FLOAT    #REQUIRED
+  > 
+
+<!-- RiCoordinateSystem - chap 4.3.1 p58 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY % CSType "ratser|NDC|screen|camera|world|object|CDATA">
+<!ELEMENT COORDINATESYSTEM - 0 EMPTY -- RiCoordinateSystem -->
+<!ATTLIST COORDINATESYSTEM
+  name   %CSType;   #REQUIRED
+  >
+  
+<!--RiCoordSysTransform - chap 4.3.1 p59 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT COORDSYSTRANSFORM - 0 EMPTY -- RiCoordSysTransform -->
+<!ATTLIST COORDSYSTRANSFORM
+  name   %CSType;   #REQUIRED
+  >
+  
+<!-- RiTransformPoints - chap 4.3.1 p59 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT TRANSFORMPOINTS - - (RTPOINTS) -- RiTransformPoints -->
+<!ATTLIST TRANSFORMPOINTS
+  fromspace  %CSType;   #REQUIRED
+  tospace    %CSType;   #REQUIRED
+  n          NUMBER     #REQUIRED
+  >
+  
+<!-- RiTransformBegin/RiTransformEnd - chap 4.3.2 p60 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT TRANSFORM - 0 EMPTY -- RiTransformBegin/RiTransformEnd -->
+
+<!-- RiAttribute - chap 4.4 p60 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY % AType "displacementbound|identifier|trimcurve|CDATA">
+<!ELEMENT ATTRIBUTE - - (PARAM)* -- RiAttribute -->
+<!ATTLIST ATTRIBUTE
+  name    %AType   #REQUIRED
+  >
+  
+<!--=====================Geometric Primitives===================================-->
+<!ENTITY % GeometricPrimitives "%Polygons;|%Patches;|SUBDIVISIONMESH|%Quadrics;|
+                                POINTS|CURVES|BLOBBY|PROCEDURAL|GEOMETRY|SOLID|
+                                OBJECT">
+
+<!ENTITY % StandardPrimitives "P|PZ|PW|N|CS|OS|TC" 
+  -- Standard Geometric Primitive Variables, Table 5.1 p64 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT P - - (FLOAT)* -- Position, point vertex, 3 floats -->
+<!ELEMENT PZ - - (FLOAT)* -- Position, float vertex, 1 float --> 
+<!ELEMENT PW - - (FLOAT)* -- Position, h vertex, 4 floats -->
+<!ELEMENT N - - (FLOAT)* -- Normal, normal varying, 3 floats -->
+<!ELEMENT CS - - (FLOAT)* -- Color, color varying, 3 floats -->
+<!ELEMENT OS - - (FLOAT)* -- Opacity, color varying, 3 floats -->
+<!ELEMENT TC - - (FLOAT)* -- Texture Coordinates, s,t,st - 1,1,2, floats -->
+  
+<!ELEMENT NVERTICES - 0 EMPTY -- number of vertices in each loop -->
+<!ATTLIST NVERTICES
+  number       NUMBER    #REQUIRED
+  >
+
+<!ELEMENT NLOOPS - 0 EMPTY >
+<!ATTLIST NLOOPS
+  number       NUMBER    #REQUIRED
+  >
+  
+<!--=====================Geometric Primitives - Polygons========================-->
+<!ENTITY % Polygons "POLYGON|GENERALPOLYGON|POINTSPOLYGON|POINTSGENRALPOLYGON">
+
+<!-- RIPolygon - chap 5.1 p64 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: nvertices is calculated by program? Difference in Advanced Renderman and Renderman specification -->
+<!-- PARAM must at least contain P -->
+<!ELEMENT POLYGON - - (%StandardPrimitives;|PARAM)* -- RiPolygon -->
+<!ATTLIST POLYGON
+  nvertices    NUMBER   #IMPLIED
+  >
+  
+<!-- RiGeneralPolygon - chap 5.1 p 65 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: NLOOPS onle once -->
+<!ELEMENT GENERALPOLYGON - - (NLOOPS|NVERTICES|%StandardPrimitives;|PARAM)* -- RiGenralPolygon -->
+  
+<!--RiPointsPolygons - chap 5.1 p66 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT POINTSPOLYGONS - - (NVERTICES|%StandardPrimitives;|PARAM)* -- RiPointsPolygons -->
+<!ATTLIST POINTSPOLYGONS
+  npolys       NUMBER  #IMPLIED
+  >
+  
+<!-- RiPointsGeneralPolygons - chap 5.1 p67 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT POINTSGENERALPOLYGONS - - (NLOOPS|NVERTICES|%StandardPrimitives;|PARAM)* -- RiPointsGeneralPolygons -->
+<!ATTLIST POINTSPOLYGONS
+  npolys       NUMBER  #IMPLIED
+  > 
+
+<!--=====================Geometric Primitives - Patches=========================-->
+<!ENTITY % Patches "BASIS|PATCH|PATCHMESH|NUPATCH|TRIMCURVE">
+
+<!ENTITY % CubicBasisMatrices "bezier|bspline|catmullrom||hermite|power" 
+  -- Predifined cubic basis matrices p68 The Renderman(c) Interface Specification Version 3.2 -->
+  
+<!-- RiBasis - chap 5.2 p68 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT BASIS - - (RTBASIS)* -- RiBasis -->
+<!ATTLIST BASIS
+  ubasis  %CubicBasisMatrices;  #IMPLIED -- if no predefined matrix is given RTBASIS matrix required --
+  ustep   NUMBER                #REQUIRED
+  vbasis  %CubicBasisMatrices;  #IMPLIED -- if no predefined matrix is given RTBASIS matrix required --
+  vstep   NUMBER                #REQUIRED
+  >
+
+<!-- RiPatch - chap 5.2 p69 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: Must at least have P, Pw or Pz -->
+<!ENTITY % PType "bilinear|bicubic">
+<!ELEMENT PATCH - - (%StandardPrimitives;|PARAM)* -- RiPatch -->
+<!ATTLIST PATCH
+  type    %PType;    #REQUIRED
+  >
+
+<!-- RiPatchMesh - chap 5.2 p69 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Wrong type for vwrap in specification is RtInt must be RtToken p69 -->
+<!ELEMENT PATCHMESH - - (%StandardPrimitives;|PARAM)* -- RiPatchMesh -->
+<!ATTLIST PATCHMESH
+  type    %PType;    #REQUIRED
+  nu      NUMBER     #REQUIRED
+  uwrap   %PMType;   #REQUIRED
+  nv      NUMBER     #REQUIRED
+  vwrap   %PerType;   #REQUIRED
+  >
+  
+<!-- RiNuPatch - chap 5.2 p73 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: Must at least have P or Pw -->
+<!ELEMENT NUPATCH - - (ARRAY|%StandardPrimitives;|PARAM)* -- RiNuPatch -->
+<!-- Note: UKNOT and VKNOT declared via ARRAY -->
+<!ATTLIST NUPATCH
+  nu      NUMBER   #REQUIRED
+  uorder  NUMBER   #REQUIRED
+  umin    FLOAT    #REQUIRED
+  umax    FLOAT    #REQUIRED
+  nv      NUMBER   #REQUIRED
+  vorder  NUMBER   #REQUIRED
+  vmin    FLOAT    #REQUIRED
+  vmax    FLOAT    #REQUIRED
+  >
+ 
+<!-- RiTrimCurve - chap 5.2 p74 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT TRIMCURVE - 0 (ARRAY)* -- RiTrimCurve -->
+<!-- Note: ncurves, order, knot, n, u, v, w declared via ARRAY -->
+<!ATTLIST TRIMCURVE
+  nloops   NUMBER   #REQUIRED
+  min      FLOAT    #REQUIRED
+  max      FLOAT    #REQUIRED
+  >
+
+<!--=====================Geometric Primitives - Subdivision Surfaces============-->
+<!--RiSubdivisionMesh - chap 5.3 p75 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY  % SMType "catmull-clark|CDATA">
+<!-- Note: must at least have P -->
+<!ELEMENT SUBDIVISIONMESH - 0 (ARRAY|%StandardPrimitives;|PARAM)* -- RiSubdivisionMesh -->
+<!--Note: nvertices, vertices, tags, nargs, intargs, floatargs are declared in ARRAY -->
+<!ATTLIST SUBDIVISIONMESH
+  scheme   %SMType;    #REQUIRED
+  nfaces   NUMBER      #REQUIRED
+  ntags    NUMBER      #REQUIRED
+  >
+
+<!--=====================Geometric Primitives - Quadrics========================-->
+<!ENTITY % Quadrics "SPHERE|CONE|CYLINDER|HYPERBOLOID|PARABOLOID|DISK|TORUS">
+
+<!-- RiSphere - chap 5.4 p77 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: zmin > -radius or zmax < radius -->
+<!ELEMENT SPHERE - 0 (%StandardPrimitives;|PARAM)* -- RiSphere -->
+<!ATTLIST SPHERE
+  radius    FLOAT   #REQUIRED
+  zmin      FLOAT   #REQUIRED
+  zmax      FLOAT   #REQUIRED
+  thetamax  FLOAT   #REQUIRED
+  >
+<!-- RiCone - chap 5.4 p78 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT CONE - 0 (%StandardPrimitives;|PARAM)* -- RiCone -->
+<!ATTLIST CONE
+  height    FLOAT   #REQUIRED
+  radius    FLOAT   #REQUIRED
+  thetamax  FLOAT   #REQUIRED
+  >
+  
+<!-- RiCylinder - chap 5.4 p79 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT CYLINDER - 0 (%StandardPrimitives;|PARAM)* -- RiCylinder -->
+<!ATTLIST CYLINDER
+  radius    FLOAT   #REQUIRED
+  zmin      FLOAT   #REQUIRED
+  zmax      FLOAT   #REQUIRED
+  thetamax  FLOAT   #REQUIRED
+  >
+  
+<!-- RiHyperboloid - chap 5.4 p79 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT HYPERBOLOID - 0 (RTPOINT|%StandardPrimitives;|PARAM)* -- RiHyperboloid -->
+<!-- Note: point1 and point2 declared via RTPOINT -->
+<!ATTLIST HYPERBOLOID
+  thetamax   FLOAT   #REQUIRED
+  >
+  
+<!-- RiParaboloid - chap 5.4 p80 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT PARABOLOID - 0 (%StandardPrimitives;|PARAM)* -- RiParaboloid -->
+<!ATTLIST PARABOLOID
+  rmax       FLOAT   #REQUIRED
+  zmin       FLOAT   #REQUIRED
+  zmax       FLOAT   #REQUIRED
+  thetamax   FLOAT   #REQUIRED
+  >
+  
+<!-- RiDisk - chap 5.4 p80 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT DISK - 0 (%StandardPrimitives;|PARAM)* -- RiDisk -->
+<!ATTLIST DISK
+  height     FLOAT   #REQUIRED
+  radius     FLOAT   #REQUIRED
+  thetamax   FLOAT   #REQUIRED
+  >
+  
+<!-- RiTorus - chap 5.4 p83 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT TORUS - 0 (%StandardPrimitives;|PARAM)* -- RiTorus -->
+<!ATTLIST TORUS 
+  majorradius  FLOAT   #REQUIRED
+  minorradius  FLOAT   #REQUIRED
+  phiminus     FLOAT   #REQUIRED
+  phimax       FLOAT   #REQUIRED
+  thetamax     FLOAT   #REQUIRED
+  >
+  
+<!--=====================Geometric Primitives - Points and Curves===============-->
+
+<!-- RiPoints - chap 5.5 p83 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT POINTS - 0 (%StandardPrimitives;|PARAM)* -- RiPoints -->
+<!ATTLIST POINTS
+  npoints    NUMBER   #REQUIRED
+  >
+  
+<!-- RiCurves - chap 5.5 p84 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY % CTypes "linear|cubic">
+<!ELEMENT CURVES - 0 (ARRAY|%StandardPrimitives;|PARAM)* -- RiCurves -->
+<!-- Note: nvertices is declared via ARRAY -->
+<!ATTLIST CURVES
+  type      %CTypes;   #REQUIRED
+  ncurves   NUMBER     #REQUIRED
+  wrap      %PerType;  #REQUIRED
+  >
+
+<!--=====================Geometric Primitives - Blobby Implicit Surfaces=======-->   
+<!-- RiBlobby - chap 5.6 p85 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: No reference in Advanced Renderman of RiBlobby -->
+<!ELEMENT BLOBBY - 0 (ARRAY|PARAM)* -- RiBlobby -->
+<!-- Note: code, floats, strings are declared via ARRAY -->
+<!ATTLIST BLOBBY
+  nleaf     NUMBER    #REQUIRED
+  ncode     NUMBER    #REQUIRED
+  nfloats   NUMBER    #REQUIRED
+  nstrings  NUMBER    #REQUIRED
+  >
+
+<!--=====================Geometric Primitives - Procedural======================-->
+<!-- RiProcedural/RiProcDelaydedArchive/RiProcRunProgram/RiProcDynamicLoad chap 5.7 p87-92
+     The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY % ProcType  "delayedreadarchive|runprogram|dynamicload">
+<!ELEMENT PROCEDURAL - - (RTBOUND)* -- RiProcedural/RiProcDelaydedArchive/RiProcRunProgram/RiProcDynamicLoad-->
+<!ATTLIST PROCEDURAL
+  procname     %ProcType;   #REQUIRED
+  filename     CDATA        #IMPLIED -- delayedreadarchive --
+  programname  CDATA        #IMPLIED -- runprogram --
+  datablock    CDATA        #IMPLIED -- runprogram --
+  dsoname      CDATA        #IMPLIED -- dynamicload --
+  paramdata    CDATA        #IMPLIED -- dynamicload --
+  >
+
+<!--=====================Geometric Primitives - Implementation Specific=========-->
+<!-- RiGeometry - chap 5.8 p92 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT GEOMETRY - - (PARAM)* -- RiGeometry -->
+<!ATTLIST GEOMETRY 
+  name    CDATA #REQUIRED
+  >
+
+<!--====================Geometric Primitives - Solids and Spatial Set Operations=-->
+<!-- RiSolidBegin/RiSolidEnd - chap 5.9 p93 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY %Operation "primitive|intersection|union|difference">
+<!ELEMENT SOLID - 0 EMPTY -- RiSolidBegin/RISolidEnd -->
+<!ATTLIST SOLID  
+  operation  %Operation; #REQUIRED
+  >
+
+<!--=====================Geometric Primitives - Retained Geometry===============-->
+<!-- RiObjectBegin/RiObjectEnd - chap 5.10 p94 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: sequencenumber must be in range 0 to 65535 -->
+<!ELEMENT OBJECT - 0 EMPTY -- RiObjectBegin/RiObjectEnd -->
+<!ATTLIST OBJECT
+  sequencenumber   NUMBER   #REQUIRED
+  >
+
+<!--=====================Motion=================================================-->
+<!-- RiMotion - chap 6 p96 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT MOTION - - (%GeometricPrimitives|ARRAY)* -- RiMotionBegin/RiMotionEnd -->
+<!ATTLIST MOTION 
+  n          NUMBER  #REQUIRED -- number of time steps --
+  >
+
+<!--=====================External Resources=====================================-->
+<!ENTITY % ExternalResources "MAKETEXTURE|MAKELATLONGENVIRONMENT|
+                              MAKECUBERFACEENVIRONMENT|MAKESHADOW|
+                              ARCHIVERECORD|READARCHIVE">
+
+<!--=====================External Resources - Texture Map Utilities=============-->
+<!-- RiMakeTexture - chap 7.1.1 p100 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY % Wrapmode "black|periodic|clamp">
+<!ENTITY % Filter "box|triangle|catmull-rom|b-spline|gaussian|sinc">
+
+<!ELEMENT MAKETEXTURE - - (PARAM)* -- RiMakeTexture -->
+<!ATTLIST MAKETEXTURE
+  picturename    CDATA       #REQUIRED  -- file name --
+  texturename    CDATA       #REQUIRED  -- texture name --
+  swrap          %Wrapmode;  #REQUIRED  
+  twrap          %Wrapmode;  #REQUIRED
+  filter         %Filter;    #REQUIRED
+  swidth         FLOAT       #REQUIRED
+  twidth         FLOAT       #REQUIRED
+  >
+  
+<!-- RiMakeLatLongEnvironment - chap 7.1.1 p100 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT MAKELATLONGENVIRONMENT - - (PARAM)* -- RiMakeLatLongEnvironment -->
+<!ATTLIST MAKELATLONGENVIRONMENT
+  picturename    CDATA       #REQUIRED  -- file name --
+  texturename    CDATA       #REQUIRED  -- texture name --
+  filter         %Filter;    #REQUIRED
+  swidth         FLOAT       #REQUIRED
+  twidth         FLOAT       #REQUIRED
+  >
+
+<!-- RiMakeCubeFaceEnvironment - chap 7.1.1 p101 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT MAKECUBEFACEENVIRONMENT - - (PARAM)* -- RiMakeCubeFaceEnvironment -->
+<!ATTLIST MAKECUBEFACEENVIRONMENT
+  px            CDATA     #REQUIRED
+  nx            CDATA     #REQUIRED
+  py            CDATA     #REQUIRED
+  ny            CDATA     #REQUIRED
+  pz            CDATA     #REQUIRED
+  nz            CDATA     #REQUIRED
+  texturename   CDATA     #REQUIRED
+  fov           FLOAT     #REQUIRED
+  filter        %Filter;  #REQUIRED
+  swidth        FLOAT     #REQUIRED
+  twidth        FLOAT     #REQUIRED
+  >
+
+<!-- RiMakeShadow - chap 7.1.3 p102 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT MAKESHADOW - - (PARAM)* -- RiMakeShadow -->
+<!ATTLIST MAKESHADOW
+  picturename    CDATA       #REQUIRED  -- file name --
+  texturename    CDATA       #REQUIRED  -- texture name --
+  >
+
+<!--=====================External Resources= - Errors===========================-->
+<!-- RiErrorHandler - chap 7.2 p103 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- ErrorHandler is excluded from %GExternalResources because it can be outside RIB node -->
+<!ENTITY % Error "(ignore|print|abort)">
+<!ELEMENT ERRORHANDLER - - 0 EMPTY -- RiErrorHandler -->
+<!ATTLIST ERRORHANDLER
+  action  %Error   #REQUIRED -- name of predefined error handler which will be invoked -->
+
+<!--=====================External Resources - Archive Files=====================-->
+<!-- RiReadArchive - chap 7.3 p104 The Renderman(c) Interface Specification Version 3.2 -->
+<!ELEMENT READARCHIVE - 0 EMPTY -- RiReadArchive -->
+<!ATTLIST READARCHIVE 
+  filename   CDATA   #REQUIRED
+  >
+
+
+
+
