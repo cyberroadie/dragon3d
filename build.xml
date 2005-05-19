@@ -9,6 +9,10 @@
     <property name="Build" location="build" />
     <property name="Distribution" location="dist" />
     <property name="Configuration" location="conf" />
+	<property name="Website" location="web" />
+	
+	<property name="BerliosUser" value="cyberroadie" />
+	<property name="BerliosPassword" value="pannekoek" />
     
     <property name="RibConfigFile" value="RibElements.xml" />
     <property name="LogConfigFile" value="log4j.xml" />
@@ -90,5 +94,14 @@
         	     classpath="build:lib/log4j-1.2.8.jar:/usr/lib/eclipse-3/plugins/org.junit_3.8.1/junit.jar" 
         	     doctitle="Dragon3D"/>
     </target>
+	
+	<target name="website">
+		<scp todir="${BerliosUser}:${BerliosPassword}@shell.berlios.de:/home/groups/dragon3d/htdocs/" >
+			<fileset dir="${Website}">
+	            <include name="**/*.html"/>
+     			<include name="**/*.php"/>
+			</fileset>
+		</scp>
+	</target>
 	
 </project>
