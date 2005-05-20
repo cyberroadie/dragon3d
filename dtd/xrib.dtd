@@ -20,6 +20,8 @@
 <!ENTITY % RI_FALSE    "CDATA">
 
 <!ENTITY % RT_BOOLEAN  "(true|false)">
+<!ENTITY % RT_FLOAT   "CDATA">
+<!ENTITY % RT_INT     "CDATA">
 
 <!-- TODO: Define: ARRAY -->
 <!-- TODO: Define: RTPOINT -->
@@ -27,19 +29,25 @@
 
 <!ELEMENT FLOAT EMPTY >
 <!ATTLIST FLOAT
-  name    CDATA    #IMPLIED
-  value   FLOAT    #REQUIRED
+  name    CDATA         #IMPLIED
+  value   %RT_FLOAT;    #REQUIRED
   >
-
-<!ELEMENT DECLARE EMPTY -- RiDeclare -->
+  
+<!-- RiDeclare
+  name       name of a variable 
+  class      class of type, defaults to unifom 
+  type       type of variabale 
+  dimension  length of array, default 1 
+-->
+<!ELEMENT DECLARE EMPTY>
 <!ATTLIST DECLARE
-  name       CDATA   #REQUIRED -- name of a variable --
-  class      %Class  #IMPLIED  -- class of type, defaults to unifom --
-  type       %Type   #IMPLIED  -- type of variabale --
-  dimension  NUMBER  #IMPLIED  -- length of array, default 1 --
+  name       CDATA      #REQUIRED 
+  class      %Class;    #IMPLIED
+  type       %Type;     #IMPLIED
+  dimension  %RT_INT;   #FIXED     "1"
   >
  
-<!ELEMENT RIB (%GraphicState,%GeometricPrimitives,%ExternalResources)* -- RiBegin/RiEnd -->
+<!ELEMENT RIB (%GraphicState;,%GeometricPrimitives;,%ExternalResources;)*> <!-- RiBegin/RiEnd -->
   
 <!ELEMENT PARAM EMPTY              -- named property value -->
 <!ATTLIST PARAM
@@ -77,33 +85,33 @@
 <!ATTLIST FORMAT
   xresolution       NUMBER  #REQUIRED -- horizontal resolution --
   yresolution       NUMBER  #REQUIRED -- vertical resolution --
-  pixelaspectratio  FLOAT   #REQUIRED -- physical width to the height of a pixel --
+  pixelaspectratio  %RT_FLOAT;   #REQUIRED -- physical width to the height of a pixel --
   >
   
 <!-- RiFrameAspectRation - chap 4.1.1 p23 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- Note: can also be written as 4/3 -->
 <!ELEMENT FRAMEASPECTRATIO - 0 EMPTY -- RiFrameAspectRatio -->
 <!ATTLIST FRAMEASPECTRATIO
-  frameaspectratio  FLOAT  #REQUIRED -- ratio of the width to the height of image --
+  frameaspectratio  %RT_FLOAT;  #REQUIRED -- ratio of the width to the height of image --
   >
 
 <!-- RiScreenWindow - chap 4.1.1 p24 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT SCREENWINDOW - 0 EMPTY -- RiScreenWindow -->
 <!ATTLIST SCREENWINDOW 
-  left              FLOAT   #REQUIRED 
-  right             FLOAT   #REQUIRED
-  bottom            FLOAT   #REQUIRED
-  top               FLOAT   #REQUIRED
+  left              %RT_FLOAT;   #REQUIRED 
+  right             %RT_FLOAT;   #REQUIRED
+  bottom            %RT_FLOAT;   #REQUIRED
+  top               %RT_FLOAT;   #REQUIRED
   >
   
 <!-- RiCropWindow - chap 4.1.1 p24 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- Note all attribute values are between 0 - 1 -->
 <!ELEMENT CROPWINDOW - 0 EMPTY -- RiCropWindow -->
 <!ATTLIST CROPWINDOW 
-  xmin              FLOAT   #REQUIRED
-  xmax              FLOAT   #REQUIRED
-  ymin              FLOAT   #REQUIRED
-  ymax              FLOAT   #REQUIRED
+  xmin              %RT_FLOAT;   #REQUIRED
+  xmax              %RT_FLOAT;   #REQUIRED
+  ymin              %RT_FLOAT;   #REQUIRED
+  ymax              %RT_FLOAT;   #REQUIRED
   >
   
 <!-- RiProjection - chap 4.1.1 p25 The Renderman(c) Interface Specification Version 3.2 -->
@@ -115,35 +123,35 @@
 <!-- RiClipping - chap 4.1.1 p26 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT CLIPPING - 0 EMPTY -- RiClipping -->
 <!ATTLIST CLIPPING
-  near              FLOAT   #REQUIRED
-  far               FLOAT   #REQUIRED
+  near              %RT_FLOAT;   #REQUIRED
+  far               %RT_FLOAT;   #REQUIRED
   >
   
 <!-- RiClippingPlane - chap 4.1.1 p26 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT CLIPPINGPLANE - 0 EMPTY -- RiClippingPlane -->
 <!ATTLIST CLIPPINGPLANE
-  x                 FLOAT  -- x point on surface --
-  y                 FLOAT  -- y point on surface --
-  z                 FLOAT  -- z point on surface --
-  nx                FLOAT  -- x plane normal --
-  ny                FLOAT  -- y plane normal --
-  nz                FLOAT  -- z plane normal --
+  x                 %RT_FLOAT;  -- x point on surface --
+  y                 %RT_FLOAT;  -- y point on surface --
+  z                 %RT_FLOAT;  -- z point on surface --
+  nx                %RT_FLOAT;  -- x plane normal --
+  ny                %RT_FLOAT;  -- y plane normal --
+  nz                %RT_FLOAT;  -- z plane normal --
   >
   
 <!-- RiDepthOfField - chap 4.1.1 p27 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT DEPTHOFFIELD - 0 EMPTY -- RiDepthOfField -->
 <!ATTLIST DEPTHOFFIELD
- fstop             FLOAT  -- determines lens diameter --
- focallength       FLOAT  -- focal length of camera --
- focaldistance     FLOAT  -- distance at which objects will be in focus --
+ fstop             %RT_FLOAT;  -- determines lens diameter --
+ focallength       %RT_FLOAT;  -- focal length of camera --
+ focaldistance     %RT_FLOAT;  -- distance at which objects will be in focus --
  >
  
 <!-- RiShutter - chap 4.1.1 p27 The Renderman(c) Interface Specification Version 3.2 -->
 <! Note: min should be less than max -->
 <!ELEMENT SHUTTER - 0 EMPTY -- RiShutter -->
 <!ATTLIST SHUTTER
-  min              FLOAT
-  max              FLOAT
+  min              %RT_FLOAT;
+  max              %RT_FLOAT;
   >
 
 <!--=====================Graphic State - Displays==============================-->
@@ -152,15 +160,15 @@
 <!-- RiPixelVariance - chap 4.1.2 p30 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT PIXELVARIANCE - 0 EMPTY -- RiPixelVariance -->
 <!ATTLIST PIXELVARIANCE 
-  variation   FLOAT   #REQUIRED -- upper bound of acceptable variance --
+  variation   %RT_FLOAT;   #REQUIRED -- upper bound of acceptable variance --
   >
 
 <!-- RiPixelSamples - chap 4.1.2 p30 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- Note: Sampling rates less than 1 are clamped to 1 -->
 <!ELEMENT PIXELSAMPLES - 0 EMPTY -- RiPixelSamples -->
 <!ATTLIST PIXELSAMPLES
-  xsamples        FLOAT -- horizontal sampling rate --
-  ysamples        FLOAT -- vertical sampling rate --
+  xsamples        %RT_FLOAT; -- horizontal sampling rate --
+  ysamples        %RT_FLOAT; -- vertical sampling rate --
   >
   
 <!-- RiPixelFilter - chap 4.1.2 p30 The Renderman(c) Interface Specification Version 3.2 -->
@@ -168,15 +176,15 @@
 <!ELEMENT PIXELFILTER - 0 EMPTY -- RiPixelFilter -->
 <!ATTLIST PIXELFILTER
   filterfunc      (%Filter; | CDATA) #REQUIRED -- type of filter --
-  xwidth          FLOAT              #REQUIRED -- x width of filter in pixels --
-  ywidth          FLOAT              #REQUIRED -- y width of filter in pixels --
+  xwidth          %RT_FLOAT;              #REQUIRED -- x width of filter in pixels --
+  ywidth          %RT_FLOAT;              #REQUIRED -- y width of filter in pixels --
   >
   
 <!-- RiExposure - chap 4.1.2 p32 The Renderman(c) Interface Specification Version 3.2 --> 
 <!ELEMENT EXPOSURE - 0 EMPTY -- RiExposure -->
 <!ATTLIST EXPOSURE 
-  gain            FLOAT  #REQUIRED 
-  gamma           FLOAT  #REQUIRED
+  gain            %RT_FLOAT;  #REQUIRED 
+  gamma           %RT_FLOAT;  #REQUIRED
   >
   
 <!-- RiImager - chap 4.1.2 p32 The Renderman(c) Interface Specification Version 3.2 -->
@@ -193,7 +201,7 @@
   one             NUMBER         #REQUIRED -- mapping from floating to fixed points definition --
   min             NUMBER         #REQUIRED -- minimum quantized value --
   max             NUMBER         #REQUIRED -- maximum quantized value --
-  ditheramplitude FLOAT          #REQUIRED 
+  ditheramplitude %RT_FLOAT;          #REQUIRED 
   >
 
 <!-- RiDisplay - chap 4.1.2 p33 The Renderman(c) Interface Specification Version 3.2 -->
@@ -219,21 +227,21 @@
 
 <!ELEMENT NRGB - 0 EMPTY -- n by 3 transformation matrix -->
 <!ATTLIST NRGB
-  n0      FLOAT    #REQUIRED
-  n1      FLOAT    #REQUIRED
-  n2      FLOAT    #REQUIRED
+  n0      %RT_FLOAT;    #REQUIRED
+  n1      %RT_FLOAT;    #REQUIRED
+  n2      %RT_FLOAT;    #REQUIRED
   >
 
 <!ATTLIST RGBN
-  n0      FLOAT    #REQUIRED
-  n1      FLOAT    #REQUIRED
-  n2      FLOAT    #REQUIRED
+  n0      %RT_FLOAT;    #REQUIRED
+  n1      %RT_FLOAT;    #REQUIRED
+  n2      %RT_FLOAT;    #REQUIRED
   >
 
 <!-- RiRelativeDetail - chap 4.1.3 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT RELATIVEDETAIL - 0 EMPTY -- RiRelativeDetail -->
 <!ATTLIST RELATIVEDETAIL
-  relativedetail    FLOAT  #REQUIRED
+  relativedetail    %RT_FLOAT;  #REQUIRED
   >
   
 <!--=====================Graphic State - Implementaion Specific Options=========-->
@@ -257,30 +265,30 @@
 <!-- RiColor - chap 4.2.1 p38 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT COLOR - 0 EMPTY -- RiColor -->
 <!ATTLIST COLOR
-  r       FLOAT   #REQUIRED
-  g       FLOAT   #REQUIRED
-  b       FLOAT   #REQUIRED
+  r       %RT_FLOAT;   #REQUIRED
+  g       %RT_FLOAT;   #REQUIRED
+  b       %RT_FLOAT;   #REQUIRED
   >
   
 <!-- RiOpacity - chap 4.2.1 p40 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT OPACITY - 0 EMPTY -- RiOpacity -->
 <!ATTLIST OPACITY 
-  r       FLOAT   #REQUIRED
-  g       FLOAT   #REQUIRED
-  b       FLOAT   #REQUIRED
+  r       %RT_FLOAT;   #REQUIRED
+  g       %RT_FLOAT;   #REQUIRED
+  b       %RT_FLOAT;   #REQUIRED
   >
   
 <!-- RiTextureCoordinates - chap 4.2.2 p41 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT TEXTURECOORDINATES - 0 EMPTY -- RiTextureCoordinates -->
 <!ATTLIST TEXTURECOORDINATES
-  s1      FLOAT   #REQUIRED
-  t1      FLOAT   #REQUIRED
-  s2      FLOAT   #REQUIRED
-  t2      FLOAT   #REQUIRED
-  s3      FLOAT   #REQUIRED
-  t3      FLOAT   #REQUIRED
-  s4      FLOAT   #REQUIRED
-  t4      FLOAT   #REQUIRED
+  s1      %RT_FLOAT;   #REQUIRED
+  t1      %RT_FLOAT;   #REQUIRED
+  s2      %RT_FLOAT;   #REQUIRED
+  t2      %RT_FLOAT;   #REQUIRED
+  s3      %RT_FLOAT;   #REQUIRED
+  t3      %RT_FLOAT;   #REQUIRED
+  s4      %RT_FLOAT;   #REQUIRED
+  t4      %RT_FLOAT;   #REQUIRED
   >
   
 <!-- RiLightSource - chap 4.2.3 p42 The Renderman(c) Interface Specification Version 3.2 -->
@@ -339,7 +347,7 @@
 <!-- Note: size = 1 is Phong shading, size = RI_INFNITY is once per primitive -->
 <!ELEMENT SHADINGRATE - 0 EMPTY -- RiShadingRate -->
 <!ATTLIST SHADINGRATE 
-  size   (FLOAT|%RI_INFINITY)   #REQUIRED -- shading rate --
+  size   (%RT_FLOAT;|%RI_INFINITY)   #REQUIRED -- shading rate --
   >
   
 <!-- RiShadingInterpolation - chap 4.2.8 p49 The Renderman(c) Interface Specification Version 3.2 -->
@@ -365,17 +373,17 @@
 <!-- Note: minvisible <= lowertransition <= uppertransition <= maxvisible -->
 <!ELEMENT DETAILRANGE - 0 EMPTY -- RiDetailRange -->
 <!ATTLIST DETAILRANGE 
-  minvisible         FLOAT   #REQUIRED
-  lowertransition    FLOAT   #REQUIRED
-  uppertransition    FLOAT   #REQUIRED
-  maxvisible         FLOAT   #REQUIRED
+  minvisible         %RT_FLOAT;   #REQUIRED
+  lowertransition    %RT_FLOAT;   #REQUIRED
+  uppertransition    %RT_FLOAT;   #REQUIRED
+  maxvisible         %RT_FLOAT;   #REQUIRED
   >
 <!-- RiGeomatricApproximation - chap 4.2.12 p53 The Renderman(c) Interface Specification Version 3.2 -->
 <!ENTITY % GAType "flatness">
 <!ELEMENT GEOMETRICAPPROXIMATION - 0 EMPTY -- RiGeomatricApproximation -->
 <!ATTLIST GEOMETRICAPPROXIMATION
   type      (%GAType;|CDATA)   #REQUIRED 
-  value     FLOAT              #REQUIRED
+  value     %RT_FLOAT;              #REQUIRED
   >
 
 <!-- RiOrientation - chap 4.2.13 p54 The Renderman(c) Interface Specification Version 3.2 -->
@@ -411,44 +419,44 @@
 <!-- RiPerspective - chap 4.3 p56 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT PERSPECTIVE - 0 EMPTY -- RiPerspective -->
 <!ATTLIST PERSPECTIVE
-  fov     FLOAT   #REQUIRED 
+  fov     %RT_FLOAT;   #REQUIRED 
   >
   
 <!-- RiTranslate - chap 4.3 p57 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT TRANSLATE - 0 EMPTY -- RiTranslate -->
 <!ATTLIST TRANSLATE
-  dx   FLOAT   #REQUIRED
-  dy   FLOAT   #REQUIRED
-  dz   FLOAT   #REQUIRED
+  dx   %RT_FLOAT;   #REQUIRED
+  dy   %RT_FLOAT;   #REQUIRED
+  dz   %RT_FLOAT;   #REQUIRED
   >
   
 <!-- RiRotate - chap 4.3 p57 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT ROTATE - 0 EMPTY -- RiRotate -->
 <!ATTLIST ROTATE
-  angle   FLOAT   #REQUIRED
-  dx      FLOAT   #REQUIRED
-  dy      FLOAT   #REQUIRED
-  dz      FLOAT   #REQUIRED
+  angle   %RT_FLOAT;   #REQUIRED
+  dx      %RT_FLOAT;   #REQUIRED
+  dy      %RT_FLOAT;   #REQUIRED
+  dz      %RT_FLOAT;   #REQUIRED
   >
   
 <!-- RiScale - chap 4.3 p58 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT SCALE - 0 EMPTY -- RiScale -->
 <!ATTLIST SCALE
-  sx    FLOAT    #REQUIRED
-  sy    FLOAT    #REQUIRED
-  sz    FLOAT    #REQUIRED
+  sx    %RT_FLOAT;    #REQUIRED
+  sy    %RT_FLOAT;    #REQUIRED
+  sz    %RT_FLOAT;    #REQUIRED
   >
   
 <!-- RiSkew - chap 4.3 p58 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT SKEW - 0 EMPTY -- RiSkew -->
 <!ATTLIST SKEW
-  angle FLOAT    #REQUIRED
-  dx1   FLOAT    #REQUIRED
-  dy1   FLOAT    #REQUIRED
-  dz1   FLOAT    #REQUIRED
-  dx2   FLOAT    #REQUIRED
-  dy2   FLOAT    #REQUIRED
-  dz2   FLOAT    #REQUIRED
+  angle %RT_FLOAT;    #REQUIRED
+  dx1   %RT_FLOAT;    #REQUIRED
+  dy1   %RT_FLOAT;    #REQUIRED
+  dz1   %RT_FLOAT;    #REQUIRED
+  dx2   %RT_FLOAT;    #REQUIRED
+  dy2   %RT_FLOAT;    #REQUIRED
+  dz2   %RT_FLOAT;    #REQUIRED
   > 
 
 <!-- RiCoordinateSystem - chap 4.3.1 p58 The Renderman(c) Interface Specification Version 3.2 -->
@@ -489,13 +497,13 @@
 
 <!ENTITY % StandardPrimitives "P|PZ|PW|N|CS|OS|TC" 
   -- Standard Geometric Primitive Variables, Table 5.1 p64 The Renderman(c) Interface Specification Version 3.2 -->
-<!ELEMENT P - - (FLOAT)* -- Position, point vertex, 3 floats -->
-<!ELEMENT PZ - - (FLOAT)* -- Position, float vertex, 1 float --> 
-<!ELEMENT PW - - (FLOAT)* -- Position, h vertex, 4 floats -->
-<!ELEMENT N - - (FLOAT)* -- Normal, normal varying, 3 floats -->
-<!ELEMENT CS - - (FLOAT)* -- Color, color varying, 3 floats -->
-<!ELEMENT OS - - (FLOAT)* -- Opacity, color varying, 3 floats -->
-<!ELEMENT TC - - (FLOAT)* -- Texture Coordinates, s,t,st - 1,1,2, floats -->
+<!ELEMENT P - - (%RT_FLOAT;)* -- Position, point vertex, 3 floats -->
+<!ELEMENT PZ - - (%RT_FLOAT;)* -- Position, float vertex, 1 float --> 
+<!ELEMENT PW - - (%RT_FLOAT;)* -- Position, h vertex, 4 floats -->
+<!ELEMENT N - - (%RT_FLOAT;)* -- Normal, normal varying, 3 floats -->
+<!ELEMENT CS - - (%RT_FLOAT;)* -- Color, color varying, 3 floats -->
+<!ELEMENT OS - - (%RT_FLOAT;)* -- Opacity, color varying, 3 floats -->
+<!ELEMENT TC - - (%RT_FLOAT;)* -- Texture Coordinates, s,t,st - 1,1,2, floats -->
   
 <!ELEMENT NVERTICES - 0 EMPTY -- number of vertices in each loop -->
 <!ATTLIST NVERTICES
@@ -575,12 +583,12 @@
 <!ATTLIST NUPATCH
   nu      NUMBER   #REQUIRED
   uorder  NUMBER   #REQUIRED
-  umin    FLOAT    #REQUIRED
-  umax    FLOAT    #REQUIRED
+  umin    %RT_FLOAT;    #REQUIRED
+  umax    %RT_FLOAT;    #REQUIRED
   nv      NUMBER   #REQUIRED
   vorder  NUMBER   #REQUIRED
-  vmin    FLOAT    #REQUIRED
-  vmax    FLOAT    #REQUIRED
+  vmin    %RT_FLOAT;    #REQUIRED
+  vmax    %RT_FLOAT;    #REQUIRED
   >
  
 <!-- RiTrimCurve - chap 5.2 p74 The Renderman(c) Interface Specification Version 3.2 -->
@@ -588,8 +596,8 @@
 <!-- Note: ncurves, order, knot, n, u, v, w declared via ARRAY -->
 <!ATTLIST TRIMCURVE
   nloops   NUMBER   #REQUIRED
-  min      FLOAT    #REQUIRED
-  max      FLOAT    #REQUIRED
+  min      %RT_FLOAT;    #REQUIRED
+  max      %RT_FLOAT;    #REQUIRED
   >
 
 <!--=====================Geometric Primitives - Subdivision Surfaces============-->
@@ -611,60 +619,60 @@
 <!-- Note: zmin > -radius or zmax < radius -->
 <!ELEMENT SPHERE - 0 (%StandardPrimitives;|PARAM)* -- RiSphere -->
 <!ATTLIST SPHERE
-  radius    FLOAT   #REQUIRED
-  zmin      FLOAT   #REQUIRED
-  zmax      FLOAT   #REQUIRED
-  thetamax  FLOAT   #REQUIRED
+  radius    %RT_FLOAT;   #REQUIRED
+  zmin      %RT_FLOAT;   #REQUIRED
+  zmax      %RT_FLOAT;   #REQUIRED
+  thetamax  %RT_FLOAT;   #REQUIRED
   >
 <!-- RiCone - chap 5.4 p78 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT CONE - 0 (%StandardPrimitives;|PARAM)* -- RiCone -->
 <!ATTLIST CONE
-  height    FLOAT   #REQUIRED
-  radius    FLOAT   #REQUIRED
-  thetamax  FLOAT   #REQUIRED
+  height    %RT_FLOAT;   #REQUIRED
+  radius    %RT_FLOAT;   #REQUIRED
+  thetamax  %RT_FLOAT;   #REQUIRED
   >
   
 <!-- RiCylinder - chap 5.4 p79 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT CYLINDER - 0 (%StandardPrimitives;|PARAM)* -- RiCylinder -->
 <!ATTLIST CYLINDER
-  radius    FLOAT   #REQUIRED
-  zmin      FLOAT   #REQUIRED
-  zmax      FLOAT   #REQUIRED
-  thetamax  FLOAT   #REQUIRED
+  radius    %RT_FLOAT;   #REQUIRED
+  zmin      %RT_FLOAT;   #REQUIRED
+  zmax      %RT_FLOAT;   #REQUIRED
+  thetamax  %RT_FLOAT;   #REQUIRED
   >
   
 <!-- RiHyperboloid - chap 5.4 p79 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT HYPERBOLOID - 0 (RTPOINT|%StandardPrimitives;|PARAM)* -- RiHyperboloid -->
 <!-- Note: point1 and point2 declared via RTPOINT -->
 <!ATTLIST HYPERBOLOID
-  thetamax   FLOAT   #REQUIRED
+  thetamax   %RT_FLOAT;   #REQUIRED
   >
   
 <!-- RiParaboloid - chap 5.4 p80 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT PARABOLOID - 0 (%StandardPrimitives;|PARAM)* -- RiParaboloid -->
 <!ATTLIST PARABOLOID
-  rmax       FLOAT   #REQUIRED
-  zmin       FLOAT   #REQUIRED
-  zmax       FLOAT   #REQUIRED
-  thetamax   FLOAT   #REQUIRED
+  rmax       %RT_FLOAT;   #REQUIRED
+  zmin       %RT_FLOAT;   #REQUIRED
+  zmax       %RT_FLOAT;   #REQUIRED
+  thetamax   %RT_FLOAT;   #REQUIRED
   >
   
 <!-- RiDisk - chap 5.4 p80 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT DISK - 0 (%StandardPrimitives;|PARAM)* -- RiDisk -->
 <!ATTLIST DISK
-  height     FLOAT   #REQUIRED
-  radius     FLOAT   #REQUIRED
-  thetamax   FLOAT   #REQUIRED
+  height     %RT_FLOAT;   #REQUIRED
+  radius     %RT_FLOAT;   #REQUIRED
+  thetamax   %RT_FLOAT;   #REQUIRED
   >
   
 <!-- RiTorus - chap 5.4 p83 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT TORUS - 0 (%StandardPrimitives;|PARAM)* -- RiTorus -->
 <!ATTLIST TORUS 
-  majorradius  FLOAT   #REQUIRED
-  minorradius  FLOAT   #REQUIRED
-  phiminus     FLOAT   #REQUIRED
-  phimax       FLOAT   #REQUIRED
-  thetamax     FLOAT   #REQUIRED
+  majorradius  %RT_FLOAT;   #REQUIRED
+  minorradius  %RT_FLOAT;   #REQUIRED
+  phiminus     %RT_FLOAT;   #REQUIRED
+  phimax       %RT_FLOAT;   #REQUIRED
+  thetamax     %RT_FLOAT;   #REQUIRED
   >
   
 <!--=====================Geometric Primitives - Points and Curves===============-->
@@ -758,8 +766,8 @@
   swrap          %Wrapmode;  #REQUIRED  
   twrap          %Wrapmode;  #REQUIRED
   filter         %Filter;    #REQUIRED
-  swidth         FLOAT       #REQUIRED
-  twidth         FLOAT       #REQUIRED
+  swidth         %RT_FLOAT;       #REQUIRED
+  twidth         %RT_FLOAT;       #REQUIRED
   >
   
 <!-- RiMakeLatLongEnvironment - chap 7.1.1 p100 The Renderman(c) Interface Specification Version 3.2 -->
@@ -768,8 +776,8 @@
   picturename    CDATA       #REQUIRED  -- file name --
   texturename    CDATA       #REQUIRED  -- texture name --
   filter         %Filter;    #REQUIRED
-  swidth         FLOAT       #REQUIRED
-  twidth         FLOAT       #REQUIRED
+  swidth         %RT_FLOAT;       #REQUIRED
+  twidth         %RT_FLOAT;       #REQUIRED
   >
 
 <!-- RiMakeCubeFaceEnvironment - chap 7.1.1 p101 The Renderman(c) Interface Specification Version 3.2 -->
@@ -782,10 +790,10 @@
   pz            CDATA     #REQUIRED
   nz            CDATA     #REQUIRED
   texturename   CDATA     #REQUIRED
-  fov           FLOAT     #REQUIRED
+  fov           %RT_FLOAT;     #REQUIRED
   filter        %Filter;  #REQUIRED
-  swidth        FLOAT     #REQUIRED
-  twidth        FLOAT     #REQUIRED
+  swidth        %RT_FLOAT;     #REQUIRED
+  twidth        %RT_FLOAT;     #REQUIRED
   >
 
 <!-- RiMakeShadow - chap 7.1.3 p102 The Renderman(c) Interface Specification Version 3.2 -->
