@@ -9,10 +9,6 @@
     <property name="Build" location="build" />
     <property name="Distribution" location="dist" />
     <property name="Configuration" location="conf" />
-	<property name="Website" location="web" />
-	
-	<property name="BerliosUser" value="cyberroadie" />
-	<property name="BerliosPassword" value="pannekoek" />
     
     <property name="RibConfigFile" value="RibElements.xml" />
     <property name="LogConfigFile" value="log4j.xml" />
@@ -95,15 +91,5 @@
         	     doctitle="Dragon3D"/>
     </target>
 	
-	<target name="website">
-		<scp todir="${BerliosUser}:${BerliosPassword}@shell.berlios.de:/home/groups/dragon3d/htdocs/" >
-			<fileset dir="${Website}">
-	            <include name="**/*.html"/>
-     			<include name="**/*.php"/>
-				<include name="**/*.css"/>
-				<include name="**/*.png"/>
-			</fileset>
-		</scp>
-	</target>
 	
 </project>
