@@ -46,7 +46,10 @@
   type       %Type;     #IMPLIED
   dimension  %RT_INT;   #FIXED     "1"
   >
- 
+
+<!ENTITY % GraphicsState "FRAME|WORLD|%Options;|%Attributes;|
+                          %Transformations;|ATTRIBUTE">
+						  
 <!ELEMENT RIB (%GraphicState;,%GeometricPrimitives;,%ExternalResources;)*> <!-- RiBegin/RiEnd -->
   
 <!ELEMENT PARAM EMPTY              -- named property value -->
@@ -61,8 +64,7 @@
 <!--=========================Graphic State======================================-->
 <!-- Note: RiContext and RiGetContext have no RIB binding therefore they have no 
      xml definition -->
-<!ENTITY % GraphicsState "FRAME|WORLD|%Options;|%Attributes;|
-                          %Transformations;|ATTRIBUTE">
+
 
 <!ENTITY % Options  "%Camera; %Displays; |HIDER|COLORSAMPLES|RELATIVEDETAIL">
 
@@ -485,7 +487,7 @@
 
 <!-- RiAttribute - chap 4.4 p60 The Renderman(c) Interface Specification Version 3.2 -->
 <!ENTITY % AType "displacementbound|identifier|trimcurve|CDATA">
-<!ELEMENT ATTRIBUTE - - (PARAM)* -- RiAttribute -->
+<!ELEMENT ATTRIBUTE (PARAM)*> <!-- RiAttribute -->
 <!ATTLIST ATTRIBUTE
   name    %AType   #REQUIRED
   >
