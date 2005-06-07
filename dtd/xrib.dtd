@@ -47,6 +47,19 @@
   dimension  %RT_INT;   #FIXED     "1"
   >
 
+<!ENTITY % Camera "FORMAT|FRAMEASPECTRATIO|SCREENWINDOW|CROPWINDOW|PROJECTION|
+                   CLIPPING|CLIPPINGPLANE|DEPTHOFFIELD|SHUTTER">
+<!ENTITY % Displays "PIXELVARIANCE|PIXELSAMPLES|PIXELFILTER|EXPOSURE|
+                     IMAGER|QUANTIZE|DISPLAY">
+<!ENTITY % Options  "%Camera; %Displays; |HIDER|COLORSAMPLES|RELATIVEDETAIL">
+<!ENTITY % Attributes "ATTRIBUTE|COLOR|OPACITY|TEXTURECOORDINATES|LIGHTSOURCE|
+                       AREALIGHTSOURCE|ILLUMINATE|SURFACE|DISPLACEMENT|ATMOSPHERE|
+                       INTERIOR|EXTERIOR|SHADINGRATE|SHADINGINTERPOLATION|
+                       MATTE|BOUND|DETAIL|DETAILRANGE|GEOMETRICAPPROXIMATION|
+                       ORIENTATION|REVERSEORIENTATION|SIDES">
+<!ENTITY % Transformations "IDENTITY|TRANSFORM|CONCATTRANSFORM|PERSPECTIVE|
+                            TRANSLATE|ROTATE|SCALE|SKEW|COORDINATESYSTEM|
+                            COORDSYSTRANSFORM|TRANSFORMPOINTS|TRANSFORM">
 <!ENTITY % GraphicsState "FRAME|WORLD|%Options;|%Attributes;|
                           %Transformations;|ATTRIBUTE">
 						  
@@ -66,7 +79,7 @@
      xml definition -->
 
 
-<!ENTITY % Options  "%Camera; %Displays; |HIDER|COLORSAMPLES|RELATIVEDETAIL">
+
 
 <!-- RiFrameBegin/RiFrameEnd - chap 4 p16 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- Note: Not be used if single image is produced -->
@@ -79,8 +92,7 @@
 
 
 <!--=========================Graphic State - Camera=============================-->
-<!ENTITY % Camera "FORMAT|FRAMEASPECTRATIO|SCREENWINDOW|CROPWINDOW|PROJECTION|
-                   CLIPPING|CLIPPINGPLANE|DEPTHOFFIELD|SHUTTER">
+
                    
 <!-- RiFormat - chap 4.1.1 p23 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT FORMAT - 0 EMPTY -- RiFormat -->
@@ -157,8 +169,7 @@
   >
 
 <!--=====================Graphic State - Displays==============================-->
-<!ENTITY % Displays "PIXELVARIANCE|PIXELSAMPLES|PIXELFILTER|EXPOSURE|
-                     IMAGER|QUANTIZE|DISPLAY">
+
 <!-- RiPixelVariance - chap 4.1.2 p30 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT PIXELVARIANCE - 0 EMPTY -- RiPixelVariance -->
 <!ATTLIST PIXELVARIANCE 
@@ -255,11 +266,6 @@
   name    CDATA #REQUIRED -- name of the option -->
 
 <!--=====================Graphic State - Attributes=============================-->
-<!ENTITY % Attributes "ATTRIBUTE|COLOR|OPACITY|TEXTURECOORDINATES|LIGHTSOURCE|
-                       AREALIGHTSOURCE|ILLUMINATE|SURFACE|DISPLACEMENT|ATMOSPHERE|
-                       INTERIOR|EXTERIOR|SHADINGRATE|SHADINGINTERPOLATION|
-                       MATTE|BOUND|DETAIL|DETAILRANGE|GEOMETRICAPPROXIMATION|
-                       ORIENTATION|REVERSEORIENTATION|SIDES">
 
 <!-- RiAttributeBegin/RiAttributeEnd - chap 4.2 p38 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT ATTRIBUTE - - (%Attributes) -- RiAttributeBegin/RiAttributeEnd -->
@@ -405,9 +411,6 @@
   >
   
 <!--=====================Graphic State - Transformations========================-->
-<!ENTITY % Transformations "IDENTITY|TRANSFORM|CONCATTRANSFORM|PERSPECTIVE|
-                            TRANSLATE|ROTATE|SCALE|SKEW|COORDINATESYSTEM|
-                            COORDSYSTRANSFORM|TRANSFORMPOINTS|TRANSFORM">
 
 <!-- RiIdentity - chap 4.3 p55 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT IDENTITY - 0 EMPTY -- RiIdentity -->
