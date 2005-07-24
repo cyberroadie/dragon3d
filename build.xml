@@ -6,7 +6,7 @@
     
     <property name="Source" location="src" />
     <property name="Library" location="lib" />
-    <property name="Build" location="build" />
+    <property name="Build" location="bin" />
     <property name="Distribution" location="dist" />
     <property name="Configuration" location="conf" />
     
