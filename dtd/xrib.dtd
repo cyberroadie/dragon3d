@@ -27,8 +27,8 @@
 <!-- TODO: Define: RTPOINT -->
 <!-- TODO: Define: RTBOUND -->
 
-<!ELEMENT FLOAT EMPTY >
-<!ATTLIST FLOAT
+<!ELEMENT float EMPTY >
+<!ATTLIST float
   name    CDATA         #IMPLIED
   value   %RT_FLOAT;    #REQUIRED
   >
@@ -39,38 +39,140 @@
   type       type of variabale 
   dimension  length of array, default 1 
 -->
-<!ELEMENT DECLARE EMPTY>
-<!ATTLIST DECLARE
+<!ELEMENT declare EMPTY>
+<!ATTLIST declare
   name       CDATA      #REQUIRED 
   class      %Class;    #IMPLIED
   type       %Type;     #IMPLIED
   dimension  %RT_INT;   #FIXED     "1"
   >
 
-<!ENTITY % Camera "FORMAT|FRAMEASPECTRATIO|SCREENWINDOW|CROPWINDOW|PROJECTION|
-                   CLIPPING|CLIPPINGPLANE|DEPTHOFFIELD|SHUTTER">
-<!ENTITY % Displays "PIXELVARIANCE|PIXELSAMPLES|PIXELFILTER|EXPOSURE|
-                     IMAGER|QUANTIZE|DISPLAY">
-<!ENTITY % Options  "%Camera;| %Displays; |HIDER|COLORSAMPLES|RELATIVEDETAIL">
-<!ENTITY % Attributes "ATTRIBUTE|COLOR|OPACITY|TEXTURECOORDINATES|LIGHTSOURCE|
-                       AREALIGHTSOURCE|ILLUMINATE|SURFACE|DISPLACEMENT|ATMOSPHERE|
-                       INTERIOR|EXTERIOR|SHADINGRATE|SHADINGINTERPOLATION|
-                       MATTE|BOUND|DETAIL|DETAILRANGE|GEOMETRICAPPROXIMATION|
-                       ORIENTATION|REVERSEORIENTATION|SIDES">
-<!ENTITY % Transformations "IDENTITY|TRANSFORM|CONCATTRANSFORM|PERSPECTIVE|
-                            TRANSLATE|ROTATE|SCALE|SKEW|COORDINATESYSTEM|
-                            COORDSYSTRANSFORM|TRANSFORMPOINTS|TRANSFORM">
-<!ENTITY % GraphicsState "FRAME|WORLD|%Options;|%Attributes;|
-                          %Transformations;|ATTRIBUTE">
-<!ENTITY % Quadrics "SPHERE|CONE|CYLINDER|HYPERBOLOID|PARABOLOID|DISK|TORUS">
-<!ENTITY % Polygons "POLYGON|GENERALPOLYGON|POINTSPOLYGON|POINTSGENRALPOLYGON">
-<!ENTITY % Patches "BASIS|PATCH|PATCHMESH|NUPATCH|TRIMCURVE">
-<!ENTITY % GeometricPrimitives "%Polygons;|%Patches;|SUBDIVISIONMESH|%Quadrics;|
-                                POINTS|CURVES|BLOBBY|PROCEDURAL|GEOMETRY|SOLID|
-                                OBJECT">
-<!ENTITY % ExternalResources "MAKETEXTURE|MAKELATLONGENVIRONMENT|
-                              MAKECUBERFACEENVIRONMENT|MAKESHADOW|
-                              ARCHIVERECORD|READARCHIVE">
+<!ENTITY % Camera 
+   "format |
+    frameaspectratio |
+    screenwindow |
+    cropwindow |
+    projection |
+    clipping |
+    clippingplane |
+    depthoffield |
+    shutter"
+    >
+
+<!ENTITY % Displays 
+   "pixelvariance |
+    pixelsamples |
+	pixelfilter |
+	exposure |
+	imager |
+	quantize |
+	display"
+	>
+
+<!ENTITY % Options  
+   "%Camera; | 
+	%Displays; |
+	hider |
+	colorsamples |
+	relativedetail"
+	>
+
+<!ENTITY % Attributes 
+   "attribute |
+	color |
+	opacity |
+	texturecoordinates |
+	lightsource |
+    arealightsource |
+	illuminate |
+	surface |
+	displacement |
+	atmospher |
+    interior |
+	exterior |
+	shadingrate |
+	shadinginterpolation |
+    matte |
+	bound |
+	detail |
+	detailrange |
+	geomtricapproximation |
+    orientation |
+	reverseorientation |
+	sides"
+	>
+
+<!ENTITY % Transformations 
+   "identity |
+	transform |
+	concattransform |
+	parspective |
+    translate |
+	rotate |
+	scale |
+	skew |
+	coordinatesystem |
+    coordsystransform |
+	transformpoints |
+	transform"
+	>
+
+<!ENTITY % GraphicsState 
+   "frame |
+	world |
+	%Options; |
+	%Attributes; |
+    %Transformations; |
+	attribute"
+	>
+
+<!ENTITY % Quadrics 
+   "sphere |
+	cone |
+	cylinder |
+	hyperboloid |
+	paraboloid |
+	disk |
+	torus"
+	>
+
+<!ENTITY % Polygons 
+   "polygon |
+    generalpolygon |
+	pointspolygon |
+	pointsgeneralpolygon"
+	>
+
+<!ENTITY % Patches 
+   "basis |
+	patch |
+	patchmesh |
+	nupatch |
+	trimcurve"
+	>
+
+<!ENTITY % GeometricPrimitives 
+   "%Polygons; |
+	%Patches; |
+	subdivisionmesh |
+	%Quadrics; |
+    points |
+	curves |
+	blobby |
+	procedural |
+	geometry |
+	solid |
+    object"
+	>
+
+<!ENTITY % ExternalResources 
+   "maketexture |
+	makelatlongenvironment |
+    makecubefaceenvironment |
+	makeshadow |
+    archiverecord |
+	readarchive"
+	>
   
 <!ELEMENT RIB (%GraphicsState; | %GeometricPrimitives; | %ExternalResources;)> 
 																				   <!-- RiBegin/RiEnd -->
