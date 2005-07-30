@@ -51,7 +51,7 @@
                    CLIPPING|CLIPPINGPLANE|DEPTHOFFIELD|SHUTTER">
 <!ENTITY % Displays "PIXELVARIANCE|PIXELSAMPLES|PIXELFILTER|EXPOSURE|
                      IMAGER|QUANTIZE|DISPLAY">
-<!ENTITY % Options  "%Camera; %Displays; |HIDER|COLORSAMPLES|RELATIVEDETAIL">
+<!ENTITY % Options  "%Camera;| %Displays; |HIDER|COLORSAMPLES|RELATIVEDETAIL">
 <!ENTITY % Attributes "ATTRIBUTE|COLOR|OPACITY|TEXTURECOORDINATES|LIGHTSOURCE|
                        AREALIGHTSOURCE|ILLUMINATE|SURFACE|DISPLACEMENT|ATMOSPHERE|
                        INTERIOR|EXTERIOR|SHADINGRATE|SHADINGINTERPOLATION|
@@ -62,17 +62,32 @@
                             COORDSYSTRANSFORM|TRANSFORMPOINTS|TRANSFORM">
 <!ENTITY % GraphicsState "FRAME|WORLD|%Options;|%Attributes;|
                           %Transformations;|ATTRIBUTE">
-						  
-<!ELEMENT RIB (%GraphicState;,%GeometricPrimitives;,%ExternalResources;)*> <!-- RiBegin/RiEnd -->
+<!ENTITY % Quadrics "SPHERE|CONE|CYLINDER|HYPERBOLOID|PARABOLOID|DISK|TORUS">
+<!ENTITY % Polygons "POLYGON|GENERALPOLYGON|POINTSPOLYGON|POINTSGENRALPOLYGON">
+<!ENTITY % Patches "BASIS|PATCH|PATCHMESH|NUPATCH|TRIMCURVE">
+<!ENTITY % GeometricPrimitives "%Polygons;|%Patches;|SUBDIVISIONMESH|%Quadrics;|
+                                POINTS|CURVES|BLOBBY|PROCEDURAL|GEOMETRY|SOLID|
+                                OBJECT">
+<!ENTITY % ExternalResources "MAKETEXTURE|MAKELATLONGENVIRONMENT|
+                              MAKECUBERFACEENVIRONMENT|MAKESHADOW|
+                              ARCHIVERECORD|READARCHIVE">
   
-<!ELEMENT PARAM EMPTY              -- named property value -->
+<!ELEMENT RIB (%GraphicsState; | %GeometricPrimitives; | %ExternalResources;)> 
+																				   <!-- RiBegin/RiEnd -->
+  
+<!ELEMENT PARAM EMPTY>              <!-- named property value -->
+<!-- PARAM attributes
+	 name    - property name 
+	 value   - property value 
+-->
 <!ATTLIST PARAM
-  name        CDATA          #REQUIRED -- property name --
-  value       CDATA          #IMPLIED  -- property value --
+  name        CDATA          #REQUIRED 
+  value       CDATA          #IMPLIED 
   >
- 
-<!ENTITY % rib "DECLARE|DISPLAY|PARAM|%GraphicState;|%GeometricPrimitives;|MOTION|%Error;" -- All elements except RIB -->
-<!ENTITY % world "%GeometricPrimitives; | %Attributes; | %Transformations; | MOTION | %ExternalResources; | %Error;" -- Elements except options an RIB -->
+
+<!ENTITY % Error "(ignore|print|abort)">
+<!ENTITY % rib "DECLARE|DISPLAY|PARAM|%GraphicsState;|%GeometricPrimitives;|MOTION|%Error;"> <!-- All elements except RIB -->
+<!ENTITY % world "%GeometricPrimitives; | %Attributes; | %Transformations; | MOTION | %ExternalResources; | %Error;"> <!-- Elements except options an RIB -->
 
 <!--=========================Graphic State======================================-->
 <!-- Note: RiContext and RiGetContext have no RIB binding therefore they have no 
@@ -83,9 +98,10 @@
 
 <!-- RiFrameBegin/RiFrameEnd - chap 4 p16 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- Note: Not be used if single image is produced -->
-<!ELEMENT FRAME (%GraphicsState;, WORLD)* -- RiFrameBegin/RiFrameEnd -->
+<!ELEMENT FRAME (%GraphicsState; | WORLD)*> <!-- RiFrameBegin/RiFrameEnd -->
 <!ATTLIST FRAME 
-  frame   NUMBER #REQUIRED -- the number of this frame -->
+  frame   NUMBER   #REQUIRED
+  > <!-- the number of this frame -->
 
 <!-- RiWorldBegin/RiWorldEnd - chap 4 p17 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT WORLD (%world;)* -- RiWorldBegin/RiWorldEnd -->
@@ -496,9 +512,7 @@
   >
   
 <!--=====================Geometric Primitives===================================-->
-<!ENTITY % GeometricPrimitives "%Polygons;|%Patches;|SUBDIVISIONMESH|%Quadrics;|
-                                POINTS|CURVES|BLOBBY|PROCEDURAL|GEOMETRY|SOLID|
-                                OBJECT">
+
 
 <!ENTITY % StandardPrimitives "P|PZ|PW|N|CS|OS|TC" 
   -- Standard Geometric Primitive Variables, Table 5.1 p64 The Renderman(c) Interface Specification Version 3.2 -->
@@ -521,7 +535,7 @@
   >
   
 <!--=====================Geometric Primitives - Polygons========================-->
-<!ENTITY % Polygons "POLYGON|GENERALPOLYGON|POINTSPOLYGON|POINTSGENRALPOLYGON">
+
 
 <!-- RIPolygon - chap 5.1 p64 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- Note: nvertices is calculated by program? Difference in Advanced Renderman and Renderman specification -->
@@ -548,7 +562,7 @@
   > 
 
 <!--=====================Geometric Primitives - Patches=========================-->
-<!ENTITY % Patches "BASIS|PATCH|PATCHMESH|NUPATCH|TRIMCURVE">
+
 
 <!ENTITY % CubicBasisMatrices "bezier|bspline|catmullrom||hermite|power" 
   -- Predifined cubic basis matrices p68 The Renderman(c) Interface Specification Version 3.2 -->
@@ -618,7 +632,7 @@
   >
 
 <!--=====================Geometric Primitives - Quadrics========================-->
-<!ENTITY % Quadrics "SPHERE|CONE|CYLINDER|HYPERBOLOID|PARABOLOID|DISK|TORUS">
+
 
 <!-- RiSphere - chap 5.4 p77 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- Note: zmin > -radius or zmax < radius -->
@@ -755,9 +769,7 @@
   >
 
 <!--=====================External Resources=====================================-->
-<!ENTITY % ExternalResources "MAKETEXTURE|MAKELATLONGENVIRONMENT|
-                              MAKECUBERFACEENVIRONMENT|MAKESHADOW|
-                              ARCHIVERECORD|READARCHIVE">
+
 
 <!--=====================External Resources - Texture Map Utilities=============-->
 <!-- RiMakeTexture - chap 7.1.1 p100 The Renderman(c) Interface Specification Version 3.2 -->
@@ -811,7 +823,7 @@
 <!--=====================External Resources= - Errors===========================-->
 <!-- RiErrorHandler - chap 7.2 p103 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- ErrorHandler is excluded from %GExternalResources because it can be outside RIB node -->
-<!ENTITY % Error "(ignore|print|abort)">
+
 <!ELEMENT ERRORHANDLER - - 0 EMPTY -- RiErrorHandler -->
 <!ATTLIST ERRORHANDLER
   action  %Error   #REQUIRED -- name of predefined error handler which will be invoked -->
