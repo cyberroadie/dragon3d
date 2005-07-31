@@ -33,13 +33,14 @@
   value   %RT_FLOAT;    #REQUIRED
   >
   
-<!-- RiDeclare
+<!-- @Element RiDeclare -->
+<!ELEMENT declare EMPTY>
+<!-- @Attributes RiDeclare
   name       name of a variable 
   class      class of type, defaults to unifom 
   type       type of variabale 
   dimension  length of array, default 1 
 -->
-<!ELEMENT declare EMPTY>
 <!ATTLIST declare
   name       CDATA      #REQUIRED 
   class      %Class;    #IMPLIED
@@ -173,23 +174,24 @@
     archiverecord |
 	readarchive"
 	>
-  
-<!ELEMENT RIB (%GraphicsState; | %GeometricPrimitives; | %ExternalResources;)> 
-																				   <!-- RiBegin/RiEnd -->
-  
-<!ELEMENT PARAM EMPTY>              <!-- named property value -->
-<!-- PARAM attributes
+
+<!-- @Element rib RiBegin/RiEnd -->
+<!ELEMENT rib (%GraphicsState; | %GeometricPrimitives; | %ExternalResources;)>  
+
+<!-- @Element param Param -->
+<!ELEMENT param EMPTY>
+<!-- @Attributes Param 
 	 name    - property name 
 	 value   - property value 
 -->
-<!ATTLIST PARAM
+<!ATTLIST param
   name        CDATA          #REQUIRED 
   value       CDATA          #IMPLIED 
   >
 
 <!ENTITY % Error "(ignore|print|abort)">
-<!ENTITY % rib "DECLARE|DISPLAY|PARAM|%GraphicsState;|%GeometricPrimitives;|MOTION|%Error;"> <!-- All elements except RIB -->
-<!ENTITY % world "%GeometricPrimitives; | %Attributes; | %Transformations; | MOTION | %ExternalResources; | %Error;"> <!-- Elements except options an RIB -->
+<!ENTITY % rib "declare|display|PARAM|%GraphicsState;|%GeometricPrimitives;|motion|%Error;"> <!-- All elements except RIB -->
+<!ENTITY % world "%GeometricPrimitives; | %Attributes; | %Transformations; | motion | %ExternalResources; | %Error;"> <!-- Elements except options an RIB -->
 
 <!--=========================Graphic State======================================-->
 <!-- Note: RiContext and RiGetContext have no RIB binding therefore they have no 
@@ -200,45 +202,59 @@
 
 <!-- RiFrameBegin/RiFrameEnd - chap 4 p16 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- Note: Not be used if single image is produced -->
-<!ELEMENT FRAME (%GraphicsState; | WORLD)*> <!-- RiFrameBegin/RiFrameEnd -->
-<!ATTLIST FRAME 
-  frame   NUMBER   #REQUIRED
-  > <!-- the number of this frame -->
+<!-- @Element frame RiFrameBegin/RiFrameEnd -->
+<!ELEMENT frame (%GraphicsState; | world)*> 
+<!-- @Attributes frame
+	 nr    - the number of this frame
+-->
+<!ATTLIST frame 
+  nr   %RT_INT;   #REQUIRED
+  > 
 
-<!-- RiWorldBegin/RiWorldEnd - chap 4 p17 The Renderman(c) Interface Specification Version 3.2 -->
-<!ELEMENT WORLD (%world;)* -- RiWorldBegin/RiWorldEnd -->
-
+<!-- @Reference world RiWorldBegin/RiWorldEnd - chap 4 p17 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Element world RiWorldBegin/RiWorldEnd -->
+<!ELEMENT world (%world;)* > 
 
 <!--=========================Graphic State - Camera=============================-->
 
-                   
-<!-- RiFormat - chap 4.1.1 p23 The Renderman(c) Interface Specification Version 3.2 -->
-<!ELEMENT FORMAT - 0 EMPTY -- RiFormat -->
-<!ATTLIST FORMAT
-  xresolution       NUMBER  #REQUIRED -- horizontal resolution --
-  yresolution       NUMBER  #REQUIRED -- vertical resolution --
-  pixelaspectratio  %RT_FLOAT;   #REQUIRED -- physical width to the height of a pixel --
+<!-- @Reference format RiFormat chap 4.1.1 p23 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Element format RiFormat -->
+<!ELEMENT format EMPTY> 
+<!-- @Attributes RiFormat
+     xresolution       horizontal resolution 
+     yresolution       vertical resolution 
+     pixelaspectratio  physical width to the height of a pixel 	
+-->
+<!ATTLIST format
+  xresolution       %RT_FLOAT;    #REQUIRED
+  yresolution       %RT_FLOAT;    #REQUIRED
+  pixelaspectratio  %RT_FLOAT;    #REQUIRED
   >
   
-<!-- RiFrameAspectRation - chap 4.1.1 p23 The Renderman(c) Interface Specification Version 3.2 -->
-<!-- Note: can also be written as 4/3 -->
-<!ELEMENT FRAMEASPECTRATIO - 0 EMPTY -- RiFrameAspectRatio -->
-<!ATTLIST FRAMEASPECTRATIO
-  frameaspectratio  %RT_FLOAT;  #REQUIRED -- ratio of the width to the height of image --
+<!-- @Reference RiFrameAspectRatio - chap 4.1.1 p23 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Element RiFrameAspectRatio -->
+<!ELEMENT frameaspectration EMPTY >
+<!-- @Attributes RiFrameAspectRatio 
+	 frameaspectratio  ratio of the width to the height of image. Note: can also be written as 4/3
+-->
+<!ATTLIST frameaspectration
+  ratio  %RT_FLOAT;  #REQUIRED 
   >
 
-<!-- RiScreenWindow - chap 4.1.1 p24 The Renderman(c) Interface Specification Version 3.2 -->
-<!ELEMENT SCREENWINDOW - 0 EMPTY -- RiScreenWindow -->
-<!ATTLIST SCREENWINDOW 
+<!-- @Reference RiScreenWindow - chap 4.1.1 p24 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Element screenwindow RiScreenWindow -->
+<!ELEMENT screenwindow EMPTY >
+<!ATTLIST screenwindow 
   left              %RT_FLOAT;   #REQUIRED 
   right             %RT_FLOAT;   #REQUIRED
   bottom            %RT_FLOAT;   #REQUIRED
   top               %RT_FLOAT;   #REQUIRED
   >
   
-<!-- RiCropWindow - chap 4.1.1 p24 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Reference cropwindow RiCropWindow - chap 4.1.1 p24 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- Note all attribute values are between 0 - 1 -->
-<!ELEMENT CROPWINDOW - 0 EMPTY -- RiCropWindow -->
+<!-- @Element cropwindow RiCropWindow -->
+<!ELEMENT CROPWINDOW EMPTY >
 <!ATTLIST CROPWINDOW 
   xmin              %RT_FLOAT;   #REQUIRED
   xmax              %RT_FLOAT;   #REQUIRED
@@ -246,11 +262,16 @@
   ymax              %RT_FLOAT;   #REQUIRED
   >
   
-<!-- RiProjection - chap 4.1.1 p25 The Renderman(c) Interface Specification Version 3.2 -->
-<!ENTITY % ProjectionType "perspective|orthographic|%RI_NULL;" -- required types -->
-<!ELEMENT PROJECTION - - (PARAM)* -- RiProjection -->
-<!ATTLIST PROJECTION
-  name              (%ProjectionType; | CDATA)   #REQUIRED -- projection type -->
+<!-- @Reference projection - chap 4.1.1 p25 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY % ProjectionType "(perspective|orthographic|%RI_NULL;)"> <!-- required types -->
+<!-- @Element projection RiProjection -->
+<!ELEMENT projection (PARAM)* >
+<!-- @Attributes
+	name  projection type 
+-->
+<!ATTLIST projection
+  name              %ProjectionType;   #REQUIRED 
+  >
   
 <!-- RiClipping - chap 4.1.1 p26 The Renderman(c) Interface Specification Version 3.2 -->
 <!ELEMENT CLIPPING - 0 EMPTY -- RiClipping -->
