@@ -13,7 +13,7 @@
 <!ENTITY % Type "(float|integer|string|color|point|vector|normal|matrix|hpoint)">
 <!ENTITY % PerType "periodic|nonperiodic">
 
-<!ENTITY % RI_NULL     "CDATA">
+<!ENTITY % RI_NULL     "null">
 <!ENTITY % RI_INFINITY "CDATA">
 <!ENTITY % RI_EPSILON  "CDATA">
 <!ENTITY % RI_TRUE     "CDATA">
@@ -273,108 +273,169 @@
   name              %ProjectionType;   #REQUIRED 
   >
   
-<!-- RiClipping - chap 4.1.1 p26 The Renderman(c) Interface Specification Version 3.2 -->
-<!ELEMENT CLIPPING - 0 EMPTY -- RiClipping -->
-<!ATTLIST CLIPPING
+<!-- @Reference clipping RiClipping - chap 4.1.1 p26 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Element clipping RiClipping -->
+<!ELEMENT clipping EMPTY >
+<!ATTLIST clipping
   near              %RT_FLOAT;   #REQUIRED
   far               %RT_FLOAT;   #REQUIRED
   >
   
-<!-- RiClippingPlane - chap 4.1.1 p26 The Renderman(c) Interface Specification Version 3.2 -->
-<!ELEMENT CLIPPINGPLANE - 0 EMPTY -- RiClippingPlane -->
-<!ATTLIST CLIPPINGPLANE
-  x                 %RT_FLOAT;  -- x point on surface --
-  y                 %RT_FLOAT;  -- y point on surface --
-  z                 %RT_FLOAT;  -- z point on surface --
-  nx                %RT_FLOAT;  -- x plane normal --
-  ny                %RT_FLOAT;  -- y plane normal --
-  nz                %RT_FLOAT;  -- z plane normal --
+<!-- @Reference clippingplane RiClippingPlane - chap 4.1.1 p26 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Element clippingplane RiClippingPlane -->
+<!ELEMENT clippingplane EMPTY >
+<!-- @Attributes clippingplane 
+  x 		x point on surface 
+  y         y point on surface 
+  z         z point on surface
+  nx        x plane normal
+  ny        y plane normal
+  nz        z plane normal
+-->
+<!ATTLIST clippingplane
+  x                 %RT_FLOAT;  #REQUIRED
+  y                 %RT_FLOAT;  #REQUIRED
+  z                 %RT_FLOAT;  #REQUIRED
+  nx                %RT_FLOAT;  #REQUIRED
+  ny                %RT_FLOAT;  #REQUIRED
+  nz                %RT_FLOAT;  #REQUIRED
   >
   
-<!-- RiDepthOfField - chap 4.1.1 p27 The Renderman(c) Interface Specification Version 3.2 -->
-<!ELEMENT DEPTHOFFIELD - 0 EMPTY -- RiDepthOfField -->
-<!ATTLIST DEPTHOFFIELD
- fstop             %RT_FLOAT;  -- determines lens diameter --
- focallength       %RT_FLOAT;  -- focal length of camera --
- focaldistance     %RT_FLOAT;  -- distance at which objects will be in focus --
+<!-- @Reference depthoffield RiDepthOfField - chap 4.1.1 p27 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Element depthoffield RiDepthOfField -->
+<!ELEMENT depthoffield EMPTY>
+<!-- @Attributes 
+ fstop             determines lens diameter
+ focallength       focal length of camera
+ focaldistance     distance at which objects will be in focus
+-->
+<!ATTLIST depthoffield
+ fstop             %RT_FLOAT;  #REQUIRED
+ focallength       %RT_FLOAT;  #REQUIRED
+ focaldistance     %RT_FLOAT;  #REQUIRED
  >
  
-<!-- RiShutter - chap 4.1.1 p27 The Renderman(c) Interface Specification Version 3.2 -->
-<! Note: min should be less than max -->
-<!ELEMENT SHUTTER - 0 EMPTY -- RiShutter -->
-<!ATTLIST SHUTTER
-  min              %RT_FLOAT;
-  max              %RT_FLOAT;
+<!-- @Reference RiShutter - chap 4.1.1 p27 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- Note: min should be less than max -->
+<!-- @Element RiShutter -->
+<!ELEMENT shutter EMPTY >
+<!ATTLIST shutter
+  min              %RT_FLOAT;  #REQUIRED
+  max              %RT_FLOAT;  #REQUIRED
   >
 
 <!--=====================Graphic State - Displays==============================-->
 
-<!-- RiPixelVariance - chap 4.1.2 p30 The Renderman(c) Interface Specification Version 3.2 -->
-<!ELEMENT PIXELVARIANCE - 0 EMPTY -- RiPixelVariance -->
-<!ATTLIST PIXELVARIANCE 
-  variation   %RT_FLOAT;   #REQUIRED -- upper bound of acceptable variance --
+<!-- @Reference pixelvariance RiPixelVariance - chap 4.1.2 p30 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Element pixelvariance RiPixelVariance -->
+<!ELEMENT pixelvariance EMPTY >
+<!-- @Atributes pixelvariance
+	variation upper bound of acceptable variance -->
+<!ATTLIST pixelvariance 
+  variation   %RT_FLOAT;   #REQUIRED 
   >
 
-<!-- RiPixelSamples - chap 4.1.2 p30 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Reference pixelsamples RiPixelSamples - chap 4.1.2 p30 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- Note: Sampling rates less than 1 are clamped to 1 -->
-<!ELEMENT PIXELSAMPLES - 0 EMPTY -- RiPixelSamples -->
-<!ATTLIST PIXELSAMPLES
-  xsamples        %RT_FLOAT; -- horizontal sampling rate --
-  ysamples        %RT_FLOAT; -- vertical sampling rate --
+<!-- @Element RiPixelSamples -->
+<!ELEMENT pixelsamples EMPTY >
+<!-- @Attributes pixelsamples
+  xsamples        horizontal sampling rate 
+  ysamples        vertical sampling rate 
+-->
+<!ATTLIST pixelsamples
+  xsamples        %RT_FLOAT; #REQUIRED 
+  ysamples        %RT_FLOAT; #REQUIRED 
   >
   
-<!-- RiPixelFilter - chap 4.1.2 p30 The Renderman(c) Interface Specification Version 3.2 -->
-<!ENTITY % Filter "box|triangle|catmullrom|guassian|sinc" -- available standard filter functions -->
-<!ELEMENT PIXELFILTER - 0 EMPTY -- RiPixelFilter -->
-<!ATTLIST PIXELFILTER
-  filterfunc      (%Filter; | CDATA) #REQUIRED -- type of filter --
-  xwidth          %RT_FLOAT;              #REQUIRED -- x width of filter in pixels --
-  ywidth          %RT_FLOAT;              #REQUIRED -- y width of filter in pixels --
+<!-- @Reference pixelfilter RiPixelFilter - chap 4.1.2 p30 The Renderman(c) Interface Specification Version 3.2 -->
+<!ENTITY % Filter "box|triangle|catmullrom|guassian|sinc" >
+<!-- available standard filter functions -->
+<!-- @Element pixelfilter RiPixelFilter -->
+<!ELEMENT pixelfilter EMPTY >
+<!-- @Attributes pixelfilter
+ filterfunc     type of filter 
+  xwidth        x width of filter in pixels 
+  ywidth        y width of filter in pixels 
+-->
+<!ATTLIST pixelfilter
+  filterfunc      (%Filter; | CDATA) #REQUIRED 
+  xwidth          %RT_FLOAT;              #REQUIRED 
+  ywidth          %RT_FLOAT;              #REQUIRED 
   >
   
-<!-- RiExposure - chap 4.1.2 p32 The Renderman(c) Interface Specification Version 3.2 --> 
-<!ELEMENT EXPOSURE - 0 EMPTY -- RiExposure -->
-<!ATTLIST EXPOSURE 
+<!-- @Reference exposure RiExposure - chap 4.1.2 p32 The Renderman(c) Interface Specification Version 3.2 --> 
+<!-- @Element exposure RiExposure -->
+<!ELEMENT exposure EMPTY >
+<!-- @Attributes exposure
+  gain
+  gamma
+-->
+<!ATTLIST exposure 
   gain            %RT_FLOAT;  #REQUIRED 
   gamma           %RT_FLOAT;  #REQUIRED
   >
   
-<!-- RiImager - chap 4.1.2 p32 The Renderman(c) Interface Specification Version 3.2 -->
-<!ELEMENT IMAGER - - (PARAM)* -- RiImager -->
-<!ATTLIST IMAGER 
-  name            (CDATA | %RI_NULL;) -- name of an image shader --
+<!-- @Reference imager RiImager - chap 4.1.2 p32 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Element imager RiImager -->
+<!ELEMENT imager (PARAM)* >
+<!-- @Attributes
+	name   name of an image shader
+-->
+<!ATTLIST imager 
+  name            (CDATA | %RI_NULL;) #REQUIRED
   >
   
-<!-- RiQuantize - chap 4.1.2 p33 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Reference quantize RiQuantize - chap 4.1.2 p33 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- Note: Quantization is also referred to as anti aliassing -->
-<!ELEMENT QUANTIZE - 0 EMPTY -- RiQuantize -->
-<!ATTLIST QUANTIZE 
-  type            %QuantizeType; #REQUIRED -- quantization type --
-  one             NUMBER         #REQUIRED -- mapping from floating to fixed points definition --
-  min             NUMBER         #REQUIRED -- minimum quantized value --
-  max             NUMBER         #REQUIRED -- maximum quantized value --
-  ditheramplitude %RT_FLOAT;          #REQUIRED 
+<!-- @Element quantize RiQuantize -->
+<!ELEMENT quantize EMPTY >
+<!-- @Attributes
+  type            quantization type 
+  one             mapping from floating to fixed points definition 
+  min             minimum quantized value
+  max             maximum quantized value
+  ditheramplitude 	
+-->
+<!ENTITY % QuantizeType "(rgba |z)">
+<!ATTLIST quantize 
+  type            %QuantizeType; #REQUIRED
+  one             %RT_INT;         #REQUIRED
+  min             %RT_INT;         #REQUIRED
+  max             %RT_INT;         #REQUIRED
+  ditheramplitude %RT_FLOAT;       #REQUIRED 
   >
 
-<!-- RiDisplay - chap 4.1.2 p33 The Renderman(c) Interface Specification Version 3.2 -->
-<!ELEMENT DISPLAY - - (PARAM)* -- RiDisplay -->
-<!ATTLIST DISPLAY 
-  name    CDATA   #REQUIRED -- name of the picture file or framebuffer --
-  type    CDATA   #REQUIRED -- the display format, output device or output driver --
-  mode    CDATA   #REQUIRED -- the mode which indicates what data are to be output in this display stream --
+<!-- @Reference display RiDisplay - chap 4.1.2 p33 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Element display RiDisplay -->
+<!ELEMENT display (PARAM)* >
+<!-- @Attributes
+  name    name of the picture file or framebuffer
+  type    the display format, output device or output driver
+  mode    the mode which indicates what data are to be output in this display stream
+-->
+<!ATTLIST display 
+  name    CDATA   #REQUIRED
+  type    CDATA   #REQUIRED
+  mode    CDATA   #REQUIRED
   >
 
 <!--=====================Graphic State - Additional Option======================-->
-<!-- RiHider - chap 4.1.3 p34 The Renderman(c) Interface Specification Version 3.2 -->
-<!ELEMENT HIDER - - (PARAM)* -- RiHider -->
-<!ATTLIST HIDER 
+<!-- @Reference hider RiHider - chap 4.1.3 p34 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Element hider RiHider -->
+<!ELEMENT hider (PARAM)* >
+<!ATTLIST hider 
   type    (hidden|null|CDATA)   #REQUIRED 
   >
   
-<!-- RiColorSamples - chap 4.1.3 p35 The Renderman(c) Interface Specification Version 3.2 -->
-<!ELEMENT COLORSAMPLES - - (NRGB|RGBN) -- RiColorSamples -->
+<!-- @Reference colorsamples RiColorSamples - chap 4.1.3 p35 The Renderman(c) Interface Specification Version 3.2 -->
+<!-- @Element colorsamples RiColorSamples -->
+<!ELEMENT COLORSAMPLES (NRGB|RGBN) >
+<!-- @Attriburtes
+	n     defaults to 3
+-->
 <!ATTLIST COLORSAMPLES
-  n       NUMBER   #REQUIRED -- defaults to 3 --
+  n       %RT_INT;   #REQUIRED
   >
 
 <!ELEMENT NRGB - 0 EMPTY -- n by 3 transformation matrix -->
