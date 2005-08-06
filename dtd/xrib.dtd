@@ -796,25 +796,25 @@
 <!--=====================Geometric Primitives===================================-->
 <!-- NOTE Needs to be in external file?? -->
 
-<!ENTITY % StandardPrimitives "P|PZ|PW|N|CS|OS|TC" >
+<!ENTITY % StandardPrimitives "p|pz|pw|n|cs|os|tc" >
 <!-- Standard Geometric Primitive Variables, Table 5.1 p64 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- NOTE This needs more thinking -->
 
-<!ELEMENT P (float)* > <!-- Position, point vertex, 3 floats -->
-<!ELEMENT PZ (float)* > <!-- Position, float vertex, 1 float --> 
-<!ELEMENT PW (float)* > <!-- Position, h vertex, 4 floats -->
-<!ELEMENT N (float)* > <!-- Normal, normal varying, 3 floats -->
-<!ELEMENT CS (float)* > <!-- Color, color varying, 3 floats -->
-<!ELEMENT OS (float)* > <!-- Opacity, color varying, 3 floats -->
-<!ELEMENT TC (float)* > <!-- Texture Coordinates, s,t,st - 1,1,2, floats -->
+<!ELEMENT p (float)* > <!-- Position, point vertex, 3 floats -->
+<!ELEMENT pz (float)* > <!-- Position, float vertex, 1 float --> 
+<!ELEMENT pw (float)* > <!-- Position, h vertex, 4 floats -->
+<!ELEMENT n (float)* > <!-- Normal, normal varying, 3 floats -->
+<!ELEMENT cs (float)* > <!-- Color, color varying, 3 floats -->
+<!ELEMENT os (float)* > <!-- Opacity, color varying, 3 floats -->
+<!ELEMENT tc (float)* > <!-- Texture Coordinates, s,t,st - 1,1,2, floats -->
   
-<!ELEMENT NVERTICES EMPTY > <!-- number of vertices in each loop -->
-<!ATTLIST NVERTICES
+<!ELEMENT nvertices EMPTY > <!-- number of vertices in each loop -->
+<!ATTLIST nvertices
   number       %RT_INT;    #REQUIRED
   >
 
-<!ELEMENT NLOOPS EMPTY >
-<!ATTLIST NLOOPS
+<!ELEMENT nloops EMPTY >
+<!ATTLIST nloops
   number       %RT_INT;    #REQUIRED
   >
   
@@ -831,20 +831,20 @@
   >
   
 <!-- @Reference generalpolygon RiGeneralPolygon - chap 5.1 p 65 The Renderman(c) Interface Specification Version 3.2 -->
-<!-- Note: NLOOPS onle once -->
+<!-- Note: nloops onle once -->
 <!-- @Element generalpolygon -->
-<!ELEMENT generalpolygon (NLOOPS|NVERTICES|%StandardPrimitives;|param)* >
+<!ELEMENT generalpolygon (nloops|nvertices|%StandardPrimitives;|param)* >
   
 <!--@Reference pointspolygons RiPointsPolygons - chap 5.1 p66 The Renderman(c) Interface Specification Version 3.2 -->
 <!--@Element pointspolygons RiPointsPolygons -->
-<!ELEMENT pointspolygons (NVERTICES|%StandardPrimitives;|param)* >
+<!ELEMENT pointspolygons (nvertices|%StandardPrimitives;|param)* >
 <!ATTLIST pointspolygons
   npolys       %RT_INT;  #IMPLIED
   >
   
 <!-- @Reference pointsgeneralpolygons RiPointsGeneralPolygons - chap 5.1 p67 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- @Element pointsgeneralpolygons RiPointsGeneralPolygons -->
-<!ELEMENT pointsgeneralpolygons (NLOOPS|NVERTICES|%StandardPrimitives;|param)* >
+<!ELEMENT pointsgeneralpolygons (nloops|nvertices|%StandardPrimitives;|param)* >
 <!ATTLIST pointsgeneralpolygons
   npolys       %RT_INT;  #IMPLIED
   > 
