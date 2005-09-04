@@ -24,134 +24,134 @@
 <!ENTITY % RT_INT     "CDATA">
 
 <!ENTITY % Camera 
-   "format |
-    frameaspectratio |
-    screenwindow |
-    cropwindow |
-    projection |
-    clipping |
-    clippingplane |
-    depthoffield |
+   "format ,
+    frameaspectratio ,
+    screenwindow ,
+    cropwindow ,
+    projection ,
+    clipping ,
+    clippingplane ,
+    depthoffield ,
     shutter"
     >
 
 <!ENTITY % Displays 
-   "pixelvariance |
-    pixelsamples |
-	pixelfilter |
-	exposure |
-	imager |
-	quantize |
+   "pixelvariance ,
+    pixelsamples ,
+	pixelfilter ,
+	exposure ,
+	imager ,
+	quantize ,
 	display"
 	>
 
 <!ENTITY % Options  
-   "%Camera; | 
-	%Displays; |
-	hider |
-	colorsamples |
+   "%Camera; , 
+	%Displays; ,
+	hider ,
+	colorsamples ,
 	relativedetail"
 	>
 
 <!ENTITY % Attributes 
-   "attribute |
-	color |
-	opacity |
-	texturecoordinates |
-	lightsource |
-    arealightsource |
-	illuminate |
-	surface |
-	displacement |
-	atmosphere |
-    interior |
-	exterior |
-	shadingrate |
-	shadinginterpolation |
-    matte |
-	bound |
-	detail |
-	detailrange |
-	geometricapproximation |
-    orientation |
-	reverseorientation |
+   "attribute ,
+	color ,
+	opacity ,
+	texturecoordinates ,
+	lightsource ,
+    arealightsource ,
+	illuminate ,
+	surface ,
+	displacement ,
+	atmosphere ,
+    interior ,
+	exterior ,
+	shadingrate ,
+	shadinginterpolation ,
+    matte ,
+	bound ,
+	detail ,
+	detailrange ,
+	geometricapproximation ,
+    orientation ,
+	reverseorientation ,
 	sides"
 	>
 
 <!ENTITY % Transformations 
-   "identity |
-	transform |
-	concattransform |
-	perspective |
-    translate |
-	rotate |
-	scale |
-	skew |
-	coordinatesystem |
-    coordsystransform |
-	transformpoints |
+   "identity ,
+	transform ,
+	concattransform ,
+	perspective ,
+    translate ,
+	rotate ,
+	scale ,
+	skew ,
+	coordinatesystem ,
+    coordsystransform ,
+	transformpoints ,
 	transform"
 	>
 
 <!ENTITY % GraphicsState 
-   "frame |
-	world |
-	%Options; |
-	%Attributes; |
-    %Transformations; |
+   "frame ,
+	world ,
+	%Options; ,
+	%Attributes; ,
+    %Transformations; ,
 	attribute"
 	>
 
 <!ENTITY % Quadrics 
-   "sphere |
-	cone |
-	cylinder |
-	hyperboloid |
-	paraboloid |
-	disk |
+   "sphere ,
+	cone ,
+	cylinder ,
+	hyperboloid ,
+	paraboloid ,
+	disk ,
 	torus"
 	>
 
 <!ENTITY % Polygons 
-   "polygon |
-    generalpolygon |
-	pointspolygons |
+   "polygon ,
+    generalpolygon ,
+	pointspolygons ,
 	pointsgeneralpolygons"
 	>
 
 <!ENTITY % Patches 
-   "basis |
-	patch |
-	patchmesh |
-	nupatch |
+   "basis ,
+	patch ,
+	patchmesh ,
+	nupatch ,
 	trimcurve"
 	>
 
 <!ENTITY % GeometricPrimitives 
-   "%Polygons; |
-	%Patches; |
-	subdivisionmesh |
-	%Quadrics; |
-    points |
-	curves |
-	blobby |
-	procedural |
-	geometry |
-	solid |
+   "%Polygons; ,
+	%Patches; ,
+	subdivisionmesh ,
+	%Quadrics; ,
+    points ,
+	curves ,
+	blobby ,
+	procedural ,
+	geometry ,
+	solid ,
     object"
 	>
 
 <!ENTITY % ExternalResources 
-   "maketexture |
-	makelatlongenvironment |
-    makecubefaceenvironment |
-	makeshadow |
-    archiverecord |
+   "maketexture ,
+	makelatlongenvironment ,
+    makecubefaceenvironment ,
+	makeshadow ,
+    archiverecord ,
 	readarchive"
 	>
 
 <!-- @Element rib RiBegin/RiEnd -->
-<!ELEMENT rib (%GraphicsState; | %GeometricPrimitives; | %ExternalResources;)>  
+<!ELEMENT rib (%GraphicsState; , %GeometricPrimitives; , %ExternalResources;)>  
 
 <!ELEMENT float EMPTY >
 <!ATTLIST float
@@ -212,9 +212,9 @@
   value       CDATA          #IMPLIED 
   >
 
-<!ENTITY % Error "(ignore|print|abort)">
-<!ENTITY % rib "declare|display|param|%GraphicsState;|%GeometricPrimitives;|motion"> <!-- All elements except RIB -->
-<!ENTITY % world "%GeometricPrimitives; | %Attributes; | %Transformations; | motion | %ExternalResources;"> <!-- Elements except options an RIB -->
+<!ENTITY % Error "(ignore,print,abort)">
+<!ENTITY % rib "declare,display,param,%GraphicsState;,%GeometricPrimitives;,motion"> <!-- All elements except RIB -->
+<!ENTITY % world "%GeometricPrimitives; , %Attributes; , %Transformations; , motion , %ExternalResources;"> <!-- Elements except options an RIB -->
 
 <!--=========================Graphic State======================================-->
 <!-- Note: RiContext and RiGetContext have no RIB binding therefore they have no 
@@ -226,7 +226,7 @@
 <!-- RiFrameBegin/RiFrameEnd - chap 4 p16 The Renderman(c) Interface Specification Version 3.2 -->
 <!-- Note: Not be used if single image is produced -->
 <!-- @Element frame RiFrameBegin/RiFrameEnd -->
-<!ELEMENT frame (%GraphicsState; | world)*> 
+<!ELEMENT frame (%GraphicsState; , world)*> 
 <!-- @Attributes frame
 	 nr    - the number of this frame
 -->
