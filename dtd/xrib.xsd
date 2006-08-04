@@ -1,0 +1,1680 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+ xmlns:rib="http://www.transformatorhuis.com/rib/"
+ xmlns:xs="http://www.w3.org/2001/XMLSchema"
+ targetNamespace="http://www.transformatorhuis.com/rib/">
+
+ <xs:element name='rib'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='rib:frame'/>
+    <xs:element ref='rib:world'/>
+    <xs:element ref='rib:format'/>
+    <xs:element ref='rib:frameaspectratio'/>
+    <xs:element ref='rib:screenwindow'/>
+    <xs:element ref='rib:cropwindow'/>
+    <xs:element ref='rib:projection'/>
+    <xs:element ref='rib:clipping'/>
+    <xs:element ref='rib:clippingplane'/>
+    <xs:element ref='rib:depthoffield'/>
+    <xs:element ref='rib:shutter'/>
+    <xs:element ref='rib:pixelvariance'/>
+    <xs:element ref='rib:pixelsamples'/>
+    <xs:element ref='rib:pixelfilter'/>
+    <xs:element ref='rib:exposure'/>
+    <xs:element ref='rib:imager'/>
+    <xs:element ref='rib:quantize'/>
+    <xs:element ref='rib:display'/>
+    <xs:element ref='rib:hider'/>
+    <xs:element ref='rib:colorsamples'/>
+    <xs:element ref='rib:relativedetail'/>
+    <xs:element ref='rib:attribute'/>
+    <xs:element ref='rib:color'/>
+    <xs:element ref='rib:opacity'/>
+    <xs:element ref='rib:texturecoordinates'/>
+    <xs:element ref='rib:lightsource'/>
+    <xs:element ref='rib:arealightsource'/>
+    <xs:element ref='rib:illuminate'/>
+    <xs:element ref='rib:surface'/>
+    <xs:element ref='rib:displacement'/>
+    <xs:element ref='rib:atmosphere'/>
+    <xs:element ref='rib:interior'/>
+    <xs:element ref='rib:exterior'/>
+    <xs:element ref='rib:shadingrate'/>
+    <xs:element ref='rib:shadinginterpolation'/>
+    <xs:element ref='rib:matte'/>
+    <xs:element ref='rib:bound'/>
+    <xs:element ref='rib:detail'/>
+    <xs:element ref='rib:detailrange'/>
+    <xs:element ref='rib:geometricapproximation'/>
+    <xs:element ref='rib:orientation'/>
+    <xs:element ref='rib:reverseorientation'/>
+    <xs:element ref='rib:sides'/>
+    <xs:element ref='rib:identity'/>
+    <xs:element ref='rib:transform'/>
+    <xs:element ref='rib:concattransform'/>
+    <xs:element ref='rib:perspective'/>
+    <xs:element ref='rib:translate'/>
+    <xs:element ref='rib:rotate'/>
+    <xs:element ref='rib:scale'/>
+    <xs:element ref='rib:skew'/>
+    <xs:element ref='rib:coordinatesystem'/>
+    <xs:element ref='rib:coordsystransform'/>
+    <xs:element ref='rib:transformpoints'/>
+    <xs:element ref='rib:transform'/>
+    <xs:element ref='rib:attribute'/>
+    <xs:element ref='rib:polygon'/>
+    <xs:element ref='rib:generalpolygon'/>
+    <xs:element ref='rib:pointspolygons'/>
+    <xs:element ref='rib:pointsgeneralpolygons'/>
+    <xs:element ref='rib:basis'/>
+    <xs:element ref='rib:patch'/>
+    <xs:element ref='rib:patchmesh'/>
+    <xs:element ref='rib:nupatch'/>
+    <xs:element ref='rib:trimcurve'/>
+    <xs:element ref='rib:subdivisionmesh'/>
+    <xs:element ref='rib:sphere'/>
+    <xs:element ref='rib:cone'/>
+    <xs:element ref='rib:cylinder'/>
+    <xs:element ref='rib:hyperboloid'/>
+    <xs:element ref='rib:paraboloid'/>
+    <xs:element ref='rib:disk'/>
+    <xs:element ref='rib:torus'/>
+    <xs:element ref='rib:points'/>
+    <xs:element ref='rib:curves'/>
+    <xs:element ref='rib:blobby'/>
+    <xs:element ref='rib:procedural'/>
+    <xs:element ref='rib:geometry'/>
+    <xs:element ref='rib:solid'/>
+    <xs:element ref='rib:object'/>
+    <xs:element ref='rib:maketexture'/>
+    <xs:element ref='rib:makelatlongenvironment'/>
+    <xs:element ref='rib:makecubefaceenvironment'/>
+    <xs:element ref='rib:makeshadow'/>
+    <xs:element ref='rib:archiverecord'/>
+    <xs:element ref='rib:readarchive'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='float'>
+  <xs:complexType>
+   <xs:attribute name='name' type='xs:string' use='optional'/>
+   <xs:attribute name='value' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='array'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:row'/>
+   </xs:sequence>
+   <xs:attribute name='xlength' type='xs:string' use='optional'/>
+   <xs:attribute name='ylength' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='rtmatrix'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:row'/>
+   </xs:sequence>
+   <xs:attribute name='xlength' type='xs:string' use='optional'/>
+   <xs:attribute name='ylength' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='row'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:col'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='col'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='rtpoint'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:float'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='rtbound'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:float'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='declare'>
+  <xs:complexType>
+   <xs:attribute name='name' type='xs:string' use='required'/>
+   <xs:attribute name='class' use='optional'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='constant'/>
+      <xs:enumeration value='uniform'/>
+      <xs:enumeration value='varying'/>
+      <xs:enumeration value='vertex'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='type' use='optional'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='float'/>
+      <xs:enumeration value='integer'/>
+      <xs:enumeration value='string'/>
+      <xs:enumeration value='color'/>
+      <xs:enumeration value='point'/>
+      <xs:enumeration value='vector'/>
+      <xs:enumeration value='normal'/>
+      <xs:enumeration value='rtmatrix'/>
+      <xs:enumeration value='hpoint'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='dimension' type='xs:string' default='1'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='param'>
+  <xs:complexType>
+   <xs:attribute name='name' type='xs:string' use='required'/>
+   <xs:attribute name='value' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='frame'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:frame'/>
+    <xs:element ref='rib:world'/>
+    <xs:element ref='rib:format'/>
+    <xs:element ref='rib:frameaspectratio'/>
+    <xs:element ref='rib:screenwindow'/>
+    <xs:element ref='rib:cropwindow'/>
+    <xs:element ref='rib:projection'/>
+    <xs:element ref='rib:clipping'/>
+    <xs:element ref='rib:clippingplane'/>
+    <xs:element ref='rib:depthoffield'/>
+    <xs:element ref='rib:shutter'/>
+    <xs:element ref='rib:pixelvariance'/>
+    <xs:element ref='rib:pixelsamples'/>
+    <xs:element ref='rib:pixelfilter'/>
+    <xs:element ref='rib:exposure'/>
+    <xs:element ref='rib:imager'/>
+    <xs:element ref='rib:quantize'/>
+    <xs:element ref='rib:display'/>
+    <xs:element ref='rib:hider'/>
+    <xs:element ref='rib:colorsamples'/>
+    <xs:element ref='rib:relativedetail'/>
+    <xs:element ref='rib:attribute'/>
+    <xs:element ref='rib:color'/>
+    <xs:element ref='rib:opacity'/>
+    <xs:element ref='rib:texturecoordinates'/>
+    <xs:element ref='rib:lightsource'/>
+    <xs:element ref='rib:arealightsource'/>
+    <xs:element ref='rib:illuminate'/>
+    <xs:element ref='rib:surface'/>
+    <xs:element ref='rib:displacement'/>
+    <xs:element ref='rib:atmosphere'/>
+    <xs:element ref='rib:interior'/>
+    <xs:element ref='rib:exterior'/>
+    <xs:element ref='rib:shadingrate'/>
+    <xs:element ref='rib:shadinginterpolation'/>
+    <xs:element ref='rib:matte'/>
+    <xs:element ref='rib:bound'/>
+    <xs:element ref='rib:detail'/>
+    <xs:element ref='rib:detailrange'/>
+    <xs:element ref='rib:geometricapproximation'/>
+    <xs:element ref='rib:orientation'/>
+    <xs:element ref='rib:reverseorientation'/>
+    <xs:element ref='rib:sides'/>
+    <xs:element ref='rib:identity'/>
+    <xs:element ref='rib:transform'/>
+    <xs:element ref='rib:concattransform'/>
+    <xs:element ref='rib:perspective'/>
+    <xs:element ref='rib:translate'/>
+    <xs:element ref='rib:rotate'/>
+    <xs:element ref='rib:scale'/>
+    <xs:element ref='rib:skew'/>
+    <xs:element ref='rib:coordinatesystem'/>
+    <xs:element ref='rib:coordsystransform'/>
+    <xs:element ref='rib:transformpoints'/>
+    <xs:element ref='rib:transform'/>
+    <xs:element ref='rib:attribute'/>
+    <xs:element ref='rib:world'/>
+   </xs:sequence>
+   <xs:attribute name='nr' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='world'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:polygon'/>
+    <xs:element ref='rib:generalpolygon'/>
+    <xs:element ref='rib:pointspolygons'/>
+    <xs:element ref='rib:pointsgeneralpolygons'/>
+    <xs:element ref='rib:basis'/>
+    <xs:element ref='rib:patch'/>
+    <xs:element ref='rib:patchmesh'/>
+    <xs:element ref='rib:nupatch'/>
+    <xs:element ref='rib:trimcurve'/>
+    <xs:element ref='rib:subdivisionmesh'/>
+    <xs:element ref='rib:sphere'/>
+    <xs:element ref='rib:cone'/>
+    <xs:element ref='rib:cylinder'/>
+    <xs:element ref='rib:hyperboloid'/>
+    <xs:element ref='rib:paraboloid'/>
+    <xs:element ref='rib:disk'/>
+    <xs:element ref='rib:torus'/>
+    <xs:element ref='rib:points'/>
+    <xs:element ref='rib:curves'/>
+    <xs:element ref='rib:blobby'/>
+    <xs:element ref='rib:procedural'/>
+    <xs:element ref='rib:geometry'/>
+    <xs:element ref='rib:solid'/>
+    <xs:element ref='rib:object'/>
+    <xs:element ref='rib:attribute'/>
+    <xs:element ref='rib:color'/>
+    <xs:element ref='rib:opacity'/>
+    <xs:element ref='rib:texturecoordinates'/>
+    <xs:element ref='rib:lightsource'/>
+    <xs:element ref='rib:arealightsource'/>
+    <xs:element ref='rib:illuminate'/>
+    <xs:element ref='rib:surface'/>
+    <xs:element ref='rib:displacement'/>
+    <xs:element ref='rib:atmosphere'/>
+    <xs:element ref='rib:interior'/>
+    <xs:element ref='rib:exterior'/>
+    <xs:element ref='rib:shadingrate'/>
+    <xs:element ref='rib:shadinginterpolation'/>
+    <xs:element ref='rib:matte'/>
+    <xs:element ref='rib:bound'/>
+    <xs:element ref='rib:detail'/>
+    <xs:element ref='rib:detailrange'/>
+    <xs:element ref='rib:geometricapproximation'/>
+    <xs:element ref='rib:orientation'/>
+    <xs:element ref='rib:reverseorientation'/>
+    <xs:element ref='rib:sides'/>
+    <xs:element ref='rib:identity'/>
+    <xs:element ref='rib:transform'/>
+    <xs:element ref='rib:concattransform'/>
+    <xs:element ref='rib:perspective'/>
+    <xs:element ref='rib:translate'/>
+    <xs:element ref='rib:rotate'/>
+    <xs:element ref='rib:scale'/>
+    <xs:element ref='rib:skew'/>
+    <xs:element ref='rib:coordinatesystem'/>
+    <xs:element ref='rib:coordsystransform'/>
+    <xs:element ref='rib:transformpoints'/>
+    <xs:element ref='rib:transform'/>
+    <xs:element ref='rib:motion'/>
+    <xs:element ref='rib:maketexture'/>
+    <xs:element ref='rib:makelatlongenvironment'/>
+    <xs:element ref='rib:makecubefaceenvironment'/>
+    <xs:element ref='rib:makeshadow'/>
+    <xs:element ref='rib:archiverecord'/>
+    <xs:element ref='rib:readarchive'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='format'>
+  <xs:complexType>
+   <xs:attribute name='xresolution' type='xs:string' use='required'/>
+   <xs:attribute name='yresolution' type='xs:string' use='required'/>
+   <xs:attribute name='pixelaspectratio' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='frameaspectratio'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='screenwindow'>
+  <xs:complexType>
+   <xs:attribute name='left' type='xs:string' use='required'/>
+   <xs:attribute name='right' type='xs:string' use='required'/>
+   <xs:attribute name='bottom' type='xs:string' use='required'/>
+   <xs:attribute name='top' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cropwindow'>
+  <xs:complexType>
+   <xs:attribute name='xmin' type='xs:string' use='required'/>
+   <xs:attribute name='xmax' type='xs:string' use='required'/>
+   <xs:attribute name='ymin' type='xs:string' use='required'/>
+   <xs:attribute name='ymax' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='projection'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='name' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='perspective'/>
+      <xs:enumeration value='orthographic'/>
+      <xs:enumeration value='null'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='clipping'>
+  <xs:complexType>
+   <xs:attribute name='near' type='xs:string' use='required'/>
+   <xs:attribute name='far' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='clippingplane'>
+  <xs:complexType>
+   <xs:attribute name='x' type='xs:string' use='required'/>
+   <xs:attribute name='y' type='xs:string' use='required'/>
+   <xs:attribute name='z' type='xs:string' use='required'/>
+   <xs:attribute name='nx' type='xs:string' use='required'/>
+   <xs:attribute name='ny' type='xs:string' use='required'/>
+   <xs:attribute name='nz' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='depthoffield'>
+  <xs:complexType>
+   <xs:attribute name='fstop' type='xs:string' use='required'/>
+   <xs:attribute name='focallength' type='xs:string' use='required'/>
+   <xs:attribute name='focaldistance' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='shutter'>
+  <xs:complexType>
+   <xs:attribute name='min' type='xs:string' use='required'/>
+   <xs:attribute name='max' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='pixelvariance'>
+  <xs:complexType>
+   <xs:attribute name='variation' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='pixelsamples'>
+  <xs:complexType>
+   <xs:attribute name='xsamples' type='xs:string' use='required'/>
+   <xs:attribute name='ysamples' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='pixelfilter'>
+  <xs:complexType>
+   <xs:attribute name='filterfunc' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='box'/>
+      <xs:enumeration value='triangle'/>
+      <xs:enumeration value='catmullrom'/>
+      <xs:enumeration value='guassian'/>
+      <xs:enumeration value='sinc'/>
+      <xs:enumeration value='CDATA'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='xwidth' type='xs:string' use='required'/>
+   <xs:attribute name='ywidth' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='exposure'>
+  <xs:complexType>
+   <xs:attribute name='gain' type='xs:string' use='required'/>
+   <xs:attribute name='gamma' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='imager'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='name' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='CDATA'/>
+      <xs:enumeration value='null'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='quantize'>
+  <xs:complexType>
+   <xs:attribute name='type' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='rgba'/>
+      <xs:enumeration value='z'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='one' type='xs:string' use='required'/>
+   <xs:attribute name='min' type='xs:string' use='required'/>
+   <xs:attribute name='max' type='xs:string' use='required'/>
+   <xs:attribute name='ditheramplitude' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='display'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='name' type='xs:string' use='required'/>
+   <xs:attribute name='type' type='xs:string' use='required'/>
+   <xs:attribute name='mode' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='hider'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='type' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='hidden'/>
+      <xs:enumeration value='null'/>
+      <xs:enumeration value='CDATA'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='colorsamples'>
+  <xs:complexType>
+   <xs:choice>
+    <xs:element ref='rib:nrgb'/>
+    <xs:element ref='rib:rgbn'/>
+   </xs:choice>
+   <xs:attribute name='n' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='nrgb'>
+  <xs:complexType>
+   <xs:attribute name='n0' type='xs:string' use='required'/>
+   <xs:attribute name='n1' type='xs:string' use='required'/>
+   <xs:attribute name='n2' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='rgbn'>
+  <xs:complexType>
+   <xs:attribute name='n0' type='xs:string' use='required'/>
+   <xs:attribute name='n1' type='xs:string' use='required'/>
+   <xs:attribute name='n2' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='relativedetail'>
+  <xs:complexType>
+   <xs:attribute name='relativedetail' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='option'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='name' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='attributestack'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='rib:attribute'/>
+    <xs:element ref='rib:color'/>
+    <xs:element ref='rib:opacity'/>
+    <xs:element ref='rib:texturecoordinates'/>
+    <xs:element ref='rib:lightsource'/>
+    <xs:element ref='rib:arealightsource'/>
+    <xs:element ref='rib:illuminate'/>
+    <xs:element ref='rib:surface'/>
+    <xs:element ref='rib:displacement'/>
+    <xs:element ref='rib:atmosphere'/>
+    <xs:element ref='rib:interior'/>
+    <xs:element ref='rib:exterior'/>
+    <xs:element ref='rib:shadingrate'/>
+    <xs:element ref='rib:shadinginterpolation'/>
+    <xs:element ref='rib:matte'/>
+    <xs:element ref='rib:bound'/>
+    <xs:element ref='rib:detail'/>
+    <xs:element ref='rib:detailrange'/>
+    <xs:element ref='rib:geometricapproximation'/>
+    <xs:element ref='rib:orientation'/>
+    <xs:element ref='rib:reverseorientation'/>
+    <xs:element ref='rib:sides'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='color'>
+  <xs:complexType>
+   <xs:attribute name='r' type='xs:string' use='required'/>
+   <xs:attribute name='g' type='xs:string' use='required'/>
+   <xs:attribute name='b' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='opacity'>
+  <xs:complexType>
+   <xs:attribute name='r' type='xs:string' use='required'/>
+   <xs:attribute name='g' type='xs:string' use='required'/>
+   <xs:attribute name='b' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='texturecoordinates'>
+  <xs:complexType>
+   <xs:attribute name='s1' type='xs:string' use='required'/>
+   <xs:attribute name='t1' type='xs:string' use='required'/>
+   <xs:attribute name='s2' type='xs:string' use='required'/>
+   <xs:attribute name='t2' type='xs:string' use='required'/>
+   <xs:attribute name='s3' type='xs:string' use='required'/>
+   <xs:attribute name='t3' type='xs:string' use='required'/>
+   <xs:attribute name='s4' type='xs:string' use='required'/>
+   <xs:attribute name='t4' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='lightsource'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='shadername' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='ambient'/>
+      <xs:enumeration value='distant'/>
+      <xs:enumeration value='point'/>
+      <xs:enumeration value='spot'/>
+      <xs:enumeration value='CDATA'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='arealightsource'>
+  <xs:complexType>
+   <xs:attribute name='shadername' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='ambient'/>
+      <xs:enumeration value='distant'/>
+      <xs:enumeration value='point'/>
+      <xs:enumeration value='spot'/>
+      <xs:enumeration value='CDATA'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='illuminate'>
+  <xs:complexType>
+   <xs:attribute name='light' type='xs:string' use='required'/>
+   <xs:attribute name='state' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='true'/>
+      <xs:enumeration value='false'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='surface'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='shadername' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='displacement'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='shaderename' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='atmosphere'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='shadername' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='interior'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='shadername' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='depthcue'/>
+      <xs:enumeration value='fog'/>
+      <xs:enumeration value='CDATA'/>
+      <xs:enumeration value='null'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='exterior'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='shadername' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='depthcue'/>
+      <xs:enumeration value='fog'/>
+      <xs:enumeration value='CDATA'/>
+      <xs:enumeration value='null'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='shadingrate'>
+  <xs:complexType>
+   <xs:attribute name='size' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='CDATA'/>
+      <xs:enumeration value='infinity'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='shadinginterpolation'>
+  <xs:complexType>
+   <xs:attribute name='type' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='constant'/>
+      <xs:enumeration value='smooth'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='matte'>
+  <xs:complexType>
+   <xs:attribute name='state' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='true'/>
+      <xs:enumeration value='false'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='bound'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='rib:rtbound'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='detail'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='rib:rtbound'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='detailrange'>
+  <xs:complexType>
+   <xs:attribute name='minvisible' type='xs:string' use='required'/>
+   <xs:attribute name='lowertransition' type='xs:string' use='required'/>
+   <xs:attribute name='uppertransition' type='xs:string' use='required'/>
+   <xs:attribute name='maxvisible' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='geometricapproximation'>
+  <xs:complexType>
+   <xs:attribute name='type' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='flatness'/>
+      <xs:enumeration value='CDATA'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='value' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='orientation'>
+  <xs:complexType>
+   <xs:attribute name='orientation' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='outside'/>
+      <xs:enumeration value='inside'/>
+      <xs:enumeration value='lh'/>
+      <xs:enumeration value='rh'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='reverseorientation'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='sides'>
+  <xs:complexType>
+   <xs:attribute name='sides' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='identity'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='transform'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='rib:rtmatrix'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='concattransform'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='rib:rtmatrix'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='perspective'>
+  <xs:complexType>
+   <xs:attribute name='fov' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='translate'>
+  <xs:complexType>
+   <xs:attribute name='dx' type='xs:string' use='required'/>
+   <xs:attribute name='dy' type='xs:string' use='required'/>
+   <xs:attribute name='dz' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='rotate'>
+  <xs:complexType>
+   <xs:attribute name='angle' type='xs:string' use='required'/>
+   <xs:attribute name='dx' type='xs:string' use='required'/>
+   <xs:attribute name='dy' type='xs:string' use='required'/>
+   <xs:attribute name='dz' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='scale'>
+  <xs:complexType>
+   <xs:attribute name='sx' type='xs:string' use='required'/>
+   <xs:attribute name='sy' type='xs:string' use='required'/>
+   <xs:attribute name='sz' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='skew'>
+  <xs:complexType>
+   <xs:attribute name='angle' type='xs:string' use='required'/>
+   <xs:attribute name='dx1' type='xs:string' use='required'/>
+   <xs:attribute name='dy1' type='xs:string' use='required'/>
+   <xs:attribute name='dz1' type='xs:string' use='required'/>
+   <xs:attribute name='dx2' type='xs:string' use='required'/>
+   <xs:attribute name='dy2' type='xs:string' use='required'/>
+   <xs:attribute name='dz2' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='coordinatesystem'>
+  <xs:complexType>
+   <xs:attribute name='name' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='ratser'/>
+      <xs:enumeration value='NDC'/>
+      <xs:enumeration value='screen'/>
+      <xs:enumeration value='camera'/>
+      <xs:enumeration value='world'/>
+      <xs:enumeration value='object'/>
+      <xs:enumeration value='CDATA'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='coordsystransform'>
+  <xs:complexType>
+   <xs:attribute name='name' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='ratser'/>
+      <xs:enumeration value='NDC'/>
+      <xs:enumeration value='screen'/>
+      <xs:enumeration value='camera'/>
+      <xs:enumeration value='world'/>
+      <xs:enumeration value='object'/>
+      <xs:enumeration value='CDATA'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='transformpoints'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='rib:rtpoint'/>
+   </xs:sequence>
+   <xs:attribute name='fromspace' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='ratser'/>
+      <xs:enumeration value='NDC'/>
+      <xs:enumeration value='screen'/>
+      <xs:enumeration value='camera'/>
+      <xs:enumeration value='world'/>
+      <xs:enumeration value='object'/>
+      <xs:enumeration value='CDATA'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='tospace' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='ratser'/>
+      <xs:enumeration value='NDC'/>
+      <xs:enumeration value='screen'/>
+      <xs:enumeration value='camera'/>
+      <xs:enumeration value='world'/>
+      <xs:enumeration value='object'/>
+      <xs:enumeration value='CDATA'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='n' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='transformationstack'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='attribute'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='name' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='displacementbound'/>
+      <xs:enumeration value='identifier'/>
+      <xs:enumeration value='trimcurve'/>
+      <xs:enumeration value='CDATA'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='p'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:float'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='pz'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:float'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='pw'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:float'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='n'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:float'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cs'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:float'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='os'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:float'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='tc'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:float'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='nvertices'>
+  <xs:complexType>
+   <xs:attribute name='number' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='nloops'>
+  <xs:complexType>
+   <xs:attribute name='number' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='polygon'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='nvertices' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='generalpolygon'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:nloops'/>
+    <xs:element ref='rib:nvertices'/>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='pointspolygons'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:nvertices'/>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='npolys' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='pointsgeneralpolygons'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:nloops'/>
+    <xs:element ref='rib:nvertices'/>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='npolys' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='basis'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:rtmatrix'/>
+   </xs:sequence>
+   <xs:attribute name='ubasis' use='optional'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='bezier'/>
+      <xs:enumeration value='bspline'/>
+      <xs:enumeration value='catmullrom'/>
+      <xs:enumeration value='hermite'/>
+      <xs:enumeration value='power'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='ustep' type='xs:string' use='required'/>
+   <xs:attribute name='vbasis' use='optional'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='bezier'/>
+      <xs:enumeration value='bspline'/>
+      <xs:enumeration value='catmullrom'/>
+      <xs:enumeration value='hermite'/>
+      <xs:enumeration value='power'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='vstep' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='patch'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='type' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='bilinear'/>
+      <xs:enumeration value='bicubic'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='patchmesh'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='type' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='bilinear'/>
+      <xs:enumeration value='bicubic'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='nu' type='xs:string' use='required'/>
+   <xs:attribute name='uwrap' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='periodic'/>
+      <xs:enumeration value='nonperiodic'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='nv' type='xs:string' use='required'/>
+   <xs:attribute name='vwrap' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='periodic'/>
+      <xs:enumeration value='nonperiodic'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='nupatch'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:array'/>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='nu' type='xs:string' use='required'/>
+   <xs:attribute name='uorder' type='xs:string' use='required'/>
+   <xs:attribute name='umin' type='xs:string' use='required'/>
+   <xs:attribute name='umax' type='xs:string' use='required'/>
+   <xs:attribute name='nv' type='xs:string' use='required'/>
+   <xs:attribute name='vorder' type='xs:string' use='required'/>
+   <xs:attribute name='vmin' type='xs:string' use='required'/>
+   <xs:attribute name='vmax' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='trimcurve'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:array'/>
+   </xs:sequence>
+   <xs:attribute name='nloops' type='xs:string' use='required'/>
+   <xs:attribute name='min' type='xs:string' use='required'/>
+   <xs:attribute name='max' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='subdivisionmesh'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:array'/>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='scheme' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='catmull-clark'/>
+      <xs:enumeration value='CDATA'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='nfaces' type='xs:string' use='required'/>
+   <xs:attribute name='ntags' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='sphere'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='radius' type='xs:string' use='required'/>
+   <xs:attribute name='zmin' type='xs:string' use='required'/>
+   <xs:attribute name='zmax' type='xs:string' use='required'/>
+   <xs:attribute name='thetamax' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cone'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='height' type='xs:string' use='required'/>
+   <xs:attribute name='radius' type='xs:string' use='required'/>
+   <xs:attribute name='thetamax' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cylinder'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='radius' type='xs:string' use='required'/>
+   <xs:attribute name='zmin' type='xs:string' use='required'/>
+   <xs:attribute name='zmax' type='xs:string' use='required'/>
+   <xs:attribute name='thetamax' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='hyperboloid'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:rtpoint'/>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='paraboloid'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='rmax' type='xs:string' use='required'/>
+   <xs:attribute name='zmin' type='xs:string' use='required'/>
+   <xs:attribute name='zmax' type='xs:string' use='required'/>
+   <xs:attribute name='thetamax' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='disk'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='height' type='xs:string' use='required'/>
+   <xs:attribute name='radius' type='xs:string' use='required'/>
+   <xs:attribute name='thetamax' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='torus'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='majorradius' type='xs:string' use='required'/>
+   <xs:attribute name='minorradius' type='xs:string' use='required'/>
+   <xs:attribute name='phiminus' type='xs:string' use='required'/>
+   <xs:attribute name='phimax' type='xs:string' use='required'/>
+   <xs:attribute name='thetamax' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='points'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='npoints' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='curves'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:array'/>
+    <xs:element ref='rib:p'/>
+    <xs:element ref='rib:pz'/>
+    <xs:element ref='rib:pw'/>
+    <xs:element ref='rib:n'/>
+    <xs:element ref='rib:cs'/>
+    <xs:element ref='rib:os'/>
+    <xs:element ref='rib:tc'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='type' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='linear'/>
+      <xs:enumeration value='cubic'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='ncurves' type='xs:string' use='required'/>
+   <xs:attribute name='wrap' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='periodic'/>
+      <xs:enumeration value='nonperiodic'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='blobby'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:array'/>
+    <xs:element ref='rib:param'/>
+   </xs:choice>
+   <xs:attribute name='nleaf' type='xs:string' use='required'/>
+   <xs:attribute name='ncode' type='xs:string' use='required'/>
+   <xs:attribute name='nfloats' type='xs:string' use='required'/>
+   <xs:attribute name='nstrings' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='procedural'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:rtbound'/>
+   </xs:sequence>
+   <xs:attribute name='procname' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='delayedreadarchive'/>
+      <xs:enumeration value='runprogram'/>
+      <xs:enumeration value='dynamicload'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='filename' type='xs:string' use='optional'/>
+   <xs:attribute name='programname' type='xs:string' use='optional'/>
+   <xs:attribute name='datablock' type='xs:string' use='optional'/>
+   <xs:attribute name='dsoname' type='xs:string' use='optional'/>
+   <xs:attribute name='paramdata' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='geometry'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='name' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='solid'>
+  <xs:complexType>
+   <xs:attribute name='operation' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='primitive'/>
+      <xs:enumeration value='intersection'/>
+      <xs:enumeration value='union'/>
+      <xs:enumeration value='difference'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='object'>
+  <xs:complexType>
+   <xs:attribute name='sequencenumber' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='motion'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:polygon'/>
+    <xs:element ref='rib:generalpolygon'/>
+    <xs:element ref='rib:pointspolygons'/>
+    <xs:element ref='rib:pointsgeneralpolygons'/>
+    <xs:element ref='rib:basis'/>
+    <xs:element ref='rib:patch'/>
+    <xs:element ref='rib:patchmesh'/>
+    <xs:element ref='rib:nupatch'/>
+    <xs:element ref='rib:trimcurve'/>
+    <xs:element ref='rib:subdivisionmesh'/>
+    <xs:element ref='rib:sphere'/>
+    <xs:element ref='rib:cone'/>
+    <xs:element ref='rib:cylinder'/>
+    <xs:element ref='rib:hyperboloid'/>
+    <xs:element ref='rib:paraboloid'/>
+    <xs:element ref='rib:disk'/>
+    <xs:element ref='rib:torus'/>
+    <xs:element ref='rib:points'/>
+    <xs:element ref='rib:curves'/>
+    <xs:element ref='rib:blobby'/>
+    <xs:element ref='rib:procedural'/>
+    <xs:element ref='rib:geometry'/>
+    <xs:element ref='rib:solid'/>
+    <xs:element ref='rib:object'/>
+    <xs:element ref='rib:array'/>
+   </xs:choice>
+   <xs:attribute name='n' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='maketexture'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='picturename' type='xs:string' use='required'/>
+   <xs:attribute name='texturename' type='xs:string' use='required'/>
+   <xs:attribute name='swrap' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='black'/>
+      <xs:enumeration value='periodic'/>
+      <xs:enumeration value='clamp'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='twrap' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='black'/>
+      <xs:enumeration value='periodic'/>
+      <xs:enumeration value='clamp'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='filter' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='box'/>
+      <xs:enumeration value='triangle'/>
+      <xs:enumeration value='catmull-rom'/>
+      <xs:enumeration value='b-spline'/>
+      <xs:enumeration value='gaussian'/>
+      <xs:enumeration value='sinc'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='swidth' type='xs:string' use='required'/>
+   <xs:attribute name='twidth' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='makelatlongenvironment'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='picturename' type='xs:string' use='required'/>
+   <xs:attribute name='texturename' type='xs:string' use='required'/>
+   <xs:attribute name='filter' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='box'/>
+      <xs:enumeration value='triangle'/>
+      <xs:enumeration value='catmull-rom'/>
+      <xs:enumeration value='b-spline'/>
+      <xs:enumeration value='gaussian'/>
+      <xs:enumeration value='sinc'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='swidth' type='xs:string' use='required'/>
+   <xs:attribute name='twidth' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='makecubefaceenvironment'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='px' type='xs:string' use='required'/>
+   <xs:attribute name='nx' type='xs:string' use='required'/>
+   <xs:attribute name='py' type='xs:string' use='required'/>
+   <xs:attribute name='ny' type='xs:string' use='required'/>
+   <xs:attribute name='pz' type='xs:string' use='required'/>
+   <xs:attribute name='nz' type='xs:string' use='required'/>
+   <xs:attribute name='texturename' type='xs:string' use='required'/>
+   <xs:attribute name='fov' type='xs:string' use='required'/>
+   <xs:attribute name='filter' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='box'/>
+      <xs:enumeration value='triangle'/>
+      <xs:enumeration value='catmull-rom'/>
+      <xs:enumeration value='b-spline'/>
+      <xs:enumeration value='gaussian'/>
+      <xs:enumeration value='sinc'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='swidth' type='xs:string' use='required'/>
+   <xs:attribute name='twidth' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='makeshadow'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rib:param'/>
+   </xs:sequence>
+   <xs:attribute name='picturename' type='xs:string' use='required'/>
+   <xs:attribute name='texturename' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='errorhandler'>
+  <xs:complexType>
+   <xs:attribute name='action' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='ignore,print,abort'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='archiverecord'>
+  <xs:complexType>
+   <xs:attribute name='filename' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='readarchive'>
+  <xs:complexType>
+   <xs:attribute name='filename' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+</xs:schema>
