@@ -13,13 +13,50 @@
     <property name="RibConfigFile" value="RibElements.xml" />
     <property name="LogConfigFile" value="log4j.xml" />
     
+	<!-- Proxy -->
+	<property name="proxy.server" value="www-cache.reith.bbc.co.uk" />
+	<property name="proxy.port" value="80"/>
+	<property name="proxy.local" value="*.wc.bbc.co.uk|*.national.core.bbc.co.uk"/>
+
+	<!-- Archive server -->
+	<property name="archive.server.ibiblio" value="http://www.ibiblio.org" />
+	<property name="archive.server.bbc.conger" value="http://luggage.wc.bbc.co.uk/" />
+	    
+	<property name="lib.dir" location="lib" />
+	
+	<path id="classpath" >
+	        <pathelement location="${build.dir}" />
+	        <fileset dir="${lib.dir}" />
+	</path>
+	
     <target name="init">
         <tstamp />
         <mkdir dir="${Build}" />
         <mkdir dir="${Distribution}" />
     </target>
+	
+	<target name="set-proxy" >
+	        <setproxy proxyhost="${proxy.server}	" proxyport="${proxy.port}" 
+	            nonproxyhosts="${proxy.local}" />        
+	</target>
     
-    <target name="compile" depends="init" description="Compile sources">
+	<target name="get-dependencies" description="">
+	        <mkdir dir="${lib.dir}" />
+	        <!-- Logging library -->
+			<get dest="${lib.dir}/log4j.jar" usetimestamp="true" src="${archive.server.ibiblio}/maven/log4j/jars/log4j-1.2.9.jar" />
+	        <!-- JAXB libraries -->
+	        <get dest="${lib.dir}/jaxme2.jar" usetimestamp="true" src="${archive.server.ibiblio}/maven/jaxme/jars/jaxme2-0.5.jar" />
+	        <get dest="${lib.dir}/jaxmejs.jar" usetimestamp="true" src="${archive.server.ibiblio}/maven/jaxme/jars/jaxmejs-0.5.jar" />
+	        <get dest="${lib.dir}/jaxmexs.jar" usetimestamp="true" src="${archive.server.ibiblio}/maven/jaxme/jars/jaxmexs-0.5.jar" />
+	        <get dest="${lib.dir}/jaxmeapi.jar" usetimestamp="true" src="${archive.server.ibiblio}/maven/jaxme/jars/jaxmeapi-0.5.jar" />
+			<!-- Spring libraries -->
+			<get dest="${lib.dir}/commons-logging.jar" usetimestamp="true" ignoreerrors="true" src="http://www.ibiblio.org/maven/commons-logging/jars/commons-logging-1.0.3.jar" />
+			<get dest="${lib.dir}/spring-core.jar" usetimestamp="true" ignoreerrors="true" src="http://www.ibiblio.org/maven/springframework/jars/spring-core-1.2.6.jar" />
+			<get dest="${lib.dir}/spring-beans.jar" usetimestamp="true" ignoreerrors="true" src="http://www.ibiblio.org/maven/springframework/jars/spring-beans-1.2.6.jar" />
+			<get dest="${lib.dir}/spring-context.jar" usetimestamp="true" ignoreerrors="true" src="http://www.ibiblio.org/maven/springframework/jars/spring-context-1.2.6.jar" />
+	</target>
+    
+	<target name="compile" depends="init" description="Compile sources">
         <mkdir dir="${Build}" />
         
         <!-- For now log4j is included in the ribxml.jar             -->
@@ -91,5 +128,15 @@
         	     doctitle="Dragon3D"/>
     </target>
 	
+	<target name="jaxb" description="Generate java source files from schema">
+	        <taskdef name="xjc"
+	            classname="org.apache.ws.jaxme.generator.XJCTask"
+	            classpathref="classpath"/>
+	        <xjc schema="schemas/xrib.xsd" target="${src.dir}">
+	            <!--
+	            <produces includes="org/apache/ws/jaxme/examples/misc/address/*.java"/>
+	            -->
+	        </xjc>
+	</target>
 	
 </project>
