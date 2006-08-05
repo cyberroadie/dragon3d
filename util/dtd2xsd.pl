@@ -1,4 +1,4 @@
-#! perl
+#!/usr/bin/perl
 #
 # by Dan Connolly http://www.w3.org/People/Connolly/ connolly@w3.org
 #    Bert Bos http://www.w3.org/People/Bos/ <bert@w3.org>
