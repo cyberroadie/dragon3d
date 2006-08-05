@@ -4,11 +4,14 @@
         Renderman Interface to XML conversion tool
     </description>
     
+	<!-- Directories -->
     <property name="Source" location="src" />
     <property name="Library" location="lib" />
     <property name="Build" location="bin" />
     <property name="Distribution" location="dist" />
     <property name="Configuration" location="conf" />
+	<property name="schema.dir" location="schemas"/>
+
     
     <property name="RibConfigFile" value="RibElements.xml" />
     <property name="LogConfigFile" value="log4j.xml" />
@@ -137,6 +140,18 @@
 	            <produces includes="org/apache/ws/jaxme/examples/misc/address/*.java"/>
 	            -->
 	        </xjc>
+	</target>
+	
+	<target name="schemaupload">
+			<!-- Key based authentication required -->
+			<scp todir="cyberroadie@shell.berlios.de:/home/groups/dragon3d/htdocs/rib/" 
+				 trust="yes" 
+				 keyfile="${user.home}/.ssh/id_rsa" 
+				 passphrase="">
+				<fileset dir="${schema.dir}">
+					<include name="**/*.xsd"/>
+				</fileset>
+			</scp>
 	</target>
 	
 </project>
