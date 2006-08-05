@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema
- xmlns:rib="http://www.transformatorhuis.com/rib/"
+ xmlns:rib="http://dragon3d.berlios.de/rib/"
  xmlns:xs="http://www.w3.org/2001/XMLSchema"
- targetNamespace="http://www.transformatorhuis.com/rib/">
+ targetNamespace="http://dragon3d.berlios.de/rib/">
 
+ <xs:element name="rib">
+  <xs:complexType>
+   <xs:all>
+    <xs:element ref="rib:declare" />
+    <xs:element ref="rib:frame"/>
+   </xs:all>
+  </xs:complexType>
+ </xs:element>
+ 
+<!--
  <xs:element name='rib'>
   <xs:complexType>
-   <xs:sequence>
+   <xs:all>
     <xs:element ref='rib:frame'/>
     <xs:element ref='rib:world'/>
     <xs:element ref='rib:format'/>
@@ -93,9 +103,10 @@
     <xs:element ref='rib:makeshadow'/>
     <xs:element ref='rib:archiverecord'/>
     <xs:element ref='rib:readarchive'/>
-   </xs:sequence>
+   </xs:all>
   </xs:complexType>
  </xs:element>
+-->
 
  <xs:element name='float'>
   <xs:complexType>
