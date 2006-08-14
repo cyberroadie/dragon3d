@@ -4,6 +4,9 @@
         Renderman Interface to XML conversion tool
     </description>
     
+	<!-- Local properties -->
+	<property file="build.properties"/>
+	
 	<!-- Directories -->
     <property name="Source" location="src" />
     <property name="Library" location="lib" />
@@ -28,8 +31,11 @@
 	<property name="lib.dir" location="lib" />
 	
 	<path id="classpath" >
-	        <pathelement location="${build.dir}" />
-	        <fileset dir="${lib.dir}" />
+        <pathelement location="${build.dir}" />
+        <fileset dir="${lib.dir}" />
+		<fileset dir="${javaee.home}" includes="lib/javaee.jar" /> 
+        <fileset dir="${javaee.home}" includes="lib/appserv-rt.jar" />
+        <fileset dir="${javaee.home}" includes="lib/appserv-ws.jar" />
 	</path>
 	
     <target name="init">
@@ -142,6 +148,10 @@
 	        </xjc>
 	</target>
 	
+    <target name="jaxb-clean" >
+        <delete dir="${src.dir}/dragon3d/berlios/de/rib/" />
+    </target>
+
 	<target name="schemaupload">
 			<!-- Key based authentication required -->
 			<scp todir="cyberroadie@shell.berlios.de:/home/groups/dragon3d/htdocs/rib/" 
@@ -153,5 +163,5 @@
 				</fileset>
 			</scp>
 	</target>
-	
+	    
 </project>
