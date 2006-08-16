@@ -1,0 +1,36 @@
+<project name="Dragon3D Dependencies" default="get-dependencies">
+    
+    <property name="lib.dir" location="lib" />
+    <property name="archive.server" value="http://www.ibiblio.org" />
+    <property name="archive.server.bbc.conger" value="http://luggage.wc.bbc.co.uk/" />
+
+    <target name="set-bbc-proxy" description="Set this target before others if inside BBC network">
+        <setproxy proxyhost="www-cache.reith.bbc.co.uk" proxyport="80" 
+            nonproxyhosts="*.wc.bbc.co.uk|*.national.core.bbc.co.uk" />
+    </target>
+    
+    <target name="get-dependencies-spring" description="Gets Spring Framework libraries">
+        <mkdir dir="${lib.dir}" />
+        <get dest="${lib.dir}/commons-logging-1.0.3.jar" usetimestamp="true" src="${archive.server}/maven/commons-logging/jars/commons-logging-1.0.3.jar" />
+        <get dest="${lib.dir}/spring-core-1.2.6.jar" usetimestamp="true" src="${archive.server}/maven/springframework/jars/spring-core-1.2.6.jar" />
+        <get dest="${lib.dir}/spring-beans-1.2.6.jar" usetimestamp="true" src="${archive.server}/maven/springframework/jars/spring-beans-1.2.6.jar" />
+        <get dest="${lib.dir}/spring-context-1.2.6.jar" usetimestamp="true" src="${archive.server}/maven/springframework/jars/spring-context-1.2.6.jar" />
+    </target>
+
+    <target name="get-dependencies-logging" description="Gets Log4J Libraries">
+        <mkdir dir="${lib.dir}" />
+        <get dest="${lib.dir}/log4j.jar" usetimestamp="true" src="${archive.server.ibiblio}/maven/log4j/jars/log4j-1.2.9.jar" />
+    </target>
+
+	<!-- TODO: Replace with Sun solution. This is obsolete -->
+    <target name="get-dependencies-jaxme" description="Gets JAXB Libraries">
+		<get dest="${lib.dir}/jaxme2.jar" usetimestamp="true" src="${archive.server.ibiblio}/maven/jaxme/jars/jaxme2-0.5.jar" />
+        <get dest="${lib.dir}/jaxmejs.jar" usetimestamp="true" src="${archive.server.ibiblio}/maven/jaxme/jars/jaxmejs-0.5.jar" />
+        <get dest="${lib.dir}/jaxmexs.jar" usetimestamp="true" src="${archive.server.ibiblio}/maven/jaxme/jars/jaxmexs-0.5.jar" />
+        <get dest="${lib.dir}/jaxmeapi.jar" usetimestamp="true" src="${archive.server.ibiblio}/maven/jaxme/jars/jaxmeapi-0.5.jar" />
+	</target>
+	
+    <target name="get-dependencies" depends="get-dependencies-spring, get-dependencies-logging, get-dependencies-jaxme"
+            description="Get all libraries Conger project depends on"/>
+    
+</project>
