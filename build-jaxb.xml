@@ -15,7 +15,7 @@
     </path>
     
     <target name="jaxb-clean" >
-        <delete dir="${src.dir}/uk/co/bbc/conger/cml" />
+        <delete dir="${src.dir}/net/transformatorhuis/xsd/" failonerror="false"/>
     </target>
     
     <target name="jaxb" depends="jaxb-clean" description="Generate java source files from schema">
@@ -23,8 +23,7 @@
         <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
             <classpath refid="classpath-jaxb" />
         </taskdef>
-        <xjc schema="schemas/xrib.xsd" target="${src.dir}" binding="conf/dragon3d.xml">
-        </xjc>
+        <xjc schema="http://dragon3d.berlios.de/rib/xrib.xsd" target="${src.dir}" binding="conf/dragon3d.xml"/>
     </target>
     
 </project>
