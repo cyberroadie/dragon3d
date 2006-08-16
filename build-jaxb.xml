@@ -23,8 +23,7 @@
         <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
             <classpath refid="classpath-jaxb" />
         </taskdef>
-        <xjc schema="http://luggage.wc.bbc.co.uk/cml/cml.xsd" target="${src.dir}" binding="conf/conger.xml">
-            <!-- <produces includes="uk/co/bbc/wc/luggage/cml/*.java"/> -->
+        <xjc schema="schemas/xrib.xsd" target="${src.dir}" binding="conf/dragon3d.xml">
         </xjc>
     </target>
     
