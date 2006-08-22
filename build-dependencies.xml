@@ -11,10 +11,10 @@
     
     <target name="get-dependencies-spring" description="Gets Spring Framework libraries">
         <mkdir dir="${lib.dir}" />
-        <get dest="${lib.dir}/commons-logging-1.0.3.jar" usetimestamp="true" src="${archive.server}/maven/commons-logging/jars/commons-logging-1.0.3.jar" />
-        <get dest="${lib.dir}/spring-core-1.2.6.jar" usetimestamp="true" src="${archive.server}/maven/springframework/jars/spring-core-1.2.6.jar" />
-        <get dest="${lib.dir}/spring-beans-1.2.6.jar" usetimestamp="true" src="${archive.server}/maven/springframework/jars/spring-beans-1.2.6.jar" />
-        <get dest="${lib.dir}/spring-context-1.2.6.jar" usetimestamp="true" src="${archive.server}/maven/springframework/jars/spring-context-1.2.6.jar" />
+        <get dest="${lib.dir}/commons-logging.jar" usetimestamp="true" src="${archive.server}/maven/commons-logging/jars/commons-logging-1.0.3.jar" />
+        <get dest="${lib.dir}/spring-core.jar" usetimestamp="true" src="${archive.server}/maven/org.springframework/jars/spring-core-2.0-m4.jar" />
+        <get dest="${lib.dir}/spring-beans.jar" usetimestamp="true" src="${archive.server}/maven/org.springframework/jars/spring-beans-2.0-m4.jar" />
+        <get dest="${lib.dir}/spring-context.jar" usetimestamp="true" src="${archive.server}/maven/org.springframework/jars/spring-context-2.0-m4.jar" />
     </target>
 
     <target name="get-dependencies-logging" description="Gets Log4J Libraries">
