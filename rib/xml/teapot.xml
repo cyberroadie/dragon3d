@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rib xmlns="http://dragon3d.berlios.de/rib/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://dragon3d.berlios.de/rib/ http://dragon3d.berlios.de/rib/xrib.xsd">
+    xsi:schemaLocation="http://dragon3d.berlios.de/rib/ ../../schemas/xrib.xsd"
+    version="3.03">
     
+    <display name="teapot.tiff" type="file" mode="rgb"/>
+    <projection name="perspective"/>
     
+    <translate dx="0" dy="0" dz="25"/>
+    
+    <rotate angle="-22" dx="1" dy="0" dz="0"/>
+    <rotate angle="19" dx="0" dy="1" dz="0" />
+    
+    <translate dx="0" dy="-3" dz="0"/>
+    
+    <world>
+        <lightsource shadername="ambientlight">
+            <param name="intensity" value=".4"/>
+        </lightsource>
+        <lightsource shadername="distantlight">
+            <param name="intensity" value=".6"/>
+        </lightsource>
+        <surface shadername="plastic"/>
+        <color r="1" g=".6" b="0"/>
+        
+        <attributestack>
+            <sides sides="2"/>
+            <translate dx="3" dy="1.3" dz="0"/>
+            <rotate angle="30" dx="0" dy="0" dz="1"/>
+            <rotate angle="90" dx="0" dy="1" dz="0"/>
+            <hyperboloid thetamax="360" x1="1.2" y1="0" z1="0" x2="0.4" y2="0" z2="5.7"/>
+        </attributestack>
+        
+        
+    </world>
 </rib>
     
