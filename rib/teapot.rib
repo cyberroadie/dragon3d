@@ -40,8 +40,8 @@ WorldBegin
         TransformBegin
             Rotate 180 0 0 1
             Torus 2.9 .26 0 360 90
-            TransformEnd
-            TransformBegin
+        TransformEnd
+        TransformBegin
             Translate -2.38 0 0
             Rotate 90 0 0 1
             Torus 0.52 .26 0 360 90
@@ -59,8 +59,8 @@ WorldBegin
             Translate 0 0 1.7
             Scale 1 1 1.05468457
             Sphere 5 0 3.12897569 360
-            TransformEnd
-            TransformBegin
+        TransformEnd
+        TransformBegin
             Translate 0 0 1.7
             Scale 1 1 0.463713017
             Sphere 5 -3.66606055 0 360
@@ -81,7 +81,7 @@ WorldBegin
       AttributeBegin
         Orientation "rh"
         Sides 2
-         Torus 0.75 0.45 90 180 360
+        Torus 0.75 0.45 90 180 360
       AttributeEnd
       Translate 0 0 0.675
       Torus 0.75 0.225 -90 90 360
