@@ -6,10 +6,41 @@
 
  <xs:element name="rib">
   <xs:complexType>
-   <xs:all>
-    <xs:element ref="rib:declare" />
-    <xs:element ref="rib:frame"/>
-   </xs:all>
+   <xs:choice minOccurs="0" maxOccurs="unbounded">
+    <xs:element ref="rib:clipping"/>
+    <xs:element ref="rib:clippingplane"/>
+    <xs:element ref="rib:colorsamples"/>
+    <xs:element ref="rib:cropwindow"/>
+    <xs:element ref="rib:depthoffield"/>
+    <xs:element ref="rib:display"/>
+    <xs:element ref="rib:exposure"/>
+    <xs:element ref="rib:format"/>
+    <xs:element ref="rib:frameaspectratio"/>
+    <xs:element ref="rib:hider"/>
+    <xs:element ref="rib:imager"/>
+    <xs:element ref="rib:option"/>
+    <xs:element ref="rib:pixelfilter"/>
+    <xs:element ref="rib:pixelsamples"/>
+    <xs:element ref="rib:pixelvariance"/>
+    <xs:element ref="rib:projection"/>
+    <xs:element ref="rib:quantize"/>
+    <xs:element ref="rib:relativedetail"/>
+    <xs:element ref="rib:screenwindow"/>
+    <xs:element ref="rib:shutter"/>
+    <xs:element ref="rib:concattransform"/>
+    <xs:element ref="rib:coordinatesystem"/>
+    <xs:element ref="rib:coordsystransform"/>
+    <xs:element ref="rib:identity"/>
+    <xs:element ref="rib:perspective"/>
+    <xs:element ref="rib:rotate"/>
+    <xs:element ref="rib:scale"/>
+    <xs:element ref="rib:skew"/>
+    <xs:element ref="rib:transform"/>
+    <xs:element ref="rib:transformpoints"/>
+    <xs:element ref="rib:translate"/>
+    <xs:element ref="rib:world"/>
+   </xs:choice>
+   <xs:attribute name="version"  default="3.03"/>
   </xs:complexType>
  </xs:element>
  
@@ -270,7 +301,8 @@
 
  <xs:element name='world'>
   <xs:complexType>
-   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+   <xs:choice minOccurs="0" maxOccurs="unbounded">
+    <xs:element ref="rib:attributestack"/>
     <xs:element ref='rib:polygon'/>
     <xs:element ref='rib:generalpolygon'/>
     <xs:element ref='rib:pointspolygons'/>
@@ -318,7 +350,7 @@
     <xs:element ref='rib:reverseorientation'/>
     <xs:element ref='rib:sides'/>
     <xs:element ref='rib:identity'/>
-    <xs:element ref='rib:transform'/>
+    <!-- <xs:element ref='rib:transform'/> -->
     <xs:element ref='rib:concattransform'/>
     <xs:element ref='rib:perspective'/>
     <xs:element ref='rib:translate'/>
@@ -336,7 +368,7 @@
     <xs:element ref='rib:makeshadow'/>
     <xs:element ref='rib:archiverecord'/>
     <xs:element ref='rib:readarchive'/>
-   </xs:sequence>
+   </xs:choice>
   </xs:complexType>
  </xs:element>
 
@@ -563,7 +595,7 @@
 
  <xs:element name='attributestack'>
   <xs:complexType>
-   <xs:sequence>
+   <xs:choice minOccurs="0" maxOccurs="unbounded">
     <xs:element ref='rib:attribute'/>
     <xs:element ref='rib:color'/>
     <xs:element ref='rib:opacity'/>
@@ -586,7 +618,10 @@
     <xs:element ref='rib:orientation'/>
     <xs:element ref='rib:reverseorientation'/>
     <xs:element ref='rib:sides'/>
-   </xs:sequence>
+    <xs:element ref="rib:translate"/>
+    <xs:element ref="rib:rotate"/>
+    <xs:element ref="rib:hyperboloid"/>
+   </xs:choice>
   </xs:complexType>
  </xs:element>
 
@@ -627,10 +662,10 @@
    <xs:attribute name='shadername' use='required'>
     <xs:simpleType>
      <xs:restriction base='xs:string'>
-      <xs:enumeration value='ambient'/>
-      <xs:enumeration value='distant'/>
-      <xs:enumeration value='point'/>
-      <xs:enumeration value='spot'/>
+      <xs:enumeration value='ambientlight'/>
+      <xs:enumeration value='distantlight'/>
+      <xs:enumeration value='pointlight'/>
+      <xs:enumeration value='spotlight'/>
       <xs:enumeration value='CDATA'/>
      </xs:restriction>
     </xs:simpleType>
@@ -1342,7 +1377,6 @@
  <xs:element name='hyperboloid'>
   <xs:complexType>
    <xs:choice minOccurs='0' maxOccurs='unbounded'>
-    <xs:element ref='rib:rtpoint'/>
     <xs:element ref='rib:p'/>
     <xs:element ref='rib:pz'/>
     <xs:element ref='rib:pw'/>
@@ -1352,6 +1386,13 @@
     <xs:element ref='rib:tc'/>
     <xs:element ref='rib:param'/>
    </xs:choice>
+   <xs:attribute name="thetamax" type="rib:degrees" use="required"/>
+   <xs:attribute name="x1" use="required" type="xs:float"/>
+   <xs:attribute name="y1" use="required" type="xs:float"/>
+   <xs:attribute name="z1" type="xs:float" use="required"/>
+   <xs:attribute name="x2" type="xs:float" use="required"/>
+   <xs:attribute name="y2" type="xs:float" use="required"/>
+   <xs:attribute name="z2" type="xs:float" use="required"/>
   </xs:complexType>
  </xs:element>
 
@@ -1688,4 +1729,74 @@
    <xs:attribute name='filename' type='xs:string' use='required'/>
   </xs:complexType>
  </xs:element>
+
+ <xs:group name="graphicsstate_attributes">
+  <xs:choice>
+   <xs:element ref="rib:arealightsource"/>
+   <xs:element ref="rib:atmosphere"/>
+   <xs:element ref="rib:attribute"/>
+   <xs:element ref="rib:bound"/>
+   <xs:element ref="rib:color"/>
+   <xs:element ref="rib:detail"/>
+   <xs:element ref="rib:detailrange"/>
+   <xs:element ref="rib:displacement"/>
+   <xs:element ref="rib:exterior"/>
+   <xs:element ref="rib:geometricapproximation"/>
+   <xs:element ref="rib:illuminate"/>
+   <xs:element ref="rib:interior"/>
+   <xs:element ref="rib:lightsource"/>
+   <xs:element ref="rib:matte"/>
+   <xs:element ref="rib:opacity"/>
+   <xs:element ref="rib:orientation"/>
+   <xs:element ref="rib:reverseorientation"/>
+   
+   <xs:element ref="rib:shadinginterpolation"/>
+   <xs:element ref="rib:shadingrate"/>
+   <xs:element ref="rib:sides"/>
+   <xs:element ref="rib:surface"/>
+   <xs:element ref="rib:texturecoordinates"/>
+  </xs:choice>
+ </xs:group>
+ 
+ 
+ 
+ <xs:group name="graphicstate_transformations">
+  <xs:choice>
+   
+  </xs:choice>
+ </xs:group>
+ 
+ <xs:group name="primitives">
+  <xs:choice>
+   <xs:element ref="rib:basis"/>
+   <xs:element ref="rib:blobby"/>
+   <xs:element ref="rib:cone"/>
+   <xs:element ref="rib:curves"/>
+   <xs:element ref="rib:cylinder"/>
+   <xs:element ref="rib:disk"/>
+   <xs:element ref="rib:generalpolygon"/>
+   <xs:element ref="rib:geometry"/>
+   <xs:element ref="rib:hyperboloid"/>
+   <xs:element ref="rib:nupatch"/>
+   <xs:element ref="rib:object"/>
+   <xs:element ref="rib:paraboloid"/>
+   <xs:element ref="rib:patch"/>
+   <xs:element ref="rib:patchmesh"/>
+   <xs:element ref="rib:points"/>
+   <xs:element ref="rib:pointspolygons"/>
+   <xs:element ref="rib:polygon"/>
+   <xs:element ref="rib:procedural"/>
+   <xs:element ref="rib:solid"/>
+   <xs:element ref="rib:sphere"/>
+   <xs:element ref="rib:subdivisionmesh"/>
+   <xs:element ref="rib:torus"/>
+   <xs:element ref="rib:trimcurve"/>
+  </xs:choice>
+ </xs:group>
+ <xs:simpleType name="degrees">
+  <xs:restriction base="xs:float">
+   <xs:minInclusive value="0"/>
+   <xs:maxInclusive value="360"/>
+  </xs:restriction>
+ </xs:simpleType>
 </xs:schema>
