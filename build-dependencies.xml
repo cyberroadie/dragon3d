@@ -22,7 +22,7 @@
         <get dest="${lib.dir}/log4j.jar" usetimestamp="true" src="${archive.server.ibiblio}/maven/log4j/jars/log4j-1.2.9.jar" />
     </target>
 	
-    <target name="get-dependencies" depends="get-dependencies-spring, get-dependencies-logging, get-dependencies-jaxme"
+    <target name="get-dependencies" depends="get-dependencies-spring, get-dependencies-logging"
             description="Get all libraries Conger project depends on"/>
     
 </project>
