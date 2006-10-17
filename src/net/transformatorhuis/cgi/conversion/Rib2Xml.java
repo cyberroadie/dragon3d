@@ -70,8 +70,10 @@ class Rib2Xml {
         Class clazz = getClass();
         URL url = clazz.getResource("/conf/log4j.xml");
         if(url == null) {
-        	System.err.println("Error: Configuration file for Log4j (log4j.xml) not found, aborting...");
-        	System.exit(1);
+        		/* Try reading via filename */
+        	    DOMConfigurator.configure("../conf/log4j.xml");	
+	        	System.err.println("Error: Configuration file for Log4j (log4j.xml) not found, aborting...");
+	        	System.exit(1);
         }
         DOMConfigurator.configure(url);
 
