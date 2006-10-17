@@ -1,7 +1,9 @@
 # #RenderMan RIB
 version 3.03
 
-Display "teapot.tiff" "file" "rgb"
+#Display "teapot.tiff" "file" "rgb"
+#Display "shadow.shd" "dsm" "rgba"
+Display "+shadowmap" "framebuffer" "rgb" "uniform string autoclose" "off"
 
 Projection "perspective" "fov" 30
 
