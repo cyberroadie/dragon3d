@@ -19,7 +19,6 @@ import org.w3c.dom.Document;
 import com.sun.xml.bind.v2.runtime.RuntimeUtil.ToStringAdapter;
 
 import net.transformatorhuis.xsd.*;
-
 /**
  * 
  * This class will create will create Teapot.xml 'staticly' via jaxb.
@@ -36,8 +35,8 @@ public class Teapot {
 	Marshaller m;
 	
 	public Teapot() throws BrokenTeapotException {
-		/* First
-		 *  try to get it out of jar file */
+		logger = Logger.getLogger(Teapot.class);
+		/* First try to get it out of jar file */
 		Class clazz = getClass();
         URL url = clazz.getResource("/conf/log4j.xml");
         if(url == null) {
@@ -53,48 +52,27 @@ public class Teapot {
         
         try {
 			jc = JAXBContext.newInstance( "net.transformatorhuis.xsd" );
+			m = jc.createMarshaller();
 			// creating the ObjectFactory
 			objFactory = new ObjectFactory();
 			rib = objFactory.createRib();
-			rib.setVersion("1.0");
+			rib.setVersion("3.03");
+			
+			Display display = objFactory.createDisplay();
+			display.setName("teapot.tiff");
+			display.setType("file");
+			display.setMode("rgb");
+	
 			
 		} catch (JAXBException e) {
 			throw new BrokenTeapotException(e.toString());
+		} catch (Exception e) {
+			throw new BrokenTeapotException("Error in Teapot constructor: " + e.toString());
 		}
 		
 	}
 	
-	public Rib createRib() {
-		
-		return null;
-	}
-	
-	public World createWorld() {
-		
-		return null;
-	}
-	
-	public Attributestack createSpout() {
-		
-		return null;
-	}
-	
-	public Attributestack createHandle() {
-		
-		return null;
-	}
-
-	public Attributestack createBody() {
-		
-		return null;
-	}
-	
-	public Attributestack createTop() {
-		
-		return null;
-	}
-	
-	public Document toDOM() {
+	public Document toDOM() throws BrokenTeapotException {
 	
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setNamespaceAware(true);
@@ -105,25 +83,26 @@ public class Teapot {
 			doc = db.newDocument();
 			m.marshal(rib, doc);
 		} catch (ParserConfigurationException e) {
-			logger.error(e.toString());
+			throw new BrokenTeapotException(e.toString());
 		} catch (JAXBException e) {
-			logger.error(e.toString());
+			throw new BrokenTeapotException(e.toString());
+		} catch (Exception e) {
+			throw new BrokenTeapotException("Error in toDOM(): " + e.toString());
 		}
 		
 		return doc;
 	}
 	
-	public String toString() {
+	public void toSystemOut() throws BrokenTeapotException {
 		
 		try {
-			m = jc.createMarshaller();
-			m.setProperty( Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE );
-			m.marshal( rib, toDOM() );
+			m.marshal(rib, System.out);
 		} catch (JAXBException e) {
-			logger.error(e.toString());
+			throw new BrokenTeapotException(e.toString());
+		} catch (Exception e) {
+			throw new BrokenTeapotException(e.toString());
 		}
 		
-		return null;
 	}
-	
+		
 }
