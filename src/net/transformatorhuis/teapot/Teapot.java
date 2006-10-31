@@ -55,6 +55,8 @@ public class Teapot {
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			// creating the ObjectFactory
 			objFactory = new ObjectFactory();
+			
+			// Intial setup renderman file
 			rib = objFactory.createRib();
 			rib.setVersion("3.03");
 			
@@ -96,17 +98,42 @@ public class Teapot {
 			translate2.setDz(25);
 			ribList.add(translate2);
 			
+			// World
 			World world = objFactory.createWorld();
 			List worldList = world.getLightsourceOrSurfaceOrColor();
 			
-			Lightsource lightsource = objFactory.createLightsource();
-			lightsource.setShadername("ambientlight");
-			List lightsourceParamList = lightsource.getParam();
+			Lightsource ambientLightSource = objFactory.createLightsource();
+			ambientLightSource.setShadername("ambientlight");
+			List ambientLightSourceParamList = ambientLightSource.getParam();
 			Param param = objFactory.createParam();
 			param.setName("intensity");
 			param.setValue("0.4");
-			lightsourceParamList.add(param);
-			worldList.add(lightsource);
+			ambientLightSourceParamList.add(param);
+			worldList.add(ambientLightSource);
+			
+			Lightsource distantLightSource = objFactory.createLightsource();
+			distantLightSource.setShadername("distantlight");
+			List distantLightSourceParamList = distantLightSource.getParam();
+			Param param2 = objFactory.createParam(); // TODO new sollution for naming param2
+			param2.setName("intensity");
+			param2.setValue("0.6"); // TODO can this be a float? This is not type safe
+			distantLightSourceParamList.add(param2);
+			worldList.add(distantLightSource);
+			
+			Surface surface = objFactory.createSurface();
+			surface.setShadername("plastic");
+			worldList.add(surface);
+			
+			Color color = objFactory.createColor();
+			color.setR("1"); // TODO can this be a float? This is not type safe
+			color.setG("0.6");
+			color.setB("0");
+			worldList.add(color);
+			
+			Spout spout = new Spout(objFactory);
+			worldList.add(spout.getJAXB());
+			Handle handle = new Handle(objFactory);
+			worldList.add(handle.getJAXB());
 			
 			ribList.add(world);
 			
