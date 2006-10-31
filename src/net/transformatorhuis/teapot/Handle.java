@@ -5,7 +5,6 @@ package net.transformatorhuis.teapot;
 
 import java.util.List;
 
-import net.transformatorhuis.xsd.Attributestack;
 import net.transformatorhuis.xsd.*;
 
 /**
