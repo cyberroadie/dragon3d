@@ -138,6 +138,9 @@ public class Teapot {
 			Body body = new Body(objFactory);
 			worldList.add(body.getJAXB());
 			
+			Top top = new Top(objFactory);
+			worldList.add(top.getJAXB());
+			
 			ribList.add(world);
 			
 		} catch (JAXBException e) {
