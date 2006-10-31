@@ -72,8 +72,8 @@
                 <xs:element ref='rib:tc'/>
                 <xs:element ref='rib:param'/>
             </xs:choice>
-            <xs:attribute name='majorradius' type='xs:float' use='required'/>
-            <xs:attribute name='minorradius' type='xs:float' use='required'/>
+            <xs:attribute name='majorradius' type='xs:double' use='required'/>
+            <xs:attribute name='minorradius' type='xs:double' use='required'/>
             <xs:attribute name='phiminus' type='rib:degree' use='required'/>
             <xs:attribute name='phimax' type='rib:degree' use='required'/>
             <xs:attribute name='thetamax' type='rib:degree' use='required'/>
@@ -92,9 +92,9 @@
                 <xs:element ref='rib:tc'/>
                 <xs:element ref='rib:param'/>
             </xs:choice>
-            <xs:attribute name='radius' type='xs:float' use='required'/>
-            <xs:attribute name='zmin' type='xs:float' use='required'/>
-            <xs:attribute name='zmax' type='xs:float' use='required'/>
+            <xs:attribute name='radius' type='xs:double' use='required'/>
+            <xs:attribute name='zmin' type='xs:double' use='required'/>
+            <xs:attribute name='zmax' type='xs:double' use='required'/>
             <xs:attribute name='thetamax' type='rib:degree' use='required'/>
         </xs:complexType>
     </xs:element>
@@ -111,8 +111,8 @@
                 <xs:element ref='rib:tc'/>
                 <xs:element ref='rib:param'/>
             </xs:choice>
-            <xs:attribute name='height' type='xs:float' use='required'/>
-            <xs:attribute name='radius' type='xs:float' use='required'/>
+            <xs:attribute name='height' type='xs:double' use='required'/>
+            <xs:attribute name='radius' type='xs:double' use='required'/>
             <xs:attribute name='thetamax' type='rib:degree' use='required'/>
         </xs:complexType>
     </xs:element>
@@ -148,25 +148,25 @@
     <xs:element name='rotate'>
         <xs:complexType>
             <xs:attribute name='angle' type='rib:degree' use='required'/>
-            <xs:attribute name='dx' type='xs:float' use='required'/>
-            <xs:attribute name='dy' type='xs:float' use='required'/>
-            <xs:attribute name='dz' type='xs:float' use='required'/>
+            <xs:attribute name='dx' type='xs:double' use='required'/>
+            <xs:attribute name='dy' type='xs:double' use='required'/>
+            <xs:attribute name='dz' type='xs:double' use='required'/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name='scale'>
         <xs:complexType>
-            <xs:attribute name='sx' type='xs:float' use='required'/>
-            <xs:attribute name='sy' type='xs:float' use='required'/>
-            <xs:attribute name='sz' type='xs:float' use='required'/>
+            <xs:attribute name='sx' type='xs:double' use='required'/>
+            <xs:attribute name='sy' type='xs:double' use='required'/>
+            <xs:attribute name='sz' type='xs:double' use='required'/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name='translate'>
         <xs:complexType>
-            <xs:attribute name='dx' type='xs:float' use='required'/>
-            <xs:attribute name='dy' type='xs:float' use='required'/>
-            <xs:attribute name='dz' type='xs:float' use='required'/>
+            <xs:attribute name='dx' type='xs:double' use='required'/>
+            <xs:attribute name='dy' type='xs:double' use='required'/>
+            <xs:attribute name='dz' type='xs:double' use='required'/>
         </xs:complexType>
     </xs:element>
     
@@ -240,12 +240,12 @@
                 <xs:element ref='rib:param'/>
             </xs:choice>
             <xs:attribute name="thetamax" type="rib:degree" use="required"/>
-            <xs:attribute name="x1" use="required" type="xs:float"/>
-            <xs:attribute name="y1" use="required" type="xs:float"/>
-            <xs:attribute name="z1" type="xs:float" use="required"/>
-            <xs:attribute name="x2" type="xs:float" use="required"/>
-            <xs:attribute name="y2" type="xs:float" use="required"/>
-            <xs:attribute name="z2" type="xs:float" use="required"/>
+            <xs:attribute name="x1" use="required" type="xs:double"/>
+            <xs:attribute name="y1" use="required" type="xs:double"/>
+            <xs:attribute name="z1" type="xs:double" use="required"/>
+            <xs:attribute name="x2" type="xs:double" use="required"/>
+            <xs:attribute name="y2" type="xs:double" use="required"/>
+            <xs:attribute name="z2" type="xs:double" use="required"/>
         </xs:complexType>
     </xs:element>
     
@@ -261,9 +261,9 @@
                 <xs:element ref='rib:tc'/>
                 <xs:element ref='rib:param'/>
             </xs:choice>
-            <xs:attribute name='radius' type='xs:float' use='required'/>
-            <xs:attribute name='zmin' type='xs:float' use='required'/>
-            <xs:attribute name='zmax' type='xs:float' use='required'/>
+            <xs:attribute name='radius' type='xs:double' use='required'/>
+            <xs:attribute name='zmin' type='xs:double' use='required'/>
+            <xs:attribute name='zmax' type='xs:double' use='required'/>
             <xs:attribute name='thetamax' type='rib:degree' use='required'/>
         </xs:complexType>
     </xs:element>
@@ -344,7 +344,7 @@
     </xs:element>          
         
     <xs:simpleType name="degree">
-        <xs:restriction base="xs:float">
+        <xs:restriction base="xs:double">
             <xs:minInclusive value="-360"/>
             <xs:maxInclusive value="360"/>
         </xs:restriction>
