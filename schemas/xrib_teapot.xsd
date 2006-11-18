@@ -6,13 +6,15 @@
 
     <xs:element name="rib">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
-                <xs:element ref="rib:display"/>
-                <xs:element ref="rib:projection"/>
-                <xs:element ref="rib:rotate"/>
-                <xs:element ref="rib:translate"/>
-                <xs:element ref="rib:world"/>
-            </xs:choice>
+            <xs:sequence>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element ref="rib:display"/>
+                    <xs:element ref="rib:projection"/>
+                    <xs:element ref="rib:rotate"/>
+                    <xs:element ref="rib:translate"/>
+                    <xs:element ref="rib:world"/>
+                </xs:choice>
+            </xs:sequence>                
             <xs:attribute name="version"/>
         </xs:complexType>
     </xs:element>      
