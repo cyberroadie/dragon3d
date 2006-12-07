@@ -1,9 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version="1.0"?><project>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.cyberroadie.dragon3d</groupId>
   <artifactId>Dragon3D</artifactId>
+  <name>Dragon3D</name>
   <version>0.0.1</version>
-  <description>Java Renderman framework</description>
+  <description>Dragon3D, Java Renderman framework</description>
+  <url>http://dragon3d.berlios.de</url>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>maven</groupId>
+        <artifactId>maven-j2ee-plugin</artifactId>
+        <version>1.5.1</version>
+      </plugin>
+    </plugins>
+  </build>
   <dependencies>
     <dependency>
       <groupId>commons-logging</groupId>
@@ -26,14 +44,19 @@
       <version>2.0-m1</version>
     </dependency>
     <dependency>
-      <groupId>ant</groupId>
-      <artifactId>ant-apache-log4j</artifactId>
-      <version>1.6.5</version>
-    </dependency>
-    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.9</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml</groupId>
+      <artifactId>jaxb-impl</artifactId>
+      <version>2.0EA3</version>
     </dependency>
   </dependencies>
 </project>
