@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:rib="http://dragon3d.berlios.de/rib/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://dragon3d.berlios.de/rib/">
+
+    <xs:element name="rib">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element ref="rib:display"/>
+                    <xs:element ref="rib:projection"/>
+                    <xs:element ref="rib:rotate"/>
+                    <xs:element ref="rib:translate"/>
+                    <xs:element ref="rib:world"/>
+                </xs:choice>
+            </xs:sequence>                
+            <xs:attribute name="version"/>
+        </xs:complexType>
+    </xs:element>      
+    
+    <xs:element name="world">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="rib:lightsource"/>
+                <xs:element ref="rib:surface"/>
+                <xs:element ref="rib:color"/>
+                <xs:element ref="rib:attributestack"/>             
+            </xs:choice>
+        </xs:complexType>    
+    </xs:element>
+    
+    <xs:element name="attributestack">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="rib:translate"/>
+                <xs:element ref="rib:rotate"/>
+                <xs:element ref="rib:scale"/>
+                <xs:element ref="rib:sides"/>
+                <xs:element ref="rib:orientation"/>
+                <xs:element ref="rib:hyperboloid"/>
+                <xs:element ref="rib:transformstack"/>
+                <xs:element ref="rib:cylinder"/>
+                <xs:element ref="rib:sphere"/>
+                <xs:element ref="rib:torus"/>
+                <xs:element ref="rib:disk"/>
+                <xs:element ref="rib:attributestack"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="transformstack">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="rib:rotate"/>
+                <xs:element ref="rib:translate"/>
+                <xs:element ref="rib:disk"/>
+                <xs:element ref="rib:torus"/>
+                <xs:element ref="rib:scale"/>
+                <xs:element ref="rib:sphere"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='torus'>
+        <xs:complexType>
+            <xs:choice minOccurs='0' maxOccurs='unbounded'>
+                <xs:element ref='rib:p'/>
+                <xs:element ref='rib:pz'/>
+                <xs:element ref='rib:pw'/>
+                <xs:element ref='rib:n'/>
+                <xs:element ref='rib:cs'/>
+                <xs:element ref='rib:os'/>
+                <xs:element ref='rib:tc'/>
+                <xs:element ref='rib:param'/>
+            </xs:choice>
+            <xs:attribute name='majorradius' type='xs:double' use='required'/>
+            <xs:attribute name='minorradius' type='xs:double' use='required'/>
+            <xs:attribute name='phiminus' type='rib:degree' use='required'/>
+            <xs:attribute name='phimax' type='rib:degree' use='required'/>
+            <xs:attribute name='thetamax' type='rib:degree' use='required'/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='cylinder'>
+        <xs:complexType>
+            <xs:choice minOccurs='0' maxOccurs='unbounded'>
+                <xs:element ref='rib:p'/>
+                <xs:element ref='rib:pz'/>
+                <xs:element ref='rib:pw'/>
+                <xs:element ref='rib:n'/>
+                <xs:element ref='rib:cs'/>
+                <xs:element ref='rib:os'/>
+                <xs:element ref='rib:tc'/>
+                <xs:element ref='rib:param'/>
+            </xs:choice>
+            <xs:attribute name='radius' type='xs:double' use='required'/>
+            <xs:attribute name='zmin' type='xs:double' use='required'/>
+            <xs:attribute name='zmax' type='xs:double' use='required'/>
+            <xs:attribute name='thetamax' type='rib:degree' use='required'/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='disk'>
+        <xs:complexType>
+            <xs:choice minOccurs='0' maxOccurs='unbounded'>
+                <xs:element ref='rib:p'/>
+                <xs:element ref='rib:pz'/>
+                <xs:element ref='rib:pw'/>
+                <xs:element ref='rib:n'/>
+                <xs:element ref='rib:cs'/>
+                <xs:element ref='rib:os'/>
+                <xs:element ref='rib:tc'/>
+                <xs:element ref='rib:param'/>
+            </xs:choice>
+            <xs:attribute name='height' type='xs:double' use='required'/>
+            <xs:attribute name='radius' type='xs:double' use='required'/>
+            <xs:attribute name='thetamax' type='rib:degree' use='required'/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='display'>
+        <xs:complexType>
+            <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+                <xs:element ref='rib:param'/>
+            </xs:sequence>
+            <xs:attribute name='name' type='xs:string' use='required'/>
+            <xs:attribute name='type' type='xs:string' use='required'/>
+            <xs:attribute name='mode' type='xs:string' use='required'/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='projection'>
+        <xs:complexType>
+            <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+                <xs:element ref='rib:param'/>
+            </xs:sequence>
+            <xs:attribute name='name' use='required'>
+                <xs:simpleType>
+                    <xs:restriction base='xs:string'>
+                        <xs:enumeration value='perspective'/>
+                        <xs:enumeration value='orthographic'/>
+                        <xs:enumeration value='null'/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='rotate'>
+        <xs:complexType>
+            <xs:attribute name='angle' type='rib:degree' use='required'/>
+            <xs:attribute name='dx' type='xs:double' use='required'/>
+            <xs:attribute name='dy' type='xs:double' use='required'/>
+            <xs:attribute name='dz' type='xs:double' use='required'/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='scale'>
+        <xs:complexType>
+            <xs:attribute name='sx' type='xs:double' use='required'/>
+            <xs:attribute name='sy' type='xs:double' use='required'/>
+            <xs:attribute name='sz' type='xs:double' use='required'/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='translate'>
+        <xs:complexType>
+            <xs:attribute name='dx' type='xs:double' use='required'/>
+            <xs:attribute name='dy' type='xs:double' use='required'/>
+            <xs:attribute name='dz' type='xs:double' use='required'/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='lightsource'>
+        <xs:complexType>
+            <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+                <xs:element ref='rib:param'/>
+            </xs:sequence>
+            <xs:attribute name='shadername' use='required'>
+                <xs:simpleType>
+                    <xs:restriction base='xs:string'>
+                        <xs:enumeration value='ambientlight'/>
+                        <xs:enumeration value='distantlight'/>
+                        <xs:enumeration value='pointlight'/>
+                        <xs:enumeration value='spotlight'/>
+                        <xs:enumeration value='CDATA'/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='surface'>
+        <xs:complexType>
+            <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+                <xs:element ref='rib:param'/>
+            </xs:sequence>
+            <xs:attribute name='shadername' type='xs:string' use='required'/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='color'>
+        <xs:complexType>
+            <xs:attribute name='r' type='xs:string' use='required'/>
+            <xs:attribute name='g' type='xs:string' use='required'/>
+            <xs:attribute name='b' type='xs:string' use='required'/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='sides'>
+        <xs:complexType>
+            <xs:attribute name='sides' type='xs:string' use='required'/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='orientation'>
+        <xs:complexType>
+            <xs:attribute name='orientation' use='required'>
+                <xs:simpleType>
+                    <xs:restriction base='xs:string'>
+                        <xs:enumeration value='outside'/>
+                        <xs:enumeration value='inside'/>
+                        <xs:enumeration value='lh'/>
+                        <xs:enumeration value='rh'/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='hyperboloid'>
+        <xs:complexType>
+            <xs:choice minOccurs='0' maxOccurs='unbounded'>
+                <xs:element ref='rib:p'/>
+                <xs:element ref='rib:pz'/>
+                <xs:element ref='rib:pw'/>
+                <xs:element ref='rib:n'/>
+                <xs:element ref='rib:cs'/>
+                <xs:element ref='rib:os'/>
+                <xs:element ref='rib:tc'/>
+                <xs:element ref='rib:param'/>
+            </xs:choice>
+            <xs:attribute name="thetamax" type="rib:degree" use="required"/>
+            <xs:attribute name="x1" use="required" type="xs:double"/>
+            <xs:attribute name="y1" use="required" type="xs:double"/>
+            <xs:attribute name="z1" type="xs:double" use="required"/>
+            <xs:attribute name="x2" type="xs:double" use="required"/>
+            <xs:attribute name="y2" type="xs:double" use="required"/>
+            <xs:attribute name="z2" type="xs:double" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='sphere'>
+        <xs:complexType>
+            <xs:choice minOccurs='0' maxOccurs='unbounded'>
+                <xs:element ref='rib:p'/>
+                <xs:element ref='rib:pz'/>
+                <xs:element ref='rib:pw'/>
+                <xs:element ref='rib:n'/>
+                <xs:element ref='rib:cs'/>
+                <xs:element ref='rib:os'/>
+                <xs:element ref='rib:tc'/>
+                <xs:element ref='rib:param'/>
+            </xs:choice>
+            <xs:attribute name='radius' type='xs:double' use='required'/>
+            <xs:attribute name='zmin' type='xs:double' use='required'/>
+            <xs:attribute name='zmax' type='xs:double' use='required'/>
+            <xs:attribute name='thetamax' type='rib:degree' use='required'/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='p'>
+        <xs:complexType>
+            <xs:sequence minOccurs='3' maxOccurs='3'>
+                <xs:element ref='rib:float'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='pz'>
+        <xs:complexType>
+            <xs:sequence minOccurs='1' maxOccurs='1'>
+                <xs:element ref='rib:float'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='pw'>
+        <xs:complexType>
+            <xs:sequence minOccurs='4' maxOccurs='4'>
+                <xs:element ref='rib:float'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='n'>
+        <xs:annotation>
+            <xs:documentation>Normal</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence minOccurs='3' maxOccurs='3'>
+                <xs:element ref='rib:float'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='cs'>
+        <xs:annotation>
+            <xs:documentation>Color</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence minOccurs='0' maxOccurs='3'>
+                <xs:element ref='rib:float'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='os'>
+        <xs:annotation>
+            <xs:documentation>Opacity</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence minOccurs='0' maxOccurs='3'>
+                <xs:element ref='rib:float'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='tc'>
+        <xs:annotation>
+            <xs:documentation>Texture Coordinates</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+                <xs:element ref='rib:float'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name='param'>
+        <xs:complexType>
+            <xs:attribute name='name' type='xs:string' use='required'/>
+            <xs:attribute name='value' type='xs:string' use='optional'/>
+        </xs:complexType>
+    </xs:element>          
+        
+    <xs:simpleType name="degree">
+        <xs:restriction base="xs:double">
+            <xs:minInclusive value="-360"/>
+            <xs:maxInclusive value="360"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name='float'>
+        <xs:complexType>
+            <xs:attribute name='name' type='xs:string' use='optional'/>
+            <xs:attribute name='value' type='xs:string' use='required'/>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>
