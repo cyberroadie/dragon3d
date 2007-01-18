@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.w3c.dom.Document;
 
-import net.transformatorhuis.xsd.*;
+import com.transformatorhuis.xsd.*;
 /**
  * 
  * This class will create will create Teapot.xml 'staticly' via jaxb.

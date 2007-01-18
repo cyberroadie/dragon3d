@@ -5,7 +5,7 @@ package net.transformatorhuis.teapot;
 
 import java.util.List;
 
-import net.transformatorhuis.xsd.*;
+import com.transformatorhuis.xsd.*;
 
 /**
  * @author cyberroadie

@@ -5,8 +5,8 @@ package net.transformatorhuis.teapot;
 
 import java.util.List;
 
-import net.transformatorhuis.xsd.Attributestack;
-import net.transformatorhuis.xsd.*;
+import com.transformatorhuis.xsd.Attributestack;
+import com.transformatorhuis.xsd.*;
 
 /**
  * @author cyberroadie
