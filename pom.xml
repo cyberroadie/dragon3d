@@ -1,4 +1,7 @@
-<?xml version="1.0"?><project>
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">  
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.cyberroadie.dragon3d</groupId>
   <artifactId>Dragon3D</artifactId>
@@ -6,6 +9,26 @@
   <version>0.0.1</version>
   <description>Dragon3D, Java Renderman framework</description>
   <url>http://dragon3d.berlios.de</url>
+  <repositories>
+      <repository>
+        <id>java.net</id>
+        <name>java.net Maven Repository</name>
+        <url>https://maven-repository.dev.java.net/nonav/repository/com.sun.tools.xjc.maven2/maven-plugins/</url>
+        <layout>legacy</layout>
+      </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>maven2-repository.dev.java.net</id>
+      <url>https://maven2-repository.dev.java.net/nonav/repository</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>maven-repository.dev.java.net</id>
+      <name>Java.net Maven 1 Repository (legacy)</name>
+      <url>https://maven-repository.dev.java.net/nonav/repository</url>
+      <layout>legacy</layout>
+    </pluginRepository>
+  </pluginRepositories>  
   <build>
     <plugins>
       <plugin>
@@ -16,9 +39,29 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>maven</groupId>
-        <artifactId>maven-j2ee-plugin</artifactId>
-        <version>1.5.1</version>
+        <groupId>com.sun.tools.xjc.maven2</groupId>
+        <artifactId>maven-jaxb-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <generatePackage>com.transformatorhuis.xsd</generatePackage>
+          <includeSchemas>            
+            <includeSchema>**/*.xsd</includeSchema>
+          </includeSchemas>
+          <excludeSchemas>
+            <excludeSchema>test*.xsd</excludeSchema>
+          </excludeSchemas>
+          <includeBindings>
+            <includeBinding>*.xjb</includeBinding>
+          </includeBindings>
+          <strict>true</strict>
+          <verbose>true</verbose>       
+        </configuration>
       </plugin>
     </plugins>
   </build>
