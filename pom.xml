@@ -49,7 +49,7 @@
           </execution>
         </executions>
         <configuration>
-          <generatePackage>com.transformatorhuis.xsd</generatePackage>
+          <generatePackage>net.transformatorhuis.xsd</generatePackage>
           <includeSchemas>            
             <includeSchema>**/*.xsd</includeSchema>
           </includeSchemas>
