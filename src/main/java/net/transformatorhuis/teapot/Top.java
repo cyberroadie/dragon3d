@@ -1,11 +1,8 @@
-/**
- * 
- */
 package net.transformatorhuis.teapot;
 
 import java.util.List;
 
-import com.transformatorhuis.xsd.*;
+import net.transformatorhuis.xsd.*;
 
 /**
  * @author cyberroadie

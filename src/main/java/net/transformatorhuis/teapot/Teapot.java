@@ -1,6 +1,3 @@
-/**
- * 
- */
 package net.transformatorhuis.teapot;
 
 import java.net.URL;
@@ -17,10 +14,10 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.w3c.dom.Document;
 
-import com.transformatorhuis.xsd.*;
+import net.transformatorhuis.xsd.*;
 /**
  * 
- * This class will create will create Teapot.xml 'staticly' via jaxb.
+ * This class will create Teapot.xml 'staticly' via jaxb.
  * 
  * @author cyberroadie
  *
