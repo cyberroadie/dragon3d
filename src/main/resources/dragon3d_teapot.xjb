@@ -5,7 +5,7 @@
     jxb:schemaLocation="http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd">
     
     <jxb:bindings schemaLocation="xrib_teapot.xsd" node="//xs:schema">
-            <jxb:schemaBindings>
+        <jxb:schemaBindings>
             <jxb:package name="net.transformatorhuis.xsd"/>
         </jxb:schemaBindings>
     </jxb:bindings>
