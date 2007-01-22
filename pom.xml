@@ -9,6 +9,14 @@
   <version>0.0.1</version>
   <description>Dragon3D, Java Renderman framework</description>
   <url>http://dragon3d.berlios.de</url>
+  <distributionManagement>
+    <downloadUrl>http://dragon3d.berlios.de/download/</downloadUrl>
+    <site>
+      <id>net.transformatorhuis.dragon3d</id>
+      <url>scp://dragon3d.berlios.de/home/groups/dragon3d/htdocs/mvn/</url>
+      <name>Dragon3D</name>
+    </site>
+  </distributionManagement>
   <repositories>
       <repository>
         <id>java.net</id>
