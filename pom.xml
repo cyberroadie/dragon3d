@@ -17,6 +17,15 @@
       <name>Dragon3D</name>
     </site>
   </distributionManagement>
+  <scm>
+    <connection>
+      scm:svn:http://svn.berlios.de/svnroot/repos/dragon3d/Dragon3D/trunk/
+    </connection>
+    <developerConnection>
+      scm:svn:https://svn.berlios.de/svnroot/repos/dragon3d/Dragon3D/trunk/
+    </developerConnection>
+    <url>https://svn.berlios.de/svnroot/repos/dragon3d/Dragon3D/trunk/</url>
+  </scm>
   <repositories>
       <repository>
         <id>java.net</id>
