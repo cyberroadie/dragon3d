@@ -2,7 +2,7 @@
 <jxb:bindings version="2.0"
     xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd">
+    jxb:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd">
     
     <jxb:bindings schemaLocation="xrib_teapot.xsd" node="//xs:schema">
         <jxb:schemaBindings>
