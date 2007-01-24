@@ -101,10 +101,6 @@ border-bottom:      1px solid #cccccc;
  background-color: #fffff5;
 }
 
-h2 {
-  margin-right: 210px;
-}
-
-p {
+.section {
   margin-right: 210px;
 }
