@@ -1,0 +1,5 @@
+Summary
+
+ Dragon3D is a Java framework for the Renderman (c) Interface.
+ Every RIB element is defined in it's own object and is created in a factory once it is read from a RIB input file.
+ The first functional implementation of this framework is a Renderman (c) Interface Bytestream file to a Renderman (c) XML format convertor.

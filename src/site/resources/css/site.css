@@ -1,3 +1,13 @@
+#bannerLeft img {
+ padding:            15px 10px 10px 10px;
+}
+
+#bannerRight img {
+  position:absolute; 
+  top:15px; 
+  right:15px;
+}
+
 .contentheading {
 font:               14px 'Lucida Grande',Verdana,sans-serif;
 font-weight:        bold;
@@ -33,7 +43,6 @@ color:              #333333;
 
 body {
 margin:             0px 0px 0px 0px;
-background-color:   #eeeeee;
 }
 
 a {
@@ -88,4 +97,14 @@ padding:            40px 0px 40px 0px;
 border-bottom:      1px solid #cccccc;
 }
 
+.composite {
+ background-color: #fffff5;
+}
 
+h2 {
+  margin-right: 210px;
+}
+
+p {
+  margin-right: 210px;
+}
