@@ -63,6 +63,14 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
       </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <configuration>
+            <!-- <configLocation>checkstyle.xml</configLocation> -->
+            <!-- <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation> -->
+          </configuration>
+        </plugin>
     </plugins>
   </reporting>
   <distributionManagement>
