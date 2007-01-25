@@ -98,9 +98,13 @@ border-bottom:      1px solid #cccccc;
 }
 
 .composite {
- background-color: #fffff5;
+   background-color: #fffff5;
 }
 
-.section {
+body {
   margin-right: 210px;
+}
+
+#breadcrumbs {
+  margin-right: -210px; 
 }
