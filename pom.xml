@@ -9,11 +9,32 @@
   <version>0.0.1</version>
   <description>Dragon3D, Java Renderman framework</description>
   <url>http://dragon3d.berlios.de</url>
+  <licenses>
+    <license>
+      <name>GNU General Public License Version 2</name>
+      <url>http://www.gnu.org/licenses/gpl.txt</url>
+      <distribution>manual</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Olivier Van Acker</name>
+      <id>cyberroadie</id>
+      <url>http://cyberroadie.blogspot.com</url>
+      <organization>Transformatorhuis</organization>
+      <organizationUrl>http://www.transformatorhuis.com/</organizationUrl>
+      <roles>
+        <role>Core Developer</role>
+      </roles>
+      <email>cyberroadie@gmail.com</email>
+      <timezone>0</timezone>
+    </developer>
+  </developers>
   <distributionManagement>
     <downloadUrl>http://dragon3d.berlios.de/download/</downloadUrl>
     <site>
       <id>net.transformatorhuis.dragon3d</id>
-      <url>scp://dragon3d.berlios.de/home/groups/dragon3d/htdocs/mvn/</url>
+      <url>scp://shell.berlios.de/home/groups/dragon3d/htdocs/</url>
       <name>Dragon3D</name>
     </site>
   </distributionManagement>
@@ -101,6 +122,8 @@
               <report>cim</report>
               <report>license</report>
               <report>scm</report>
+              <report>project-team</report>
+              <report>maven-developer-activity-plugin</report>
             </reports>
           </reportSet>
         </reportSets>
