@@ -71,6 +71,18 @@
             <!-- <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation> -->
           </configuration>
         </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <configuration>
+          <rulesets>
+            
+          </rulesets>
+          <sourceEncoding>utf-8</sourceEncoding>
+          <minimumTokens>100</minimumTokens>
+          <targetJdk>1.6</targetJdk>
+        </configuration>
+      </plugin>
     </plugins>
   </reporting>
   <distributionManagement>
@@ -172,6 +184,7 @@
           </execution>
         </executions>
       </plugin> 
+      
     </plugins>
   </build>
   <dependencies>
