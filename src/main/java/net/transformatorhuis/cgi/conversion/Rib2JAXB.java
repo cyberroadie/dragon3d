@@ -1,6 +1,3 @@
-/**
- * 
- */
 package net.transformatorhuis.cgi.conversion;
 
 /**
