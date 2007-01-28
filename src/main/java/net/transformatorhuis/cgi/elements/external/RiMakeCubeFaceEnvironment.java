@@ -23,7 +23,7 @@ public class RiMakeCubeFaceEnvironment extends Rib {
     
     /**
      * MakeCubeFaceEnvironment.
-     * @param param
+     * @param param extra parameters
      */
     public RiMakeCubeFaceEnvironment(final String param) {
         super(param);

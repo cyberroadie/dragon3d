@@ -23,7 +23,7 @@ public class RiReadArchive extends Rib {
 	
     /**
      * ReadArchive.
-     * @param param
+     * @param param extra parameters
      */
     public RiReadArchive(final String param) {
         super(param);

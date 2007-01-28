@@ -23,7 +23,7 @@ public class RiMakeShadow extends Rib {
     
     /**
      * MakeShadow.
-     * @param param
+     * @param param extra parameters
      */
     public RiMakeShadow(final String param) {
 	    super(param);

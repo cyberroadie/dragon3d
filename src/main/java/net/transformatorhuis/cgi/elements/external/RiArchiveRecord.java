@@ -23,7 +23,7 @@ public class RiArchiveRecord extends Rib {
     
     /**
      * ArchiveRecord.
-     * @param param
+     * @param param extra parameters
      */
     public RiArchiveRecord(final String param) {
         super(param);

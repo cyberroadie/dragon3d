@@ -23,7 +23,7 @@ public class RiErrorHandler extends Rib {
     
     /**
      * ErrorHandler.
-     * @param param
+     * @param param extra parameters
      */
     public RiErrorHandler(String param) {
         super(param);

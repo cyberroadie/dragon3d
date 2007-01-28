@@ -23,7 +23,7 @@ public class RiMakeLatLongEnvironment extends Rib {
     
     /**
      * MakeLatLongEnvironment.
-     * @param param
+     * @param param extra parameters
      */
     public RiMakeLatLongEnvironment(final String param) {
         super(param);

@@ -23,7 +23,7 @@ public class RiMakeTexture extends Rib {
     	
     /**
      * MakeTexture.
-     * @param param
+     * @param param extra parameters
      */
     public RiMakeTexture(String param) {
         super(param);
