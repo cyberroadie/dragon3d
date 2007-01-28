@@ -26,7 +26,7 @@ import javax.xml.parsers.ParserConfigurationException;
  * program. To prevent multiple instantiations of this class, this class
  * implements the Singelton Pattern.
  */
-public class Config {
+public final class Config {
 
     /**
      * Logger.
@@ -65,6 +65,9 @@ public class Config {
 
     }
 
+    /**
+     * @return instance flag
+     */
     static public Config instance() {
 
         if (!instanceFlag) {
@@ -75,18 +78,25 @@ public class Config {
         }
     }
 
+    /**
+     * Returns names.
+     * @return names
+     */
     public Vector getNames() {
         return new Vector(rib.keySet());
     }
 
-    /*
+    /**
      * Returns hashtable with names mapped to package classnames
      */
     public Hashtable getClasses() {
         return rib;
     }
 
-    private void parseConfigFile(InputStream configFile) {
+    /**
+     * @param configFile
+     */
+    private void parseConfigFile(final InputStream configFile) {
 
         String ribElementName;
         String ribElementClassName;
