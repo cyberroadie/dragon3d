@@ -20,9 +20,9 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerConfigurationException;
 
-import javax.xml.transform.dom.DOMSource; 
+import javax.xml.transform.dom.DOMSource;
 
-import javax.xml.transform.stream.StreamResult; 
+import javax.xml.transform.stream.StreamResult;
 
 /**
  * Holds all information about status rib xml document
@@ -35,15 +35,15 @@ public class RibDocument implements RibOutput {
      * Logger.
      */
     private static Logger logger = Logger.getLogger(RibDocument.class);
-    
+
     /**
      * Rib XML document.
      */
     private static RibDocument instance = null;
-    
+
     /* Vector to keep track of current active xml element */
     private Stack parentNodes;
-    
+
     private Element root;
 
     /**
@@ -52,27 +52,29 @@ public class RibDocument implements RibOutput {
      * the RibFactory. 
      */
     private static Document ribDoc;
-    
+
     private Class ribClazz;
 
     private RibDocument() {
-    
+
         /* Create empty xml document */
-        DocumentBuilderFactory docBuilderFac = DocumentBuilderFactory.newInstance();
-        
+        DocumentBuilderFactory docBuilderFac = DocumentBuilderFactory
+        .newInstance();
+
         try {
             DocumentBuilder docBuilder = docBuilderFac.newDocumentBuilder();
             ribDoc = docBuilder.newDocument();
-        } catch (ParserConfigurationException ex) { } // No exception, empty document is created
-    
+        } catch (ParserConfigurationException ex) {
+        } // No exception, empty document is created
+
         root = ribDoc.createElement("rib");
-       
+
         parentNodes = new Stack();
-        
+
         // Add first (root) element of xml doc
         parentNodes.push(root);
         logger.debug("Stack size (constructor): " + parentNodes.size());
-        
+
     };
 
     /**
@@ -80,19 +82,19 @@ public class RibDocument implements RibOutput {
      * RibDocument starts element calculation from within
      */
     public static RibDocument newInstance() {
-            
-        if(instance == null) {
+
+        if (instance == null) {
             instance = new RibDocument();
             logger.debug("Created new RibDocument");
         }
-        
+
         return instance;
-        
+
     }
-    
+
     public void doJob(Rib rib) {
 
-        if(rib.isEndElement()) {
+        if (rib.isEndElement()) {
             try {
                 parentNodes.pop();
                 logger.debug("Stack size: " + parentNodes.size());
@@ -108,53 +110,53 @@ public class RibDocument implements RibOutput {
             Node currentNode = rib.createXML(this);
             parentNode.appendChild(currentNode);
             parentNodes.push(parentNode);
-            if(rib.hasChildElements()) {
+            if (rib.hasChildElements()) {
                 parentNodes.push(currentNode);
-            }       
+            }
         }
-        
+
     }
-    
+
     public Element requestElement(String name) {
-    
+
         return ribDoc.createElement(name);
-        
+
     }
-    
+
     public Text requestTextNode(String data) {
-    
+
         return ribDoc.createTextNode(data);
-        
+
     }
-    
+
     public Comment requestComment(String data) {
-    
+
         return ribDoc.createComment(data);
-        
+
     }
-    
+
     public void toFile() {
-    
+
         ribDoc.appendChild(root);
-        
+
         try {
             TransformerFactory tFactory = TransformerFactory.newInstance();
             Transformer transformer = tFactory.newTransformer();
-            
+
             DOMSource source = new DOMSource(ribDoc);
             StreamResult result = new StreamResult(System.out);
             transformer.setOutputProperty("indent", "yes");
-            transformer.transform(source, result);    
-    
-        } catch (TransformerConfigurationException tce) { 
+            transformer.transform(source, result);
+
+        } catch (TransformerConfigurationException tce) {
             logger.debug(tce.toString());
         } catch (TransformerException te) {
             logger.debug(te.toString());
         }
-        
+
         // Document is finished, so cleaning up
         finalize();
-        
+
     }
 
     public void finalize() {
