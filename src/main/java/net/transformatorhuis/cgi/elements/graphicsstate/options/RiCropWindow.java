@@ -1,13 +1,13 @@
 package net.transformatorhuis.cgi.elements.graphicsstate.options;
 
 import org.apache.log4j.Logger;
-import net.transformatorhuis.cgi.conversion.Rib;
+import net.transformatorhuis.cgi.conversion.AbstractRib;
 
 /**
  * @author cyberroadie
  *
  */
-public class RiCropWindow extends Rib {
+public class RiCropWindow extends AbstractRib {
 
     /**
      * Logger.
@@ -15,14 +15,14 @@ public class RiCropWindow extends Rib {
     private static Logger logger = Logger.getLogger(RiCropWindow.class);
 
     /**
-     * CropWindow
+     * CropWindow.
      */
     public RiCropWindow() {
         super();
     }
 
     /**
-     * CropWindow
+     * CropWindow.
      * @param param extra parameters
      */
     public RiCropWindow(final String param) {

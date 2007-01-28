@@ -6,6 +6,9 @@ package net.transformatorhuis.cgi.conversion;
  */
 public class Rib2JAXB {
 
+    /**
+     * Converts RIB to JAXB.
+     */
     public Rib2JAXB() {
         super();
         // TODO Auto-generated constructor stub
@@ -19,4 +22,11 @@ public class Rib2JAXB {
 
     }
 
+    /**
+     * @return true
+     */
+    public boolean test() {
+        return true;
+    }
+    
 }

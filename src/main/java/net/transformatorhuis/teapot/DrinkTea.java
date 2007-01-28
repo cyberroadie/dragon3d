@@ -24,18 +24,24 @@ import org.w3c.dom.Document;
  */
 public class DrinkTea {
 
-    Logger logger;
-
-    public DrinkTea() {
+    /**
+     * Logger.
+     */
+    private static Logger logger;
+    
+    /**
+     * Drink tea.
+     */
+    protected DrinkTea() {
         super();
-        logger = Logger.getLogger(DrinkTea.class);
     }
 
     /**
-     * @param args
+     * @param args additional arguments
      */
     public static void main(String[] args) {
 
+        logger = Logger.getLogger(DrinkTea.class);
         Teapot teapot = null;
 
         try {
@@ -52,6 +58,10 @@ public class DrinkTea {
 
     }
 
+    /**
+     * Write XML file.
+     * @param doc xml document
+     */
     public static void writeFile(Document doc) {
         Source source = new DOMSource(doc);
         File file = new File("teapot.xml");

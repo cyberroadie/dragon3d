@@ -1,13 +1,13 @@
 package net.transformatorhuis.cgi.elements.graphicsstate;
 
 import org.apache.log4j.Logger;
-import net.transformatorhuis.cgi.conversion.Rib;
+import net.transformatorhuis.cgi.conversion.AbstractRib;
 
 /**
  * @author cyberroadie
  *
  */
-public class RiBegin extends Rib {
+public class RiBegin extends AbstractRib {
 
     /**
      * Logger.

@@ -33,7 +33,7 @@ import javax.xml.transform.stream.StreamResult;
  * jar file and used by various programs like the RibFactory to lookup
  * package/class names or Rib2Xml to have a list of (rib element) keywords. So
  * if class files are added or removed the config file stays correct.
- *
+ * 
  * TODO: - Get extra info out of class files via refactoring - Split up in
  * Creator an Writer ?
  */
@@ -78,7 +78,9 @@ public class ConfigGenerator {
 
     /**
      * Main method.
-     * @param argv additional arguments
+     * 
+     * @param argv
+     *            additional arguments
      */
     public static void main(final String[] argv) {
 
@@ -94,26 +96,22 @@ public class ConfigGenerator {
             System.exit(1);
         }
 
-        try {
-            ConfigGenerator configGenerator = new ConfigGenerator();
-            File baseDir = new File(argv[1]);
-            configGenerator.createDirContent(baseDir.listFiles(), baseDir
-                    .toString());
-            configGenerator.createConfigDoc(new File(argv[0]));
-        } catch (Exception confEx) {
-            System.out.println("Invalid config file name: " + argv[0]);
-            System.out.println(confEx.toString());
-            printUsage();
-            System.exit(1);
-        }
+        ConfigGenerator configGenerator = new ConfigGenerator();
+        File baseDir = new File(argv[1]);
+        configGenerator.createDirContent(baseDir.listFiles(), baseDir
+                .toString());
+        configGenerator.createConfigDoc(new File(argv[0]));
 
     }
 
     /**
-     * Scans all directories for files.
-     * If directory is encountered it calls itself
-     * @param dir directory
-     * @param key key
+     * Scans all directories for files. If directory is encountered it calls
+     * itself
+     * 
+     * @param dir
+     *            directory
+     * @param key
+     *            key
      */
     private void createDirContent(final File[] dir, final String key) {
 
@@ -132,20 +130,25 @@ public class ConfigGenerator {
     }
 
     /**
-     * Adds key to dirContent hashtable. 
-     * The key is linked to a vector (which thus can store multiple keys).
-     * @param key key
-     * @param value value
+     * Adds key to dirContent hashtable. The key is linked to a vector (which
+     * thus can store multiple keys).
+     * 
+     * @param key
+     *            key
+     * @param value
+     *            value
      */
     private void add(String key, String value) {
 
-        if (dirContent.containsKey(key)) { // Mapping a value to existing key
+        // Mapping a value to existing key
+        if (dirContent.containsKey(key)) {
             Vector vector = (Vector) dirContent.get(key);
             Vector<String> valueVec = vector;
             valueVec.add(value);
             dirContent.remove(key);
             dirContent.put(key, valueVec);
-        } else { // Adding a new key and value
+        } else {
+            // Adding a new key and value
             Vector<String> valueVec = new Vector<String>();
             valueVec.add(value);
             dirContent.put(key, valueVec);
@@ -158,7 +161,9 @@ public class ConfigGenerator {
      * <package name="...."> <ribelement name="...." classname="...." />
      * <ribelement name="...." classname="...." /> .... </package> TODO: -
      * Validate with DTD?
-     * @param configFile configuration file
+     * 
+     * @param configFile
+     *            configuration file
      */
     private void createConfigDoc(final File configFile) {
 
@@ -231,11 +236,11 @@ public class ConfigGenerator {
 
         System.out.println("Usage:");
         System.out.println("net.transformatorhuis.cgi.utils.ConfigGenerator "
-                        + "[ouput] [basedir]\n");
+                + "[ouput] [basedir]\n");
         System.out.println("ouput: name and location of the config "
-                        + "file to be created");
+                + "file to be created");
         System.out.println("basedir: start point for recursive "
-                        + "search of classes");
+                + "search of classes");
 
     }
 

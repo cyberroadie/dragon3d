@@ -1,13 +1,13 @@
 package net.transformatorhuis.cgi.elements.graphicsstate.transformations;
 
 import org.apache.log4j.Logger;
-import net.transformatorhuis.cgi.conversion.Rib;
+import net.transformatorhuis.cgi.conversion.AbstractRib;
 
 /**
  * @author cyberroadie
  *
  */
-public class RiPerspective extends Rib {
+public class RiPerspective extends AbstractRib {
 
     /**
      * Logger.
@@ -23,7 +23,7 @@ public class RiPerspective extends Rib {
 
     /**
      * Perspective.
-     * @param param
+     * @param param extra parameters
      */
     public RiPerspective(final String param) {
         super(param);

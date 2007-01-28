@@ -1,18 +1,18 @@
 package net.transformatorhuis.cgi.elements.primitives;
 
 import org.apache.log4j.Logger;
-import net.transformatorhuis.cgi.conversion.Rib;
+import net.transformatorhuis.cgi.conversion.AbstractRib;
 
 /**
  * @author cyberroadie
  *
  */
-public class RiProcDelayedReadArchive extends Rib {
+public class RiProcDelayedReadArchive extends AbstractRib {
 
     /**
      * Logger.
      */
-    private static Logger logger = 
+    private static Logger logger =
         Logger.getLogger(RiProcDelayedReadArchive.class);
 
     /**

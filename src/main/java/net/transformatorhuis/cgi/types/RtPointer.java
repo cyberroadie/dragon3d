@@ -2,6 +2,11 @@ package net.transformatorhuis.cgi.types;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Pointer.
+ * @author cyberroadie
+ *
+ */
 public class RtPointer {
 
     /**

@@ -1,13 +1,13 @@
 package net.transformatorhuis.cgi.elements.external;
 
 import org.apache.log4j.Logger;
-import net.transformatorhuis.cgi.conversion.Rib;
+import net.transformatorhuis.cgi.conversion.AbstractRib;
 
 /**
  * @author cyberroadie
  *
  */
-public class RiArchiveRecord extends Rib {
+public class RiArchiveRecord extends AbstractRib {
 
     /**
      * Logger.
@@ -27,6 +27,6 @@ public class RiArchiveRecord extends Rib {
      */
     public RiArchiveRecord(final String param) {
         super(param);
-    }		
+    }
 
 }

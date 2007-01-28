@@ -36,7 +36,7 @@ public class RibFactory {
     /**
      * This processes a rib element.
      *
-     * @param ribLine
+     * @param ribLine one line of a rib file
      */
     public final void processRibElement(final String ribLine) {
 
@@ -47,21 +47,23 @@ public class RibFactory {
         Class[] intArgsClass;
         Object[] intArgs;
         Class ribElementDefinition;
-        Rib rib = null;
+        AbstractRib rib = null;
 
         int c = ribLine.indexOf(' ');
         if (c != -1) {
             // With params
-            param = ribLine.substring(c, ribLine.length()); // Get rid of the
-                                                            // EOL ('\r')
+            // Get rid of the EOL ('\r')
+            param = ribLine.substring(c, ribLine.length()); 
+                                                            
             element = ribLine.substring(0, c);
             intArgsClass = new Class[] {String.class};
             intArgs = new Object[] {param};
 
         } else {
             // No params
-            element = ribLine; // .substring(0, ribLine.length()); // Get rid
-                                // of the EOL ('\r')
+//          .substring(0, ribLine.length()); Get rid of the EOL ('\r')
+            element = ribLine; 
+                                
             intArgsClass = new Class[] {};
             intArgs = null;
         }
@@ -71,7 +73,7 @@ public class RibFactory {
                     true, this.getClass().getClassLoader());
 
             // Instantiate the new rib element
-            rib = (Rib) ribElementDefinition.getConstructor(intArgsClass)
+            rib = (AbstractRib) ribElementDefinition.getConstructor(intArgsClass)
                     .newInstance(intArgs);
 
             // Give the rib element to RibDocument which knows what to do with
@@ -91,8 +93,6 @@ public class RibFactory {
             System.out.println(cnfe);
         } catch (NoSuchMethodException nsme) {
             System.out.println(nsme);
-        } catch (Exception ex) {
-            System.out.println(ex);
         }
 
     }

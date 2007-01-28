@@ -1,13 +1,13 @@
 package net.transformatorhuis.cgi.elements.graphicsstate.transformations;
 
 import org.apache.log4j.Logger;
-import net.transformatorhuis.cgi.conversion.Rib;
+import net.transformatorhuis.cgi.conversion.AbstractRib;
 
 /**
  * @author cyberroadie
  *
  */
-public class RiTransformEnd extends Rib {
+public class RiTransformEnd extends AbstractRib {
 
     /**
      * Logger.
@@ -30,7 +30,7 @@ public class RiTransformEnd extends Rib {
     }
 
     /**
-     * Has end elements
+     * Is an end element.
      * @return True
      */
     public boolean isEndElement() {

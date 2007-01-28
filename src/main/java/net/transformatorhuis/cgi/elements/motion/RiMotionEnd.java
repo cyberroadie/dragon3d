@@ -1,13 +1,13 @@
 package net.transformatorhuis.cgi.elements.motion;
 
 import org.apache.log4j.Logger;
-import net.transformatorhuis.cgi.conversion.Rib;
+import net.transformatorhuis.cgi.conversion.AbstractRib;
 
 /**
  * @author cyberroadie
  *
  */
-public class RiMotionEnd extends Rib {
+public class RiMotionEnd extends AbstractRib {
 
     /**
      * Logger.

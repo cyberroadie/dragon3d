@@ -1,13 +1,13 @@
 package net.transformatorhuis.cgi.elements.graphicsstate.options;
 
 import org.apache.log4j.Logger;
-import net.transformatorhuis.cgi.conversion.Rib;
+import net.transformatorhuis.cgi.conversion.AbstractRib;
 
 /**
  * @author cyberroadie
  *
  */
-public class RiPixelFilter extends Rib {
+public class RiPixelFilter extends AbstractRib {
 
     /**
      * Logger.
@@ -23,7 +23,7 @@ public class RiPixelFilter extends Rib {
 
     /**
      * PixelFilter.
-     * @param param
+     * @param param extra parameters
      */
     public RiPixelFilter(final String param) {
         super(param);

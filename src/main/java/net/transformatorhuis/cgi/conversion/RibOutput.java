@@ -8,8 +8,8 @@ public interface RibOutput {
 
     /**
      * Do the job.
-     * @param rib
+     * @param rib rib
      */
-    public void doJob(Rib rib);
+    public void doJob(AbstractRib rib);
     
 }

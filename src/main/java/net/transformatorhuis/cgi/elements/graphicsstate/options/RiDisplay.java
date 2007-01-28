@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 
 import org.w3c.dom.Element;
 
-import net.transformatorhuis.cgi.conversion.Rib;
+import net.transformatorhuis.cgi.conversion.AbstractRib;
 import net.transformatorhuis.cgi.conversion.RibDocument;
 
 import java.util.Vector;
@@ -15,18 +15,36 @@ import org.w3c.dom.Node;
  * @author cyberroadie
  * 
  */
-public class RiDisplay extends Rib {
+public class RiDisplay extends AbstractRib {
 
-    static Logger logger = Logger.getLogger(RiDisplay.class);
+    /**
+     * Logger.
+     */
+    private static Logger logger = Logger.getLogger(RiDisplay.class);
 
+    /**
+     * Name.
+     */
     private String name;
 
+    /**
+     * Type.
+     */
     private String type;
 
+    /**
+     * Mode.
+     */
     private String mode;
 
+    /**
+     * Parameter list.
+     */
     private Vector parameterList;
 
+    /**
+     * @param parameters parameters.
+     */
     public RiDisplay(String parameters) {
         super(parameters);
         parameterList = splitParameters(parameters);
@@ -42,7 +60,7 @@ public class RiDisplay extends Rib {
     }
 
     /**
-     * Sets the name of picture file or framebuffer depending on type
+     * Sets the name of picture file or framebuffer depending on type.
      * 
      * @param name
      *            picture file or framebuffer name
@@ -62,9 +80,7 @@ public class RiDisplay extends Rib {
     }
 
     /**
-     * Sets the mode which indicates what data are to be output in this display
-     * stream
-     * 
+     * Sets the mode which indicates what data are to be output in this display stream.
      * @param mode
      *            data mode
      */
@@ -73,7 +89,7 @@ public class RiDisplay extends Rib {
     }
 
     /**
-     * Returns the name of the picture file or framebuffer
+     * Returns the name of the picture file or framebuffer.
      * 
      * @return the name
      */
@@ -91,9 +107,8 @@ public class RiDisplay extends Rib {
     }
 
     /**
-     * Returns the mode which indicates what data are to be output in this
-     * display stream
-     * 
+     * Returns the mode which indicates what data are to be output in this display stream.
+     *
      * @return the data mode
      */
     public String getMode() {
@@ -106,12 +121,12 @@ public class RiDisplay extends Rib {
      * DTD fragment
      * 
      * <pre>
-     *  &lt;!ELEMENT DISPLAY - O EMPTY -- RiDisplay --&gt;
-     *  &lt;!ATTLIST DISPLAY 
-     *    name    CDATA   #REQUIRED -- name of the picture file or framebuffer --
-     *    type    CDATA   #REQUIRED -- the display format, output device or output driver --
-     *    mode    CDATA   #REQUIRED -- the mode which indicates what data are to be output in this display stream --
-     *  &gt;
+     *   &lt;!ELEMENT DISPLAY - O EMPTY -- RiDisplay --&gt;
+     *   &lt;!ATTLIST DISPLAY 
+     *     name    CDATA   #REQUIRED -- name of the picture file or framebuffer --
+     *     type    CDATA   #REQUIRED -- the display format, output device or output driver --
+     *     mode    CDATA   #REQUIRED -- the mode which indicates what data are to be output in this display stream --
+     *   &gt;
      * </pre>
      * 
      * <p>
@@ -119,23 +134,23 @@ public class RiDisplay extends Rib {
      * Input:
      * 
      * <pre>
-     *  Display &quot;swordMesh.tif&quot; &quot;file&quot; &quot;rgba&quot;
+     *   Display &quot;swordMesh.tif&quot; &quot;file&quot; &quot;rgba&quot;
      * </pre>
      * 
      * <p>
      * Output with parameters:
      * 
      * <pre>
-     *  &lt;display name=&quot;swordMesh.tif&quot; type=&quot;file&quot; mode=&quot;rgba&quot; &gt;
-     * 	&lt;param name=&quot;[name]&quot; value=&quot;[value]&quot; /&gt;
-     *  &lt;/display&gt;
+     *   &lt;display name=&quot;swordMesh.tif&quot; type=&quot;file&quot; mode=&quot;rgba&quot; &gt;
+     *          &lt;param name=&quot;[name]&quot; value=&quot;[value]&quot; /&gt;
+     *   &lt;/display&gt;
      * </pre>
      * 
      * <p>
      * Output without parameters:
      * 
      * <pre>
-     *  &lt;display name=&quot;swordMesh.tif&quot; type=&quot;file&quot; mode=&quot;rgba&quot; /&gt;
+     *   &lt;display name=&quot;swordMesh.tif&quot; type=&quot;file&quot; mode=&quot;rgba&quot; /&gt;
      * </pre>
      * 
      * @param ribDoc -

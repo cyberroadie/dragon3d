@@ -29,7 +29,7 @@ import javax.xml.transform.stream.StreamResult;
  * together with the document itself. 
  * Implements Singleton pattern.
  */
-public class RibDocument implements RibOutput {
+public final class RibDocument implements RibOutput {
 
     /**
      * Logger.
@@ -37,14 +37,9 @@ public class RibDocument implements RibOutput {
     private static Logger logger = Logger.getLogger(RibDocument.class);
 
     /**
-     * Rib XML document.
+     * AbstractRib XML document.
      */
-    private static RibDocument instance = null;
-
-    /* Vector to keep track of current active xml element */
-    private Stack parentNodes;
-
-    private Element root;
+    private static RibDocument instance;
 
     /**
      * All classes make use of the same (thus static) document 
@@ -52,9 +47,25 @@ public class RibDocument implements RibOutput {
      * the RibFactory. 
      */
     private static Document ribDoc;
+    
+    /**
+     * Vector to keep track of current active xml element. 
+     */
+    private Stack parentNodes;
 
+    /**
+     * Root element.
+     */
+    private Element root;
+
+    /**
+     * Rib class.
+     */
     private Class ribClazz;
 
+    /**
+     * Rib document constructor.
+     */
     private RibDocument() {
 
         /* Create empty xml document */
@@ -65,7 +76,9 @@ public class RibDocument implements RibOutput {
             DocumentBuilder docBuilder = docBuilderFac.newDocumentBuilder();
             ribDoc = docBuilder.newDocument();
         } catch (ParserConfigurationException ex) {
-        } // No exception, empty document is created
+            // No exception, empty document is created
+            logger.info(ex.toString());
+        } 
 
         root = ribDoc.createElement("rib");
 
@@ -80,6 +93,7 @@ public class RibDocument implements RibOutput {
     /**
      * Instantiate the Ribdocument or get the already existing one.
      * RibDocument starts element calculation from within
+     * @return new instance
      */
     public static RibDocument newInstance() {
 
@@ -92,7 +106,11 @@ public class RibDocument implements RibOutput {
 
     }
 
-    public void doJob(Rib rib) {
+    /**
+     * @param rib rib
+     * @see net.transformatorhuis.cgi.conversion.RibOutput#doJob(net.transformatorhuis.cgi.conversion.AbstractRib)
+     */
+    public void doJob(AbstractRib rib) {
 
         if (rib.isEndElement()) {
             try {
@@ -103,7 +121,7 @@ public class RibDocument implements RibOutput {
                 logger.error("Wrong rib structure: " + ese.toString());
             }
         } else {
-            // Here the Rib element get called to calculate the xml by giving it
+            // Here the AbstractRib element get called to calculate the xml by giving it
             // to the xml document, needed to create nodes.
             logger.debug("Stack size: " + parentNodes.size());
             Node parentNode = (Node) parentNodes.pop();
@@ -117,24 +135,39 @@ public class RibDocument implements RibOutput {
 
     }
 
+    /**
+     * @param name name
+     * @return name
+     */
     public Element requestElement(String name) {
 
         return ribDoc.createElement(name);
 
     }
 
+    /**
+     * @param data data
+     * @return text node
+     */
     public Text requestTextNode(String data) {
 
         return ribDoc.createTextNode(data);
 
     }
 
+    /**
+     * @param data data
+     * @return comment
+     */
     public Comment requestComment(String data) {
 
         return ribDoc.createComment(data);
 
     }
 
+    /**
+     * Convert to file.
+     */
     public void toFile() {
 
         ribDoc.appendChild(root);
@@ -154,13 +187,6 @@ public class RibDocument implements RibOutput {
             logger.debug(te.toString());
         }
 
-        // Document is finished, so cleaning up
-        finalize();
-
-    }
-
-    public void finalize() {
-        instance = null;
     }
 
 }

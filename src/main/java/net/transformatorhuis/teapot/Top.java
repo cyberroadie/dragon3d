@@ -25,7 +25,7 @@ public class Top {
     private Attributestack as;
 
     /**
-     * @param objFactory
+     * @param objFactory object factory
      */
     public Top(final ObjectFactory objFactory) {
         this.as = objFactory.createAttributestack();
@@ -75,7 +75,9 @@ public class Top {
         as3List.add(orientation);
 
         Sides sides = objFactory.createSides();
-        sides.setSides("2"); // TODO not type safe, change xml schema
+        
+        // TODO not type safe, change xml schema
+        sides.setSides("2");
         as3List.add(sides);
 
         Torus torus1 = objFactory.createTorus();
@@ -110,6 +112,9 @@ public class Top {
 
     }
 
+    /**
+     * @return attribute stack
+     */
     public final Attributestack getJAXB() {
         return as;
     }

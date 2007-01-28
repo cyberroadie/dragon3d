@@ -1,13 +1,13 @@
 package net.transformatorhuis.cgi.elements.primitives;
 
 import org.apache.log4j.Logger;
-import net.transformatorhuis.cgi.conversion.Rib;
+import net.transformatorhuis.cgi.conversion.AbstractRib;
 
 /**
  * @author cyberroadie
  *
  */
-public class RiProcDynamicLoad extends Rib {
+public class RiProcDynamicLoad extends AbstractRib {
 
     /**
      * Logger.

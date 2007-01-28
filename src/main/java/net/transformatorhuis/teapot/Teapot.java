@@ -10,11 +10,22 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import net.transformatorhuis.xsd.Color;
+import net.transformatorhuis.xsd.Display;
+import net.transformatorhuis.xsd.Lightsource;
+import net.transformatorhuis.xsd.ObjectFactory;
+import net.transformatorhuis.xsd.Param;
+import net.transformatorhuis.xsd.Projection;
+import net.transformatorhuis.xsd.Rib;
+import net.transformatorhuis.xsd.Rotate;
+import net.transformatorhuis.xsd.Surface;
+import net.transformatorhuis.xsd.Translate;
+import net.transformatorhuis.xsd.World;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.w3c.dom.Document;
 
-import net.transformatorhuis.xsd.*;
 
 /**
  * 
@@ -25,16 +36,34 @@ import net.transformatorhuis.xsd.*;
  */
 public class Teapot {
 
-    Logger logger;
+    /**
+     * Logger.
+     */
+    private Logger logger;
 
-    JAXBContext jc;
+    /**
+     * JAXB context.
+     */
+    private JAXBContext jc;
 
-    ObjectFactory objFactory;
+    /**
+     * Object factory.
+     */
+    private ObjectFactory objFactory;
 
-    Rib rib;
+    /**
+     * Rib.
+     */
+    private Rib rib;
 
-    Marshaller m;
+    /**
+     * Marshaller.
+     */
+    private Marshaller m;
 
+    /**
+     * @throws BrokenTeapotException broken teapot
+     */
     public Teapot() throws BrokenTeapotException {
         logger = Logger.getLogger(Teapot.class);
         /* First try to get it out of jar file */
@@ -42,13 +71,7 @@ public class Teapot {
         URL url = clazz.getResource("/conf/log4j.xml");
         if (url == null) {
             /* Try reading from working directory */
-            try {
-                DOMConfigurator.configure("conf/log4j.xml");
-            } catch (Exception e) {
-                throw new BrokenTeapotException(
-                        "Error: Configuration file for Log4j (log4j.xml) not found: "
-                                + e.toString());
-            }
+            DOMConfigurator.configure("conf/log4j.xml");
         } else {
             DOMConfigurator.configure(url);
         }
@@ -118,11 +141,12 @@ public class Teapot {
             Lightsource distantLightSource = objFactory.createLightsource();
             distantLightSource.setShadername("distantlight");
             List distantLightSourceParamList = distantLightSource.getParam();
-            Param param2 = objFactory.createParam(); // TODO new sollution
-            // for naming param2
+            // TODO new sollution for naming param2
+            Param param2 = objFactory.createParam(); 
             param2.setName("intensity");
-            param2.setValue("0.6"); // TODO can this be a float? This is not
-            // type safe
+            // TODO can this be a float? This is not type safe
+            param2.setValue("0.6"); 
+            
             distantLightSourceParamList.add(param2);
             worldList.add(distantLightSource);
 
@@ -131,8 +155,8 @@ public class Teapot {
             worldList.add(surface);
 
             Color color = objFactory.createColor();
-            color.setR("1"); // TODO can this be a float? This is not type
-            // safe
+            // TODO can this be a float? This is not type safe
+            color.setR("1");
             color.setG("0.6");
             color.setB("0");
             worldList.add(color);
@@ -152,13 +176,14 @@ public class Teapot {
 
         } catch (JAXBException e) {
             throw new BrokenTeapotException(e.toString());
-        } catch (Exception e) {
-            throw new BrokenTeapotException("Error in Teapot constructor: "
-                    + e.toString());
         }
 
     }
 
+    /**
+     * @return DOM document
+     * @throws BrokenTeapotException broken teapot
+     */
     public Document toDOM() throws BrokenTeapotException {
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -173,20 +198,20 @@ public class Teapot {
             throw new BrokenTeapotException(e.toString());
         } catch (JAXBException e) {
             throw new BrokenTeapotException(e.toString());
-        } catch (Exception e) {
-            throw new BrokenTeapotException("Error in toDOM(): " + e.toString());
         }
 
         return doc;
     }
 
+    /**
+     * Writes to system.
+     * @throws BrokenTeapotException broken teapot
+     */
     public void toSystemOut() throws BrokenTeapotException {
 
         try {
             m.marshal(rib, System.out);
         } catch (JAXBException e) {
-            throw new BrokenTeapotException(e.toString());
-        } catch (Exception e) {
             throw new BrokenTeapotException(e.toString());
         }
 

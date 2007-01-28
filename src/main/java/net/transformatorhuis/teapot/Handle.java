@@ -5,7 +5,15 @@ package net.transformatorhuis.teapot;
 
 import java.util.List;
 
-import net.transformatorhuis.xsd.*;
+import net.transformatorhuis.xsd.Attributestack;
+import net.transformatorhuis.xsd.Cylinder;
+import net.transformatorhuis.xsd.ObjectFactory;
+import net.transformatorhuis.xsd.Rotate;
+import net.transformatorhuis.xsd.Torus;
+import net.transformatorhuis.xsd.Transformstack;
+import net.transformatorhuis.xsd.Translate;
+
+//import net.transformatorhuis.xsd.*;
 
 /**
  * @author cyberroadie
@@ -13,8 +21,14 @@ import net.transformatorhuis.xsd.*;
  */
 public class Handle {
 
-    Attributestack as;
+    /**
+     * Attribute stack.
+     */
+    private Attributestack as;
 
+    /**
+     * @param objFactory object factory
+     */
     public Handle(ObjectFactory objFactory) {
         this.as = objFactory.createAttributestack();
         List asList = as.getTranslateOrRotateOrScale();
@@ -93,6 +107,9 @@ public class Handle {
 
     }
 
+    /**
+     * @return JAXB objects
+     */
     public Attributestack getJAXB() {
         return as;
     }

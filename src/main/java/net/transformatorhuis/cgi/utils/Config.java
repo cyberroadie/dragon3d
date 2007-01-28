@@ -36,7 +36,7 @@ public final class Config {
     /**
      * Instance flag.
      */
-    private static boolean instanceFlag = false;
+    private static boolean instanceFlag;
 
     /**
      * Document.
@@ -53,22 +53,16 @@ public final class Config {
      */
     private Config() {
 
-        try {
-            Class clazz = getClass();
-            InputStream in = clazz.getResourceAsStream("/conf/RibElements.xml");
-            parseConfigFile(in);
-        } catch (Exception ex) {
-            logger.error("Serious problem: " + ex.toString());
-            logger.error("Automaticly generated config "
-                        + "file during compile not found.");
-        }
+        Class clazz = getClass();
+        InputStream in = clazz.getResourceAsStream("/conf/RibElements.xml");
+        parseConfigFile(in);
 
     }
 
     /**
      * @return instance flag
      */
-    static public Config instance() {
+    public static Config instance() {
 
         if (!instanceFlag) {
             instanceFlag = true;
@@ -80,6 +74,7 @@ public final class Config {
 
     /**
      * Returns names.
+     * 
      * @return names
      */
     public Vector getNames() {
@@ -87,7 +82,9 @@ public final class Config {
     }
 
     /**
-     * Returns hashtable with names mapped to package classnames
+     * Returns hashtable with names mapped to package classnames.
+     * 
+     * @return rib hashtable
      */
     public Hashtable getClasses() {
         return rib;
@@ -95,6 +92,7 @@ public final class Config {
 
     /**
      * @param configFile
+     *            configuration file
      */
     private void parseConfigFile(final InputStream configFile) {
 
@@ -114,8 +112,6 @@ public final class Config {
             logger.error(spe.toString());
         } catch (IllegalArgumentException iae) {
             logger.error(iae.toString());
-        } catch (Exception ex) {
-            logger.error("Something else: " + ex.toString());
         }
 
         // Get the root
@@ -148,8 +144,8 @@ public final class Config {
                             .getNodeValue();
                     ribElementClassName = ribElementAttributes.getNamedItem(
                             "classname").getNodeValue();
-                    rib.put(ribElementName,
-                            (packageName + "." + ribElementClassName));
+                    rib.put(ribElementName, packageName + "."
+                            + ribElementClassName);
                     logger.debug("Class name: " + ribElementClassName);
                 }
 

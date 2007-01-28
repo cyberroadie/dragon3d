@@ -1,12 +1,13 @@
-/**
- * 
- */
 package net.transformatorhuis.teapot;
 
 import java.util.List;
 
 import net.transformatorhuis.xsd.Attributestack;
-import net.transformatorhuis.xsd.*;
+import net.transformatorhuis.xsd.Hyperboloid;
+import net.transformatorhuis.xsd.Rotate;
+import net.transformatorhuis.xsd.Sides;
+import net.transformatorhuis.xsd.Translate;
+import net.transformatorhuis.xsd.ObjectFactory;
 
 /**
  * @author cyberroadie
@@ -14,14 +15,21 @@ import net.transformatorhuis.xsd.*;
  */
 public class Spout {
 
-    Attributestack as;
+    /**
+     * Attribute stack.
+     */
+    private Attributestack as;
 
+    /**
+     * @param objFactory object factory
+     */
     public Spout(ObjectFactory objFactory) {
         this.as = objFactory.createAttributestack();
         List asList = as.getTranslateOrRotateOrScale();
 
         Sides sides = objFactory.createSides();
-        sides.setSides("2"); // TODO can this be a integer? This is not type
+//      // TODO can this be a integer? This is not type
+        sides.setSides("2");
         // safe
         asList.add(sides);
 
@@ -57,6 +65,10 @@ public class Spout {
 
     }
 
+    /**
+     * Get JAXB objects.
+     * @return attribute stack
+     */
     public Attributestack getJAXB() {
         return as;
     }
