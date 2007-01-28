@@ -23,7 +23,7 @@ class RiDeclare extends Rib {
 
     /**
      * Declare.
-     * @param param
+     * @param param extra parameters
      */
     public RiDeclare(final String param) {
         super(param);
