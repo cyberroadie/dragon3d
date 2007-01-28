@@ -23,7 +23,7 @@ public class RiShutter extends Rib {
 
     /**
      * Shutter.
-     * @param param
+     * @param param extra paramteters
      */
     public RiShutter(final String param) {
         super(param);
