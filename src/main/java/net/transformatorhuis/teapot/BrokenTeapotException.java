@@ -6,22 +6,38 @@ package net.transformatorhuis.teapot;
  */
 public class BrokenTeapotException extends Exception {
 
+    /**
+     * Teapot excpetion.
+     */
     public BrokenTeapotException() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    public BrokenTeapotException(String arg0) {
+    /**
+     * Teapot excpetion.
+     * @param arg0 additional paramters
+     */
+    public BrokenTeapotException(final String arg0) {
         super(arg0);
         // TODO Auto-generated constructor stub
     }
 
-    public BrokenTeapotException(String arg0, Throwable arg1) {
+    /**
+     * Teapot excpetion.
+     * @param arg0 additional paramters
+     * @param arg1 additional paramters
+     */
+    public BrokenTeapotException(final String arg0, final Throwable arg1) {
         super(arg0, arg1);
         // TODO Auto-generated constructor stub
     }
 
-    public BrokenTeapotException(Throwable arg0) {
+    /**
+     * Teapot excpetion.
+     * @param arg0 additional paramters
+     */
+    public BrokenTeapotException(final Throwable arg0) {
         super(arg0);
         // TODO Auto-generated constructor stub
     }
