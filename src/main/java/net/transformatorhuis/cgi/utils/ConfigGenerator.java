@@ -57,7 +57,7 @@ public class ConfigGenerator {
     /**
      * Contents of directory.
      */
-    private Hashtable dirContent;
+    private Hashtable<String, Vector<String>> dirContent;
 
     /**
      * Configuration generator.
@@ -80,7 +80,7 @@ public class ConfigGenerator {
      * Main method.
      * @param argv additional arguments
      */
-    public static void main(String[] argv) {
+    public static void main(final String[] argv) {
 
         // BasicConfigurator.configure();
 
@@ -110,8 +110,8 @@ public class ConfigGenerator {
     }
 
     /**
-     * Scans all directories for files, if directory is encountered 
-     * it calls itself
+     * Scans all directories for files.
+     * If directory is encountered it calls itself
      * @param dir directory
      * @param key key
      */
@@ -132,18 +132,21 @@ public class ConfigGenerator {
     }
 
     /**
-     * Adds key to dirContent hashtable and the key is linked to a vector (which
-     * thus can store multiple keys).
+     * Adds key to dirContent hashtable. 
+     * The key is linked to a vector (which thus can store multiple keys).
+     * @param key key
+     * @param value value
      */
     private void add(String key, String value) {
 
         if (dirContent.containsKey(key)) { // Mapping a value to existing key
-            Vector valueVec = (Vector) dirContent.get(key);
+            Vector vector = (Vector) dirContent.get(key);
+            Vector<String> valueVec = vector;
             valueVec.add(value);
             dirContent.remove(key);
             dirContent.put(key, valueVec);
         } else { // Adding a new key and value
-            Vector valueVec = new Vector();
+            Vector<String> valueVec = new Vector<String>();
             valueVec.add(value);
             dirContent.put(key, valueVec);
         }
@@ -155,6 +158,7 @@ public class ConfigGenerator {
      * <package name="...."> <ribelement name="...." classname="...." />
      * <ribelement name="...." classname="...." /> .... </package> TODO: -
      * Validate with DTD?
+     * @param configFile configuration file
      */
     private void createConfigDoc(final File configFile) {
 
@@ -226,12 +230,12 @@ public class ConfigGenerator {
     private static void printUsage() {
 
         System.out.println("Usage:");
-        System.out.println("net.transformatorhuis.cgi.utils.ConfigGenerator " +
-                        "[ouput] [basedir]\n");
-        System.out.println("ouput: name and location of the config " +
-                        "file to be created");
-        System.out.println("basedir: start point for recursive " +
-                        "search of classes");
+        System.out.println("net.transformatorhuis.cgi.utils.ConfigGenerator "
+                        + "[ouput] [basedir]\n");
+        System.out.println("ouput: name and location of the config "
+                        + "file to be created");
+        System.out.println("basedir: start point for recursive "
+                        + "search of classes");
 
     }
 
