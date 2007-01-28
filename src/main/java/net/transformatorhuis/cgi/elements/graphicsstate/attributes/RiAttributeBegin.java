@@ -28,11 +28,11 @@ public class RiAttributeBegin extends Rib {
     public RiAttributeBegin(final String param) {
         super(param);
     }
-    
+
     /**
      * @return has child elements
      */
-    public boolean hasChildElements() {
+    public final boolean hasChildElements() {
         return true;
     }
 
