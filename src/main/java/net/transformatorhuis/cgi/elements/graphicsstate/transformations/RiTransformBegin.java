@@ -33,8 +33,8 @@ public class RiTransformBegin extends Rib {
      * Child elements.
      * @return Has child elements
      */
-    public boolean hasChildElements() {
+    public final boolean hasChildElements() {
         return true;
     }
-    
+
 }
