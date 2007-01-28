@@ -13,20 +13,20 @@ public class RiMakeTexture extends Rib {
      * Logger.
      */
     private static Logger logger = Logger.getLogger(RiMakeTexture.class);
-    
+
     /**
      * MakeTexture.
      */
     public RiMakeTexture() {
         super();
     }
-    	
+
     /**
      * MakeTexture.
      * @param param extra parameters
      */
-    public RiMakeTexture(String param) {
+    public RiMakeTexture(final String param) {
         super(param);
     }
-    
+
 }
