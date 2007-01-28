@@ -3,6 +3,10 @@ package net.transformatorhuis.cgi.elements.primitives;
 import org.apache.log4j.Logger;
 import net.transformatorhuis.cgi.conversion.Rib;
 
+/**
+ * @author cyberroadie
+ *
+ */
 public class RiPatchMesh extends Rib {
 
     /**
