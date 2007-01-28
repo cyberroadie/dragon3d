@@ -23,7 +23,7 @@ public class RiExterior extends Rib {
 
     /**
      * Exterior.
-     * @param param
+     * @param param extra paramters
      */
     public RiExterior(final String param) {
         super(param);
