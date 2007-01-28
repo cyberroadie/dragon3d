@@ -22,7 +22,7 @@ public class RiDisplacement extends Rib {
     }
 
     /**
-     * Displacement
+     * Displacement.
      * @param param extra parameters
      */
     public RiDisplacement(final String param) {
