@@ -20,12 +20,13 @@ public class RiErrorHandler extends Rib {
     public RiErrorHandler() {
         super();
     }
-    
+
     /**
      * ErrorHandler.
      * @param param extra parameters
      */
-    public RiErrorHandler(String param) {
+    public RiErrorHandler(final String param) {
         super(param);
     }
+
 }
