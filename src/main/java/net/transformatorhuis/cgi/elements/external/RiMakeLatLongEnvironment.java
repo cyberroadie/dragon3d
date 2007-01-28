@@ -12,7 +12,8 @@ public class RiMakeLatLongEnvironment extends Rib {
     /**
      * Logger.
      */
-    private static Logger logger = Logger.getLogger(RiMakeLatLongEnvironment.class);
+    private static Logger logger =
+        Logger.getLogger(RiMakeLatLongEnvironment.class);
 
     /**
      * MakeLatLongEnvironment.
@@ -20,7 +21,7 @@ public class RiMakeLatLongEnvironment extends Rib {
     public RiMakeLatLongEnvironment() {
         super();
     }
-    
+
     /**
      * MakeLatLongEnvironment.
      * @param param extra parameters
@@ -28,5 +29,5 @@ public class RiMakeLatLongEnvironment extends Rib {
     public RiMakeLatLongEnvironment(final String param) {
         super(param);
     }
-    
+
 }
