@@ -33,7 +33,7 @@ import javax.xml.transform.stream.StreamResult;
  * jar file and used by various programs like the RibFactory to lookup
  * package/class names or Rib2Xml to have a list of (rib element) keywords. So
  * if class files are added or removed the config file stays correct.
- * 
+ *
  * TODO: - Get extra info out of class files via refactoring - Split up in
  * Creator an Writer ?
  */
@@ -71,6 +71,7 @@ public class ConfigGenerator {
             DocumentBuilder docBuilder = docBuilderFac.newDocumentBuilder();
             configDoc = docBuilder.newDocument();
         } catch (ParserConfigurationException ex) {
+            logger.fatal("This error is not possible");
         } // No exception, empty document is created
 
     }
@@ -109,10 +110,12 @@ public class ConfigGenerator {
     }
 
     /**
-     * Scans all directories for files, if directory is encountered it calls
-     * itself
+     * Scans all directories for files, if directory is encountered 
+     * it calls itself
+     * @param dir directory
+     * @param key key
      */
-    private void createDirContent(File[] dir, String key) {
+    private void createDirContent(final File[] dir, final String key) {
 
         logger.debug("Length: " + dir.length);
 
@@ -153,7 +156,7 @@ public class ConfigGenerator {
      * <ribelement name="...." classname="...." /> .... </package> TODO: -
      * Validate with DTD?
      */
-    private void createConfigDoc(File configFile) {
+    private void createConfigDoc(final File configFile) {
 
         Element root = configDoc.createElement("ribelements");
 
@@ -223,12 +226,12 @@ public class ConfigGenerator {
     private static void printUsage() {
 
         System.out.println("Usage:");
-        System.out
-                .println("net.transformatorhuis.cgi.utils.ConfigGenerator [ouput] [basedir]\n");
-        System.out
-                .println("ouput: name and location of the config file to be created");
-        System.out
-                .println("basedir: start point for recursive search of classes");
+        System.out.println("net.transformatorhuis.cgi.utils.ConfigGenerator " +
+                        "[ouput] [basedir]\n");
+        System.out.println("ouput: name and location of the config " +
+                        "file to be created");
+        System.out.println("basedir: start point for recursive " +
+                        "search of classes");
 
     }
 
