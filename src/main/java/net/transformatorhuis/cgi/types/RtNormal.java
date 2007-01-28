@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 public class RtNormal {
 
     /**
-     * Logger,
+     * Logger.
      */
     private static Logger logger = Logger.getLogger(RtNormal.class);
 
