@@ -12,7 +12,8 @@ public class RiGeometricApproximation extends Rib {
     /**
      * Logger.
      */
-    private static Logger logger = Logger.getLogger(RiGeometricApproximation.class);
+    private static Logger logger = 
+        Logger.getLogger(RiGeometricApproximation.class);
 
     /**
      * GeometricApproximation.
