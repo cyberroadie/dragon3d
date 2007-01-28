@@ -26,15 +26,15 @@ public class RiBegin extends Rib {
      * Begin.
      * @param param extra parameters
      */
-    public RiBegin(String param) {
+    public RiBegin(final String param) {
         super(param);
     }
 
     /**
      * @return has children
      */
-    public boolean hasChildElements() {
+    public final boolean hasChildElements() {
         return true;
     }
-    
+
 }
