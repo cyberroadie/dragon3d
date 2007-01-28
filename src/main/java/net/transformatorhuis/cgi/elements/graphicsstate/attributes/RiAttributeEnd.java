@@ -24,7 +24,7 @@ public class RiAttributeEnd extends Rib {
 
     /**
      * AttributeEnd.
-     * @param param
+     * @param param extra parameters
      */
     public RiAttributeEnd(final String param) {
         super(param);

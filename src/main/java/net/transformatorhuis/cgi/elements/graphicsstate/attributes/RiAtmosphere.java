@@ -23,7 +23,7 @@ public class RiAtmosphere extends Rib {
 
     /**
      * Atmosphere.
-     * @param param
+     * @param param extra parameters
      */
     public RiAtmosphere(final String param) {
         super(param);
