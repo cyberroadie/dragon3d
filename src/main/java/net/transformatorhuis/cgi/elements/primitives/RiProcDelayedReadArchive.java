@@ -12,7 +12,8 @@ public class RiProcDelayedReadArchive extends Rib {
     /**
      * Logger.
      */
-    private static Logger logger = Logger.getLogger(RiProcDelayedReadArchive.class);
+    private static Logger logger = 
+        Logger.getLogger(RiProcDelayedReadArchive.class);
 
     /**
      * ProcDelayedReadArchive.
