@@ -2,7 +2,16 @@ package net.transformatorhuis.teapot;
 
 import java.util.List;
 
-import net.transformatorhuis.xsd.*;
+import net.transformatorhuis.xsd.Attributestack;
+import net.transformatorhuis.xsd.Disk;
+import net.transformatorhuis.xsd.ObjectFactory;
+import net.transformatorhuis.xsd.Orientation;
+import net.transformatorhuis.xsd.Rotate;
+import net.transformatorhuis.xsd.Scale;
+import net.transformatorhuis.xsd.Sides;
+import net.transformatorhuis.xsd.Sphere;
+import net.transformatorhuis.xsd.Torus;
+import net.transformatorhuis.xsd.Translate;
 
 /**
  * @author cyberroadie
@@ -10,9 +19,15 @@ import net.transformatorhuis.xsd.*;
  */
 public class Top {
 
-    Attributestack as;
+    /**
+     * Attributestack.
+     */
+    private Attributestack as;
 
-    public Top(ObjectFactory objFactory) {
+    /**
+     * @param objFactory
+     */
+    public Top(final ObjectFactory objFactory) {
         this.as = objFactory.createAttributestack();
         List asList = as.getTranslateOrRotateOrScale();
 
@@ -95,7 +110,7 @@ public class Top {
 
     }
 
-    public Attributestack getJAXB() {
+    public final Attributestack getJAXB() {
         return as;
     }
 }
