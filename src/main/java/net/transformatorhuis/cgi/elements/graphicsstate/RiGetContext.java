@@ -22,10 +22,10 @@ public class RiGetContext extends Rib {
     }
 
     /**
-     * GetContext
+     * GetContext.
      * @param param extra parameters
      */
-    public RiGetContext(String param) {
+    public RiGetContext(final String param) {
         super(param);
     }
 
