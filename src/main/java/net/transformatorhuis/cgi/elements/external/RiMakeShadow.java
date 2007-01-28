@@ -20,12 +20,12 @@ public class RiMakeShadow extends Rib {
     public RiMakeShadow() {
         super();
     }
-    
+
     /**
      * MakeShadow.
      * @param param extra parameters
      */
     public RiMakeShadow(final String param) {
-	    super(param);
-	}
+        super(param);
+    }
 }
