@@ -7,7 +7,7 @@ import java.util.Hashtable;
 
 /**
  * @author cyberroadie
- * 
+ *
  */
 public class RibFactory {
 
@@ -23,7 +23,7 @@ public class RibFactory {
 
     /**
      * Factory. All names of rib classes are in config.
-     * 
+     *
      * @param config
      *            configuration
      */
@@ -35,10 +35,10 @@ public class RibFactory {
 
     /**
      * This processes a rib element.
-     * 
+     *
      * @param ribLine
      */
-    public void processRibElement(final String ribLine) {
+    public final void processRibElement(final String ribLine) {
 
         logger.debug("Factory input: " + ribLine);
         String element = null;
@@ -55,8 +55,8 @@ public class RibFactory {
             param = ribLine.substring(c, ribLine.length()); // Get rid of the
                                                             // EOL ('\r')
             element = ribLine.substring(0, c);
-            intArgsClass = new Class[] { String.class };
-            intArgs = new Object[] { param };
+            intArgsClass = new Class[] {String.class};
+            intArgs = new Object[] {param};
 
         } else {
             // No params
