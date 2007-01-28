@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 public class Xml2Rib {
 
     /**
-     * Logger. 
+     * Logger.
      */
     private static Logger logger = Logger.getLogger(Xml2Rib.class);
 
