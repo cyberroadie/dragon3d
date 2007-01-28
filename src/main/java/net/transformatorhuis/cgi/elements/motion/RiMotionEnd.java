@@ -23,7 +23,7 @@ public class RiMotionEnd extends Rib {
 
     /**
      * MotionEnd.
-     * @param param
+     * @param param extra paramters
      */
     public RiMotionEnd(final String param) {
         super(param);
