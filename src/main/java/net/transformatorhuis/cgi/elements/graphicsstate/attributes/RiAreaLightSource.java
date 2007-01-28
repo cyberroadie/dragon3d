@@ -20,7 +20,7 @@ public class RiAreaLightSource extends Rib {
     public RiAreaLightSource() {
         super();
     }
-    
+
     /**
      * AreaLightSource.
      * @param param extra parameters
