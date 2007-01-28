@@ -20,7 +20,7 @@ public class RiReadArchive extends Rib {
     public RiReadArchive() {
         super();
     }
-	
+
     /**
      * ReadArchive.
      * @param param extra parameters
