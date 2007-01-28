@@ -9,6 +9,9 @@ import net.transformatorhuis.cgi.conversion.Rib;
  */
 public class RiFrameBegin extends Rib {
 
+    /**
+     * Logger.
+     */
     private static Logger logger = Logger.getLogger(RiFrameBegin.class);
 
     /**
@@ -22,14 +25,14 @@ public class RiFrameBegin extends Rib {
      * Start of frame.
      * @param param extra parameters
      */
-    public RiFrameBegin(String param) {
+    public RiFrameBegin(final String param) {
         super(param);
     }
 
     /**
      * @return Has children.
      */
-    public boolean hasChildElements() {
+    public final boolean hasChildElements() {
         return true;
     }
 
