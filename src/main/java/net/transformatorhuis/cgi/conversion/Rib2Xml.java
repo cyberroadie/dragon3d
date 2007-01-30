@@ -58,7 +58,7 @@ class Rib2Xml {
         int count = 0;
 
 
-            String factoryInput = new String();
+            String factoryInput = "";
 
             try {
                 while (thTokens.nextToken() != StreamTokenizer.TT_EOF) {
