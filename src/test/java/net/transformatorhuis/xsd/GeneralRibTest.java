@@ -1,4 +1,4 @@
-package net.transformatohuis.dragon3d.test;
+package net.transformatorhuis.xsd;
 
 import org.junit.Before;
 import org.w3c.dom.Document;

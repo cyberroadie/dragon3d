@@ -1,8 +1,9 @@
-package net.transformatohuis.dragon3d.test;
+package net.transformatorhuis.xsd;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import net.transformatorhuis.xsd.Display;
+import net.transformatorhuis.xsd.GeneralRibTest;
 
 import javax.xml.bind.JAXBException;
 
