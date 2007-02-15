@@ -30,6 +30,16 @@
             <timezone>0</timezone>
         </developer>
     </developers>
+    <ciManagement>
+      <system>Continuum</system>
+      <url>http://www.cyberroadie.org/continuum/</url>
+      <notifiers>
+         <notifier>
+            <type>mail</type>
+            <address>cyberroadie@gmail.com</address>
+         </notifier>
+      </notifiers>
+   </ciManagement>
     <reporting>
         <plugins>
             <plugin>
