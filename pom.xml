@@ -26,7 +26,7 @@
             <roles>
                 <role>Core Developer</role>
             </roles>
-            <email>cyberroadie@gmail.com</email>
+            <email>cyberroadie_at_gmail.com</email>
             <timezone>0</timezone>
         </developer>
     </developers>
@@ -53,7 +53,7 @@
                             <report>license</report>
                             <report>scm</report>
                             <report>project-team</report>
-                        </reports>
+                         </reports>
                     </reportSet>
                 </reportSets>
             </plugin>
@@ -179,33 +179,6 @@
                     <verbose>true</verbose>
                </configuration>
            </plugin>
-            <!--
-            <plugin>
-                <groupId>com.sun.tools.xjc.maven2</groupId>
-                <artifactId>maven-jaxb-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <generatePackage>net.transformatorhuis.xsd</generatePackage>
-                    <includeSchemas>
-                        <includeSchema>**/*.xsd</includeSchema>
-                    </includeSchemas>
-                    <excludeSchemas>
-                        <excludeSchema>test*.xsd</excludeSchema>
-                    </excludeSchemas>
-                    <includeBindings>
-                        <includeBinding>*.xjb</includeBinding>
-                    </includeBindings>
-                    <strict>true</strict>
-                    <verbose>true</verbose>
-                </configuration>
-            </plugin>
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
