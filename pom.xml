@@ -100,7 +100,7 @@
         <downloadUrl>http://dragon3d.berlios.de/download/</downloadUrl>
         <site>
             <id>net.transformatorhuis.dragon3d</id>
-            <url>scp://shell.berlios.de/home/groups/dragon3d/htdocs/</url>
+            <url>scp://cyberroadie@shell.berlios.de/home/groups/dragon3d/htdocs/</url>
             <name>Dragon3D</name>
         </site>
     </distributionManagement>
