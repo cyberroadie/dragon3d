@@ -41,7 +41,7 @@ public class RibFactory {
     public final void processRibElement(final String ribLine) {
 
         logger.debug("Factory input: " + ribLine);
-        String element = null;
+        String ribElementName = null;
         String param;
         Class ribElement;
         Class[] intArgsClass;
@@ -54,33 +54,36 @@ public class RibFactory {
             // With params
             // Get rid of the EOL ('\r')
             param = ribLine.substring(c, ribLine.length()); 
-                                                            
-            element = ribLine.substring(0, c);
+
+            // Get the RIB element name
+            ribElementName = ribLine.substring(0, c);
             intArgsClass = new Class[] {String.class};
             intArgs = new Object[] {param};
 
         } else {
             // No params
 //          .substring(0, ribLine.length()); Get rid of the EOL ('\r')
-            element = ribLine; 
+            ribElementName = ribLine;
                                 
             intArgsClass = new Class[] {};
             intArgs = null;
         }
 
         try {
-            ribElementDefinition = Class.forName((String) classes.get(element),
+            /* Get the corresponding class from hashtable based on ribElementName */
+            /* TODO change this into properties mapping */
+            ribElementDefinition = Class.forName((String) classes.get(ribElementName),
                     true, this.getClass().getClassLoader());
 
-            // Instantiate the new rib element
+            /* Instantiate the new rib ribElementName*/
             rib = (AbstractRib) ribElementDefinition.getConstructor(intArgsClass)
                     .newInstance(intArgs);
 
-            // Give the rib element to RibDocument which knows what to do with
-            // it
+            /* Give the rib ribElementName to RibDocument which knows what to do with it*/
             RibDocument ribDoc = RibDocument.newInstance();
             ribDoc.doJob(rib);
 
+            // TODO replace System.out's with log4j 
         } catch (InstantiationException ie) {
             System.out.println(ie);
         } catch (IllegalAccessException iae) {
