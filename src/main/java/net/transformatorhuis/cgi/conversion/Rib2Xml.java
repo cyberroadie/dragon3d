@@ -1,6 +1,7 @@
 package net.transformatorhuis.cgi.conversion;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.xml.DOMConfigurator;
 
 import java.io.FileReader;
@@ -29,17 +30,7 @@ class Rib2Xml {
      */
     public Rib2Xml(FileReader ribFileReader) {
 
-        /* Configure log4j, read conf out of jar file */
-        Class clazz = getClass();
-        URL url = clazz.getResource("/conf/log4j.xml");
-        if (url == null) {
-            /* Try reading via filename */
-            DOMConfigurator.configure("../conf/log4j.xml");
-            System.err
-                    .println("Error: Configuration file for Log4j (log4j.xml) not found, aborting...");
-            System.exit(1);
-        }
-        DOMConfigurator.configure(url);
+        BasicConfigurator.configure();
 
         /* Create the ribfactory which deal with all the rib elements */
         Config config = Config.instance();
