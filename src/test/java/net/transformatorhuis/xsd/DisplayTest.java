@@ -1,31 +1,43 @@
 package net.transformatorhuis.xsd;
 
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import net.transformatorhuis.xsd.Display;
+import static org.junit.Assert.assertTrue;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
+import org.apache.log4j.Logger;
 import net.transformatorhuis.xsd.GeneralRibTest;
+import net.transformatorhuis.cgi.elements.graphicsstate.options.RiDisplay;
 
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.bind.JAXBException;
+import java.io.IOException;
 
 /**
- * Created by IntelliJ IDEA.
  * User: cyberroadie
- * Date: Feb 14, 2007
- * Time: 12:07:13 AM
  */
 public class DisplayTest extends GeneralRibTest {
 
-    @Test public void DisplayTest() throws JAXBException {
-        Display display = new Display();
-        display.setMode("rgb");
-        display.setName("");
-        display.setType("");
+    private static Logger logger = Logger.getLogger(DisplayTest.class); 
 
-        addRibElement(display);
+    private String testFragment = "<display name=\"swordMesh.tif\" type=\"file\" mode=\"rgba\" />";
 
-        toSystemOut();
+    @Test
+    public void DisplayTest() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+
+        // Create DOM document
+        Document docFromString = getDOMDocument(testFragment);
+        logger.debug(docFromString.toString());
         
-        assertEquals("Display" + display.toString(), "<display></display>", display.toString());
+        // TODO: Validate against XSD
+
+        // Create JAXB
+        RiDisplay display = new RiDisplay("\"swordMesh.tif\" \"file\" \"rgba\"");
+        Document docFromJAXB = getDOMFromJAXB(display.getJAXBNode());
+
+        assertTrue(compareDocuments(docFromString, docFromJAXB));
+        
     }
 
 }

@@ -31,15 +31,15 @@
         </developer>
     </developers>
     <ciManagement>
-      <system>Continuum</system>
-      <url>http://www.cyberroadie.org/continuum/</url>
-      <notifiers>
-         <notifier>
-            <type>mail</type>
-            <address>cyberroadie@gmail.com</address>
-         </notifier>
-      </notifiers>
-   </ciManagement>
+        <system>Continuum</system>
+        <url>http://www.cyberroadie.org/continuum/</url>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <address>cyberroadie@gmail.com</address>
+            </notifier>
+        </notifiers>
+    </ciManagement>
     <reporting>
         <plugins>
             <plugin>
@@ -53,24 +53,22 @@
                             <report>license</report>
                             <report>scm</report>
                             <report>project-team</report>
-                         </reports>
+                        </reports>
                     </reportSet>
                 </reportSets>
             </plugin>
-            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
             </plugin>
             <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-javadoc-plugin</artifactId>
-              <configuration>
-                <minmemory>128m</minmemory>
-                <maxmemory>512</maxmemory>
-              </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <minmemory>128m</minmemory>
+                    <maxmemory>512</maxmemory>
+                </configuration>
             </plugin>
-            -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
@@ -173,12 +171,12 @@
                             <goal>xjc</goal>
                         </goals>
                     </execution>
-               </executions>
-               <configuration>
+                </executions>
+                <configuration>
                     <packageName>net.transformatorhuis.xsd</packageName>
                     <verbose>true</verbose>
-               </configuration>
-           </plugin>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -205,6 +203,11 @@
     </build>
     <dependencies>
         <dependency>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-surefire-plugin</artifactId>
+           <version>2.3</version>
+       </dependency>        
+        <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>1.0.4</version>
@@ -227,12 +230,12 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.2</version>
+            <version>4.0</version>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.9</version>
-        </dependency>       
+        </dependency>
     </dependencies>
 </project>
