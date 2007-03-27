@@ -1,5 +1,5 @@
 Summary
 
  Dragon3D is a Java framework for the Renderman (c) Interface to convert the Renderman (c) Interface Bytestream (RIB) file format into XML.
- By transforming the RIB into XML devlopers will be able to manipulate the Renderman files with a wide variety of existing XML tools. 
+ By transforming the RIB into XML devlopers will be able to manupilate the Renderman files with a wide variete of existing XML tools.
  A possible implementation could be the conversion of a Renderman file to another 3D format via XSLT.
