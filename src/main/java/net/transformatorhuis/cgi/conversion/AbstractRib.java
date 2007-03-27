@@ -9,6 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.Vector;
 
+import net.transformatorhuis.xsd.ObjectFactory;
+
 /**
  * @author Olivier VAn Acker
  *
@@ -22,12 +24,17 @@ public abstract class AbstractRib {
      */
     private static Logger logger = Logger.getLogger(AbstractRib.class);
 
-    // This pattern is not perfect.
+    /* TODO: Improve this pattern.*/
     /**
      * Regular expression pattern.
      */
     private Pattern p = Pattern
             .compile("\"[\\w\\s.]*\"|\\[[\\p{Graph}\\p{Blank}]*\\]|[\\d\\p{Punct}]*'");
+
+    /*
+     * JAXB object factory for RIB elements
+     */
+    protected static ObjectFactory objFactory = new ObjectFactory();
 
     /**
      * Paramters.
@@ -52,7 +59,7 @@ public abstract class AbstractRib {
     /**
      * Return name of element based on class name without starting with 'Ri' and
      * ending with 'Begin' and in lower case.
-     * 
+     *
      * @return name of the element in lowercase
      */
     protected final String getElementName() {
@@ -72,7 +79,7 @@ public abstract class AbstractRib {
     /**
      * Creates xml node. Most straight forward implementation, this class is
      * usually overwritten by sub class
-     * 
+     *
      * @param ribDoc -
      *            DOM xml document to add the xml to
      * @return xml piece for this element
@@ -142,4 +149,11 @@ public abstract class AbstractRib {
     public void setParam(String param) {
         this.param = param;
     }
+
+    /**
+     * Abstract method to return
+     * @return JAXB node returned for RIB element
+     */
+     abstract public Object getJAXBNode();
+
 }

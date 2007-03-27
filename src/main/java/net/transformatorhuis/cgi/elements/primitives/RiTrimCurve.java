@@ -1,13 +1,13 @@
 package net.transformatorhuis.cgi.elements.primitives;
 
 import org.apache.log4j.Logger;
-import net.transformatorhuis.cgi.conversion.AbstractRib;
+import net.transformatorhuis.cgi.conversion.AbstractRibType;
 
 /**
  * @author cyberroadie
  *
  */
-public class RiTrimCurve extends AbstractRib {
+public class RiTrimCurve extends AbstractRibType {
 
     /**
      * Logger.

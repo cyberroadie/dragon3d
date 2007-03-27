@@ -2,6 +2,8 @@ package net.transformatorhuis.cgi.conversion;
 
 import org.apache.log4j.Logger;
 import net.transformatorhuis.cgi.utils.Config;
+import net.transformatorhuis.xsd.ObjectFactory;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.Hashtable;
 
@@ -16,6 +18,11 @@ public class RibFactory {
      */
     private static Logger logger = Logger.getLogger(RibFactory.class);
 
+    /*
+     * Object factory for JAXB nodes
+     */
+    private ObjectFactory objFactory;
+
     /**
      * Classes.
      */
@@ -29,7 +36,11 @@ public class RibFactory {
      */
     public RibFactory(final Config config) {
 
+        /* Hashtable for rib element name to class mapping */
         classes = config.getClasses();
+
+        /* JAXB object factory */
+        objFactory = new ObjectFactory();
 
     }
 

@@ -36,5 +36,14 @@ public class RiTransformEnd extends AbstractRib {
     public boolean isEndElement() {
         return true;
     }
-    
+
+    /**
+     * Abstract method to return
+     *
+     * @return JAXB node returned for RIB element
+     */
+    public Object getJAXBNode() {
+        return null;
+    }
+
 }

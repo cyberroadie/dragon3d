@@ -29,4 +29,8 @@ public class RiOrientation extends AbstractRib {
         super(param);
     }
 
+    public Object getJAXBNode() {
+        return null;
+    }
+
 }

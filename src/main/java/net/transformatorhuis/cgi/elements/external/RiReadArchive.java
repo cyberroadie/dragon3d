@@ -28,4 +28,13 @@ public class RiReadArchive extends AbstractRib {
     public RiReadArchive(final String param) {
         super(param);
     }
+
+    /**
+     * Abstract method to return
+     *
+     * @return JAXB node returned for RIB element
+     */
+    public Object getJAXBNode() {
+        return null;
+    }
 }

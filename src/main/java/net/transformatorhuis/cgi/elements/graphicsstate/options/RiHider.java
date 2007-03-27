@@ -29,4 +29,13 @@ public class RiHider extends AbstractRib {
         super(param);
     }
 
+    /**
+     * Abstract method to return
+     *
+     * @return JAXB node returned for RIB element
+     */
+    public Object getJAXBNode() {
+        return null;
+    }
+
 }

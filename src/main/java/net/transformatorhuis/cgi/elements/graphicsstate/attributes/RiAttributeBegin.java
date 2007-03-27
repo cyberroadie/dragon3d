@@ -36,4 +36,13 @@ public class RiAttributeBegin extends AbstractRib {
         return true;
     }
 
+    /**
+     * Abstract method to return
+     *
+     * @return JAXB node returned for RIB element
+     */
+    public Object getJAXBNode() {
+        return null;
+    }
+
 }

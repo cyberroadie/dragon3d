@@ -28,5 +28,14 @@ public class RiMakeCubeFaceEnvironment extends AbstractRib {
     public RiMakeCubeFaceEnvironment(final String param) {
         super(param);
     }
-    
+
+    /**
+     * Abstract method to return
+     *
+     * @return JAXB node returned for RIB element
+     */
+    public Object getJAXBNode() {
+        return null;
+    }
+
 }
