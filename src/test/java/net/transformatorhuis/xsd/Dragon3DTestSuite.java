@@ -1,14 +1,13 @@
 package net.transformatorhuis.xsd;
 
-import org.junit.runner.RunWith;
-import org.junit.runner.Runner;
 import org.junit.runners.Suite;
+import net.transformatorhuis.cgi.elements.graphicsstate.options.RiDisplayTest;
 
 // TODO Get this working (Suite.class)
 //@RunWith(Suite.class)
 
 @Suite.SuiteClasses({
-    DisplayTest.class
+    RiDisplayTest.class
 })
 
 /**

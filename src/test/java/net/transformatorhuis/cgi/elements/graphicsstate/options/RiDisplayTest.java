@@ -1,10 +1,8 @@
-package net.transformatorhuis.xsd;
+package net.transformatorhuis.cgi.elements.graphicsstate.options;
 
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 import org.apache.log4j.Logger;
 import net.transformatorhuis.xsd.GeneralRibTest;
@@ -17,9 +15,9 @@ import java.io.IOException;
 /**
  * User: cyberroadie
  */
-public class DisplayTest extends GeneralRibTest {
+public class RiDisplayTest extends GeneralRibTest {
 
-    private static Logger logger = Logger.getLogger(DisplayTest.class); 
+    private static Logger logger = Logger.getLogger(RiDisplayTest.class);
 
     private String testFragment = "<display name=\"swordMesh.tif\" type=\"file\" mode=\"rgba\" />";
 
