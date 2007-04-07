@@ -142,8 +142,7 @@ public class ConfigGenerator {
 
         // Mapping a value to existing key
         if (dirContent.containsKey(key)) {
-            Vector vector = (Vector) dirContent.get(key);
-            Vector<String> valueVec = vector;
+            Vector<String> valueVec = (Vector) dirContent.get(key);
             valueVec.add(value);
             dirContent.remove(key);
             dirContent.put(key, valueVec);

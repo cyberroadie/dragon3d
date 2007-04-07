@@ -42,16 +42,6 @@ public class Teapot {
     private Logger logger;
 
     /**
-     * JAXB context.
-     */
-    private JAXBContext jc;
-
-    /**
-     * Object factory.
-     */
-    private ObjectFactory objFactory;
-
-    /**
      * Rib.
      */
     private Rib rib;
@@ -77,11 +67,11 @@ public class Teapot {
         }
 
         try {
-            jc = JAXBContext.newInstance("net.transformatorhuis.xsd");
+            JAXBContext jc = JAXBContext.newInstance("net.transformatorhuis.xsd");
             m = jc.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             // creating the ObjectFactory
-            objFactory = new ObjectFactory();
+            ObjectFactory objFactory = new ObjectFactory();
 
             // Intial setup renderman file
             rib = objFactory.createRib();
@@ -188,8 +178,8 @@ public class Teapot {
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setNamespaceAware(true);
-        DocumentBuilder db = null;
-        Document doc = null;
+        DocumentBuilder db;
+        Document doc;
         try {
             db = dbf.newDocumentBuilder();
             doc = db.newDocument();
