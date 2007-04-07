@@ -29,16 +29,11 @@ public class RiDisplay extends AbstractRib {
     private Display display;
 
     /**
-     * Parameter list.
-     */
-    private Vector parameterList;
-
-    /**
      * @param parameters parameters.
      */
     public RiDisplay(String parameters) {
         super(parameters);
-        parameterList = splitParameters(parameters);
+        Vector parameterList = splitParameters(parameters);
         display = objFactory.createDisplay();
         display.setName((String) parameterList.get(0));
         display.setType((String) parameterList.get(1));

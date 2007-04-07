@@ -18,11 +18,6 @@ public class RibFactory {
      */
     private static Logger logger = Logger.getLogger(RibFactory.class);
 
-    /*
-     * Object factory for JAXB nodes
-     */
-    private ObjectFactory objFactory;
-
     /**
      * Classes.
      */
@@ -40,7 +35,7 @@ public class RibFactory {
         classes = config.getClasses();
 
         /* JAXB object factory */
-        objFactory = new ObjectFactory();
+        ObjectFactory objFactory = new ObjectFactory();
 
     }
 

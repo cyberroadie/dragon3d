@@ -88,7 +88,7 @@ public final class RibDocument implements RibOutput {
         parentNodes.push(root);
         logger.debug("Stack size (constructor): " + parentNodes.size());
 
-    };
+    }
 
     /**
      * Instantiate the Ribdocument or get the already existing one.
