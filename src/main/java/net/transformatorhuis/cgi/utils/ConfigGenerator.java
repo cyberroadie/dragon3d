@@ -120,10 +120,14 @@ public class ConfigGenerator {
         for (int i = 0; i < dir.length; i++) {
             if (dir[i].isDirectory()) {
                 logger.debug(dir[i].getPath());
-                createDirContent(dir[i].listFiles(), dir[i].getPath());
+                if(!dir[i].isHidden()) {
+                    createDirContent(dir[i].listFiles(), dir[i].getPath());
+                }
             } else {
                 logger.debug(dir[i].getName());
-                add(key, dir[i].getName());
+                if(dir[i].getName().endsWith(".class")) {
+                    add(key, dir[i].getName());
+                }
             }
         }
 
@@ -187,18 +191,20 @@ public class ConfigGenerator {
                 String value = (String) values.nextElement();
                 Element ribFile = configDoc.createElement("ribelement");
 
-                // No Ri prefix and no .class extension
-                ribFile.setAttribute("name", value.substring(2, value
-                        .lastIndexOf(".class")));
+                logger.debug(value);
+                if(value.startsWith("Ri")) {
+                    // No Ri prefix and no .class extension
+                    ribFile.setAttribute("name", value.substring(2, value
+                            .lastIndexOf(".class")));
 
-                // No .class extension
-                ribFile.setAttribute("classname", value.substring(0, value
-                        .lastIndexOf(".class")));
+                    // No .class extension
+                    ribFile.setAttribute("classname", value.substring(0, value
+                            .lastIndexOf(".class")));
 
-                // Add rib element to corresponding package
-                ribPackage.appendChild(ribFile);
+                    // Add rib element to corresponding package
+                    ribPackage.appendChild(ribFile);
+                }
             }
-
             root.appendChild(ribPackage);
         }
 

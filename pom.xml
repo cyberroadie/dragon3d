@@ -80,7 +80,7 @@
                     <configLocation>${basedir}/checkstyle.xml</configLocation>
                 </configuration>
             </plugin>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
                 <configuration>
@@ -91,7 +91,7 @@
                     <minimumTokens>100</minimumTokens>
                     <targetJdk>1.6</targetJdk>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </reporting>
     <distributionManagement>
@@ -199,7 +199,6 @@
                     <execution>
                         <goals>
                             <goal>clean</goal>
-                            <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
