@@ -5,36 +5,53 @@ import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 /**
+ * Utilty class the generate a proprties file which maps the java classes
+ * to their corresponding RIB elements
  * @author cyberroadie
  */
 public class PropertiesFileGenerator {
 
+    /**
+     * Logger
+     */
     public Logger logger = Logger.getLogger(PropertiesFileGenerator.class);
 
+    /**
+     * HashMap for storing the key / values
+     */
     private HashMap<String, String> propertiesMap = new HashMap();
 
+    /**
+     * Default Maven Java source directory
+     */
     private static final String SRC_DIR = "./src/main/java";
-    
+
+    /**
+     * Default Maven resource directory
+     */
     private static final String RESOURCES_DIR = "./src/main/resources";
-    
+
+    /**
+     * Properties file for storing all the RIB elements
+     */
     private static final String RIB_ELEMENT_FILE_NAME = "ribelement.properties";
 
-    public PropertiesFileGenerator() {
-    }
-
+    /**
+     * Generates the proprty file
+     * @param baseDir directory to traverse from
+     * @throws IOException file can not be written
+     */
     public void generateFile(File baseDir) throws IOException {
         this.traverseDirectories(baseDir.listFiles());
         File file = new File(RESOURCES_DIR + "/" + RIB_ELEMENT_FILE_NAME);
         FileWriter fw = new FileWriter(file);
 
-        for (Iterator<String> iterator = propertiesMap.keySet().iterator(); iterator.hasNext();) {
-            String key = iterator.next();
+        for (String key : propertiesMap.keySet()) {
             String value = propertiesMap.get(key);
             logger.debug("Writing to file: " + key + "=" + value);
             fw.write(key + "=" + value + "\n");
@@ -45,19 +62,23 @@ public class PropertiesFileGenerator {
         
     }
 
-    private void traverseDirectories(File dir[]) {
+    /**
+     * traverses a directory
+     * @param directory directory to traverse
+     */
+    private void traverseDirectories(File directory[]) {
 
-        for (int i = 0; i < dir.length; i++) {
-            if (dir[i].isDirectory()) {
-                logger.debug(dir[i].getPath());
-                if (!dir[i].isHidden()) {
-                    traverseDirectories(dir[i].listFiles());
+        for (File aDirectory : directory) {
+            if (aDirectory.isDirectory()) {
+                logger.debug(aDirectory.getPath());
+                if (!aDirectory.isHidden()) {
+                    traverseDirectories(aDirectory.listFiles());
                 }
             } else {
                 // Only get the java file starting with 'Ri'
-                if (dir[i].getName().endsWith(".java") && dir[i].getName().startsWith("Ri")) {
-                    logger.debug("Adding: " + dir[i].getName());
-                    this.add(dir[i]);
+                if (aDirectory.getName().endsWith(".java") && aDirectory.getName().startsWith("Ri")) {
+                    logger.debug("Adding: " + aDirectory.getName());
+                    this.add(aDirectory);
                 }
             }
         }
@@ -66,9 +87,9 @@ public class PropertiesFileGenerator {
     private void add(File javaFile) {
 
         logger.debug("Adding: " + javaFile.getPath().substring(SRC_DIR.length()) + " - " + javaFile.getName());
-        propertiesMap.put(javaFile.getName().substring(2).replaceAll(".java", ""),
-                javaFile.getPath().substring(SRC_DIR.length()).replace("/", ".")
-                .replaceAll(".java", "").substring(1));
+        propertiesMap.put(javaFile.getPath().substring(SRC_DIR.length()).replace("/", ".")
+                .replaceAll(".java", "").substring(1),
+                javaFile.getName().substring(2).replaceAll(".java", ""));
 
     }
 
