@@ -1,0 +1,873 @@
+lightsource
+AQSIS_V 1.1.0
+
+
+segment Data
+
+USES 539000
+
+varying  point clipSuperellipse::Q
+varying  float clipSuperellipse::A
+varying  float clipSuperellipse::B
+varying  float clipSuperellipse::result
+varying  float clipSuperellipse::x
+varying  float clipSuperellipse::y
+varying  float clipSuperellipse::re
+varying  float clipSuperellipse::q
+varying  float clipSuperellipse::r
+varying  float ShapeLightVolume::maxintensity
+varying  float ShapeLightVolume::atten
+varying  float ShapeLightVolume::PLlen
+varying  float ShapeLightVolume::Pz
+varying  float ShapeLightVolume::s
+varying  float ShapeLightVolume::beta
+varying  float BlockerContribution::unoccluded
+varying  point BlockerContribution::Pb1
+varying  point BlockerContribution::Pb2
+varying  vector BlockerContribution::Vlight
+varying  point BlockerContribution::Pplane
+param uniform  string lighttype
+param uniform  float intensity
+param uniform  color lightcolor
+param uniform  float cuton
+param uniform  float cutoff
+param uniform  float nearedge
+param uniform  float faredge
+param uniform  float falloff
+param uniform  float falloffdist
+param uniform  float maxintensity
+param uniform  float parallelrays
+param uniform  float shearx
+param uniform  float sheary
+param uniform  float width
+param uniform  float height
+param uniform  float wedge
+param uniform  float hedge
+param uniform  float roundness
+param uniform  float beamdistribution
+param uniform  string slidename
+param uniform  float noiseamp
+param uniform  float noisefreq
+param uniform  vector noiseoffset
+param uniform  string shadowmap
+param uniform  float shadowblur
+param uniform  float shadowbias
+param uniform  float shadownsamps
+param uniform  color shadowcolor
+param uniform  float raytraceshadow
+param uniform  vector shadowcheat
+param uniform  string blockercoords
+param uniform  float blockerwidth
+param uniform  float blockerheight
+param uniform  float blockerwedge
+param uniform  float blockerhedge
+param uniform  float blockerround
+output param varying  float __nonspecular
+output param varying  float __nondiffuse
+output param uniform  float __foglight
+varying  point PL
+varying  point from
+varying  vector axis
+uniform  float angle
+uniform  float maxradius
+varying  float atten
+varying  color lcol
+varying  point Pslide
+varying  float zslide
+varying  float n
+varying  float unoccluded
+varying  point shadoworigin
+varying  float _2$ShapeLightVolume::maxintensity
+varying  float _3$clipSuperellipse::A
+varying  float _3$clipSuperellipse::B
+varying  point _3$clipSuperellipse::Q
+
+
+segment Init
+	pushis "spot"
+	pop lighttype
+	pushif 1
+	pop intensity
+	pushif 1
+	pushif 1
+	pushif 1
+	settc
+	pop lightcolor
+	pushif 0.01
+	pop cuton
+	pushif 1e+06
+	pop cutoff
+	pushif 0
+	pop nearedge
+	pushif 0
+	pop faredge
+	pushif 0
+	pop falloff
+	pushif 1
+	pop falloffdist
+	pushif 1
+	pop maxintensity
+	pushif 0
+	pop parallelrays
+	pushif 0
+	pop shearx
+	pushif 0
+	pop sheary
+	pushif 1
+	pop width
+	pushif 1
+	pop height
+	pushif 0.1
+	pop wedge
+	pushif 0.1
+	pop hedge
+	pushif 1
+	pop roundness
+	pushif 0
+	pop beamdistribution
+	pushis ""
+	pop slidename
+	pushif 0
+	pop noiseamp
+	pushif 4
+	pop noisefreq
+	pushif 0
+	setfv
+	pop noiseoffset
+	pushis ""
+	pop shadowmap
+	pushif 0.01
+	pop shadowblur
+	pushif 0.01
+	pop shadowbias
+	pushif 16
+	pop shadownsamps
+	pushif 0
+	setfc
+	pop shadowcolor
+	pushif 0
+	pop raytraceshadow
+	pushif 0
+	pushif 0
+	pushif 0
+	settv
+	pushis "current"
+	pushis "shader"
+	vtransform2
+	pop shadowcheat
+	pushis ""
+	pop blockercoords
+	pushif 1
+	pop blockerwidth
+	pushif 1
+	pop blockerheight
+	pushif 0.1
+	pop blockerwedge
+	pushif 0.1
+	pop blockerhedge
+	pushif 1
+	pop blockerround
+	pushif 0
+	pop __nonspecular
+	pushif 0
+	pop __nondiffuse
+	pushif 1
+	pop __foglight
+
+
+segment Code
+	pushv Ps
+	pushis "shader"
+	transform
+	pop PL
+	S_CLEAR
+	pushis "spot"
+	pushv lighttype
+	eqss
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 1
+	pushif 0
+	pushif 0
+	pushif 0
+	settp
+	pushis "current"
+	pushis "shader"
+	transform2
+	pop from
+	pushif 1
+	pushif 0
+	pushif 0
+	settv
+	pushis "current"
+	pushis "shader"
+	vtransform2
+	normalize
+	pop axis
+	pushv shearx
+	abs
+	pushv wedge
+	pushv width
+	addff
+	addff
+	pushv sheary
+	abs
+	pushv hedge
+	pushv height
+	addff
+	addff
+	pushif 0
+	max
+	pushif 1.41421
+	mulff
+	pop maxradius
+	pushv maxradius
+	atan
+	pop angle
+:1
+	RS_JNZ 0
+	RS_INVERSE
+	S_CLEAR
+	pushis "arealight"
+	pushv lighttype
+	eqss
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 3
+	pushv P
+	pop from
+	pushv N
+	pop axis
+	pushif 2
+	pushif 3.14159
+	divff
+	pop angle
+:3
+	RS_JNZ 2
+	RS_INVERSE
+	pushif 0
+	pushif 0
+	pushif 0
+	settp
+	pushis "current"
+	pushis "shader"
+	transform2
+	pop from
+	pushif 1
+	pushif 0
+	pushif 0
+	settv
+	pushis "current"
+	pushis "shader"
+	vtransform2
+	normalize
+	pop axis
+	pushif 3.14159
+	pop angle
+:2
+	RS_POP
+:0
+	RS_POP
+:4
+	S_CLEAR
+	pushv angle
+	pushv axis
+	pushv from
+	illuminate2
+	S_JZ 5
+	RS_PUSH
+	RS_GET
+	pushif 1
+	pop atten
+	pushv lightcolor
+	pop lcol
+	pushv intensity
+	pushv maxintensity
+	divff
+	pop _2$ShapeLightVolume::maxintensity
+	pushif 1
+	pop ShapeLightVolume::atten
+	pushv PL
+	length
+	pop ShapeLightVolume::PLlen
+	S_CLEAR
+	pushis "spot"
+	pushv lighttype
+	eqss
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 7
+	pushv PL
+	zcomp
+	pop ShapeLightVolume::Pz
+:7
+	RS_JNZ 6
+	RS_INVERSE
+	pushv ShapeLightVolume::PLlen
+	pop ShapeLightVolume::Pz
+:6
+	RS_POP
+	pushv ShapeLightVolume::Pz
+	pushv cuton
+	pushv nearedge
+	pushv cuton
+	subff
+	smoothstep
+	pushv ShapeLightVolume::atten
+	mulff
+	pop ShapeLightVolume::atten
+	pushv ShapeLightVolume::Pz
+	pushv faredge
+	pushv cutoff
+	addff
+	pushv cutoff
+	smoothstep
+	pushif 1
+	subff
+	pushv ShapeLightVolume::atten
+	mulff
+	pop ShapeLightVolume::atten
+	S_CLEAR
+	pushif 0
+	pushv falloff
+	neff
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 8
+	S_CLEAR
+	pushv falloffdist
+	pushv ShapeLightVolume::PLlen
+	gtff
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 10
+	pushv falloff
+	pushv ShapeLightVolume::PLlen
+	pushv falloffdist
+	divff
+	pow
+	pushv ShapeLightVolume::atten
+	mulff
+	pop ShapeLightVolume::atten
+:10
+	RS_JNZ 9
+	RS_INVERSE
+	pushv _2$ShapeLightVolume::maxintensity
+	pushif 1
+	divff
+	log
+	pop ShapeLightVolume::s
+	pushv ShapeLightVolume::s
+	pushv falloff
+	negf
+	divff
+	pop ShapeLightVolume::beta
+	pushv ShapeLightVolume::beta
+	pushv falloffdist
+	pushv ShapeLightVolume::PLlen
+	divff
+	pow
+	pushv ShapeLightVolume::s
+	mulff
+	exp
+	pushv _2$ShapeLightVolume::maxintensity
+	mulff
+	pushv ShapeLightVolume::atten
+	mulff
+	pop ShapeLightVolume::atten
+:9
+	RS_POP
+:8
+	RS_POP
+	S_CLEAR
+	pushis "omni"
+	pushv lighttype
+	ness
+	pushif 0
+	pushv beamdistribution
+	gtff
+	land
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 11
+	pushv beamdistribution
+	pushv axis
+	pushv PL
+	normalize
+	dotpp
+	pow
+	pushv ShapeLightVolume::atten
+	mulff
+	pop ShapeLightVolume::atten
+:11
+	RS_POP
+	S_CLEAR
+	pushis "spot"
+	pushv lighttype
+	eqss
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 12
+	pushif 0
+	pushv sheary
+	pushv shearx
+	settp
+	pushv ShapeLightVolume::Pz
+	setfp
+	pushv PL
+	divpp
+	subpp
+	pop _3$clipSuperellipse::Q
+	pushv wedge
+	pushv width
+	addff
+	pop _3$clipSuperellipse::A
+	pushv hedge
+	pushv height
+	addff
+	pop _3$clipSuperellipse::B
+	pushv _3$clipSuperellipse::Q
+	xcomp
+	abs
+	pop clipSuperellipse::x
+	pushv _3$clipSuperellipse::Q
+	ycomp
+	abs
+	pop clipSuperellipse::y
+	S_CLEAR
+	pushif 1e-06
+	pushv roundness
+	lsff
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 14
+	pushv clipSuperellipse::y
+	pushv _3$clipSuperellipse::B
+	pushv height
+	smoothstep
+	pushif 1
+	subff
+	pushv clipSuperellipse::x
+	pushv _3$clipSuperellipse::A
+	pushv width
+	smoothstep
+	pushif 1
+	subff
+	mulff
+	pushif 1
+	subff
+	pop clipSuperellipse::result
+:14
+	RS_JNZ 13
+	RS_INVERSE
+	pushv roundness
+	pushif 2
+	divff
+	pop clipSuperellipse::re
+	pushv clipSuperellipse::re
+	pushif 1
+	negf
+	divff
+	pushv clipSuperellipse::re
+	pushv clipSuperellipse::y
+	pushv width
+	mulff
+	pow
+	pushv clipSuperellipse::re
+	pushv clipSuperellipse::x
+	pushv height
+	mulff
+	pow
+	addff
+	pow
+	pushv height
+	pushv width
+	mulff
+	mulff
+	pop clipSuperellipse::q
+	pushv clipSuperellipse::re
+	pushif 1
+	negf
+	divff
+	pushv clipSuperellipse::re
+	pushv clipSuperellipse::y
+	pushv _3$clipSuperellipse::A
+	mulff
+	pow
+	pushv clipSuperellipse::re
+	pushv clipSuperellipse::x
+	pushv _3$clipSuperellipse::B
+	mulff
+	pow
+	addff
+	pow
+	pushv _3$clipSuperellipse::B
+	pushv _3$clipSuperellipse::A
+	mulff
+	mulff
+	pop clipSuperellipse::r
+	pushif 1
+	pushv clipSuperellipse::r
+	pushv clipSuperellipse::q
+	smoothstep
+	pop clipSuperellipse::result
+:13
+	RS_POP
+	pushv clipSuperellipse::result
+	pushif 1
+	subff
+	pushv ShapeLightVolume::atten
+	mulff
+	pop ShapeLightVolume::atten
+:12
+	RS_POP
+	pushv ShapeLightVolume::atten
+	pushv atten
+	mulff
+	pop atten
+	S_CLEAR
+	pushif 0
+	pushv atten
+	gtff
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 15
+	S_CLEAR
+	pushis ""
+	pushv slidename
+	ness
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 16
+	pushif 1
+	pushv hedge
+	pushv height
+	addff
+	pushv wedge
+	pushv width
+	addff
+	settp
+	pushv PL
+	divpp
+	pop Pslide
+	pushv Pslide
+	zcomp
+	pop zslide
+	pushv zslide
+	pushv Pslide
+	ycomp
+	pushif 0.5
+	mulff
+	divff
+	pushif 0.5
+	subff
+	pushif 0.5
+	pushv zslide
+	pushv Pslide
+	xcomp
+	pushif 0.5
+	mulff
+	divff
+	addff
+	pushif 0
+	pushv slidename
+	pushif 0
+	ctexture2
+	pushv lcol
+	mulcc
+	pop lcol
+:16
+	RS_POP
+	S_CLEAR
+	pushif 0
+	pushv noiseamp
+	gtff
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 17
+	pushif 0
+	pushif 1
+	pushif 1
+	settp
+	pushv noiseoffset
+	pushv PL
+	addpp
+	pushv noisefreq
+	mulfp
+	mulpp
+	noise3
+	pop n
+	pushif 0.5
+	pushv n
+	subff
+	pushv noiseamp
+	mulff
+	pushif 0.5
+	addff
+	pushif 1
+	pushif 0
+	smoothstep
+	pop n
+	pushv n
+	pushv atten
+	mulff
+	pop atten
+:17
+	RS_POP
+	pushif 1
+	pop unoccluded
+	S_CLEAR
+	pushis ""
+	pushv shadowmap
+	ness
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 18
+	pushv shadowbias
+	pushis "bias"
+	pushv shadownsamps
+	pushis "samples"
+	pushv shadowblur
+	pushis "blur"
+	pushv Ps
+	pushif 0
+	pushv shadowmap
+	pushif 6
+	shadow
+	pushif 1
+	subff
+	pushv unoccluded
+	mulff
+	pop unoccluded
+:18
+	RS_POP
+	S_CLEAR
+	pushif 0
+	pushv parallelrays
+	eqff
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 20
+	pushv from
+	pop shadoworigin
+:20
+	RS_JNZ 19
+	RS_INVERSE
+	pushv cuton
+	pushv PL
+	ycomp
+	pushv PL
+	xcomp
+	settp
+	pushis "current"
+	pushis "shader"
+	transform2
+	pop shadoworigin
+:19
+	RS_POP
+	S_CLEAR
+	pushis ""
+	pushv blockercoords
+	ness
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 21
+	pushif 1
+	pop BlockerContribution::unoccluded
+	pushv Ps
+	pushv blockercoords
+	transform
+	pop BlockerContribution::Pb1
+	pushv shadoworigin
+	pushv blockercoords
+	transform
+	pop BlockerContribution::Pb2
+	S_CLEAR
+	pushif 0
+	pushv BlockerContribution::Pb1
+	zcomp
+	pushv BlockerContribution::Pb2
+	zcomp
+	mulff
+	lsff
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 22
+	pushv BlockerContribution::Pb2
+	pushv BlockerContribution::Pb1
+	subpp
+	pop BlockerContribution::Vlight
+	pushv BlockerContribution::Vlight
+	zcomp
+	pushv BlockerContribution::Pb1
+	zcomp
+	divff
+	setfp
+	pushv BlockerContribution::Vlight
+	mulpp
+	pushv BlockerContribution::Pb1
+	subpp
+	pop BlockerContribution::Pplane
+	pushv blockerwedge
+	pushv blockerwidth
+	addff
+	pop _3$clipSuperellipse::A
+	pushv blockerhedge
+	pushv blockerheight
+	addff
+	pop _3$clipSuperellipse::B
+	pushv BlockerContribution::Pplane
+	xcomp
+	abs
+	pop clipSuperellipse::x
+	pushv BlockerContribution::Pplane
+	ycomp
+	abs
+	pop clipSuperellipse::y
+	S_CLEAR
+	pushif 1e-06
+	pushv blockerround
+	lsff
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 24
+	pushv clipSuperellipse::y
+	pushv _3$clipSuperellipse::B
+	pushv blockerheight
+	smoothstep
+	pushif 1
+	subff
+	pushv clipSuperellipse::x
+	pushv _3$clipSuperellipse::A
+	pushv blockerwidth
+	smoothstep
+	pushif 1
+	subff
+	mulff
+	pushif 1
+	subff
+	pop clipSuperellipse::result
+:24
+	RS_JNZ 23
+	RS_INVERSE
+	pushv blockerround
+	pushif 2
+	divff
+	pop clipSuperellipse::re
+	pushv clipSuperellipse::re
+	pushif 1
+	negf
+	divff
+	pushv clipSuperellipse::re
+	pushv clipSuperellipse::y
+	pushv blockerwidth
+	mulff
+	pow
+	pushv clipSuperellipse::re
+	pushv clipSuperellipse::x
+	pushv blockerheight
+	mulff
+	pow
+	addff
+	pow
+	pushv blockerheight
+	pushv blockerwidth
+	mulff
+	mulff
+	pop clipSuperellipse::q
+	pushv clipSuperellipse::re
+	pushif 1
+	negf
+	divff
+	pushv clipSuperellipse::re
+	pushv clipSuperellipse::y
+	pushv _3$clipSuperellipse::A
+	mulff
+	pow
+	pushv clipSuperellipse::re
+	pushv clipSuperellipse::x
+	pushv _3$clipSuperellipse::B
+	mulff
+	pow
+	addff
+	pow
+	pushv _3$clipSuperellipse::B
+	pushv _3$clipSuperellipse::A
+	mulff
+	mulff
+	pop clipSuperellipse::r
+	pushif 1
+	pushv clipSuperellipse::r
+	pushv clipSuperellipse::q
+	smoothstep
+	pop clipSuperellipse::result
+:23
+	RS_POP
+	pushv clipSuperellipse::result
+	pushv BlockerContribution::unoccluded
+	mulff
+	pop BlockerContribution::unoccluded
+:22
+	RS_POP
+	pushv BlockerContribution::unoccluded
+	pushv unoccluded
+	mulff
+	pop unoccluded
+:21
+	RS_POP
+	pushv unoccluded
+	pushv lcol
+	pushv shadowcolor
+	cmix
+	pop lcol
+	pushv unoccluded
+	pushif 1
+	subff
+	pushv __nonspecular
+	mulff
+	pop __nonspecular
+:15
+	RS_POP
+	pushv lcol
+	pushv intensity
+	pushv atten
+	mulff
+	mulfc
+	pop Cl
+	S_CLEAR
+	pushif 0
+	pushv parallelrays
+	neff
+	S_GET
+	RS_PUSH
+	RS_GET
+	RS_JZ 25
+	pushv from
+	pushv Ps
+	subpp
+	length
+	setfp
+	pushv axis
+	mulpp
+	pop L
+:25
+	RS_POP
+	RS_POP
+	jmp 4
+:5

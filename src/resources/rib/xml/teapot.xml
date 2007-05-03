@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rib xmlns="http://dragon3d.berlios.de/rib/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://dragon3d.berlios.de/rib/ ../../schemas/xrib_teapot.xsd"
+    version="3.03">
+    
+    <display name="teapot.tiff" type="file" mode="rgb"/>
+    <projection name="perspective"/>
+    
+    <translate dx="0" dy="0" dz="25"/>
+    
+    <rotate angle="-22" dx="1" dy="0" dz="0"/>
+    <rotate angle="19" dx="0" dy="1" dz="0" />
+    
+    <translate dx="0" dy="-3" dz="0"/>
+    
+    <world>
+        <lightsource shadername="ambientlight">
+            <param name="intensity" value=".4"/>
+        </lightsource>
+        <lightsource shadername="distantlight">
+            <param name="intensity" value=".6"/>
+        </lightsource>
+        <surface shadername="plastic"/>
+        <color r="1" g=".6" b="0"/>
+        
+        <!-- spout -->
+        <attributestack>
+            <sides sides="2"/>
+            <translate dx="3" dy="1.3" dz="0"/>
+            <rotate angle="30" dx="0" dy="0" dz="1"/>
+            <rotate angle="90" dx="0" dy="1" dz="0"/>
+            <hyperboloid thetamax="360" x1="1.2" y1="0" z1="0" x2="0.4" y2="0" z2="5.7"/>
+        </attributestack>
+        
+        <!-- handle -->
+        <attributestack>
+            <translate dx="-4.3" dy="4.2" dz="0"/>
+            <transformstack>
+                <rotate angle="180" dx="0" dy="0" dz="1"/>
+                <torus majorradius="0.52" minorradius="0.26" phiminus="0" phimax="360" thetamax="360"/>
+            </transformstack>
+            <transformstack>
+                <translate dx="-2.38" dy="0" dz="0"/>
+                <rotate angle="90" dx="0" dy="0" dz="1"/>
+                <torus majorradius="0.52" minorradius="0.26" phiminus="0" phimax="360" thetamax="90"/>
+            </transformstack>
+            <translate dx="-2.38" dy="0.52" dz="0"/>
+            <rotate angle="90" dx="0" dy="1" dz="0"/>
+            <cylinder radius="0.26" zmin="0" zmax="3.3" thetamax="360"/>
+        </attributestack>
+        
+        <!-- body -->
+        <attributestack>
+            <rotate angle="-90" dx="1" dy="0" dz="0"/>
+            <transformstack>
+                <translate dx="0" dy="0" dz="1.7"/>
+                <scale sx="1" sy="1" sz="1.05468457"/>
+                <sphere radius="5" zmin="0" zmax="3.12897569" thetamax="360"/>
+            </transformstack>
+            <transformstack>
+                <translate dx="0" dy="0" dz="1.7"/>
+                <scale sx="1" sy="1" sz="0.463713017"/>
+                <sphere radius="5" zmin="-3.66606055" zmax="0" thetamax="360"/>
+            </transformstack>
+        </attributestack>
+        
+        <!-- top -->
+        <attributestack>
+            <rotate angle="-90" dx="1" dy="0" dz="0"/>
+            <translate dx="0" dy="0" dz="5"/>
+            <attributestack>
+                <scale sx="1" sy="1" sz="0.2051282"/>
+                <sphere radius="3.9" zmin="0" zmax="3.9" thetamax="360"/>
+            </attributestack>
+            <translate dx="0" dy="0" dz="0.8"/>
+            <attributestack>
+                <orientation orientation="rh"/>
+                <sides sides="2"/>
+                <torus majorradius="0.75" minorradius="0.45" phiminus="90" phimax="180" thetamax="360"/>
+            </attributestack>
+            <translate dx="0" dy="0" dz="0.675"/>
+            <torus majorradius="0.75" minorradius="0.225" phiminus="-90" phimax="90" thetamax="360"/>
+            <disk height="0.225" radius="0.75" thetamax="360"/>
+        </attributestack>
+    </world>
+</rib>
+    
