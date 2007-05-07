@@ -1,0 +1,71 @@
+########################################################################################
+##
+## Available variables:
+##         $entryList.methodList - ArrayList of method names
+##         $entryList.fieldList - ArrayList of class scope field names
+##         $entryList.className - class name
+##         $entryList.packageName - package name
+##         $today - Todays date in MM/dd/yyyy format
+##
+## You can configure the output class name using "testClass" variable below.
+## Here are some examples:
+## Test${entry.ClassName} - will produce TestSomeClass
+## ${entry.className}Test - will produce SomeClassTest
+##
+########################################################################################
+##
+#macro (cap $strIn)$strIn.valueOf($strIn.charAt(0)).toUpperCase()$strIn.substring(1)#end
+## Iteratre through the list and generate testcase for every entry.
+#foreach ($entry in $entryList)
+#set( $testClass="${entry.className}Test")
+##
+package $entry.packageName;
+
+import org.junit.Test;
+import static org.junit.Assert.assertTrue;
+import org.apache.log4j.Logger;
+import org.xml.sax.SAXException;
+import org.w3c.dom.Document;
+import net.transformatorhuis.xsd.GeneralRibTest;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.bind.JAXBException;
+import java.io.IOException;
+
+/**
+ * ${entry.className} Tester.
+ *
+ * @author Cyberroadie
+ * @since <pre>$today</pre>
+ * @version 1.0
+ */
+public class $testClass extends GeneralRibTest {
+
+    private static Logger logger = Logger.getLogger(${testClass}.class);
+
+    private String testXMLFragment = "";
+
+    private String testRIBFragment = "";
+
+    public $testClass() {
+        super();     
+    }
+
+     @Test
+     public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+
+         // Create DOM document
+         Document docFromString = getDOMDocument(testXMLFragment);
+         logger.info(docFromString.toString());
+
+         // TODO: Validate against XSD
+
+         // Create JAXB
+         ${entry.className} rib = new ${entry.className}(testRIBFragment);
+         Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
+
+         assertTrue(compareDocuments(docFromString, docFromJAXB));
+
+     }
+    
+}
+#end

@@ -1,0 +1,63 @@
+########################################################################################
+##
+## Available variables:
+##         $entryList.methodList - ArrayList of method names
+##         $entryList.fieldList - ArrayList of class scope field names
+##         $entryList.className - class name
+##         $entryList.packageName - package name
+##         $today - Todays date in MM/dd/yyyy format
+##
+## You can configure the output class name using "testClass" variable below.
+## Here are some examples:
+## Test${entry.ClassName} - will produce TestSomeClass
+## ${entry.className}Test - will produce SomeClassTest
+##
+########################################################################################
+##
+#macro (cap $strIn)$strIn.valueOf($strIn.charAt(0)).toUpperCase()$strIn.substring(1)#end
+## Iteratre through the list and generate testcase for every entry.
+#foreach ($entry in $entryList)
+#set( $testClass="${entry.className}Test")
+##
+package $entry.packageName;
+
+import org.junit.Test;
+import org.junit.Before;
+import org.junit.After;
+import org.apache.log4j.Logger;
+
+/**
+ * ${entry.className} Tester.
+ *
+ * @author Cyberroadie
+ * @since <pre>$today</pre>
+ * @version 1.0
+ */
+public class $testClass {
+
+    private static Logger logger = Logger.getLogger(${testClass}.class);
+
+    public $testClass() {
+
+    }
+
+    @Before
+    public void setUp() throws Exception {
+
+    }
+
+    @After
+    public void tearDown() throws Exception {
+
+    }
+
+#foreach($method in $entry.methodList)
+    @Test
+    public void test#cap(${method})() throws Exception {
+        //TODO: Test goes here...
+    }
+
+#end
+
+}
+#end
