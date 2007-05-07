@@ -111,22 +111,22 @@ public class ConfigGenerator {
      * @param dir
      *            directory
      * @param key
-     *            key
+     *                key
      */
     private void createDirContent(final File[] dir, final String key) {
 
         logger.debug("Length: " + dir.length);
 
-        for (int i = 0; i < dir.length; i++) {
-            if (dir[i].isDirectory()) {
-                logger.debug(dir[i].getPath());
-                if(!dir[i].isHidden()) {
-                    createDirContent(dir[i].listFiles(), dir[i].getPath());
+        for (File aDir : dir) {
+            if (aDir.isDirectory()) {
+                logger.debug(aDir.getPath());
+                if (!aDir.isHidden()) {
+                    createDirContent(aDir.listFiles(), aDir.getPath());
                 }
             } else {
-                logger.debug(dir[i].getName());
-                if(dir[i].getName().endsWith(".class")) {
-                    add(key, dir[i].getName());
+                logger.debug(aDir.getName());
+                if (aDir.getName().endsWith(".class")) {
+                    add(key, aDir.getName());
                 }
             }
         }
