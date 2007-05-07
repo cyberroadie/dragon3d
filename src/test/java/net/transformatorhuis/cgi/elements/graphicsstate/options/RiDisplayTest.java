@@ -21,17 +21,19 @@ public class RiDisplayTest extends GeneralRibTest {
 
     private String testFragment = "<display name=\"swordMesh.tif\" type=\"file\" mode=\"rgba\" />";
 
+    private String testRIBFragment = "\"swordMesh.tif\" \"file\" \"rgba\"";
+
     @Test
-    public void DisplayTest() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+    public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
         // Create DOM document
         Document docFromString = getDOMDocument(testFragment);
-        logger.debug(docFromString.toString());
+        logger.info(docFromString.toString());
         
         // TODO: Validate against XSD
 
         // Create JAXB
-        RiDisplay display = new RiDisplay("\"swordMesh.tif\" \"file\" \"rgba\"");
+        RiDisplay display = new RiDisplay(testRIBFragment);
         Document docFromJAXB = getDOMFromJAXB(display.getJAXBNode());
 
         assertTrue(compareDocuments(docFromString, docFromJAXB));
