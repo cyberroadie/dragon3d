@@ -7,7 +7,7 @@
 		</layout>
 	</appender>
 	<category name="net.transformatorhuis.cgi.utils">
-	    <priority value="debug" />
+	    <priority value="info" />
 	</category>
 	<category name="net.transformatorhuis.cgi.conversion.RibDocument">
 	    <priority value="info" />
