@@ -48,19 +48,6 @@ public class RiDisplay extends AbstractRib {
 
     /**
      * Creates the XML fragment for RiDisplay rib element.
-     * <p>
-     * DTD fragment
-     *
-     * <pre>
-     *   &lt;!ELEMENT DISPLAY - O EMPTY -- RiDisplay --&gt;
-     *   &lt;!ATTLIST DISPLAY
-     *     name    CDATA   #REQUIRED -- name of the picture file or framebuffer --
-     *     type    CDATA   #REQUIRED -- the display format, output device or output driver --
-     *     mode    CDATA   #REQUIRED -- the mode which indicates what data are to be output in this display stream --
-     *   &gt;
-     * </pre>
-     *
-     * <p>
      * <h1>Example</h1>
      * Input:
      *
@@ -84,9 +71,6 @@ public class RiDisplay extends AbstractRib {
      *   &lt;display name=&quot;swordMesh.tif&quot; type=&quot;file&quot; mode=&quot;rgba&quot; /&gt;
      * </pre>
      *
-     * @param ribDoc -
-     *            DOM XML document to request an element from
-     * @return Display xml node
      */
     public Node createXML(RibDocument ribDoc) {
 
