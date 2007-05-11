@@ -1,14 +1,11 @@
 package net.transformatorhuis.cgi.conversion;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.xml.DOMConfigurator;
 
 import java.io.FileReader;
 import java.io.StreamTokenizer;
 import java.io.IOException;
-
-import java.net.URL;
 
 import net.transformatorhuis.cgi.utils.Config;
 
@@ -29,8 +26,6 @@ class Rib2Xml {
      * @param ribFileReader rib file reader
      */
     public Rib2Xml(FileReader ribFileReader) {
-
-        BasicConfigurator.configure();
 
         /* Create the ribfactory which deal with all the rib elements */
         Config config = Config.instance();
@@ -110,6 +105,8 @@ class Rib2Xml {
      */
     public static void main(String[] argv) {
 
+        //BasicConfigurator.configure();
+        DOMConfigurator.configure("src/conf/log4j.xml");
         // is there anything to do?
         if (argv.length == 0) {
             printUsage();

@@ -54,7 +54,9 @@ public final class Config {
     private Config() {
 
         Class clazz = getClass();
-        InputStream in = clazz.getResourceAsStream("/conf/RibElements.xml");
+
+        InputStream in = clazz.getResourceAsStream("/RibElements.xml");
+
         parseConfigFile(in);
 
     }

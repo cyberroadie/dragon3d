@@ -59,6 +59,8 @@ public class ConfigGenerator {
      */
     private Hashtable<String, Vector<String>> dirContent;
 
+    private static final String CONFIG_FILE_NAME = "./src/main/resources/RibElements.xml";
+
     /**
      * Configuration generator.
      */
@@ -91,16 +93,16 @@ public class ConfigGenerator {
         DOMConfigurator.configure("./conf/log4j.xml");
 
         // is there anything to do?
-        if (argv.length < 2) {
+        if (argv.length < 1) {
             printUsage();
             System.exit(1);
         }
 
         ConfigGenerator configGenerator = new ConfigGenerator();
-        File baseDir = new File(argv[1]);
+        File baseDir = new File(argv[0]);
         configGenerator.createDirContent(baseDir.listFiles(), baseDir
                 .toString());
-        configGenerator.createConfigDoc(new File(argv[0]));
+        configGenerator.createConfigDoc(new File(CONFIG_FILE_NAME));
 
     }
 
