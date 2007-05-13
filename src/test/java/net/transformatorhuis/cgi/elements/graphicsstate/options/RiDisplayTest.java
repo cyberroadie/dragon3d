@@ -19,7 +19,7 @@ public class RiDisplayTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiDisplayTest.class);
 
-    private String testFragment = "<display name=\"swordMesh.tif\" type=\"file\" mode=\"rgba\" />";
+    private String testFragment = "<display knol=\"lala\" name=\"swordMesh.tif\" type=\"file\" mode=\"rgba\" />";
 
     private String testRIBFragment = "\"swordMesh.tif\" \"file\" \"rgba\"";
 
@@ -29,15 +29,13 @@ public class RiDisplayTest extends GeneralRibTest {
         // Create DOM document
         Document docFromString = getDOMDocument(testFragment);
         logger.info(docFromString.toString());
-        
-        // TODO: Validate against XSD
 
         // Create JAXB
         RiDisplay display = new RiDisplay(testRIBFragment);
         Document docFromJAXB = getDOMFromJAXB(display.getJAXBNode());
 
         assertTrue(compareDocuments(docFromString, docFromJAXB));
-        
+
     }
 
 }

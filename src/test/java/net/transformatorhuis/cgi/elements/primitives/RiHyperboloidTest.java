@@ -36,8 +36,6 @@ public class RiHyperboloidTest extends GeneralRibTest {
          Document docFromString = getDOMDocument(testXMLFragment);
          logger.info(docFromString.toString());
 
-         // TODO: Validate against XSD
-
          // Create JAXB
          RiHyperboloid rib = new RiHyperboloid(testRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
