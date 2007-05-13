@@ -2,13 +2,14 @@ package net.transformatorhuis.cgi.elements.primitives;
 
 import org.apache.log4j.Logger;
 import net.transformatorhuis.cgi.conversion.AbstractRibType;
+import net.transformatorhuis.cgi.conversion.AbstractRib;
 import net.transformatorhuis.xsd.Hyperboloid;
 
 /**
  * @author cyberroadie
  *
  */
-public class RiHyperboloid extends AbstractRibType {
+public class RiHyperboloid extends AbstractRib {
 
     /**
      * Logger.
