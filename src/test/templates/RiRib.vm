@@ -57,8 +57,6 @@ public class $testClass extends GeneralRibTest {
          Document docFromString = getDOMDocument(testXMLFragment);
          logger.info(docFromString.toString());
 
-         // TODO: Validate against XSD
-
          // Create JAXB
          ${entry.className} rib = new ${entry.className}(testRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
