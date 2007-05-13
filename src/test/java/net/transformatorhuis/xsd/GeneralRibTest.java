@@ -89,6 +89,7 @@ public class GeneralRibTest implements ErrorHandler {
         DocumentBuilderFactory docBuilderFac = DocumentBuilderFactory.newInstance();
         docBuilderFac.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
         docBuilderFac.setAttribute(JAXP_SCHEMA_SOURCE, schemas );
+        // TODO make this validating work (RIDisplay has wrong xml as an example)
         docBuilderFac.setValidating(true);
 
         DocumentBuilder docBuilder = docBuilderFac.newDocumentBuilder();
