@@ -21,9 +21,9 @@ public class RiColorTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiColorTest.class);
 
-    private String testXMLFragment = "";
+    private String testXMLFragment = "<color r=\"1\" g=\".6\" b=\"0\"/>";
 
-    private String testRIBFragment = "";
+    private String testRIBFragment = "Color [1 .6 0]";
 
     public RiColorTest() {
         super();     

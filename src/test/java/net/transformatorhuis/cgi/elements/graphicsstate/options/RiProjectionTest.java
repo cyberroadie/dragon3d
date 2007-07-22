@@ -1,27 +1,26 @@
 package net.transformatorhuis.cgi.elements.graphicsstate.options;
 
+import net.transformatorhuis.xsd.GeneralRibTest;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
-import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
-import org.apache.log4j.Logger;
-import net.transformatorhuis.xsd.GeneralRibTest;
-import net.transformatorhuis.cgi.elements.graphicsstate.options.RiDisplay;
+import org.w3c.dom.Document;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 
 /**
- * User: cyberroadie
+ * @author cyberroadie
  */
-public class RiDisplayTest extends GeneralRibTest {
+public class RiProjectionTest extends GeneralRibTest {
 
-    private static Logger logger = Logger.getLogger(RiDisplayTest.class);
+    private static Logger logger = Logger.getLogger(RiProjectionTest.class);
 
-    private String testFragment = "<display name=\"swordMesh.tif\" type=\"file\" mode=\"rgba\" />";
+    private String testFragment = "<projection name=\"perspective\"/>";
 
-    private String testRIBFragment = "\"swordMesh.tif\" \"file\" \"rgba\"";
+    private String testRIBFragment = "\"perspective\"";
 
     @Test
     public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
@@ -31,11 +30,10 @@ public class RiDisplayTest extends GeneralRibTest {
         logger.info(docFromString.toString());
 
         // Create JAXB
-        RiDisplay display = new RiDisplay(testRIBFragment);
-        Document docFromJAXB = getDOMFromJAXB(display.getJAXBNode());
+        RiProjection projection = new RiProjection(testRIBFragment);
+        Document docFromJAXB = getDOMFromJAXB(projection.getJAXBNode());
 
         assertTrue(compareDocuments(docFromString, docFromJAXB));
 
     }
-
 }

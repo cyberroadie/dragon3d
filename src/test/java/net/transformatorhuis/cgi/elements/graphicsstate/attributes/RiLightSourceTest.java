@@ -21,27 +21,51 @@ public class RiLightSourceTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiLightSourceTest.class);
 
-    private String testXMLFragment = "";
+    private String testXMLFragment_0 = "<lightsource shadername=\"ambientlight\">\n" +
+                                     "    <param name=\"intensity\" value=\".4\"/>\n" +
+                                     "</lightsource>";
 
-    private String testRIBFragment = "";
+    private String testRIBFragment_0 = "\"ambientlight\" 1 \"intensity\" .4";
+
+    private String testXMLFragment_1 = "<lightsource shadername=\"ambientlight\">\n" +
+                                         "    <param name=\"intensity\" value=\".4\"/>\n" +
+                                         "</lightsource>";
+
+    private String testRIBFragment_1 = "\"ambientlight\" 1 \"intensity\" .4";
+
 
     public RiLightSourceTest() {
         super();     
     }
 
      @Test
-     public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+     public void testGetJAXBNode_0() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testXMLFragment);
+         Document docFromString = getDOMDocument(testXMLFragment_0);
          logger.info(docFromString.toString());
 
          // Create JAXB
-         RiLightSource rib = new RiLightSource(testRIBFragment);
+         RiLightSource rib = new RiLightSource(testRIBFragment_0);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
          assertTrue(compareDocuments(docFromString, docFromJAXB));
 
      }
-    
+
+    @Test
+    public void testGetJAXBNode_1() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+
+        // Create DOM document
+        Document docFromString = getDOMDocument(testXMLFragment_1);
+        logger.info(docFromString.toString());
+
+        // Create JAXB
+        RiLightSource rib = new RiLightSource(testRIBFragment_1);
+        Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
+
+        assertTrue(compareDocuments(docFromString, docFromJAXB));
+
+    }
+
 }
