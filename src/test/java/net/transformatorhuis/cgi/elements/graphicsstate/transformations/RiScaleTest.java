@@ -1,6 +1,7 @@
 package net.transformatorhuis.cgi.elements.graphicsstate.transformations;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.assertTrue;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
@@ -29,7 +30,8 @@ public class RiScaleTest extends GeneralRibTest {
         super();     
     }
 
-     @Test
+    @Ignore
+    @Test
      public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document

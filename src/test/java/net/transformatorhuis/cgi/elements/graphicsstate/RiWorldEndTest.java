@@ -1,6 +1,7 @@
 package net.transformatorhuis.cgi.elements.graphicsstate;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.assertTrue;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
@@ -29,6 +30,7 @@ public class RiWorldEndTest extends GeneralRibTest {
         super();     
     }
 
+     @Ignore
      @Test
      public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
