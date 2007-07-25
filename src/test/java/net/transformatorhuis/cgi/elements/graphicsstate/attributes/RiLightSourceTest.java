@@ -55,6 +55,7 @@ public class RiLightSourceTest extends GeneralRibTest {
 
      }
 
+    @Ignore
     @Test
     public void testGetJAXBNode_1() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
