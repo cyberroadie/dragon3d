@@ -15,7 +15,7 @@ import org.w3c.dom.Node;
 /**
  * @author cyberroadie
  *
- * RISpec page 33
+ * RISpec 3.2 page 33
  */
 public class RiDisplay extends AbstractRib {
 

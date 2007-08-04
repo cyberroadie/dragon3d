@@ -9,7 +9,7 @@ import java.util.Vector;
 /**
  * @author cyberroadie
  *
- * RISpec page 25
+ * RISpec 3.2 page 25
  */
 public class RiProjection extends AbstractRib {
 
