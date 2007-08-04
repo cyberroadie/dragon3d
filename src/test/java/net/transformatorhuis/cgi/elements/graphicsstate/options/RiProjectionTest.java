@@ -3,6 +3,7 @@ package net.transformatorhuis.cgi.elements.graphicsstate.options;
 import net.transformatorhuis.xsd.GeneralRibTest;
 import org.apache.log4j.Logger;
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.assertTrue;
 import org.xml.sax.SAXException;
 import org.w3c.dom.Document;
@@ -34,6 +35,7 @@ public class RiProjectionTest extends GeneralRibTest {
                                             "   <param name=\"fov\" value=\"45\">" +
                                             "</projection>";
 
+    @Ignore
     @Test
     public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -49,6 +51,7 @@ public class RiProjectionTest extends GeneralRibTest {
 
     }
 
+    @Ignore
     @Test
     public void testRISpecExample1() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -64,6 +67,7 @@ public class RiProjectionTest extends GeneralRibTest {
 
     }
 
+    @Ignore
     @Test
     public void testRISpecExample2() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
