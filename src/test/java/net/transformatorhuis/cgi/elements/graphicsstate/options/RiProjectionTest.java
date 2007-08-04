@@ -18,9 +18,11 @@ public class RiProjectionTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiProjectionTest.class);
 
-    private String testUtahTeapotRIBFragment = "\"perspective\"";
+    private String testUtahTeapotRIBFragment = "\"perspective\" \"fov\" 30";
 
-    private String testUtahTeapotXMLFragment = "<projection name=\"perspective\"/>";
+    private String testUtahTeapotXMLFragment = "<projection name=\"perspective\">" +
+                                               "   <param name=\"fov\" value=\"30\">" +
+                                               "</projection>";
 
     private String testRISpecRIBFragment1 = "orthographic";
 
