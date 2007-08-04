@@ -19,19 +19,19 @@ public class RiDisplayTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiDisplayTest.class);
 
-    private String testFragment = "<display name=\"swordMesh.tif\" type=\"file\" mode=\"rgba\" />";
-
-    private String testRIBFragment = "\"swordMesh.tif\" \"file\" \"rgba\"";
+    private String testUtahTeapotRIBFragment = "\"swordMesh.tif\" \"file\" \"rgba\"";
+    
+    private String testUtahTeapotXMLFragment = "<display name=\"swordMesh.tif\" type=\"file\" mode=\"rgba\" />";
 
     @Test
     public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
         // Create DOM document
-        Document docFromString = getDOMDocument(testFragment);
+        Document docFromString = getDOMDocument(testUtahTeapotXMLFragment);
         logger.info(docFromString.toString());
 
         // Create JAXB
-        RiDisplay display = new RiDisplay(testRIBFragment);
+        RiDisplay display = new RiDisplay(testUtahTeapotRIBFragment);
         Document docFromJAXB = getDOMFromJAXB(display.getJAXBNode());
 
         assertTrue(compareDocuments(docFromString, docFromJAXB));
