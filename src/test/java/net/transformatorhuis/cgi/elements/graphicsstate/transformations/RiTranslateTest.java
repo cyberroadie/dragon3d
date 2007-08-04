@@ -22,7 +22,7 @@ public class RiTranslateTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiTranslateTest.class);
 
-    private String testXMLFragment = "";
+    private String testXMLFragment = "<translate dx=\"0\" dy=\"0\" dz=\"25\"/>";
 
     private String testRIBFragment = "";
 
