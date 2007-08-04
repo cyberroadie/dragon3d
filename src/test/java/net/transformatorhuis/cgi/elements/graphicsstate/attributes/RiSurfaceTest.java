@@ -22,9 +22,16 @@ public class RiSurfaceTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiSurfaceTest.class);
 
-    private String testXMLFragment = "";
+    private String testUtahTeapotRIBFragment = "Surface \"plastic\"";
 
-    private String testRIBFragment = "";
+    private String testUtahTeapotXMLFragment = "<surface shadername=\"plastic\"/>";
+
+    private String testRISpecRIBFragment = "Surface \"wood\" \"roughness\" 0.3 \"kd\" 1.0 \"float ringwidth\" 0.25";
+
+    private String testRISpecXMLFragment = "<surface shadername=\"wood\">" +
+                                           "    <param name=\"roughness\" value=\"0.3\" />" +
+                                           "    <param name=\"kd\" value=\"1.0\" />" +
+                                           "    <param name=\"float ringwidth\" value=\"0.25\" />";                                           
 
     public RiSurfaceTest() {
         super();     
@@ -32,18 +39,34 @@ public class RiSurfaceTest extends GeneralRibTest {
 
     @Ignore
     @Test
-     public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+    public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testXMLFragment);
+         Document docFromString = getDOMDocument(testUtahTeapotXMLFragment);
          logger.info(docFromString.toString());
 
          // Create JAXB
-         RiSurface rib = new RiSurface(testRIBFragment);
+         RiSurface rib = new RiSurface(testUtahTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
          assertTrue(compareDocuments(docFromString, docFromJAXB));
 
      }
-    
+
+    @Ignore
+    @Test
+     public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+
+         // Create DOM document
+         Document docFromString = getDOMDocument(testRISpecXMLFragment);
+         logger.info(docFromString.toString());
+
+         // Create JAXB
+         RiSurface rib = new RiSurface(testRISpecRIBFragment);
+         Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
+
+         assertTrue(compareDocuments(docFromString, docFromJAXB));
+
+     }
+
 }
