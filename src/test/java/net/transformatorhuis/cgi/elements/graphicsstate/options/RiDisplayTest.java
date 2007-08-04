@@ -23,8 +23,14 @@ public class RiDisplayTest extends GeneralRibTest {
     
     private String testUtahTeapotXMLFragment = "<display name=\"swordMesh.tif\" type=\"file\" mode=\"rgba\" />";
 
+    private String testRISpecRIBFragment = "\"pixar0\" \"framebuffer\" \"rgba\" \"origin\" [10 10]";
+
+    private String testRISpecXMLFragment = "<display name=\"pixar0\" type=\"framebuffer\" mode=\"rgba\" >" +
+                                           "    <param name=\"origin\" value=\"[10 10]/>" +
+                                           "</display>";
+    
     @Test
-    public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+    public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
         // Create DOM document
         Document docFromString = getDOMDocument(testUtahTeapotXMLFragment);
@@ -32,6 +38,21 @@ public class RiDisplayTest extends GeneralRibTest {
 
         // Create JAXB
         RiDisplay display = new RiDisplay(testUtahTeapotRIBFragment);
+        Document docFromJAXB = getDOMFromJAXB(display.getJAXBNode());
+
+        assertTrue(compareDocuments(docFromString, docFromJAXB));
+
+    }
+
+    @Test
+    public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+
+        // Create DOM document
+        Document docFromString = getDOMDocument(testRISpecXMLFragment);
+        logger.info(docFromString.toString());
+
+        // Create JAXB
+        RiDisplay display = new RiDisplay(testRISpecRIBFragment);
         Document docFromJAXB = getDOMFromJAXB(display.getJAXBNode());
 
         assertTrue(compareDocuments(docFromString, docFromJAXB));
