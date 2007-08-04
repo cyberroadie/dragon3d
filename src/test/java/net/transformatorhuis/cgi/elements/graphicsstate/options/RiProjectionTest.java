@@ -18,22 +18,63 @@ public class RiProjectionTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiProjectionTest.class);
 
-    private String testFragment = "<projection name=\"perspective\"/>";
+    private String testUtahTeapotRIBFragment = "\"perspective\"";
 
-    private String testRIBFragment = "\"perspective\"";
+    private String testUtahTeapotXMLFragment = "<projection name=\"perspective\"/>";
+
+    private String testRISpecRIBFragment1 = "orthographic";
+
+    private String testRISPecXMLFragment1 = "<projection name=\"orthographic\"/>";
+
+    private String testRISpecRIBFragment2 = "perspective";
+
+    private String testRISPecXMLFragment2 = "<projection name=\"perspective\" >" +
+                                            "   <param name=\"fov\" value=\"45\">" +
+                                            "</projection>";
 
     @Test
-    public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+    public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
         // Create DOM document
-        Document docFromString = getDOMDocument(testFragment);
+        Document docFromString = getDOMDocument(testUtahTeapotXMLFragment);
         logger.info(docFromString.toString());
 
         // Create JAXB
-        RiProjection projection = new RiProjection(testRIBFragment);
+        RiProjection projection = new RiProjection(testUtahTeapotRIBFragment);
         Document docFromJAXB = getDOMFromJAXB(projection.getJAXBNode());
 
         assertTrue(compareDocuments(docFromString, docFromJAXB));
 
     }
+
+    @Test
+    public void testRISpecExample1() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+
+        // Create DOM document
+        Document docFromString = getDOMDocument(testRISPecXMLFragment1);
+        logger.info(docFromString.toString());
+
+        // Create JAXB
+        RiProjection projection = new RiProjection(testRISpecRIBFragment1);
+        Document docFromJAXB = getDOMFromJAXB(projection.getJAXBNode());
+
+        assertTrue(compareDocuments(docFromString, docFromJAXB));
+
+    }
+
+    @Test
+    public void testRISpecExample2() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+
+        // Create DOM document
+        Document docFromString = getDOMDocument(testRISPecXMLFragment2);
+        logger.info(docFromString.toString());
+
+        // Create JAXB
+        RiProjection projection = new RiProjection(testRISpecRIBFragment2);
+        Document docFromJAXB = getDOMFromJAXB(projection.getJAXBNode());
+
+        assertTrue(compareDocuments(docFromString, docFromJAXB));
+
+    }
+
 }
