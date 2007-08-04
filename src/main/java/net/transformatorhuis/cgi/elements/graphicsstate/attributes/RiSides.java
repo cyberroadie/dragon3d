@@ -6,6 +6,7 @@ import net.transformatorhuis.cgi.conversion.AbstractRib;
 /**
  * @author cyberroadie
  *
+ * RISpec 3.2 page 55
  */
 public class RiSides extends AbstractRib {
 
