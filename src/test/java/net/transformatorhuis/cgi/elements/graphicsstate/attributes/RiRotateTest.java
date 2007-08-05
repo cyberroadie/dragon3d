@@ -22,9 +22,13 @@ public class RiRotateTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiRotateTest.class);
 
-    private String testXMLFragment = "";
+    private String testUtaheTeapotRIBFragment = "Rotate -22 1 0 0";
 
-    private String testRIBFragment = "";
+    private String testUtaheTeapotXMLFragment = "<rotate angle=\"-22\" dx=\"1\" dy=\"0\" dz=\"0\"/>";
+
+    private String testRISpecRIBFragment = "Rotate 90.0 0.0 1.0 0.0";
+
+    private String testRISpecXMLFragment = "<rotate angle=\"90\" dx=\"0\" dy=\"1\" dz=\"0\"/>";
 
     public RiRotateTest() {
         super();     
@@ -32,18 +36,34 @@ public class RiRotateTest extends GeneralRibTest {
 
     @Ignore
     @Test
-     public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+    public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testXMLFragment);
+         Document docFromString = getDOMDocument(testUtaheTeapotXMLFragment);
          logger.info(docFromString.toString());
 
          // Create JAXB
-         RiRotate rib = new RiRotate(testRIBFragment);
+         RiRotate rib = new RiRotate(testUtaheTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
          assertTrue(compareDocuments(docFromString, docFromJAXB));
 
-     }
-    
+    }
+
+    @Ignore
+    @Test
+    public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+
+         // Create DOM document
+         Document docFromString = getDOMDocument(testRISpecXMLFragment);
+         logger.info(docFromString.toString());
+
+         // Create JAXB
+         RiRotate rib = new RiRotate(testRISpecRIBFragment);
+         Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
+
+         assertTrue(compareDocuments(docFromString, docFromJAXB));
+
+    }
+
 }
