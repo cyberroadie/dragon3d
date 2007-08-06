@@ -22,9 +22,9 @@ public class RiWorldEndTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiWorldEndTest.class);
 
-    private String testXMLFragment = "";
+    private String testRISpecRIBFragment = "WorldEnd";
 
-    private String testRIBFragment = "";
+    private String testRISpecXMLFragment = "<world/>";
 
     public RiWorldEndTest() {
         super();     
@@ -35,11 +35,11 @@ public class RiWorldEndTest extends GeneralRibTest {
      public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testXMLFragment);
+         Document docFromString = getDOMDocument(testRISpecXMLFragment);
          logger.info(docFromString.toString());
 
          // Create JAXB
-         RiWorldEnd rib = new RiWorldEnd(testRIBFragment);
+         RiWorldEnd rib = new RiWorldEnd(testRISpecRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
          assertTrue(compareDocuments(docFromString, docFromJAXB));
