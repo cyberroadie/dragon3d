@@ -26,6 +26,10 @@ public class RiOrientationTest extends GeneralRibTest {
     
     private String testUtahTeapotXMLFragment = "<orientation orientation=\"rh\"/>";
 
+    private String testRISpecRIBFragment = "Orientation \"lh\"";
+
+    private String testRISpecXMLFragment = "<orientation orientation=\"lh\"/>";
+
     public RiOrientationTest() {
         super();     
     }
@@ -45,5 +49,21 @@ public class RiOrientationTest extends GeneralRibTest {
          assertTrue(compareDocuments(docFromString, docFromJAXB));
 
     }
-    
+
+    @Ignore
+    @Test
+    public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+
+         // Create DOM document
+         Document docFromString = getDOMDocument(testRISpecXMLFragment);
+         logger.info(docFromString.toString());
+
+         // Create JAXB
+         RiOrientation rib = new RiOrientation(testRISpecRIBFragment);
+         Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
+
+         assertTrue(compareDocuments(docFromString, docFromJAXB));
+
+    }
+
 }

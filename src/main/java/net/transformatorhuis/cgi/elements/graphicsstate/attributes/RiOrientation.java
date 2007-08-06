@@ -6,6 +6,7 @@ import net.transformatorhuis.cgi.conversion.AbstractRib;
 /**
  * @author cyberroadie
  *
+ * RISpec 3.2 page 54
  */
 public class RiOrientation extends AbstractRib {
 
