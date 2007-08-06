@@ -24,7 +24,7 @@ public class RiWorldBeginTest extends GeneralRibTest {
 
     private String testRISpecRIBFragment = "WorldBegin";
 
-    private String testRISpecXMLFragment = "<worldbegin>";
+    private String testRISpecXMLFragment = "<world>";
 
     public RiWorldBeginTest() {
         super();     
