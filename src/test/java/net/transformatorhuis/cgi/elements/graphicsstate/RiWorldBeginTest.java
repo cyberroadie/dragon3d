@@ -22,9 +22,9 @@ public class RiWorldBeginTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiWorldBeginTest.class);
 
-    private String testXMLFragment = "";
+    private String testRISpecRIBFragment = "WorldBegin";
 
-    private String testRIBFragment = "";
+    private String testRISpecXMLFragment = "<worldbegin>";
 
     public RiWorldBeginTest() {
         super();     
@@ -32,14 +32,14 @@ public class RiWorldBeginTest extends GeneralRibTest {
 
     @Ignore
     @Test
-     public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+     public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testXMLFragment);
+         Document docFromString = getDOMDocument(testRISpecXMLFragment);
          logger.info(docFromString.toString());
 
          // Create JAXB
-         RiWorldBegin rib = new RiWorldBegin(testRIBFragment);
+         RiWorldBegin rib = new RiWorldBegin(testRISpecRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
          assertTrue(compareDocuments(docFromString, docFromJAXB));
