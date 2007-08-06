@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ribelements>
+<package name="target.classes.net.transformatorhuis.xsd">
+<ribelement classname="Rib" name="b"/>
+</package>
+<package name="target.classes.net.transformatorhuis.cgi.elements.graphicsstate.attributes">
+<ribelement classname="RiInterior" name="Interior"/>
+<ribelement classname="RiGeometricApproximation" name="GeometricApproximation"/>
+<ribelement classname="RiReverseOrientation" name="ReverseOrientation"/>
+<ribelement classname="RiDetail" name="Detail"/>
+<ribelement classname="RiIlluminate" name="Illuminate"/>
+<ribelement classname="RiLightSource" name="LightSource"/>
+<ribelement classname="RiDisplacement" name="Displacement"/>
+<ribelement classname="RiAreaLightSource" name="AreaLightSource"/>
+<ribelement classname="RiBound" name="Bound"/>
+<ribelement classname="RiShadingInterpolation" name="ShadingInterpolation"/>
+<ribelement classname="RiRotate" name="Rotate"/>
+<ribelement classname="RiAttributeEnd" name="AttributeEnd"/>
+<ribelement classname="RiAttributeBegin" name="AttributeBegin"/>
+<ribelement classname="RiSurface" name="Surface"/>
+<ribelement classname="RiOrientation" name="Orientation"/>
+<ribelement classname="RiMatte" name="Matte"/>
+<ribelement classname="RiAtmosphere" name="Atmosphere"/>
+<ribelement classname="RiColor" name="Color"/>
+<ribelement classname="RiDetailRange" name="DetailRange"/>
+<ribelement classname="RiTextureCoordinates" name="TextureCoordinates"/>
+<ribelement classname="RiOpacity" name="Opacity"/>
+<ribelement classname="RiExterior" name="Exterior"/>
+<ribelement classname="RiSides" name="Sides"/>
+<ribelement classname="RiShadingRate" name="ShadingRate"/>
+</package>
+<package name="target.classes.net.transformatorhuis.cgi.elements.primitives">
+<ribelement classname="RiPointsGeneralPolygons" name="PointsGeneralPolygons"/>
+<ribelement classname="RiSolidEnd" name="SolidEnd"/>
+<ribelement classname="RiBasis" name="Basis"/>
+<ribelement classname="RiProcedural" name="Procedural"/>
+<ribelement classname="RiProcDelayedReadArchive" name="ProcDelayedReadArchive"/>
+<ribelement classname="RiPointsPolygons" name="PointsPolygons"/>
+<ribelement classname="RiPatchMesh" name="PatchMesh"/>
+<ribelement classname="RiObjectInstance" name="ObjectInstance"/>
+<ribelement classname="RiTorus" name="Torus"/>
+<ribelement classname="RiProcRunProgram" name="ProcRunProgram"/>
+<ribelement classname="RiBlobby" name="Blobby"/>
+<ribelement classname="RiGeneralPolygon" name="GeneralPolygon"/>
+<ribelement classname="RiCurves" name="Curves"/>
+<ribelement classname="RiParaboloid" name="Paraboloid"/>
+<ribelement classname="RiObjectBegin" name="ObjectBegin"/>
+<ribelement classname="RiCone" name="Cone"/>
+<ribelement classname="RiPatch" name="Patch"/>
+<ribelement classname="RiNuPatch" name="NuPatch"/>
+<ribelement classname="RiObjectEnd" name="ObjectEnd"/>
+<ribelement classname="RiDisk" name="Disk"/>
+<ribelement classname="RiSolidBegin" name="SolidBegin"/>
+<ribelement classname="RiProcDynamicLoad" name="ProcDynamicLoad"/>
+<ribelement classname="RiSubdivisionMesh" name="SubdivisionMesh"/>
+<ribelement classname="RiTrimCurve" name="TrimCurve"/>
+<ribelement classname="RiSphere" name="Sphere"/>
+<ribelement classname="RiPolygon" name="Polygon"/>
+<ribelement classname="RiGeometry" name="Geometry"/>
+<ribelement classname="RiCylinder" name="Cylinder"/>
+<ribelement classname="RiPoints" name="Points"/>
+<ribelement classname="RiHyperboloid" name="Hyperboloid"/>
+</package>
+<package name="target.classes.net.transformatorhuis.cgi.types"/>
+<package name="target.classes.net.transformatorhuis.cgi.elements">
+<ribelement classname="RiDeclare" name="Declare"/>
+</package>
+<package name="target.classes.net.transformatorhuis.cgi.elements.external">
+<ribelement classname="RiMakeTexture" name="MakeTexture"/>
+<ribelement classname="RiMakeLatLongEnvironment" name="MakeLatLongEnvironment"/>
+<ribelement classname="RiMakeCubeFaceEnvironment" name="MakeCubeFaceEnvironment"/>
+<ribelement classname="RiReadArchive" name="ReadArchive"/>
+<ribelement classname="RiMakeShadow" name="MakeShadow"/>
+<ribelement classname="RiErrorHandler" name="ErrorHandler"/>
+<ribelement classname="RiArchiveRecord" name="ArchiveRecord"/>
+</package>
+<package name="target.classes.net.transformatorhuis.cgi.elements.graphicsstate">
+<ribelement classname="RiGetContext" name="GetContext"/>
+<ribelement classname="RiContext" name="Context"/>
+<ribelement classname="RiWorldBegin" name="WorldBegin"/>
+<ribelement classname="RiEnd" name="End"/>
+<ribelement classname="RiBegin" name="Begin"/>
+<ribelement classname="RiFrameBegin" name="FrameBegin"/>
+<ribelement classname="RiWorldEnd" name="WorldEnd"/>
+<ribelement classname="RiFrameEnd" name="FrameEnd"/>
+<ribelement classname="RiAttribute" name="Attribute"/>
+</package>
+<package name="target.classes.net.transformatorhuis.cgi.elements.motion">
+<ribelement classname="RiMotionBegin" name="MotionBegin"/>
+<ribelement classname="RiMotionEnd" name="MotionEnd"/>
+</package>
+<package name="target.classes.net.transformatorhuis.cgi.utils"/>
+<package name="target.classes.net.transformatorhuis.cgi.elements.graphicsstate.options">
+<ribelement classname="RiColorSamples" name="ColorSamples"/>
+<ribelement classname="RiPixelVariance" name="PixelVariance"/>
+<ribelement classname="RiCropWindow" name="CropWindow"/>
+<ribelement classname="RiFormat" name="Format"/>
+<ribelement classname="RiScreenWindow" name="ScreenWindow"/>
+<ribelement classname="RiPixelSamples" name="PixelSamples"/>
+<ribelement classname="RiFrameAspectRatio" name="FrameAspectRatio"/>
+<ribelement classname="RiProjection" name="Projection"/>
+<ribelement classname="RiExposure" name="Exposure"/>
+<ribelement classname="RiOption" name="Option"/>
+<ribelement classname="RiImager" name="Imager"/>
+<ribelement classname="RiShutter" name="Shutter"/>
+<ribelement classname="RiHider" name="Hider"/>
+<ribelement classname="RiDisplay" name="Display"/>
+<ribelement classname="RiPixelFilter" name="PixelFilter"/>
+<ribelement classname="RiClipping" name="Clipping"/>
+<ribelement classname="RiRelativeDetail" name="RelativeDetail"/>
+<ribelement classname="RiQuantize" name="Quantize"/>
+<ribelement classname="RiClippingPlane" name="ClippingPlane"/>
+<ribelement classname="RiDepthOfField" name="DepthOfField"/>
+</package>
+<package name="target.classes.net.transformatorhuis.teapot"/>
+<package name="target.classes.net.transformatorhuis.cgi.conversion">
+<ribelement classname="RibDocument" name="bDocument"/>
+<ribelement classname="RibOutput" name="bOutput"/>
+<ribelement classname="Rib2Xml" name="b2Xml"/>
+<ribelement classname="Rib2JAXB" name="b2JAXB"/>
+<ribelement classname="RibFactory" name="bFactory"/>
+</package>
+<package name="target.classes.net.transformatorhuis.cgi.elements.graphicsstate.transformations">
+<ribelement classname="RiTranslate" name="Translate"/>
+<ribelement classname="RiTransform" name="Transform"/>
+<ribelement classname="RiSkew" name="Skew"/>
+<ribelement classname="RiCoordSysTransform" name="CoordSysTransform"/>
+<ribelement classname="RiConcatTransform" name="ConcatTransform"/>
+<ribelement classname="RiScale" name="Scale"/>
+<ribelement classname="RiTransformPoints" name="TransformPoints"/>
+<ribelement classname="RiPerspective" name="Perspective"/>
+<ribelement classname="RiCoordinateSystem" name="CoordinateSystem"/>
+<ribelement classname="RiTransformEnd" name="TransformEnd"/>
+<ribelement classname="RiTransformBegin" name="TransformBegin"/>
+<ribelement classname="RiIdentity" name="Identity"/>
+</package>
+</ribelements>

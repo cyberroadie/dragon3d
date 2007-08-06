@@ -5,7 +5,9 @@
     version="3.03">
     
     <display name="teapot.tiff" type="file" mode="rgb"/>
-    <projection name="perspective"/>
+    <projection name="perspective">
+        <param name="fov" value="30"/>
+    </projection>
     
     <translate dx="0" dy="0" dz="25"/>
     
@@ -15,11 +17,14 @@
     <translate dx="0" dy="-3" dz="0"/>
     
     <world>
-        <lightsource shadername="ambientlight">
+        <!-- TODO add sequence number to xml schema -->
+        <lightsource shadername="ambientlight" sequencenumber="1" >
             <param name="intensity" value=".4"/>
         </lightsource>
-        <lightsource shadername="distantlight">
+        <lightsource shadername="distantlight" sequencenumber="2" >
             <param name="intensity" value=".6"/>
+            <param name="from" value="[-4 6 -7]" />
+            <param name="to" value="[0 0 0]" />
         </lightsource>
         <surface shadername="plastic"/>
         <color r="1" g=".6" b="0"/>

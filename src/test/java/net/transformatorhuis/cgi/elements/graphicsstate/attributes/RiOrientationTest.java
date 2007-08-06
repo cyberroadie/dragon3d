@@ -22,9 +22,9 @@ public class RiOrientationTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiOrientationTest.class);
 
-    private String testXMLFragment = "";
-
-    private String testRIBFragment = "";
+    private String testUtahTeapotRIBFragment = "Orientation \"rh\"";
+    
+    private String testUtahTeapotXMLFragment = "<orientation orientation=\"rh\"/>";
 
     public RiOrientationTest() {
         super();     
@@ -32,18 +32,18 @@ public class RiOrientationTest extends GeneralRibTest {
 
     @Ignore
     @Test
-     public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+    public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testXMLFragment);
+         Document docFromString = getDOMDocument(testUtahTeapotXMLFragment);
          logger.info(docFromString.toString());
 
          // Create JAXB
-         RiOrientation rib = new RiOrientation(testRIBFragment);
+         RiOrientation rib = new RiOrientation(testUtahTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
          assertTrue(compareDocuments(docFromString, docFromJAXB));
 
-     }
+    }
     
 }

@@ -6,6 +6,7 @@ import net.transformatorhuis.cgi.conversion.AbstractRib;
 /**
  * @author cyberroadie
  *
+ * RISpec 4.2.3 page 41
  */
 public class RiLightSource extends AbstractRib {
 

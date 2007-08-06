@@ -22,9 +22,13 @@ public class RiScaleTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiScaleTest.class);
 
-    private String testXMLFragment = "";
+    private String testUtahTeapotRIBFragment = "Scale 1 1 1.05468457";
+    
+    private String testUtahTeapotXMLFragment = "<scale sx=\"1\" sy=\"1\" sz=\"1.05468457\"/>";
 
-    private String testRIBFragment = "";
+    private String testRISpecRIBFragment = "Scale 0.5 1 1";
+
+    private String testRISpecXMLFragment = "<scale sx=\"0.5\" sy=\"1\" sz=\"1\"/>";
 
     public RiScaleTest() {
         super();     
@@ -32,18 +36,34 @@ public class RiScaleTest extends GeneralRibTest {
 
     @Ignore
     @Test
-     public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+    public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testXMLFragment);
+         Document docFromString = getDOMDocument(testUtahTeapotXMLFragment);
          logger.info(docFromString.toString());
 
          // Create JAXB
-         RiScale rib = new RiScale(testRIBFragment);
+         RiScale rib = new RiScale(testUtahTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
          assertTrue(compareDocuments(docFromString, docFromJAXB));
 
-     }
-    
+    }
+
+    @Ignore
+    @Test
+    public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+
+         // Create DOM document
+         Document docFromString = getDOMDocument(testRISpecXMLFragment);
+         logger.info(docFromString.toString());
+
+         // Create JAXB
+         RiScale rib = new RiScale(testRISpecRIBFragment);
+         Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
+
+         assertTrue(compareDocuments(docFromString, docFromJAXB));
+
+    }
+
 }

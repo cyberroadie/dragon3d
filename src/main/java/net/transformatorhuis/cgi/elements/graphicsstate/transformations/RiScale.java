@@ -6,6 +6,7 @@ import net.transformatorhuis.cgi.conversion.AbstractRib;
 /**
  * @author cyberroadie
  *
+ * RISpec 3.2 page 58
  */
 public class RiScale extends AbstractRib {
 
