@@ -7,6 +7,7 @@ import net.transformatorhuis.cgi.conversion.AbstractRib;
  * RiAttributeEnd.
  * @author cyberroadie
  *
+ * RISpec 3.2 page 38
  */
 public class RiAttributeEnd extends AbstractRib {
 
