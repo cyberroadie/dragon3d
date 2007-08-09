@@ -8,6 +8,7 @@ import net.transformatorhuis.xsd.Hyperboloid;
 /**
  * @author cyberroadie
  *
+ * RISPec 3.2 page 79
  */
 public class RiHyperboloid extends AbstractRib {
 

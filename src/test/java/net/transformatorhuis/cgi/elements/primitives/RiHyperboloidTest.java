@@ -22,9 +22,15 @@ public class RiHyperboloidTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiHyperboloidTest.class);
 
-    private String testXMLFragment = "";
+    private String testUtahTeapotRIBFragment = "Hyperboloid  1.2 0 0 .4 0 5.7  360";
+    
+    private String testUtahTeapotXMLFragment = "<hyperboloid thetamax=\"360\" x1=\"1.2\" y1=\"0\" z1=\"0\" x2=\"0.4\" y2=\"0\" z2=\"5.7\"/>";
 
-    private String testRIBFragment = "";
+    private String testRISpecRIBFragment = "Hyperboloid 0 0 0 .5 0 0 270 \"Cs\" [1 1 1 .5 .9 1 .2 .9 0 .5 .2 0]";
+
+    private String testRISpecXMLFragment = "<hyperboloid thetamax=\"270\" x1=\"0\" y1=\"0\" z1=\"0\" x2=\"0.5\" y2=\"0\" z2=\"0\">" +
+                                           "    <param name=\"Cs\" value=\"[1 1 1 .5 .9 1 .2 .9 0 .5 .2 0]\"/>" +
+                                           "</hyberboloid>";
 
     public RiHyperboloidTest() {
         super();     
@@ -32,18 +38,34 @@ public class RiHyperboloidTest extends GeneralRibTest {
 
     @Ignore
     @Test
-     public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+     public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testXMLFragment);
+         Document docFromString = getDOMDocument(testUtahTeapotXMLFragment);
          logger.info(docFromString.toString());
 
          // Create JAXB
-         RiHyperboloid rib = new RiHyperboloid(testRIBFragment);
+         RiHyperboloid rib = new RiHyperboloid(testUtahTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
          assertTrue(compareDocuments(docFromString, docFromJAXB));
 
      }
-    
+
+    @Ignore
+    @Test
+     public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+
+         // Create DOM document
+         Document docFromString = getDOMDocument(testRISpecXMLFragment);
+         logger.info(docFromString.toString());
+
+         // Create JAXB
+         RiHyperboloid rib = new RiHyperboloid(testRISpecRIBFragment);
+         Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
+
+         assertTrue(compareDocuments(docFromString, docFromJAXB));
+
+     }
+
 }
