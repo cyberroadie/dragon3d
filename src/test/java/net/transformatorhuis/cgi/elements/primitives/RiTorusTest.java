@@ -17,6 +17,8 @@ import java.io.IOException;
  * @author Cyberroadie
  * @since <pre>05/13/2007</pre>
  * @version 1.0
+ *
+ * RISpec 3.2 page 83
  */
 public class RiTorusTest extends GeneralRibTest {
 
