@@ -22,9 +22,13 @@ public class RiCylinderTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiCylinderTest.class);
 
-    private String testXMLFragment = "";
+    private String testUtahTeapotRIBFragment = "Cylinder .26 0 3.3 360";
 
-    private String testRIBFragment = "";
+    private String testUtahTeapotXMLFragment = "<cylinder radius=\"0.26\" zmin=\"0\" zmax=\"3.3\" thetamax=\"360\"/>";
+
+    private String testRISpecRIBFragment = "Cylinder .5 .2 1 360";
+
+    private String testRISpecXMLFragment = "<cylinder radius=\"0.5\" zmin=\"0.2\" zmax=\"1\" thetamax=\"360\"/>";
 
     public RiCylinderTest() {
         super();     
@@ -32,18 +36,34 @@ public class RiCylinderTest extends GeneralRibTest {
 
     @Ignore
     @Test
-     public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+     public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testXMLFragment);
+         Document docFromString = getDOMDocument(testUtahTeapotXMLFragment);
          logger.info(docFromString.toString());
 
          // Create JAXB
-         RiCylinder rib = new RiCylinder(testRIBFragment);
+         RiCylinder rib = new RiCylinder(testUtahTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
          assertTrue(compareDocuments(docFromString, docFromJAXB));
 
      }
-    
+
+    @Ignore
+    @Test
+     public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+
+         // Create DOM document
+         Document docFromString = getDOMDocument(testRISpecXMLFragment);
+         logger.info(docFromString.toString());
+
+         // Create JAXB
+         RiCylinder rib = new RiCylinder(testRISpecRIBFragment);
+         Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
+
+         assertTrue(compareDocuments(docFromString, docFromJAXB));
+
+     }
+
 }

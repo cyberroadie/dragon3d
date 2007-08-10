@@ -7,6 +7,7 @@ import net.transformatorhuis.cgi.conversion.AbstractRib;
 /**
  * @author cyberroadie
  *
+ * RISpec 3.2 page 79
  */
 public class RiCylinder extends AbstractRib {
 
