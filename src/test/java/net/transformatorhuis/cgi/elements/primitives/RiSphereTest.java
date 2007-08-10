@@ -22,9 +22,13 @@ public class RiSphereTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiSphereTest.class);
 
-    private String testXMLFragment = "";
+    private String testUtahTeapotRIBFragment = "Sphere 5 0 3.12897569 360";
 
-    private String testRIBFragment = "";
+    private String testUtahTeapotXMLFragment = "<sphere radius=\"5\" zmin=\"0\" zmax=\"3.12897569\" thetamax=\"360\"/>";
+
+    private String testRISpecRIBFragment = "Sphere 0.5 0.0 0.5 360.0";
+
+    private String testRISpecXMLFragment = "<sphere radius=\"0.5\" zmin=\"0.0\" zmax=\"0.5\" thetamax=\"360\"/>";
 
     public RiSphereTest() {
         super();     
@@ -32,18 +36,34 @@ public class RiSphereTest extends GeneralRibTest {
 
     @Ignore
     @Test
-     public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+     public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testXMLFragment);
+         Document docFromString = getDOMDocument(testUtahTeapotXMLFragment);
          logger.info(docFromString.toString());
 
          // Create JAXB
-         RiSphere rib = new RiSphere(testRIBFragment);
+         RiSphere rib = new RiSphere(testUtahTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
          assertTrue(compareDocuments(docFromString, docFromJAXB));
 
      }
-    
+
+    @Ignore
+    @Test
+    public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+
+         // Create DOM document
+         Document docFromString = getDOMDocument(testRISpecXMLFragment);
+         logger.info(docFromString.toString());
+
+         // Create JAXB
+         RiSphere rib = new RiSphere(testRISpecRIBFragment);
+         Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
+
+         assertTrue(compareDocuments(docFromString, docFromJAXB));
+
+    }
+
 }
