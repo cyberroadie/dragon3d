@@ -22,24 +22,25 @@ public class RiAttributeTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiAttributeTest.class);
 
-    private String testXMLFragment = "";
+    private String testRISpecRIBFragment = "Attribute \"displacementbound\" \"sphere\" [2.0]";
 
-    private String testRIBFragment = "";
+    private String testRISpecXMLFragment = "<attribute name=\"displacementbound\" >" +
+                                           "    <param name=\"sphere\" value=\"[2.0]\" />" +
+                                           "</attribute>";
 
     public RiAttributeTest() {
         super();     
     }
 
-    @Ignore
     @Test
-     public void testGetJAXBNode() throws IOException, SAXException, ParserConfigurationException, JAXBException {
+     public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testXMLFragment);
+         Document docFromString = getDOMDocument(testRISpecXMLFragment);
          logger.info(docFromString.toString());
 
          // Create JAXB
-         RiAttribute rib = new RiAttribute(testRIBFragment);
+         RiAttribute rib = new RiAttribute(testRISpecRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
          assertTrue(compareDocuments(docFromString, docFromJAXB));

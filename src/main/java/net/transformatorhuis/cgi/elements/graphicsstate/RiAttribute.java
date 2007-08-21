@@ -2,6 +2,8 @@ package net.transformatorhuis.cgi.elements.graphicsstate;
 
 import org.apache.log4j.Logger;
 import net.transformatorhuis.cgi.conversion.AbstractRib;
+import net.transformatorhuis.xsd.Attribute;
+import java.util.Vector;
 
 /**
  * @author cyberroadie
@@ -19,6 +21,11 @@ public class RiAttribute extends AbstractRib {
     private static Logger logger = Logger.getLogger(RiAttribute.class);
 
     /**
+     * JAXB Attribute element
+     */
+    private Attribute attribute;
+    
+    /**
      * Attribute.
      */
     public RiAttribute() {
@@ -27,10 +34,20 @@ public class RiAttribute extends AbstractRib {
 
     /**
      * Attribute.
-     * @param param extra parameters
+     * @param parameters extra parameters
      */
-    public RiAttribute(String param) {
-        super(param);
+    public RiAttribute(String parameters) {
+        super(parameters);
+        Vector parameterList = splitParameters(parameters);
+        attribute = objFactory.createAttribute();
+        attribute.setName((String) parameterList.get(0));
+
+        if (parameterList.size() > 1) {
+            setParameters(parameterList, 1);
+        } else {
+            setParameters(null, 0);
+        }
+
     }
 
     /**
@@ -39,7 +56,7 @@ public class RiAttribute extends AbstractRib {
      * @return JAXB node returned for RIB element
      */
     public Object getJAXBNode() {
-        return null;
+        return attribute;
     }
 
 }
