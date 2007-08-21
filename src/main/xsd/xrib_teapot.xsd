@@ -9,6 +9,7 @@
             <xs:sequence>
                 <xs:choice minOccurs="0" maxOccurs="unbounded">
                     <xs:element ref="rib:display"/>
+                    <xs:element ref="rib:attribute"/>
                     <xs:element ref="rib:projection"/>
                     <xs:element ref="rib:rotate"/>
                     <xs:element ref="rib:translate"/>
@@ -129,7 +130,16 @@
             <xs:attribute name='mode' type='xs:string' use='required'/>
         </xs:complexType>
     </xs:element>
-    
+
+    <xs:element name='attribute'>
+        <xs:complexType>
+            <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+                <xs:element ref='rib:param'/>
+            </xs:sequence>
+            <xs:attribute name='name' type='xs:string' use='required'/>
+        </xs:complexType>
+    </xs:element>
+
     <xs:element name='projection'>
         <xs:complexType>
             <xs:sequence minOccurs='0' maxOccurs='unbounded'>
