@@ -67,7 +67,7 @@ public class GeneralRibTest implements ErrorHandler {
         // Intial setup renderman file
         rib = objFactory.createRib();
         rib.setVersion("3.03");
-        ribList = rib.getDisplayOrProjectionOrRotate();
+        ribList = rib.getDisplayOrAttributeOrProjection();
         ribList.add(jaxbNode);
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
