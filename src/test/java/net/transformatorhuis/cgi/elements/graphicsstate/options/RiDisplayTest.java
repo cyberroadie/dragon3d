@@ -20,14 +20,14 @@ public class RiDisplayTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiDisplayTest.class);
 
-    private String testUtahTeapotRIBFragment = "\"swordMesh.tif\" \"file\" \"rgba\"";
+    private String testUtahTeapotRIBFragment = "Display \"swordMesh.tif\" \"file\" \"rgba\"";
     
     private String testUtahTeapotXMLFragment = "<display name=\"swordMesh.tif\" type=\"file\" mode=\"rgba\" />";
 
-    private String testRISpecRIBFragment = "\"pixar0\" \"framebuffer\" \"rgba\" \"origin\" [10 10]";
+    private String testRISpecRIBFragment = "Display \"pixar0\" \"framebuffer\" \"rgba\" \"origin\" [10 10]";
 
     private String testRISpecXMLFragment = "<display name=\"pixar0\" type=\"framebuffer\" mode=\"rgba\" >" +
-                                           "    <param name=\"origin\" value=\"[10 10]/>" +
+                                           "    <param name=\"origin\" value=\"[10 10]\" />" +
                                            "</display>";
     
     @Test
@@ -45,7 +45,6 @@ public class RiDisplayTest extends GeneralRibTest {
 
     }
 
-    @Ignore
     @Test
     public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
