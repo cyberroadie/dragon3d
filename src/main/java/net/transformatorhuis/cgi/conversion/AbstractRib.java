@@ -29,7 +29,7 @@ public abstract class AbstractRib {
      * Regular expression pattern.
      */
     private Pattern p = Pattern
-            .compile("\"[\\w\\s.]*\"|\\[[\\p{Graph}\\p{Blank}]*\\]|[\\d\\p{Punct}]*'");
+            .compile("\"[\\w\\s.]*\"|\\[[\\p{Graph}\\p{Blank}]*\\]|[\\d\\p{Punct}]*");
 
     /*
      * JAXB object factory for RIB elements
@@ -117,6 +117,13 @@ public abstract class AbstractRib {
      * @return vector with all parameters seperate
      */
     public Vector splitParameters(String parameters) {
+        // Get rid of the rib element name by looking for uppercase character
+        // TODO Refactor: compare against actual rib element values
+        char c = (char) parameters.toCharArray()[0];
+        if(Character.isUpperCase(c)) {
+            parameters = parameters.substring(parameters.indexOf(" "));
+        }
+        
         Vector parameterList = new Vector();
         Matcher m = p.matcher(parameters);
 
