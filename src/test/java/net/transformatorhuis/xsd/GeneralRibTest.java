@@ -143,6 +143,7 @@ public class GeneralRibTest implements ErrorHandler {
      */
     public boolean compareDocuments(Document docLeft, Document docRight) {
 
+        //TODO print diff in log if asserTrue fails
         // normalization can affect equality
         docLeft.normalizeDocument();
         docRight.normalizeDocument();
