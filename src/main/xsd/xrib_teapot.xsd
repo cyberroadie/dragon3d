@@ -14,6 +14,7 @@
                     <xs:element ref="rib:rotate"/>
                     <xs:element ref="rib:translate"/>
                     <xs:element ref="rib:world"/>
+                    <xs:element ref="rib:scale"/>
                 </xs:choice>
             </xs:sequence>                
             <xs:attribute name="version"/>
