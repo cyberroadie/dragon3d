@@ -16,8 +16,12 @@ import javax.xml.bind.Marshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.*;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.dom.DOMSource;
 import java.io.IOException;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.util.List;
 
 /**
@@ -116,6 +120,7 @@ public class GeneralRibTest implements ErrorHandler {
         // Copy all attributes
         for (int i = 0; i < nl.getLength(); i++) {
             Attr attr = (Attr) nl.item(i);
+            // Set namespace =  null to specificly not have a namespace
             nsElement.setAttributeNS(null, attr.getName(), attr.getValue());
             //nsElement.setAttribute(attr.getName(), attr.getValue());
         }
@@ -143,7 +148,6 @@ public class GeneralRibTest implements ErrorHandler {
      */
     public boolean compareDocuments(Document docLeft, Document docRight) {
 
-        //TODO print diff in log if asserTrue fails
         // normalization can affect equality
         docLeft.normalizeDocument();
         docRight.normalizeDocument();
@@ -161,8 +165,48 @@ public class GeneralRibTest implements ErrorHandler {
         leftNode.normalize();
         rightNode.normalize();
 
-        return leftNode.isEqualNode(rightNode);
+        boolean isDocumentEqual = leftNode.isEqualNode(rightNode);
 
+        // Print result if not equal
+        if(!isDocumentEqual) {
+            printResults(docLeft, docRight);
+        }
+
+        return isDocumentEqual;
+
+    }
+
+    public void printResults(Document docLeft, Document docRight) {
+
+        Source leftSource = new DOMSource(docLeft);
+        Source rightSource = new DOMSource(docRight);
+
+        StringWriter leftStringWriter = new StringWriter();
+        StringWriter rightStringWriter = new StringWriter();
+
+        Result leftResult = new StreamResult(leftStringWriter);
+        Result rightResult = new StreamResult(rightStringWriter);
+
+        try {
+            Transformer xformer = TransformerFactory.newInstance().newTransformer();
+            xformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            
+            xformer.transform(leftSource, leftResult);
+            xformer.transform(rightSource, rightResult);
+
+            logger.info("Left:\n" + leftResult.toString());
+            logger.info("Right:\n" + rightResult.toString());
+
+            System.out.println("Left:\n" + leftStringWriter.toString());
+            System.out.println("Right:\n" + rightStringWriter.toString());
+
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
+        
     }
 
     public void warning(SAXParseException saxParseException) throws SAXException {
@@ -181,4 +225,5 @@ public class GeneralRibTest implements ErrorHandler {
         fail();
 
     }
+    
 }
