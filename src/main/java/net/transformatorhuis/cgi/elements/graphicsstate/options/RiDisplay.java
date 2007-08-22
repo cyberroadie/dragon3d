@@ -48,42 +48,10 @@ public class RiDisplay extends AbstractRib {
     }
 
     /**
-     * Creates the XML fragment for RiDisplay rib element.
-     * <h1>Example</h1>
-     * Input:
+     * Abstract method to return
      *
-     * <pre>
-     *   Display &quot;swordMesh.tif&quot; &quot;file&quot; &quot;rgba&quot;
-     * </pre>
-     *
-     * <p>
-     * Output with parameters:
-     *
-     * <pre>
-     *   &lt;display name=&quot;swordMesh.tif&quot; type=&quot;file&quot; mode=&quot;rgba&quot; &gt;
-     *          &lt;param name=&quot;[name]&quot; value=&quot;[value]&quot; /&gt;
-     *   &lt;/display&gt;
-     * </pre>
-     *
-     * <p>
-     * Output without parameters:
-     *
-     * <pre>
-     *   &lt;display name=&quot;swordMesh.tif&quot; type=&quot;file&quot; mode=&quot;rgba&quot; /&gt;
-     * </pre>
-     *
+     * @return JAXB node returned for RIB element
      */
-    public Node createXML(RibDocument ribDoc) {
-
-        Element ribRoot = ribDoc.requestElement(getElementName());
-        ribRoot.setAttribute("name", display.getName());
-        ribRoot.setAttribute("type", display.getType());
-        ribRoot.setAttribute("mode", display.getMode());
-
-        return (Node) ribRoot;
-
-    }
-
     public Object getJAXBNode() {
         return display;
     }
