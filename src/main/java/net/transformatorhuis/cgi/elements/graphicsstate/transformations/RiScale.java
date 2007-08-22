@@ -22,6 +22,7 @@ public class RiScale extends AbstractRib {
      * JAXB Scale element;
      */
     private Scale scale;
+    
     /**
      * Scale.
      */
