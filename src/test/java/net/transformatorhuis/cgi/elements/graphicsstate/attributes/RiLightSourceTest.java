@@ -64,7 +64,7 @@ public class RiLightSourceTest extends GeneralRibTest {
          RiLightSource rib = new RiLightSource(testUtahTeapotRIBFragment1);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
 
@@ -80,7 +80,7 @@ public class RiLightSourceTest extends GeneralRibTest {
          RiLightSource rib = new RiLightSource(testUtahTeapotRIBFragment2);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
 
@@ -96,7 +96,7 @@ public class RiLightSourceTest extends GeneralRibTest {
         RiLightSource rib = new RiLightSource(testRISpecRIBFragment1);
         Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-        assertTrue(compareDocuments(docFromString, docFromJAXB));
+        assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
 
@@ -112,7 +112,7 @@ public class RiLightSourceTest extends GeneralRibTest {
         RiLightSource rib = new RiLightSource(testRISpecRIBFragment2);
         Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-        assertTrue(compareDocuments(docFromString, docFromJAXB));
+        assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
 

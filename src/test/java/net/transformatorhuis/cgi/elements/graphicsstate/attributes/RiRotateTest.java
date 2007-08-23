@@ -46,7 +46,7 @@ public class RiRotateTest extends GeneralRibTest {
          RiRotate rib = new RiRotate(testUtaheTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
 
@@ -62,7 +62,7 @@ public class RiRotateTest extends GeneralRibTest {
          RiRotate rib = new RiRotate(testRISpecRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
 

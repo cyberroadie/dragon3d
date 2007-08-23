@@ -46,7 +46,7 @@ public class RiSphereTest extends GeneralRibTest {
          RiSphere rib = new RiSphere(testUtahTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
 
@@ -62,7 +62,7 @@ public class RiSphereTest extends GeneralRibTest {
          RiSphere rib = new RiSphere(testRISpecRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
 

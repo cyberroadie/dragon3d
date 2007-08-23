@@ -1,7 +1,6 @@
 package net.transformatorhuis.cgi.elements.graphicsstate.options;
 
 import org.junit.Test;
-import org.junit.Ignore;
 import static org.junit.Assert.assertTrue;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -41,7 +40,7 @@ public class RiDisplayTest extends GeneralRibTest {
         RiDisplay display = new RiDisplay(testUtahTeapotRIBFragment);
         Document docFromJAXB = getDOMFromJAXB(display.getJAXBNode());
 
-        assertTrue(compareDocuments(docFromString, docFromJAXB));
+        assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
 
@@ -56,7 +55,7 @@ public class RiDisplayTest extends GeneralRibTest {
         RiDisplay display = new RiDisplay(testRISpecRIBFragment);
         Document docFromJAXB = getDOMFromJAXB(display.getJAXBNode());
 
-        assertTrue(compareDocuments(docFromString, docFromJAXB));
+        assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
 

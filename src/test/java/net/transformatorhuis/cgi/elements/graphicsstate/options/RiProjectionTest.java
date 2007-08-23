@@ -47,7 +47,7 @@ public class RiProjectionTest extends GeneralRibTest {
         RiProjection projection = new RiProjection(testUtahTeapotRIBFragment);
         Document docFromJAXB = getDOMFromJAXB(projection.getJAXBNode());
 
-        assertTrue(compareDocuments(docFromString, docFromJAXB));
+        assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
 
@@ -63,7 +63,7 @@ public class RiProjectionTest extends GeneralRibTest {
         RiProjection projection = new RiProjection(testRISpecRIBFragment1);
         Document docFromJAXB = getDOMFromJAXB(projection.getJAXBNode());
 
-        assertTrue(compareDocuments(docFromString, docFromJAXB));
+        assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
 
@@ -79,7 +79,7 @@ public class RiProjectionTest extends GeneralRibTest {
         RiProjection projection = new RiProjection(testRISpecRIBFragment2);
         Document docFromJAXB = getDOMFromJAXB(projection.getJAXBNode());
 
-        assertTrue(compareDocuments(docFromString, docFromJAXB));
+        assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
 

@@ -42,7 +42,7 @@ public class RiWorldEndTest extends GeneralRibTest {
          RiWorldEnd rib = new RiWorldEnd(testRISpecRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
     

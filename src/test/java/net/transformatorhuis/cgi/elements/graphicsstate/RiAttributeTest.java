@@ -1,7 +1,6 @@
 package net.transformatorhuis.cgi.elements.graphicsstate;
 
 import org.junit.Test;
-import org.junit.Ignore;
 import static org.junit.Assert.assertTrue;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
@@ -43,7 +42,7 @@ public class RiAttributeTest extends GeneralRibTest {
          RiAttribute rib = new RiAttribute(testRISpecRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
     

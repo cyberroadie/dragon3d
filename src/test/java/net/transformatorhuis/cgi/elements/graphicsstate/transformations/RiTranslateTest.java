@@ -50,7 +50,7 @@ public class RiTranslateTest extends GeneralRibTest {
          RiTranslate rib = new RiTranslate(testUtahTeapotRIBFragment1);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
 
@@ -66,7 +66,7 @@ public class RiTranslateTest extends GeneralRibTest {
         RiTranslate rib = new RiTranslate(testUtahTeapotRIBFragment2);
         Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-        assertTrue(compareDocuments(docFromString, docFromJAXB));
+        assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
 
@@ -82,7 +82,7 @@ public class RiTranslateTest extends GeneralRibTest {
         RiTranslate rib = new RiTranslate(testRISpecRIBFragment);
         Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-        assertTrue(compareDocuments(docFromString, docFromJAXB));
+        assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
 

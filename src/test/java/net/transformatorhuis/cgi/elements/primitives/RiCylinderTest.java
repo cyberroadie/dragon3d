@@ -46,7 +46,7 @@ public class RiCylinderTest extends GeneralRibTest {
          RiCylinder rib = new RiCylinder(testUtahTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
 
@@ -62,7 +62,7 @@ public class RiCylinderTest extends GeneralRibTest {
          RiCylinder rib = new RiCylinder(testRISpecRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
 

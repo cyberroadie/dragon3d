@@ -47,7 +47,7 @@ public class RiTorusTest extends GeneralRibTest {
          RiTorus rib = new RiTorus(testUtahTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
 
@@ -63,7 +63,7 @@ public class RiTorusTest extends GeneralRibTest {
          RiTorus rib = new RiTorus(testRISpecRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
 }

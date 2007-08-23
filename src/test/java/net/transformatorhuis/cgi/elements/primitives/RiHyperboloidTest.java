@@ -48,7 +48,7 @@ public class RiHyperboloidTest extends GeneralRibTest {
          RiHyperboloid rib = new RiHyperboloid(testUtahTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
 
@@ -64,7 +64,7 @@ public class RiHyperboloidTest extends GeneralRibTest {
          RiHyperboloid rib = new RiHyperboloid(testRISpecRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
 

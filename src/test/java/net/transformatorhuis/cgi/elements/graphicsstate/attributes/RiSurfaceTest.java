@@ -49,7 +49,7 @@ public class RiSurfaceTest extends GeneralRibTest {
          RiSurface rib = new RiSurface(testUtahTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
 
@@ -65,7 +65,7 @@ public class RiSurfaceTest extends GeneralRibTest {
          RiSurface rib = new RiSurface(testRISpecRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
 

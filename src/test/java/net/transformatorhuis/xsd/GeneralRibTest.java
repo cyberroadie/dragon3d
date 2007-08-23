@@ -4,6 +4,8 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import static org.junit.Assert.fail;
 import org.junit.Before;
+import org.custommonkey.xmlunit.Diff;
+
 import org.w3c.dom.*;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
@@ -146,66 +148,25 @@ public class GeneralRibTest implements ErrorHandler {
      * @param docRight
      * @return
      */
-    public boolean compareDocuments(Document docLeft, Document docRight) {
+    public boolean diffDocuments(Document docLeft, Document docRight) {
 
-        // normalization can affect equality
-        docLeft.normalizeDocument();
-        docRight.normalizeDocument();
+        Diff diff = new Diff(docLeft, docRight);
 
-        Node leftRibNode = docLeft.getFirstChild();
-        Node rightRibNode = docRight.getFirstChild();
-
-        Node leftNode = leftRibNode.getFirstChild();
-        logger.debug("Left node: " + leftNode.getNodeName());
-
-        Node rightNode = rightRibNode.getFirstChild();
-        logger.debug("Right node: " + rightNode.getNodeName());
-
-        // normalization can affect equality
-        leftNode.normalize();
-        rightNode.normalize();
-
-        boolean isDocumentEqual = leftNode.isEqualNode(rightNode);
+        boolean isDocumentEqual = diff.similar();
 
         // Print result if not equal
         if(!isDocumentEqual) {
-            printResults(docLeft, docRight);
+            printDiffResults(diff);
         }
 
         return isDocumentEqual;
 
     }
 
-    public void printResults(Document docLeft, Document docRight) {
+    public void printDiffResults(Diff diff) {
 
-        Source leftSource = new DOMSource(docLeft);
-        Source rightSource = new DOMSource(docRight);
-
-        StringWriter leftStringWriter = new StringWriter();
-        StringWriter rightStringWriter = new StringWriter();
-
-        Result leftResult = new StreamResult(leftStringWriter);
-        Result rightResult = new StreamResult(rightStringWriter);
-
-        try {
-            Transformer xformer = TransformerFactory.newInstance().newTransformer();
-            xformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            
-            xformer.transform(leftSource, leftResult);
-            xformer.transform(rightSource, rightResult);
-
-            logger.info("Left:\n" + leftResult.toString());
-            logger.info("Right:\n" + rightResult.toString());
-
-            System.out.println("Left:\n" + leftStringWriter.toString());
-            System.out.println("Right:\n" + rightStringWriter.toString());
-
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
-            e.printStackTrace();
-        }
-
+        StringBuffer sb = diff.appendMessage(new StringBuffer());
+        System.out.println(sb.toString());
         
     }
 

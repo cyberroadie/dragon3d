@@ -42,7 +42,7 @@ public class RiAttributeEndTest extends GeneralRibTest {
          RiAttributeEnd rib = new RiAttributeEnd(testRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
     

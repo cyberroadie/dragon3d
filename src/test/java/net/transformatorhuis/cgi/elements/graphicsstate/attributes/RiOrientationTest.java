@@ -46,7 +46,7 @@ public class RiOrientationTest extends GeneralRibTest {
          RiOrientation rib = new RiOrientation(testUtahTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
 
@@ -62,7 +62,7 @@ public class RiOrientationTest extends GeneralRibTest {
          RiOrientation rib = new RiOrientation(testRISpecRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
-         assertTrue(compareDocuments(docFromString, docFromJAXB));
+         assertTrue(diffDocuments(docFromString, docFromJAXB));
 
     }
 
