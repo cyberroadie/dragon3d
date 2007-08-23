@@ -43,7 +43,7 @@ public class RiTranslateTest extends GeneralRibTest {
      public void testUtahTeapot1() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testUtahTeapotXMLFragment1);
+         Document docFromString = createDOMFragmentFromString(testUtahTeapotXMLFragment1);
          logger.info(docFromString.toString());
 
          // Create JAXB
@@ -59,7 +59,7 @@ public class RiTranslateTest extends GeneralRibTest {
     public void testUtahTeapot2() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
         // Create DOM document
-        Document docFromString = getDOMDocument(testUtahTeapotXMLFragment2);
+        Document docFromString = createDOMFragmentFromString(testUtahTeapotXMLFragment2);
         logger.info(docFromString.toString());
 
         // Create JAXB
@@ -75,7 +75,7 @@ public class RiTranslateTest extends GeneralRibTest {
     public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
         // Create DOM document
-        Document docFromString = getDOMDocument(testRISpecXMLFragment);
+        Document docFromString = createDOMFragmentFromString(testRISpecXMLFragment);
         logger.info(docFromString.toString());
 
         // Create JAXB

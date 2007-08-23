@@ -40,7 +40,7 @@ public class RiProjectionTest extends GeneralRibTest {
     public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
         // Create DOM document
-        Document docFromString = getDOMDocument(testUtahTeapotXMLFragment);
+        Document docFromString = createDOMFragmentFromString(testUtahTeapotXMLFragment);
         logger.info(docFromString.toString());
 
         // Create JAXB
@@ -56,7 +56,7 @@ public class RiProjectionTest extends GeneralRibTest {
     public void testRISpecExample1() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
         // Create DOM document
-        Document docFromString = getDOMDocument(testRISPecXMLFragment1);
+        Document docFromString = createDOMFragmentFromString(testRISPecXMLFragment1);
         logger.info(docFromString.toString());
 
         // Create JAXB
@@ -72,7 +72,7 @@ public class RiProjectionTest extends GeneralRibTest {
     public void testRISpecExample2() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
         // Create DOM document
-        Document docFromString = getDOMDocument(testRISPecXMLFragment2);
+        Document docFromString = createDOMFragmentFromString(testRISPecXMLFragment2);
         logger.info(docFromString.toString());
 
         // Create JAXB

@@ -88,7 +88,15 @@ public class GeneralRibTest implements ErrorHandler {
 
     }
 
-    public Document getDOMDocument(String documentFragment) throws ParserConfigurationException, IOException, SAXException {
+    /**
+     * Creates DOM document fragment from string
+     * @param documentFragment
+     * @return DOM Document containing XML fragment
+     * @throws ParserConfigurationException
+     * @throws IOException
+     * @throws SAXException
+     */
+    public Document createDOMFragmentFromString(String documentFragment) throws ParserConfigurationException, IOException, SAXException {
 
         String[] schemas = {"\"http://svn.berlios.de/svnroot/repos/dragon3d/Dragon3D/trunk/src/main/xsd/xrib_teapot.xsd?op=file&rev=0&sc=0\""};
         /* Create empty xml document */
@@ -133,10 +141,18 @@ public class GeneralRibTest implements ErrorHandler {
         return ribDoc;
     }
 
+    /**
+     * Adds rib element to ribList
+     * @param ribElement
+     */
     protected void addRibElement(Object ribElement) {
         ribList.add(ribElement);
     }
 
+    /**
+     * Prints JAXB to System.out
+     * @throws JAXBException
+     */
     protected void toSystemOut() throws JAXBException {
         m.marshal(rib, System.out);
     }
@@ -152,7 +168,7 @@ public class GeneralRibTest implements ErrorHandler {
 
         Diff diff = new Diff(docLeft, docRight);
 
-        boolean isDocumentEqual = diff.similar();
+        boolean isDocumentEqual = diff.identical();
 
         // Print result if not equal
         if(!isDocumentEqual) {
@@ -163,6 +179,10 @@ public class GeneralRibTest implements ErrorHandler {
 
     }
 
+    /**
+     * Prints differnces between compared XML fragments
+     * @param diff
+     */
     public void printDiffResults(Diff diff) {
 
         StringBuffer sb = diff.appendMessage(new StringBuffer());

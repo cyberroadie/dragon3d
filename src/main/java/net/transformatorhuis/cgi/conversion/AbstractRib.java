@@ -14,8 +14,6 @@ import net.transformatorhuis.xsd.ObjectFactory;
 /**
  * @author Olivier VAn Acker
  *
- * TODO To change the template for this generated type comment go to Window -
- * Preferences - Java - Code Style - Code Templates
  */
 public abstract class AbstractRib {
 
@@ -24,7 +22,6 @@ public abstract class AbstractRib {
      */
     private static Logger logger = Logger.getLogger(AbstractRib.class);
 
-    /* TODO: Improve this pattern.*/
     /**
      * Regular expression pattern.
      */

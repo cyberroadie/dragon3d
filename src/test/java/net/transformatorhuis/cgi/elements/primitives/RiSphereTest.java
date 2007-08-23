@@ -39,7 +39,7 @@ public class RiSphereTest extends GeneralRibTest {
      public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testUtahTeapotXMLFragment);
+         Document docFromString = createDOMFragmentFromString(testUtahTeapotXMLFragment);
          logger.info(docFromString.toString());
 
          // Create JAXB
@@ -55,7 +55,7 @@ public class RiSphereTest extends GeneralRibTest {
     public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testRISpecXMLFragment);
+         Document docFromString = createDOMFragmentFromString(testRISpecXMLFragment);
          logger.info(docFromString.toString());
 
          // Create JAXB

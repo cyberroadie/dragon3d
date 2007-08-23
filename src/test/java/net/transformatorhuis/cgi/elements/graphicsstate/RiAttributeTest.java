@@ -35,7 +35,7 @@ public class RiAttributeTest extends GeneralRibTest {
      public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
          // Create DOM document
-         Document docFromString = getDOMDocument(testRISpecXMLFragment);
+         Document docFromString = createDOMFragmentFromString(testRISpecXMLFragment);
          logger.info(docFromString.toString());
 
          // Create JAXB
