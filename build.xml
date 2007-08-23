@@ -82,7 +82,6 @@
         <mkdir dir="${Build}/${Configuration}" />
         <!-- Config generator has to read to newest log4j.xml -->
         <copy file="${Configuration}/${LogConfigFile}" todir="${Build}/conf" />
-        <!-- TODO Make java ant task work -->
     		<java classpath="${Build}" dir="${Build}" classname="net.transformatorhuis.cgi.utils.ConfigGenerator" fork="true" >
     		  <arg value="${Configuration}/${RibConfigFile}" />
     		  <arg value="net/transformatorhuis/cgi/elements" />
