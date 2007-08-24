@@ -25,7 +25,6 @@
                     <xs:element ref="rib:cylinder"/>
                     <xs:element ref="rib:lightsource"/>
                     <xs:element ref="rib:sides"/>
-                    <xs:element ref="rib:rotate"/>
                     <xs:element ref="rib:attributestack"/>
                 </xs:choice>
             </xs:sequence>                
