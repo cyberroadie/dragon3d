@@ -1,4 +1,6 @@
-package net.transformatorhuis.cgi.conversion;
+package net.transformatorhuis.cgi.conversion.rib;
+
+import net.transformatorhuis.cgi.conversion.AbstractRib;
 
 /**
  * @author cyberroadie

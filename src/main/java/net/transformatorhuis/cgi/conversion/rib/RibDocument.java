@@ -1,4 +1,4 @@
-package net.transformatorhuis.cgi.conversion;
+package net.transformatorhuis.cgi.conversion.rib;
 
 import org.apache.log4j.Logger;
 
@@ -23,6 +23,9 @@ import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.dom.DOMSource;
 
 import javax.xml.transform.stream.StreamResult;
+
+import net.transformatorhuis.cgi.conversion.rib.RibOutput;
+import net.transformatorhuis.cgi.conversion.AbstractRib;
 
 /**
  * Holds all information about status rib xml document
@@ -62,6 +65,7 @@ public final class RibDocument implements RibOutput {
      * Rib class.
      */
     private Class ribClazz;
+    private AbstractRib rib;
 
     /**
      * Rib document constructor.
@@ -108,7 +112,7 @@ public final class RibDocument implements RibOutput {
 
     /**
      * @param rib rib
-     * @see net.transformatorhuis.cgi.conversion.RibOutput#doJob(net.transformatorhuis.cgi.conversion.AbstractRib)
+     * @see net.transformatorhuis.cgi.conversion.rib.RibOutput#doJob(net.transformatorhuis.cgi.conversion.AbstractRib)
      */
     public void doJob(AbstractRib rib) {
 

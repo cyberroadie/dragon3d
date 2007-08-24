@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import java.util.Vector;
 
 import net.transformatorhuis.xsd.ObjectFactory;
+import net.transformatorhuis.cgi.conversion.rib.RibDocument;
 
 /**
  * @author Olivier VAn Acker
