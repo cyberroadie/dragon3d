@@ -40,6 +40,8 @@ public class GeneralRibTest implements ErrorHandler {
 
     private List ribList;
 
+    private String documentFragment;
+
     private static Logger logger = Logger.getLogger(GeneralRibTest.class);
 
     static final String JAXP_SCHEMA_LANGUAGE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
@@ -99,6 +101,9 @@ public class GeneralRibTest implements ErrorHandler {
      */
     public Document createDOMFragmentFromString(String documentFragment) throws ParserConfigurationException, IOException, SAXException {
 
+        // Assign this for logging purposes in case of junit test error
+        this.documentFragment = documentFragment;
+        
         String[] schemas = {"\"http://svn.berlios.de/svnroot/repos/dragon3d/Dragon3D/trunk/src/main/xsd/xrib_teapot.xsd?op=file&rev=0&sc=0\""};
         /* Create empty xml document */
         DocumentBuilderFactory docBuilderFac = DocumentBuilderFactory.newInstance();
@@ -187,8 +192,10 @@ public class GeneralRibTest implements ErrorHandler {
     public void printDiffResults(Diff diff) {
 
         StringBuffer sb = diff.appendMessage(new StringBuffer());
+
+        System.out.println(documentFragment);
         System.out.println(sb.toString());
-        
+
     }
 
     public void warning(SAXParseException saxParseException) throws SAXException {
