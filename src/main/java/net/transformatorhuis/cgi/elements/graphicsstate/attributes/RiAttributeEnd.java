@@ -2,6 +2,7 @@ package net.transformatorhuis.cgi.elements.graphicsstate.attributes;
 
 import org.apache.log4j.Logger;
 import net.transformatorhuis.cgi.conversion.AbstractRib;
+import net.transformatorhuis.xsd.Attributestack;
 
 /**
  * RiAttributeEnd.
@@ -17,6 +18,11 @@ public class RiAttributeEnd extends AbstractRib {
     private static Logger logger = Logger.getLogger(RiAttributeEnd.class);
 
     /**
+     * JAXB AttributeEndmelement
+     */
+    private Attributestack attributestack;
+
+    /**
      * AttributeEnd.
      */
     public RiAttributeEnd() {
@@ -29,6 +35,7 @@ public class RiAttributeEnd extends AbstractRib {
      */
     public RiAttributeEnd(final String param) {
         super(param);
+        
     }
 
     /**

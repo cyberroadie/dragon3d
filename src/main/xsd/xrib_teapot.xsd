@@ -16,6 +16,7 @@
                     <xs:element ref="rib:world"/>
                     <xs:element ref="rib:scale"/>
                     <xs:element ref="rib:color"/>
+                    <xs:element ref="rib:attributestack"/>
                 </xs:choice>
             </xs:sequence>                
             <xs:attribute name="version"/>

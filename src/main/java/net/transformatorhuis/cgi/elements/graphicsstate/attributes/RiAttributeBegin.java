@@ -2,6 +2,10 @@ package net.transformatorhuis.cgi.elements.graphicsstate.attributes;
 
 import org.apache.log4j.Logger;
 import net.transformatorhuis.cgi.conversion.AbstractRib;
+import net.transformatorhuis.xsd.Attribute;
+import net.transformatorhuis.xsd.Attributestack;
+
+import java.util.Vector;
 
 /**
  * @author cyberroadie
@@ -16,6 +20,11 @@ public class RiAttributeBegin extends AbstractRib {
     private static Logger logger = Logger.getLogger(RiAttributeBegin.class);
 
     /**
+     * JAXB RiAttributeBegin element
+     */
+    private Attributestack attributstack;
+
+    /**
      * AttributeBegin.
      */
     public RiAttributeBegin() {
@@ -24,10 +33,11 @@ public class RiAttributeBegin extends AbstractRib {
 
     /**
      * AttributeBegin.
-     * @param param extra parameters
+     * @param parameters extra parameters
      */
-    public RiAttributeBegin(final String param) {
-        super(param);
+    public RiAttributeBegin(final String parameters) {
+        super(parameters);
+        attributstack = objFactory.createAttributestack();
     }
 
     /**
@@ -43,7 +53,7 @@ public class RiAttributeBegin extends AbstractRib {
      * @return JAXB node returned for RIB element
      */
     public Object getJAXBNode() {
-        return null;
+        return attributstack;
     }
 
 }
