@@ -24,17 +24,16 @@ public class RiScaleTest extends GeneralRibTest {
 
     private String testUtahTeapotRIBFragment = "Scale 1 1 1.05468457";
     
-    private String testUtahTeapotXMLFragment = "<scale sx=\"1\" sy=\"1\" sz=\"1.05468457\"/>";
+    private String testUtahTeapotXMLFragment = "<scale sx=\"1.0\" sy=\"1.0\" sz=\"1.05468457\"/>";
 
     private String testRISpecRIBFragment = "Scale 0.5 1 1";
 
-    private String testRISpecXMLFragment = "<scale sx=\"0.5\" sy=\"1\" sz=\"1\"/>";
+    private String testRISpecXMLFragment = "<scale sx=\"0.5\" sy=\"1.0\" sz=\"1.0\"/>";
 
     public RiScaleTest() {
         super();     
     }
 
-    @Ignore
     @Test
     public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 

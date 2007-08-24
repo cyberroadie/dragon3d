@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.custommonkey.xmlunit.Diff;
+import org.custommonkey.xmlunit.DetailedDiff;
 
 import org.w3c.dom.*;
 import org.xml.sax.ErrorHandler;
@@ -160,13 +161,13 @@ public class GeneralRibTest implements ErrorHandler {
     /**
      * Only compares the child nodes of <rib>
      *
-     * @param docLeft
-     * @param docRight
+     * @param controlDoc
+     * @param testDoc
      * @return
      */
-    public boolean diffDocuments(Document docLeft, Document docRight) {
+    public boolean diffDocuments(Document controlDoc, Document testDoc) {
 
-        Diff diff = new Diff(docLeft, docRight);
+        DetailedDiff diff = new DetailedDiff(new Diff(controlDoc, testDoc));
 
         boolean isDocumentEqual = diff.identical();
 
