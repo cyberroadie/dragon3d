@@ -34,7 +34,6 @@ public class RiColorTest extends GeneralRibTest {
         super();     
     }
 
-    @Ignore
     @Test
     public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -50,7 +49,6 @@ public class RiColorTest extends GeneralRibTest {
 
      }
 
-    @Ignore
     @Test
     public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
