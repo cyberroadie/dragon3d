@@ -3,6 +3,9 @@ package net.transformatorhuis.cgi.elements.primitives;
 import org.apache.log4j.Logger;
 import net.transformatorhuis.cgi.conversion.AbstractRibType;
 import net.transformatorhuis.cgi.conversion.AbstractRib;
+import net.transformatorhuis.xsd.Disk;
+
+import java.util.Vector;
 
 /**
  * @author cyberroadie
@@ -17,6 +20,11 @@ public class RiDisk extends AbstractRib {
     private static Logger logger = Logger.getLogger(RiDisk.class);
 
     /**
+     * JAXB Disk element
+     */
+    private Disk disk;
+
+    /**
      * Disk.
      */
     public RiDisk() {
@@ -25,10 +33,21 @@ public class RiDisk extends AbstractRib {
 
     /**
      * Disk.
-     * @param param extra parameters
+     * @param parameters extra parameters
      */
-    public RiDisk(final String param) {
-        super(param);
+    public RiDisk(final String parameters) {
+        super(parameters);
+        Vector parameterList = splitParameters(parameters);
+        disk = objFactory.createDisk();
+        disk.setHeight(Double.valueOf((String) parameterList.get(0)));
+        disk.setRadius(Double.valueOf((String) parameterList.get(1)));
+        disk.setThetamax(Double.valueOf((String) parameterList.get(2)));
+
+        if (parameterList.size() > 3) {
+            setParameters(parameterList, 3);
+        } else {
+            setParameters(null, 0);
+        }
     }
 
     /**
@@ -37,7 +56,7 @@ public class RiDisk extends AbstractRib {
      * @return JAXB node returned for RIB element
      */
     public Object getJAXBNode() {
-        return null;
+        return disk;
     }
 
 }

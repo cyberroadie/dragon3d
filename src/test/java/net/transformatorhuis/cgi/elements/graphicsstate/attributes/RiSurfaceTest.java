@@ -31,13 +31,13 @@ public class RiSurfaceTest extends GeneralRibTest {
     private String testRISpecXMLFragment = "<surface shadername=\"wood\">" +
                                            "    <param name=\"roughness\" value=\"0.3\" />" +
                                            "    <param name=\"kd\" value=\"1.0\" />" +
-                                           "    <param name=\"float ringwidth\" value=\"0.25\" />";                                           
+                                           "    <param name=\"float ringwidth\" value=\"0.25\" />" +
+                                           "</surface>";                                           
 
     public RiSurfaceTest() {
         super();     
     }
 
-    @Ignore
     @Test
     public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -53,7 +53,6 @@ public class RiSurfaceTest extends GeneralRibTest {
 
      }
 
-    @Ignore
     @Test
      public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 

@@ -19,23 +19,22 @@ public class RiProjectionTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiProjectionTest.class);
 
-    private String testUtahTeapotRIBFragment = "\"perspective\" \"fov\" 30";
+    private String testUtahTeapotRIBFragment = "Projection \"perspective\" \"fov\" 30";
 
     private String testUtahTeapotXMLFragment = "<projection name=\"perspective\">" +
-                                               "   <param name=\"fov\" value=\"30\">" +
+                                               "   <param name=\"fov\" value=\"30\"/>" +
                                                "</projection>";
 
-    private String testRISpecRIBFragment1 = "orthographic";
+    private String testRISpecRIBFragment1 = "Projection \"orthographic\"";
 
     private String testRISPecXMLFragment1 = "<projection name=\"orthographic\"/>";
 
-    private String testRISpecRIBFragment2 = "perspective";
+    private String testRISpecRIBFragment2 = "Projection \"perspective\"";
 
     private String testRISPecXMLFragment2 = "<projection name=\"perspective\" >" +
-                                            "   <param name=\"fov\" value=\"45\">" +
+                                            "   <param name=\"fov\" value=\"45\"/>" +
                                             "</projection>";
 
-    @Ignore
     @Test
     public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -51,7 +50,6 @@ public class RiProjectionTest extends GeneralRibTest {
 
     }
 
-    @Ignore
     @Test
     public void testRISpecExample1() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -67,7 +65,6 @@ public class RiProjectionTest extends GeneralRibTest {
 
     }
 
-    @Ignore
     @Test
     public void testRISpecExample2() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 

@@ -24,17 +24,16 @@ public class RiCylinderTest extends GeneralRibTest {
 
     private String testUtahTeapotRIBFragment = "Cylinder .26 0 3.3 360";
 
-    private String testUtahTeapotXMLFragment = "<cylinder radius=\"0.26\" zmin=\"0\" zmax=\"3.3\" thetamax=\"360\"/>";
+    private String testUtahTeapotXMLFragment = "<cylinder radius=\"0.26\" zmin=\"0.0\" zmax=\"3.3\" thetamax=\"360.0\"/>";
 
     private String testRISpecRIBFragment = "Cylinder .5 .2 1 360";
 
-    private String testRISpecXMLFragment = "<cylinder radius=\"0.5\" zmin=\"0.2\" zmax=\"1\" thetamax=\"360\"/>";
+    private String testRISpecXMLFragment = "<cylinder radius=\"0.5\" zmin=\"0.2\" zmax=\"1.0\" thetamax=\"360.0\"/>";
 
     public RiCylinderTest() {
         super();     
     }
 
-    @Ignore
     @Test
      public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -50,7 +49,6 @@ public class RiCylinderTest extends GeneralRibTest {
 
      }
 
-    @Ignore
     @Test
      public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 

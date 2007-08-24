@@ -2,6 +2,9 @@ package net.transformatorhuis.cgi.elements.graphicsstate.attributes;
 
 import org.apache.log4j.Logger;
 import net.transformatorhuis.cgi.conversion.AbstractRib;
+import net.transformatorhuis.xsd.Lightsource;
+
+import java.util.Vector;
 
 /**
  * @author cyberroadie
@@ -16,6 +19,11 @@ public class RiLightSource extends AbstractRib {
     private static Logger logger = Logger.getLogger(RiLightSource.class);
 
     /**
+     * JAXB lightsource element
+     */
+    Lightsource lightsource;
+    
+    /**
      * LightSource.
      */
     public RiLightSource() {
@@ -24,10 +32,20 @@ public class RiLightSource extends AbstractRib {
 
     /**
      * LightSource.
-     * @param param extra parameter
+     * @param parameters extra parameter
      */
-    public RiLightSource(final String param) {
-        super(param);
+    public RiLightSource(String parameters) {
+        super(parameters);
+        Vector parameterList = splitParameters(parameters);
+        lightsource = objFactory.createLightsource();
+        lightsource.setShadername((String) parameterList.get(0));
+        lightsource.setSequencenumber(Integer.valueOf((String) parameterList.get(1)));
+
+        if (parameterList.size() > 2) {
+            setParameters(parameterList, 2);
+        } else {
+            setParameters(null, 0);
+        }
     }
 
     /**
@@ -36,7 +54,7 @@ public class RiLightSource extends AbstractRib {
      * @return JAXB node returned for RIB element
      */
     public Object getJAXBNode() {
-        return null;
+        return lightsource;
     }
 
 }

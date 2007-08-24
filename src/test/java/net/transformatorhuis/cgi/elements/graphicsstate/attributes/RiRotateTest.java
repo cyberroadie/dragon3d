@@ -24,17 +24,16 @@ public class RiRotateTest extends GeneralRibTest {
 
     private String testUtaheTeapotRIBFragment = "Rotate -22 1 0 0";
 
-    private String testUtaheTeapotXMLFragment = "<rotate angle=\"-22\" dx=\"1\" dy=\"0\" dz=\"0\"/>";
+    private String testUtaheTeapotXMLFragment = "<rotate angle=\"-22.0\" dx=\"1.0\" dy=\"0.0\" dz=\"0.0\"/>";
 
     private String testRISpecRIBFragment = "Rotate 90.0 0.0 1.0 0.0";
 
-    private String testRISpecXMLFragment = "<rotate angle=\"90\" dx=\"0\" dy=\"1\" dz=\"0\"/>";
+    private String testRISpecXMLFragment = "<rotate angle=\"90.0\" dx=\"0.0\" dy=\"1.0\" dz=\"0.0\"/>";
 
     public RiRotateTest() {
         super();     
     }
 
-    @Ignore
     @Test
     public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -50,7 +49,6 @@ public class RiRotateTest extends GeneralRibTest {
 
     }
 
-    @Ignore
     @Test
     public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 

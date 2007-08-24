@@ -24,17 +24,16 @@ public class RiSphereTest extends GeneralRibTest {
 
     private String testUtahTeapotRIBFragment = "Sphere 5 0 3.12897569 360";
 
-    private String testUtahTeapotXMLFragment = "<sphere radius=\"5\" zmin=\"0\" zmax=\"3.12897569\" thetamax=\"360\"/>";
+    private String testUtahTeapotXMLFragment = "<sphere radius=\"5.0\" zmin=\"0.0\" zmax=\"3.12897569\" thetamax=\"360.0\"/>";
 
     private String testRISpecRIBFragment = "Sphere 0.5 0.0 0.5 360.0";
 
-    private String testRISpecXMLFragment = "<sphere radius=\"0.5\" zmin=\"0.0\" zmax=\"0.5\" thetamax=\"360\"/>";
+    private String testRISpecXMLFragment = "<sphere radius=\"0.5\" zmin=\"0.0\" zmax=\"0.5\" thetamax=\"360.0\"/>";
 
     public RiSphereTest() {
         super();     
     }
 
-    @Ignore
     @Test
      public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -50,7 +49,6 @@ public class RiSphereTest extends GeneralRibTest {
 
      }
 
-    @Ignore
     @Test
     public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 

@@ -22,7 +22,7 @@ public class RiLightSourceTest extends GeneralRibTest {
 
     private static Logger logger = Logger.getLogger(RiLightSourceTest.class);
 
-    private String testUtahTeapotRIBFragment1 = "\"ambientlight\" 1 \"intensity\" .4";
+    private String testUtahTeapotRIBFragment1 = "Lightsource \"ambientlight\" 1 \"intensity\" .4";
     
     private String testUtahTeapotXMLFragment1 = "<lightsource shadername=\"ambientlight\" sequencenumber=\"1\">\n" +
                                      "    <param name=\"intensity\" value=\".4\"/>\n" +
@@ -32,27 +32,28 @@ public class RiLightSourceTest extends GeneralRibTest {
 
     private String testUtahTeapotXMLFragment2 = "<lightsource shadername=\"distantlight\" sequencenumber=\"2\">\n" +
                                                 "            <param name=\"intensity\" value=\".6\"/>\n" +
+                                                "            <param name=\"from\" value=\"[-4 6 -7]\"/>\n" +
+                                                "            <param name=\"to\" value=\"[0 0 0]\"/>\n" +
                                                 "</lightsource>";
 
-    private String testRISpecRIBFragment1 = "\"spotlight\" 2 \"coneangle\" [5]";
+    private String testRISpecRIBFragment1 = "Lightsource \"spotlight\" 2 \"coneangle\" [5]";
 
-    private String testRISpecXMLFragment1 = "<lightsource shadername=\"spotlight\">\n" +
-                                         "    <param name=\"coneangle\" value=\"5\"/>\n" +
+    private String testRISpecXMLFragment1 = "<lightsource shadername=\"spotlight\" sequencenumber=\"2\">\n" +
+                                         "    <param name=\"coneangle\" value=\"[5]\"/>\n" +
                                          "</lightsource>";
 
-    private String testRISpecRIBFragment2 = "\"ambientlight\" 3 \"lightcolor\" [.5 0 0] \"intensity\" [.6]";
+    private String testRISpecRIBFragment2 = "Lightsource \"ambientlight\" 3 \"lightcolor\" [.5 0 0] \"intensity\" [.6]";
     
-    // TODO Adjustment XML Scheme; the RGB color code of lightcolor needs to be split up
-    private String testRISpecXMLFragment2 = "<lightsource shadername=\"ambientlight\">\n" +
-                                            "    <param name=\"lightcolor\" value=\".5 0 0\"/>\n" +
-                                            "    <param name=\"intensity\" value=\".6\"/>\n" +
+    // TODO Adjustment XML Scheme; the RGB color code of lightcolor needs to be split up if recognized as vector -> [...]
+    private String testRISpecXMLFragment2 = "<lightsource shadername=\"ambientlight\" sequencenumber=\"3\">\n" +
+                                            "    <param name=\"lightcolor\" value=\"[.5 0 0]\"/>\n" +
+                                            "    <param name=\"intensity\" value=\"[.6]\"/>\n" +
                                             "</lightsource>";
 
     public RiLightSourceTest() {
         super();     
     }
 
-    @Ignore
     @Test
      public void testUtahTeapot1() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -68,7 +69,6 @@ public class RiLightSourceTest extends GeneralRibTest {
 
      }
 
-    @Ignore
     @Test
      public void testUtahTeapot2() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -84,7 +84,6 @@ public class RiLightSourceTest extends GeneralRibTest {
 
      }
 
-    @Ignore
     @Test
     public void testRISpecExample1() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -100,7 +99,6 @@ public class RiLightSourceTest extends GeneralRibTest {
 
     }
 
-    @Ignore
     @Test
     public void testRISpecExample2() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 

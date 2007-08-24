@@ -2,6 +2,9 @@ package net.transformatorhuis.cgi.elements.graphicsstate.attributes;
 
 import org.apache.log4j.Logger;
 import net.transformatorhuis.cgi.conversion.AbstractRib;
+import net.transformatorhuis.xsd.Sides;
+
+import java.util.Vector;
 
 /**
  * @author cyberroadie
@@ -16,6 +19,11 @@ public class RiSides extends AbstractRib {
     private static Logger logger = Logger.getLogger(RiSides.class);
 
     /**
+     * JAXB sides element;
+     */
+    Sides sides;
+
+    /**
      * Sides.
      */
     public RiSides() {
@@ -24,10 +32,21 @@ public class RiSides extends AbstractRib {
 
     /**
      * Sides.
-     * @param param extra parameters
+     * @param parameters extra parameters
      */
-    public RiSides(final String param) {
-        super(param);
+    public RiSides(final String parameters) {
+        super(parameters);
+        Vector parameterList = splitParameters(parameters);
+        sides = objFactory.createSides();
+        // TODO this is actually a RtInt instead of string, change in xml schema
+        sides.setSides((String) parameterList.get(0));
+
+        if (parameterList.size() > 1) {
+            setParameters(parameterList, 1);
+        } else {
+            setParameters(null, 0);
+        }
+
     }
 
     /**
@@ -36,7 +55,7 @@ public class RiSides extends AbstractRib {
      * @return JAXB node returned for RIB element
      */
     public Object getJAXBNode() {
-        return null;
+        return sides;
     }
 
 }

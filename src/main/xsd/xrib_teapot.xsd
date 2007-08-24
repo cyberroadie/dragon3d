@@ -17,6 +17,15 @@
                     <xs:element ref="rib:scale"/>
                     <xs:element ref="rib:color"/>
                     <xs:element ref="rib:torus"/>
+                    <xs:element ref="rib:disk"/>
+                    <xs:element ref="rib:surface"/>
+                    <xs:element ref="rib:orientation"/>
+                    <xs:element ref="rib:sphere"/>
+                    <xs:element ref="rib:hyperboloid"/>
+                    <xs:element ref="rib:cylinder"/>
+                    <xs:element ref="rib:lightsource"/>
+                    <xs:element ref="rib:sides"/>
+                    <xs:element ref="rib:rotate"/>
                     <xs:element ref="rib:attributestack"/>
                 </xs:choice>
             </xs:sequence>                
@@ -202,6 +211,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name='sequencenumber' type='xs:unsignedShort' use='required' />
         </xs:complexType>
     </xs:element>
     

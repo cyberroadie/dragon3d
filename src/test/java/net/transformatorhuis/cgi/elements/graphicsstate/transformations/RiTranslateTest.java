@@ -24,21 +24,20 @@ public class RiTranslateTest extends GeneralRibTest {
 
     private String testUtahTeapotRIBFragment1 = "Translate 0 0 25";
     
-    private String testUtahTeapotXMLFragment1 = "<translate dx=\"0\" dy=\"0\" dz=\"25\"/>";
+    private String testUtahTeapotXMLFragment1 = "<translate dx=\"0.0\" dy=\"0.0\" dz=\"25.0\"/>";
 
     private String testUtahTeapotRIBFragment2 = "Translate -4.3 4.2 0";
 
-    private String testUtahTeapotXMLFragment2 = "<translate dx=\"-4.3\" dy=\"4.2\" dz=\"0\"/>";
+    private String testUtahTeapotXMLFragment2 = "<translate dx=\"-4.3\" dy=\"4.2\" dz=\"0.0\"/>";
 
     private String testRISpecRIBFragment = "Translate 0 1 0";
 
-    private String testRISpecXMLFragment = "<translate dx=\"0\" dy=\"1\" dz=\"0\"/>";
+    private String testRISpecXMLFragment = "<translate dx=\"0.0\" dy=\"1.0\" dz=\"0.0\"/>";
                                                                                          
     public RiTranslateTest() {
         super();     
     }
 
-     @Ignore
      @Test
      public void testUtahTeapot1() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -54,7 +53,6 @@ public class RiTranslateTest extends GeneralRibTest {
 
      }
 
-    @Ignore
     @Test
     public void testUtahTeapot2() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -70,7 +68,6 @@ public class RiTranslateTest extends GeneralRibTest {
 
     }
 
-    @Ignore
     @Test
     public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 

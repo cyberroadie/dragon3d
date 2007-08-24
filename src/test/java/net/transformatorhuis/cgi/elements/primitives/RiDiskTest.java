@@ -24,17 +24,16 @@ public class RiDiskTest extends GeneralRibTest {
 
     private String testUtahTeapotRIBFragment = "Disk 0.225 0.75 360";
 
-    private String testUtahTeapotXMLFragment = "<disk height=\"0.225\" radius=\"0.75\" thetamax=\"360\"/>";
+    private String testUtahTeapotXMLFragment = "<disk height=\"0.225\" radius=\"0.75\" thetamax=\"360.0\"/>";
 
     private String testRISpecRIBFragment = "Disk 1.0 0.5 270.0";
 
-    private String testRISpecXMLFragment = "<disk height=\"1\" radius=\"0.5\" thetamax=\"270\"/>";
+    private String testRISpecXMLFragment = "<disk height=\"1.0\" radius=\"0.5\" thetamax=\"270.0\"/>";
 
     public RiDiskTest() {
         super();
     }
 
-    @Ignore
     @Test
     public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -43,14 +42,13 @@ public class RiDiskTest extends GeneralRibTest {
          logger.info(docFromString.toString());
 
          // Create JAXB
-         RiTorus rib = new RiTorus(testUtahTeapotRIBFragment);
+         RiDisk rib = new RiDisk(testUtahTeapotRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
          assertTrue(diffDocuments(docFromString, docFromJAXB));
 
      }
 
-    @Ignore
     @Test
      public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -59,7 +57,7 @@ public class RiDiskTest extends GeneralRibTest {
          logger.info(docFromString.toString());
 
          // Create JAXB
-         RiTorus rib = new RiTorus(testRISpecRIBFragment);
+         RiDisk rib = new RiDisk(testRISpecRIBFragment);
          Document docFromJAXB = getDOMFromJAXB(rib.getJAXBNode());
 
          assertTrue(diffDocuments(docFromString, docFromJAXB));

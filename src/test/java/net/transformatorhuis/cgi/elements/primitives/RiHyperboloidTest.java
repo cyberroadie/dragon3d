@@ -24,19 +24,18 @@ public class RiHyperboloidTest extends GeneralRibTest {
 
     private String testUtahTeapotRIBFragment = "Hyperboloid  1.2 0 0 .4 0 5.7  360";
     
-    private String testUtahTeapotXMLFragment = "<hyperboloid thetamax=\"360\" x1=\"1.2\" y1=\"0\" z1=\"0\" x2=\"0.4\" y2=\"0\" z2=\"5.7\"/>";
+    private String testUtahTeapotXMLFragment = "<hyperboloid thetamax=\"360.0\" x1=\"1.2\" y1=\"0.0\" z1=\"0.0\" x2=\"0.4\" y2=\"0.0\" z2=\"5.7\"/>";
 
     private String testRISpecRIBFragment = "Hyperboloid 0 0 0 .5 0 0 270 \"Cs\" [1 1 1 .5 .9 1 .2 .9 0 .5 .2 0]";
 
-    private String testRISpecXMLFragment = "<hyperboloid thetamax=\"270\" x1=\"0\" y1=\"0\" z1=\"0\" x2=\"0.5\" y2=\"0\" z2=\"0\">" +
+    private String testRISpecXMLFragment = "<hyperboloid thetamax=\"270.0\" x1=\"0.0\" y1=\"0.0\" z1=\"0.0\" x2=\"0.5\" y2=\"0.0\" z2=\"0.0\">" +
                                            "    <param name=\"Cs\" value=\"[1 1 1 .5 .9 1 .2 .9 0 .5 .2 0]\"/>" +
-                                           "</hyberboloid>";
+                                           "</hyperboloid>";
 
     public RiHyperboloidTest() {
         super();     
     }
 
-    @Ignore
     @Test
      public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -52,7 +51,6 @@ public class RiHyperboloidTest extends GeneralRibTest {
 
      }
 
-    @Ignore
     @Test
      public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
