@@ -25,17 +25,16 @@ public class RiTorusTest extends GeneralRibTest {
 
     private String testUtahTeapotRIBFragment = "Torus 2.9 .26 0 360 90";
     
-    private String testUtahTeapotXMLFragment = "<torus majorradius=\"2.9\" minorradius=\"0.26\" phiminus=\"0\" phimax=\"360\" thetamax=\"90\"/>";
+    private String testUtahTeapotXMLFragment = "<torus majorradius=\"2.9\" minorradius=\"0.26\" phiminus=\"0.0\" phimax=\"360.0\" thetamax=\"90.0\"/>";
 
     private String testRISpecRIBFragment = "Torus 1 .3 60 90 360";
 
-    private String testRISpecXMLFragment = "<torus majorradius=\"1\" minorradius=\"0.3\" phiminus=\"60\" phimax=\"90\" thetamax=\"360\"/>";
+    private String testRISpecXMLFragment = "<torus majorradius=\"1.0\" minorradius=\"0.3\" phiminus=\"60.0\" phimax=\"90.0\" thetamax=\"360.0\"/>";
 
     public RiTorusTest() {
         super();     
     }
 
-    @Ignore
     @Test
      public void testUtahTeapot() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
@@ -51,7 +50,6 @@ public class RiTorusTest extends GeneralRibTest {
 
      }
 
-    @Ignore
     @Test
      public void testRISpecExample() throws IOException, SAXException, ParserConfigurationException, JAXBException {
 
