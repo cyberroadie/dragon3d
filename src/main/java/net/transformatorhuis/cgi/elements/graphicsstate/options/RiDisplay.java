@@ -1,16 +1,10 @@
 package net.transformatorhuis.cgi.elements.graphicsstate.options;
 
+import net.transformatorhuis.cgi.conversion.AbstractRib;
+import net.transformatorhuis.xsd.Display;
 import org.apache.log4j.Logger;
 
-import org.w3c.dom.Element;
-
-import net.transformatorhuis.cgi.conversion.AbstractRib;
-import net.transformatorhuis.cgi.conversion.RibDocument;
-import net.transformatorhuis.xsd.Display;
-
 import java.util.Vector;
-
-import org.w3c.dom.Node;
 
 /**
  * @author cyberroadie

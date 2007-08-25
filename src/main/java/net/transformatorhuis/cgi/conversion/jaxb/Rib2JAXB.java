@@ -8,6 +8,7 @@ import net.transformatorhuis.cgi.utils.Config;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.File;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -41,6 +42,8 @@ public class Rib2JAXB {
     
     private static Logger logger = Logger.getLogger(Rib2JAXB.class);
 
+    private File ribFile;
+
     private static final String JAXP_SCHEMA_LANGUAGE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
     private static final String W3C_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
     private static final String JAXP_SCHEMA_SOURCE = "http://java.sun.com/xml/jaxp/properties/schemaSource";
@@ -48,8 +51,10 @@ public class Rib2JAXB {
     /**
      * Converts RIB to JAXB.
      */
-    public Rib2JAXB() {
+    public Rib2JAXB(File ribFile) {
         super();
+
+        this.ribFile = ribFile;
 
         // Create thr RIB factory
         ribElementFactory = new RIBElementFactory();
@@ -64,7 +69,8 @@ public class Rib2JAXB {
         } catch (JAXBException e) {
             logger.error(e.toString());
         }
-        
+
+        // JAXB object factory
         objFactory = new ObjectFactory();
 
         // Intial setup renderman file
@@ -81,30 +87,55 @@ public class Rib2JAXB {
 
         // Setup logging
         BasicConfigurator.configure();
+        Rib2JAXB rib2jaxb = new Rib2JAXB(new File(args[0]));
+        rib2jaxb.createJAXBCloud();
+
+        // Try printing it to standard output
+        try {
+            rib2jaxb.toSystemOut();
+        } catch (JAXBException e) {
+            logger.error(e.toString());
+        }
 
     }
 
-
+    /**
+     * This method sequentially adds RIB elements to the JAXB Cloud
+     * Note this could be transformed to a paralel process?
+     */
     public void createJAXBCloud() {
         try {
-            BufferedReader in = new BufferedReader(new FileReader("infilename"));
+            BufferedReader in = new BufferedReader(new FileReader(ribFile));
             String str;
             while ((str = in.readLine()) != null) {
-                process(str);
+                // TODO give version it's own implementation/setter
+                if(!str.startsWith("#") && !str.startsWith("version") && !str.trim().equals("")) {
+                    logger.debug("Processing: " + str);
+                    process(str);
+                }
             }
             in.close();
         } catch (IOException e) {
-
+            logger.error(e.toString());
         }
     }
 
+    /**
+     * Adds RIB element to the JAXB cloud
+     * @param paramaters
+     */
     private void process(String paramaters)  {
 
-        Rib rib = ribElementFactory.processRIBLine(paramaters);
+        Object rib = ribElementFactory.processRIBLine(paramaters);
         ribList.add(rib);
 
     }
 
+    /**
+     * Returns the current state (snapshot) of the JAXB cloud as a DOM document
+     *
+     * @return DOM document
+     */
     public Document getDOMDocument() {
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -124,12 +155,13 @@ public class Rib2JAXB {
         return doc;
 
     }
-    
+
     /**
-     * @return true
+     * Prints JAXB to System.out
+     * @throws JAXBException
      */
-    public boolean test() {
-        return true;
+    public void toSystemOut() throws JAXBException {
+        m.marshal(rib, System.out);
     }
 
 }

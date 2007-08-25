@@ -1,6 +1,7 @@
 package net.transformatorhuis.cgi.conversion.jaxb;
 
 import net.transformatorhuis.cgi.utils.Config;
+import net.transformatorhuis.cgi.conversion.AbstractRib;
 import net.transformatorhuis.xsd.ObjectFactory;
 import net.transformatorhuis.xsd.Rib;
 import org.apache.log4j.Logger;
@@ -36,25 +37,30 @@ public class RIBElementFactory {
 
     }
 
-    public Rib processRIBLine(String ribLine) {
+    public Object processRIBLine(String ribLine) {
 
-        Rib rib = null;
-        String ribName;
-        String parameters = null;
+        AbstractRib rib = null;
 
         Class[] intArgsClass = new Class[] {String.class};
-        Object[] intArgs = new Object[] {parameters};
+        Object[] intArgs = new Object[] {ribLine};
 
-        String ribElementName = ribLine.substring(ribLine.indexOf(' '));
-        logger.debug("RIB element name: " + ribElementName);
+        System.out.println("RIB line: " + ribLine);
+        String ribElementName;
+        try {
+            ribElementName = ribLine.substring(0, ribLine.indexOf(' '));
+        } catch (StringIndexOutOfBoundsException e) {
+            ribElementName = ribLine.trim();            
+        }
+        logger.info("RIB element name: " + ribElementName);
 
         // Get the corresponding class from hashtable based on ribElementName
         try {
-            Class ribClass = Class.forName((String) classes.get(ribElementName),
+            String packageclassName = (String) classes.get(ribElementName);
+            Class ribClass = Class.forName(packageclassName,
                     true, this.getClass().getClassLoader());
             // Instantiate the new rib ribElementName
-            rib = (Rib) ribClass.getConstructor(intArgsClass)
-                    .newInstance(intArgs); 
+            rib = (AbstractRib) ribClass.getConstructor(intArgsClass)
+                    .newInstance(intArgs);
 
         } catch (ClassNotFoundException e) {
             logger.error(e.toString());
@@ -68,7 +74,7 @@ public class RIBElementFactory {
             logger.error(e.toString());
         }
 
-        return rib;
+        return rib.getJAXBNode();
         
     }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <ribelements>
-<package name="target.classes.net.transformatorhuis.xsd">
+<package name="net.transformatorhuis.xsd">
 <ribelement classname="Rib" name="b"/>
 </package>
-<package name="target.classes.net.transformatorhuis.cgi.elements.graphicsstate.attributes">
+<package name="net.transformatorhuis.cgi.elements.graphicsstate.attributes">
 <ribelement classname="RiInterior" name="Interior"/>
 <ribelement classname="RiGeometricApproximation" name="GeometricApproximation"/>
 <ribelement classname="RiReverseOrientation" name="ReverseOrientation"/>
@@ -29,7 +29,7 @@
 <ribelement classname="RiSides" name="Sides"/>
 <ribelement classname="RiShadingRate" name="ShadingRate"/>
 </package>
-<package name="target.classes.net.transformatorhuis.cgi.elements.primitives">
+<package name="net.transformatorhuis.cgi.elements.primitives">
 <ribelement classname="RiPointsGeneralPolygons" name="PointsGeneralPolygons"/>
 <ribelement classname="RiSolidEnd" name="SolidEnd"/>
 <ribelement classname="RiBasis" name="Basis"/>
@@ -61,11 +61,11 @@
 <ribelement classname="RiPoints" name="Points"/>
 <ribelement classname="RiHyperboloid" name="Hyperboloid"/>
 </package>
-<package name="target.classes.net.transformatorhuis.cgi.types"/>
-<package name="target.classes.net.transformatorhuis.cgi.elements">
+<package name="net.transformatorhuis.cgi.types"/>
+<package name="net.transformatorhuis.cgi.elements">
 <ribelement classname="RiDeclare" name="Declare"/>
 </package>
-<package name="target.classes.net.transformatorhuis.cgi.elements.external">
+<package name="net.transformatorhuis.cgi.elements.external">
 <ribelement classname="RiMakeTexture" name="MakeTexture"/>
 <ribelement classname="RiMakeLatLongEnvironment" name="MakeLatLongEnvironment"/>
 <ribelement classname="RiMakeCubeFaceEnvironment" name="MakeCubeFaceEnvironment"/>
@@ -74,10 +74,10 @@
 <ribelement classname="RiErrorHandler" name="ErrorHandler"/>
 <ribelement classname="RiArchiveRecord" name="ArchiveRecord"/>
 </package>
-<package name="target.classes.net.transformatorhuis.cgi.elements.graphicsstate">
+<package name="net.transformatorhuis.cgi.elements.graphicsstate">
 <ribelement classname="RiGetContext" name="GetContext"/>
 <ribelement classname="RiContext" name="Context"/>
-<ribelement classname="RiWorldBegin" name="WorldBegin"/>
+<ribelement classname="RiWorldBegin" name="World"/>
 <ribelement classname="RiEnd" name="End"/>
 <ribelement classname="RiBegin" name="Begin"/>
 <ribelement classname="RiFrameBegin" name="FrameBegin"/>
@@ -85,12 +85,12 @@
 <ribelement classname="RiFrameEnd" name="FrameEnd"/>
 <ribelement classname="RiAttribute" name="Attribute"/>
 </package>
-<package name="target.classes.net.transformatorhuis.cgi.elements.motion">
+<package name="net.transformatorhuis.cgi.elements.motion">
 <ribelement classname="RiMotionBegin" name="MotionBegin"/>
 <ribelement classname="RiMotionEnd" name="MotionEnd"/>
 </package>
-<package name="target.classes.net.transformatorhuis.cgi.utils"/>
-<package name="target.classes.net.transformatorhuis.cgi.elements.graphicsstate.options">
+<package name="net.transformatorhuis.cgi.utils"/>
+<package name="net.transformatorhuis.cgi.elements.graphicsstate.options">
 <ribelement classname="RiColorSamples" name="ColorSamples"/>
 <ribelement classname="RiPixelVariance" name="PixelVariance"/>
 <ribelement classname="RiCropWindow" name="CropWindow"/>
@@ -112,15 +112,15 @@
 <ribelement classname="RiClippingPlane" name="ClippingPlane"/>
 <ribelement classname="RiDepthOfField" name="DepthOfField"/>
 </package>
-<package name="target.classes.net.transformatorhuis.teapot"/>
-<package name="target.classes.net.transformatorhuis.cgi.conversion">
+<package name="net.transformatorhuis.teapot"/>
+<package name="net.transformatorhuis.cgi.conversion">
 <ribelement classname="RibDocument" name="bDocument"/>
 <ribelement classname="RibOutput" name="bOutput"/>
 <ribelement classname="Rib2Xml" name="b2Xml"/>
 <ribelement classname="Rib2JAXB" name="b2JAXB"/>
 <ribelement classname="RibFactory" name="bFactory"/>
 </package>
-<package name="target.classes.net.transformatorhuis.cgi.elements.graphicsstate.transformations">
+<package name="net.transformatorhuis.cgi.elements.graphicsstate.transformations">
 <ribelement classname="RiTranslate" name="Translate"/>
 <ribelement classname="RiTransform" name="Transform"/>
 <ribelement classname="RiSkew" name="Skew"/>
