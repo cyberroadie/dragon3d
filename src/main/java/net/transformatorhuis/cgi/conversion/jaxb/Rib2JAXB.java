@@ -3,6 +3,7 @@ package net.transformatorhuis.cgi.conversion.rib;
 import net.transformatorhuis.xsd.Rib;
 import net.transformatorhuis.xsd.ObjectFactory;
 import net.transformatorhuis.cgi.conversion.jaxb.RIBElementFactory;
+import net.transformatorhuis.cgi.conversion.jaxb.InvalidRIBDocumentException;
 import net.transformatorhuis.cgi.utils.Config;
 
 import java.io.BufferedReader;
@@ -43,6 +44,8 @@ public class Rib2JAXB {
     private static Logger logger = Logger.getLogger(Rib2JAXB.class);
 
     private File ribFile;
+
+    private String version;
 
     private static final String JAXP_SCHEMA_LANGUAGE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
     private static final String W3C_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
@@ -88,7 +91,12 @@ public class Rib2JAXB {
         // Setup logging
         BasicConfigurator.configure();
         Rib2JAXB rib2jaxb = new Rib2JAXB(new File(args[0]));
-        rib2jaxb.createJAXBCloud();
+        try {
+            rib2jaxb.createJAXBCloud();
+        } catch (InvalidRIBDocumentException e) {
+            logger.error(e.toString());
+            System.exit(1);
+        }
 
         // Try printing it to standard output
         try {
@@ -103,16 +111,30 @@ public class Rib2JAXB {
      * This method sequentially adds RIB elements to the JAXB Cloud
      * Note this could be transformed to a paralel process?
      */
-    public void createJAXBCloud() {
+    public void createJAXBCloud() throws InvalidRIBDocumentException {
         try {
             BufferedReader in = new BufferedReader(new FileReader(ribFile));
             String str;
+            // First find version line
+            while ((str = in.readLine()) != null) {
+                if(!str.startsWith("#")) {
+                    if(str.trim().startsWith("version")) {
+                        setVersion(str.substring(str.indexOf(" ")));
+                        break;
+                    } else {
+                        throw new InvalidRIBDocumentException("No version number found");
+                    }
+                }
+
+
+            }
+
             while ((str = in.readLine()) != null) {
                 // No whitespace
                 str = str.trim();
                 // TODO trim comments from end of line
                 // TODO give 'version 3.03' (Rib attribute) it's own implementation/setter
-                if(!str.startsWith("#") && !str.startsWith("version") && !str.trim().equals("")) {
+                if(!str.startsWith("#") && !str.trim().equals("")) {
                     logger.debug("Processing: " + str);
                     process(str);
                 }
@@ -121,6 +143,14 @@ public class Rib2JAXB {
         } catch (IOException e) {
             logger.error(e.toString());
         }
+    }
+
+    private void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getVersion() {
+        return version;
     }
 
     /**
