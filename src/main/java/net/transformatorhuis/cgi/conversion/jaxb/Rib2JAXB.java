@@ -79,7 +79,7 @@ public class Rib2JAXB {
         // Intial setup renderman file
         rib = objFactory.createRib();
         rib.setVersion("3.03");
-        ribList = rib.getDisplayOrAttributeOrProjection();
+        ribList = rib.getWorldOrDisplayOrAttributestack();
 
     }
 

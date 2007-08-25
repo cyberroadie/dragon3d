@@ -8,12 +8,13 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element ref="rib:world"/>
                     <xs:element ref="rib:display"/>
+                    <xs:element ref="rib:attributestack"/>
                     <xs:element ref="rib:attribute"/>
                     <xs:element ref="rib:projection"/>
                     <xs:element ref="rib:rotate"/>
                     <xs:element ref="rib:translate"/>
-                    <xs:element ref="rib:world"/>
                     <xs:element ref="rib:scale"/>
                     <xs:element ref="rib:color"/>
                     <xs:element ref="rib:torus"/>
@@ -25,7 +26,6 @@
                     <xs:element ref="rib:cylinder"/>
                     <xs:element ref="rib:lightsource"/>
                     <xs:element ref="rib:sides"/>
-                    <xs:element ref="rib:attributestack"/>
                 </xs:choice>
             </xs:sequence>                
             <xs:attribute name="version"/>

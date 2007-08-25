@@ -77,7 +77,7 @@ public class Teapot {
             rib = objFactory.createRib();
             rib.setVersion("3.03");
 
-            List ribList = rib.getDisplayOrAttributeOrProjection();
+            List ribList = rib.getWorldOrDisplayOrAttributestack();
 
             Display display = objFactory.createDisplay();
             display.setName("teapot.tiff");
