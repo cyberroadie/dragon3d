@@ -1,10 +1,9 @@
 package net.transformatorhuis.cgi.conversion.rib;
 
-import org.apache.log4j.Logger;
-import net.transformatorhuis.cgi.utils.Config;
 import net.transformatorhuis.cgi.conversion.AbstractRib;
-import net.transformatorhuis.cgi.conversion.RibDocument;
+import net.transformatorhuis.cgi.utils.Config;
 import net.transformatorhuis.xsd.ObjectFactory;
+import org.apache.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Hashtable;
