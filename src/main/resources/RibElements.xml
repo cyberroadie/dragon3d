@@ -77,7 +77,7 @@
 <package name="net.transformatorhuis.cgi.elements.graphicsstate">
 <ribelement classname="RiGetContext" name="GetContext"/>
 <ribelement classname="RiContext" name="Context"/>
-<ribelement classname="RiWorldBegin" name="World"/>
+<ribelement classname="RiWorldBegin" name="WorldBegin"/>
 <ribelement classname="RiEnd" name="End"/>
 <ribelement classname="RiBegin" name="Begin"/>
 <ribelement classname="RiFrameBegin" name="FrameBegin"/>

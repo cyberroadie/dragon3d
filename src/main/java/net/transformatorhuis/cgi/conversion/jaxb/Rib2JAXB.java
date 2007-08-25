@@ -108,7 +108,10 @@ public class Rib2JAXB {
             BufferedReader in = new BufferedReader(new FileReader(ribFile));
             String str;
             while ((str = in.readLine()) != null) {
-                // TODO give version it's own implementation/setter
+                // No whitespace
+                str = str.trim();
+                // TODO trim comments from end of line
+                // TODO give 'version 3.03' (Rib attribute) it's own implementation/setter
                 if(!str.startsWith("#") && !str.startsWith("version") && !str.trim().equals("")) {
                     logger.debug("Processing: " + str);
                     process(str);

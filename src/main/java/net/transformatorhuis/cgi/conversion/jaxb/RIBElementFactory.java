@@ -40,6 +40,7 @@ public class RIBElementFactory {
     public Object processRIBLine(String ribLine) {
 
         AbstractRib rib = null;
+        ribLine = ribLine.trim();
 
         Class[] intArgsClass = new Class[] {String.class};
         Object[] intArgs = new Object[] {ribLine};
