@@ -2,6 +2,8 @@ package net.transformatorhuis.cgi.conversion.rib;
 
 import net.transformatorhuis.xsd.Rib;
 import net.transformatorhuis.xsd.ObjectFactory;
+import net.transformatorhuis.cgi.conversion.jaxb.RIBElementFactory;
+import net.transformatorhuis.cgi.utils.Config;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,11 +12,15 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.BasicConfigurator;
+import org.w3c.dom.Document;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * @author cyberroadie
@@ -29,6 +35,8 @@ public class Rib2JAXB {
 
     private ObjectFactory objFactory;
 
+    private RIBElementFactory ribElementFactory;
+
     private Marshaller m;
     
     private static Logger logger = Logger.getLogger(Rib2JAXB.class);
@@ -42,6 +50,9 @@ public class Rib2JAXB {
      */
     public Rib2JAXB() {
         super();
+
+        // Create thr RIB factory
+        ribElementFactory = new RIBElementFactory();
 
         // First create the JAXB container
         try {
@@ -89,9 +100,31 @@ public class Rib2JAXB {
 
     private void process(String paramaters)  {
 
-        //ribList.add(jaxbNode);
+        Rib rib = ribElementFactory.processRIBLine(paramaters);
+        ribList.add(rib);
 
     }
+
+    public Document getDOMDocument() {
+
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        dbf.setNamespaceAware(true);
+        DocumentBuilder db = null;
+        Document doc = null;
+        try {
+            db = dbf.newDocumentBuilder();
+            doc = db.newDocument();
+            m.marshal(rib, doc);
+        } catch (ParserConfigurationException e) {
+            logger.error(e.toString());
+        } catch (JAXBException e) {
+            logger.error(e.toString());
+        }
+
+        return doc;
+
+    }
+    
     /**
      * @return true
      */

@@ -15,10 +15,7 @@
 	<category name="net.transformatorhuis.cgi.conversion.RibFactory">
 	    <priority value="info" />
 	</category>
-	<category name="net.transformatorhuis.cgi.conversion.Rib">
-	    <priority value="info" />
-	</category>
-	<category name="net.transformatorhuis.cgi.conversion.Rib2Xml">
+	<category name="net.transformatorhuis.cgi.conversion.jaxb">
 	    <priority value="debug" />
 	</category>
 	<root>
