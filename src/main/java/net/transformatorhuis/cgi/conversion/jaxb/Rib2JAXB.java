@@ -1,28 +1,23 @@
-package net.transformatorhuis.cgi.conversion.rib;
+package net.transformatorhuis.cgi.conversion.jaxb;
 
-import net.transformatorhuis.xsd.Rib;
 import net.transformatorhuis.xsd.ObjectFactory;
-import net.transformatorhuis.cgi.conversion.jaxb.RIBElementFactory;
-import net.transformatorhuis.cgi.conversion.jaxb.InvalidRIBDocumentException;
-import net.transformatorhuis.cgi.utils.Config;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.File;
-import java.util.List;
-
-import org.apache.log4j.Logger;
+import net.transformatorhuis.xsd.Rib;
 import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
-import javax.xml.bind.JAXBException;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * @author cyberroadie
@@ -31,11 +26,7 @@ public class Rib2JAXB {
 
     private Rib rib;
 
-    private List ribList;
-
-    private List ribElementsList;
-
-    private ObjectFactory objFactory;
+    private List<Object> ribList;
 
     private RIBElementFactory ribElementFactory;
 
@@ -47,12 +38,9 @@ public class Rib2JAXB {
 
     private String version;
 
-    private static final String JAXP_SCHEMA_LANGUAGE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
-    private static final String W3C_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
-    private static final String JAXP_SCHEMA_SOURCE = "http://java.sun.com/xml/jaxp/properties/schemaSource";
-
     /**
      * Converts RIB to JAXB.
+     * @param ribFile RIB input file
      */
     public Rib2JAXB(File ribFile) {
         super();
@@ -74,7 +62,7 @@ public class Rib2JAXB {
         }
 
         // JAXB object factory
-        objFactory = new ObjectFactory();
+        ObjectFactory objFactory = new ObjectFactory();
 
         // Intial setup renderman file
         rib = objFactory.createRib();
@@ -110,6 +98,7 @@ public class Rib2JAXB {
     /**
      * This method sequentially adds RIB elements to the JAXB Cloud
      * Note this could be transformed to a paralel process?
+     * @throws net.transformatorhuis.cgi.conversion.jaxb.InvalidRIBDocumentException Invalid RIB document format
      */
     public void createJAXBCloud() throws InvalidRIBDocumentException {
         try {
@@ -155,11 +144,12 @@ public class Rib2JAXB {
 
     /**
      * Adds RIB element to the JAXB cloud
-     * @param paramaters
+     * @param paramaters RIB element parameters
      */
     private void process(String paramaters)  {
 
         Object rib = ribElementFactory.processRIBLine(paramaters);
+        System.out.println();
         ribList.add(rib);
 
     }
@@ -173,7 +163,7 @@ public class Rib2JAXB {
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setNamespaceAware(true);
-        DocumentBuilder db = null;
+        DocumentBuilder db;
         Document doc = null;
         try {
             db = dbf.newDocumentBuilder();
@@ -191,7 +181,7 @@ public class Rib2JAXB {
 
     /**
      * Prints JAXB to System.out
-     * @throws JAXBException
+     * @throws JAXBException error creating JAXB output
      */
     public void toSystemOut() throws JAXBException {
         m.marshal(rib, System.out);
