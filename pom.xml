@@ -134,7 +134,6 @@
         </pluginRepository>
     </pluginRepositories>
     <build>
-        <!-- TODO create run target -->
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
