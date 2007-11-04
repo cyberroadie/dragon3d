@@ -92,17 +92,19 @@ public class RibFactory {
 
             // TODO replace System.out's with log4j 
         } catch (InstantiationException ie) {
-            System.out.println(ie);
+            System.out.println("RibFactory error: " + ie);
         } catch (IllegalAccessException iae) {
-            System.out.println(iae);
+            System.out.println("RibFactory error: " + iae);
         } catch (IllegalArgumentException iae) {
-            System.out.println(iae);
+            System.out.println("RibFactory error: " + iae);
         } catch (InvocationTargetException ite) {
-            System.out.println(ite);
+            System.out.println("RibFactory error: " + ite);
         } catch (ClassNotFoundException cnfe) {
-            System.out.println(cnfe);
+            System.out.println("RibFactory error: " + cnfe);
         } catch (NoSuchMethodException nsme) {
-            System.out.println(nsme);
+            System.out.println("RibFactory error: " + nsme);
+        } catch (Exception e) {
+            System.out.println("RibFactory error: " + e);
         }
 
     }
