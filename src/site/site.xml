@@ -13,7 +13,7 @@
         <menu name="Dragon3D">
             <item name="Introduction" href="index.html"/>
             <item name="Project" href="http://developer.berlios.de/projects/dragon3d/" />
-            <item name="Version Control" href="http://svn.berlios.de/wsvn/dragon3d" />
+            <item name="Version Control" href="http://www.cyberroadie.org/gitweb/" />
             <item name="Wiki" href="http://dragon3d.berlios.de/mediawiki/index.php/Main_Page" />
             <item name="Blog" href="http://dragon3d.blogspot.com/"/>
         </menu>
