@@ -31,8 +31,8 @@
         </developer>
     </developers>
     <ciManagement>
-        <system>Continuum</system>
-        <url>http://www.cyberroadie.org/continuum/</url>
+        <system>TeamCity</system>
+        <url>http://www.cyberroadie.org/teamcity/</url>
         <notifiers>
             <notifier>
                 <type>mail</type>
