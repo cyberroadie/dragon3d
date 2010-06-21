@@ -1,4 +1,0 @@
-env = Environment()
-env.Append(CCFLAGS = '-g')
-Export('env')
-SConscript('SConscript', build_dir='build')
