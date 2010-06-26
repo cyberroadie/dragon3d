@@ -1,9 +1,13 @@
 cmake_minimum_required (VERSION 2.6) 
 project (DRAGON3D)
 
-find_package( Boost 1.42 COMPONENTS string)
+
+find_package(Boost)
+#find_package(gtest REQUIRED)
 
 link_directories ( ${Boost_LIBRARY_DIRS} )
+#link_directories ( ${GTEST_LIBRARY_DIRS} )
+
 include_directories ( 
     ${Boost_INCLUDE_DIRS} 
     ${DRAGON3D_SOURCE_DIR}/include
@@ -13,3 +17,10 @@ include_directories (
 add_subdirectory(src)
 add_subdirectory(demo)
 
+  enable_testing()
+  find_package(GTest REQUIRED)
+  include(cmake/internal_utils.cmake)
+  include_directories(${GTEST_INCLUDE_DIRS})
+  cxx_test(testtest gtest_main)
+  target_link_libraries(testtest ${GTEST_LIBRARIES})
+  #include(CTest)

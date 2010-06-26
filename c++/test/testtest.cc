@@ -7,10 +7,12 @@
  *
  */
 
+#include <gtest/gtest.h>
+#include <gtest/gtest-spi.h>
 #include <vector>
 #include <iostream>
-#include "testtest.h"
-#include "rib.cpp"
+#include "../src/rib.cpp"
+
 
 TEST(Input, Cin) {
 	std::vector<RibNode> v;
