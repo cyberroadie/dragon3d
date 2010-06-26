@@ -13,7 +13,6 @@
 #include <iostream>
 #include "../src/rib.cpp"
 
-
 TEST(Input, Cin) {
 	std::vector<RibNode> v;
 	std::stringstream fake_cin;
@@ -29,5 +28,10 @@ TEST(Input, Cin) {
 
 TEST(FactorialTest, One ) {
 	EXPECT_EQ(1, 1);
+}
+
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
 
