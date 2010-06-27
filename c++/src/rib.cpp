@@ -13,7 +13,7 @@
 std::istream& read_rib(std::istream& in, std::vector<RibNode>& ribs) {
 	if(in) {
 		std::string line;
-		getline(in, line);
+		std::getline(in, line);
 		boost::trim(line);
 		if (line.size() > 0) {
 			RibNode rn;
