@@ -18,9 +18,13 @@ add_subdirectory(src)
 add_subdirectory(demo)
 
   enable_testing()
+
+set(MEMORYCHECK_COMMAND_OPTIONS "--trace-children=yes")
+
   find_package(GTest REQUIRED)
   include(cmake/internal_utils.cmake)
   include_directories(${GTEST_INCLUDE_DIRS})
   cxx_test(testtest gtest)
-  target_link_libraries(testtest ${GTEST_LIBRARIES})
-  #include(CTest)
+  add_definitions(-fprofile-arcs -ftest-coverage)
+  target_link_libraries(testtest -fprofile-arcs ${GTEST_LIBRARIES})
+  include(CTest)
